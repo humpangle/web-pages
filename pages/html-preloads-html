@@ -1,0 +1,7 @@
+This is what to do when you do not want the browser to block while fetching
+certain resources:
+
+<script defer src=".."></script>
+<script src=".." type="module"></script> // type=module are deferred by default
+<script async src=".." type="module"></script>
+<link rel="preload" as="style" onload="this.rel='stylesheet'" href="..">
