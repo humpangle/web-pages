@@ -1,0 +1,849 @@
+<!DOCTYPE html> <html lang=en class=js-focus-visible data-js-focus-visible style><!--
+ Page saved with SingleFile 
+ url: https://dev.to/creativenull/installing-neovim-nightly-alongside-stable-10d0 
+ saved date: Tue Mar 16 2021 06:18:44 GMT+0100 (Central European Standard Time)
+--><meta charset=utf-8>
+<title>Installing neovim nightly alongside stable - DEV Community</title>
+<meta name=last-updated content="2021-03-15 04:19:27 UTC">
+<meta name=user-signed-in content=false>
+<meta name=head-cached-at content=1615781967>
+<meta name=monetization content=$ilp.uphold.com/24HhrUGG7ekn>
+<meta name=environment content=production>
+<style>*:focus:active{outline:0}*:focus:not(.focus-visible){outline:none}@keyframes loading-fadein{from{opacity:0}to{opacity:0.6}}@keyframes fade-in{0%{opacity:0}100%{opacity:1}}@keyframes swipe-in-from-left{0%{transform:translate(-280px,0)}100%{transform:translate(0em,0)}}@keyframes swipe-in-from-right{0%{transform:translate(calc(-100vw + 280px),0)}100%{transform:translate(-100vw,0)}}:root{--podcast-spinning-animation:spin 20s linear infinite}@keyframes spin{100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@-webkit-keyframes slide-in-from-left{0%{left:-300px}100%{left:20px}}@keyframes spin{100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes blinker{50%{opacity:0}}@keyframes pulser{50%{opacity:0.8;box-shadow:2px 2px 0px #66e2d5;padding:18px}}@keyframes small-pulser{50%{opacity:0.6;box-shadow:2px 2px 0px #66e2d5}}@media (min-width:768px){.crayons-article-actions{padding:0;padding-bottom:0;display:grid;gap:var(--su-6);position:-webkit-sticky;position:sticky;box-shadow:none;justify-content:stretch;top:calc(var(--header-height) + var(--layout-padding) + 6vh);z-index:var(--z-elevate)}}@media (min-width:768px){.crayons-article-actions__inner{display:grid;gap:var(--su-6);justify-content:stretch}}@media (min-width:768px){.crayons-reaction{flex-direction:column}}@media (min-width:768px){.crayons-reaction__count{min-width:auto}}.crayons-reaction--like:hover,.crayons-reaction--like.user-activated{--reaction-color:var(--reaction-like-color);--reaction-bg:var(--reaction-like-bg)}.crayons-reaction--unicorn:hover,.crayons-reaction--unicorn.user-activated{--reaction-color:var(--reaction-custom-color);--reaction-bg:var(--reaction-custom-bg)}.crayons-reaction--readinglist:hover,.crayons-reaction--readinglist.user-activated{--reaction-color:var(--reaction-save-color);--reaction-bg:var(--reaction-save-bg)}@keyframes iconPop{0%{transform:scale(0.65)}50%{transform:scale(1.1)}100%{transform:scale(1)}}@keyframes ringPop{0%{transform:scale(2);box-shadow:0 0 0 4px currentColor;opacity:0}100%{box-shadow:0 0 0 1px currentColor;transform:scale(1);opacity:1}}@keyframes ringPop2{0%{box-shadow:0 0 0 currentColor;transform:scale(1);opacity:0.6}100%{box-shadow:0 0 1px 1px transparent;transform:scale(4);opacity:0}}.crayons-article-sticky{position:-webkit-sticky}@keyframes slideInTitle{from{opacity:0;top:calc(var(--su-4) * -1)}to{opacity:1;top:0}}@keyframes slideInTags{from{opacity:0;top:calc(var(--su-4) * -1)}to{opacity:1;top:0}}@keyframes slideInBody{from{opacity:0;top:calc(var(--su-4) * -1)}to{opacity:1;top:0}}.comment-form__field:focus-within{background-color:var(--form-bg-focus);border-color:var(--form-border-focus);box-shadow:1px 1px 0 var(--form-border-focus)}.comment-form .comment-textarea,.comment-form .comment-textarea:hover,.comment-form .comment-textarea:focus{padding:0.5em}@media (min-width:1024px){#footer-container{contain-intrinsic-size:260px}}@media (min-width:768px){.crayons-footer{--footer-padding:var(--su-8)}}@media (min-width:768px){.crayons-footer__container{grid-gap:var(--su-5);font-size:var(--fs-base)}}@media (min-width:1024px){.crayons-footer__mascot{display:block}}.crayons-footer__mascot:hover{transform:rotate(-3deg)}:root{--header-height:56px;--site-width:1280px;--su-1:0.25rem;--su-2:0.5rem;--su-3:0.75rem;--su-4:1rem;--su-5:1.25rem;--su-6:1.5rem;--su-7:2rem;--su-8:3rem;--su-9:4rem;--su-10:8rem;--radius:5px;--transition-func:cubic-bezier(0.17,0.67,0.5,0.71);--transition-time:100ms;--transition-props:var(--transition-func) var(--transition-time);--ff-sans-serif:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';--ff-monospace:'SF Mono',SFMono-Regular,Consolas,'Liberation Mono',Menlo,Courier,monospace;--ff-serif:Palatino,'Palatino Linotype','Palatino LT STD','Book Antiqua',Georgia,serif;--ff-comic:'Comic Sans MS',cursive,sans-serif;--ff-dyslexic:OpenDyslexic,sans-serif;--fs-xs:0.75rem;--fs-s:0.875rem;--fs-base:1rem;--fs-l:1.125rem;--fs-xl:1.25rem;--fs-2xl:1.5rem;--fs-3xl:1.875rem;--fs-4xl:2.25rem;--fs-5xl:3rem;--fw-normal:400;--fw-medium:500;--fw-bold:700;--fw-heavy:800;--lh-tight:1.25;--lh-base:1.5;--z-negative:-1;--z-elevate:1;--z-sticky:100;--z-drawer:200;--z-modal:300;--z-dropdown:400;--z-popover:500}:root{--base:#08090a;--base-a90:rgba(8,9,10,0.9);--base-a80:rgba(8,9,10,0.8);--base-a70:rgba(8,9,10,0.7);--base-a60:rgba(8,9,10,0.6);--base-a50:rgba(8,9,10,0.5);--base-a40:rgba(8,9,10,0.4);--base-a30:rgba(8,9,10,0.3);--base-a20:rgba(8,9,10,0.2);--base-a10:rgba(8,9,10,0.1);--base-a5:rgba(8,9,10,0.05);--base-100:var(--base);--base-90:#202428;--base-80:#363d44;--base-70:#4d5760;--base-60:#64707d;--base-50:#7d8a97;--base-40:#99a3ad;--base-30:#b5bdc4;--base-20:#d2d6db;--base-10:#eef0f1;--base-0:#f9fafa;--base-inverted:#fff;--accent-brand:#3b49df;--accent-brand-darker:#1827ce;--accent-brand-lighter:#8d95f2;--accent-brand-a10:rgba(59,73,223,0.1);--accent-success:#26d9ca;--accent-success-darker:#1ab3a6;--accent-success-lighter:#79ece2;--accent-success-a10:rgba(38,217,202,0.1);--accent-warning:#ffcf4c;--accent-warning-darker:#f5b400;--accent-warning-lighter:#ffe499;--accent-warning-a10:rgba(255,207,76,0.1);--accent-danger:#dc1818;--accent-danger-darker:#c20a0a;--accent-danger-lighter:#ec5050;--accent-danger-a10:rgba(220,24,24,0.1);--body-bg:var(--base-10);--body-color:var(--base-100);--body-color-inverted:var(--base-inverted);--card-bg:var(--base-inverted);--card-color:var(--base-100);--card-color-secondary:var(--base-70);--card-color-tertiary:var(--base-60);--card-secondary-bg:var(--base-0);--card-secondary-color:var(--base-90);--card-headline-color:var(--base-100);--card-border:var(--base-a10);--card-secondary-border:var(--base-a5);--card-hover-bg:var(--base-10);--card-selected-bg:var(--base-20);--header-bg:var(--base-inverted);--header-bg-hover:var(--base-10);--header-button-focus-color:var(--accent-brand);--header-bg-current:var(--base-20);--header-shadow:rgba(0,0,0,0.1);--header-icons-color:var(--base-70);--header-icons-color-hover:var(--base-100);--logo-bg:var(--base-100);--logo-color:var(--base-inverted);--footer-bg:var(--base-20);--footer-color:var(--base-70);--footer-link-color:var(--base-80);--footer-link-color-hover:var(--base-100);--link-color:var(--base-90);--link-color-hover:var(--accent-brand-darker);--link-bg-hover:var(--base-a5);--link-bg-hover-alt:var(--base-inverted);--link-brand-color:var(--accent-brand);--link-color-current:var(--base-100);--link-color-secondary:var(--base-60);--link-color-secondary-hover:var(--base-70);--link-bg-current:var(--base-inverted);--button-primary-bg:var(--accent-brand);--button-primary-bg-hover:var(--accent-brand-darker);--button-primary-color:var(--base-0);--button-primary-color-hover:var(--base-0);--button-primary-inverted-bg:var(--accent-brand);--button-primary-inverted-bg-hover:var(--accent-brand-darker);--button-primary-inverted-color:var(--base-0);--button-primary-inverted-color-hover:var(--base-0);--button-secondary-bg:var(--base-20);--button-secondary-bg-hover:var(--base-30);--button-secondary-color:var(--base-80);--button-secondary-color-hover:var(--base-100);--button-secondary-inverted-bg:var(--base-70);--button-secondary-inverted-bg-hover:var(--base-60);--button-secondary-inverted-color:var(--base-10);--button-secondary-inverted-color-hover:var(--base-0);--button-outlined-bg:transparent;--button-outlined-bg-hover:rgba(0,0,0,0.035);--button-outlined-border:var(--base-20);--button-outlined-border-hover:var(--base-40);--button-outlined-color:var(--base-80);--button-outlined-color-hover:var(--base-100);--button-outlined-inverted-bg:transparent;--button-outlined-inverted-bg-hover:rgba(255,255,255,0.15);--button-outlined-inverted-border:var(--base-60);--button-outlined-inverted-border-hover:var(--base-40);--button-outlined-inverted-color:var(--base-30);--button-outlined-inverted-color-hover:var(--base-10);--button-ghost-bg:transparent;--button-ghost-bg-hover:rgba(0,0,0,0.035);--button-ghost-color:var(--base-80);--button-ghost-color-hover:var(--base-100);--button-ghost-dimmed-color:var(--base-60);--button-ghost-dimmed-color-hover:var(--base-100);--button-ghost-inverted-bg:transparent;--button-ghost-inverted-bg-hover:rgba(255,255,255,0.15);--button-ghost-inverted-color:var(--base-30);--button-ghost-inverted-color-hover:var(--base-10);--button-ghost-dimmed-inverted-color:var(--base-50);--button-ghost-dimmed-inverted-color-hover:var(--base-100);--form-bg:var(--base-0);--form-bg-focus:var(--base-inverted);--form-border:var(--base-30);--form-border-hover:var(--base-40);--form-border-focus:var(--accent-brand);--form-placeholder-color:var(--base-60);--label-primary:var(--base-90);--label-secondary:var(--base-60);--box:var(--base-90);--box-darker:var(--base-100);--snackbar-bg:var(--base-90);--snackbar-border:var(--base-100);--snackbar-color:var(--body-color-inverted);--indicator-accent-bg:var(--accent-brand);--indicator-accent-color:var(--body-color-inverted);--indicator-critical-bg:var(--accent-danger);--indicator-critical-color:var(--body-color-inverted);--indicator-default-bg:var(--button-secondary-bg);--indicator-default-color:var(--button-secondary-color);--tab-color:var(--base-80);--tab-color-hover:var(--accent-brand);--tab-color-current:var(--base-100);--tab-bg-hover:var(--accent-brand-a10);--tab-bg-current:var(--accent-brand);--tab-muted-color:var(--base-80);--tab-muted-color-hover:var(--base-90);--tab-muted-color-current:var(--base-100);--tab-muted-bg-hover:var(--base-a10);--tab-muted-bg-current:var(--base-20);--tab-pill-color-current:var(--base-inverted);--tag-color:var(--base-60);--tag-color-hover:var(--base-100);--story-comments-bg:var(--base-0);--select-icon:url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDE2TDYgMTBIMThMMTIgMTZaIiBmaWxsPSIjMDgwOTBBIi8+Cjwvc3ZnPg==);--reaction-like-color:var(--accent-danger);--reaction-like-bg:var(--accent-danger-a10);--reaction-custom-color:var(--accent-success);--reaction-custom-bg:var(--accent-success-a10);--reaction-save-color:var(--accent-brand);--reaction-save-bg:var(--accent-brand-a10);--reaction-comment-color:var(--accent-warning);--reaction-comment-bg:var(--accent-warning-a10)}[class^='crayons'],[class^='crayons']::before,[class^='crayons']::after,[class^='crayons'] *,[class^='crayons'] *::before,[class^='crayons'] *::after{box-sizing:border-box}html{-webkit-text-size-adjust:100%}button,[type='button']{-webkit-appearance:button}@media (prefers-reduced-motion:reduce){*,::before,::after{animation-delay:-1ms!important;animation-duration:1ms!important;animation-iteration-count:1!important;background-attachment:initial!important;scroll-behavior:auto!important;transition-duration:0s!important;transition-delay:0s!important}}@media (min-width:640px){.site-logo{--max-width:150px}}@media (min-width:768px){.site-logo{--max-width:175px;--font-size:var(--fs-l);--font-weight:var(--fw-bold)}}@media (min-width:1024px){.site-logo{--max-width:200px;--font-size:var(--fs-xl)}}.site-logo:hover{color:var(--base-80);text-decoration:none}.crayons-icon{-moz-transform:rotate(360deg)}.crayons-icon:not(.crayons-icon--default),.crayons-icon:not(.crayons-icon--default) *{fill:currentColor}:root{--layout-sidebar-left-display:block;--layout-sidebar-right-display:block;--layout-sidebar-left-width:100%;--layout-sidebar-right-width:100%;--layout-sidebar-left-row-end:initial;--layout-content-width:100%;--layout-drawer-width:300px;--layout-gap:var(--su-2);--layout-padding:0;--layout:100%}@media (min-width:768px){:root{--layout-sidebar-left-width:2fr;--layout-padding:var(--su-2);--layout:var(--layout-content-width)}}@media (min-width:1024px){:root{--layout-sidebar-left-width:240px;--layout-content-width:1fr;--layout-gap:var(--su-4);--layout-padding:var(--su-4)}}@media (min-width:768px){.crayons-layout--3-cols{--layout:var(--layout-sidebar-left-width) var(--layout-content-width);--layout-sidebar-left-row-end:span 2;--layout-sidebar-left-width:2fr;--layout-sidebar-right-width:5fr;--layout-content-width:5fr}}@media (min-width:1024px){.crayons-layout--3-cols{--layout-sidebar-left-width:240px;--layout-sidebar-right-width:1fr;--layout-sidebar-left-row-end:initial;--layout-content-width:2fr;--layout:var(--layout-sidebar-left-width) var(--layout-content-width) var(--layout-sidebar-right-width)}}@media (min-width:768px){.crayons-layout--article{--layout-gap:var(--su-2);--layout-sidebar-left-width:var(--su-9);--layout:var(--layout-sidebar-left-width) 1fr;--layout-sidebar-left-row-end:span 2}}@media (min-width:1024px){.crayons-layout--article{--layout-gap:var(--su-4);--layout-sidebar-right-width:3fr;--layout-sidebar-left-row-end:initial;--layout-content-width:7fr;--layout:var(--layout-sidebar-left-width) var(--layout-content-width) var(--layout-sidebar-right-width)}}:root{--content-padding-x:var(--su-3);--content-padding-y:var(--su-3)}@media (min-width:640px){:root{--content-padding-x:var(--su-5);--content-padding-y:var(--su-5)}}@media (min-width:768px){:root{--content-padding-x:var(--su-8);--content-padding-y:var(--su-7)}}@media (min-width:1024px){:root{--content-padding-x:var(--su-9)}}:root{--content-font-size:var(--fs-l);--content-secondary-font-size:var(--fs-base);--content-tertiary-font-size:var(--fs-base);--content-rhythm:var(--content-font-size)}@media (min-width:640px){:root{--content-secondary-font-size:var(--fs-l)}}@media (min-width:1024px){:root{--content-font-size:var(--fs-xl)}}.text-styles>:last-child{margin-bottom:0}.text-styles a:hover{color:var(--accent-brand-darker)}.text-styles pre:not(.highlight),.text-styles div.highlight{margin:0 0 var(--content-rhythm) 0}.crayons-avatar::after{content:'';border:1px solid var(--body-color);opacity:0.15;width:100%;height:100%;position:absolute;left:0;top:0;border-radius:100%;pointer-events:none}@media (min-width:768px){.m\:crayons-avatar--l{width:var(--su-7);height:var(--su-7)}.m\:crayons-avatar--2xl{width:var(--su-9);height:var(--su-9)}}.crayons-btn[href]:hover,.crayons-btn[href]:focus,.crayons-btn:hover:enabled,.crayons-btn:active:enabled,.crayons-btn:focus:enabled,.crayons-btn:focus-within{background-color:var(--bg-hover);border-color:var(--border-hover);box-shadow:var(--shadow-hover);color:var(--color-hover);z-index:var(--z-elevate)}.crayons-btn-group .crayons-btn:first-child{border-top-left-radius:var(--radius);border-bottom-left-radius:var(--radius)}.crayons-btn-group .crayons-btn:last-child{border-top-right-radius:var(--radius);border-bottom-right-radius:var(--radius)}.crayons-textfield{-webkit-appearance:none}.crayons-select:hover,.crayons-checkbox:hover,.crayons-radio:hover,.crayons-textfield:hover{border-color:var(--form-border-hover)}.crayons-select:focus,.crayons-textfield:focus{background-color:var(--form-bg-focus);border-color:var(--form-border-focus);box-shadow:1px 1px 0 var(--form-border-focus)}.crayons-textfield::placeholder{color:var(--form-placeholder-color)}.crayons-textfield--ghost,.crayons-textfield--ghost:hover,.crayons-textfield--ghost:focus,.crayons-textfield--ghost[disabled]{background:transparent;border:none;padding:0;margin:0;outline:none;width:100%;box-shadow:none;resize:none;transition:none}@media (min-width:768px){.crayons-header--search{margin:0 var(--su-4);display:block}}.skip-content-link:focus,.skip-content-link:focus-within{pointer-events:auto;transform:translate(-50%,0);outline:none;border:2px solid var(--header-button-focus-color)}@keyframes showProgressBar{0%{width:0}100%{width:100%}}@media (min-width:640px){.crayons-subtitle-1{font-size:var(--fs-2xl)}}@media (min-width:640px){.crayons-subtitle-2{font-size:var(--fs-xl)}}@keyframes placeHolderShimmer{0%{background-position:-468px 0}100%{background-position:468px 0}}.crayons-link:hover{color:var(--link-color-hover)}.crayons-link--secondary:hover{color:var(--link-color-secondary-hover)}.crayons-link--contentful:last-child{border-bottom:0;border-bottom-right-radius:var(--radius);border-bottom-left-radius:var(--radius)}.crayons-link--contentful:hover{background:var(--link-bg-hover-alt)}.crayons-link--contentful:hover .crayons-link__secondary{color:var(--link-color-secondary-hover)}@keyframes crayons-spinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}:root{--syntax-background-color:#08090a;--syntax-text-color:#f8f8f2;--syntax-comment-color:#808080;--syntax-declaration-color:#f39c12;--syntax-literal-color:#dda0dd;--syntax-error-color:#f9690e;--syntax-name-color:#7ed07e;--syntax-string-color:#f2ca27}pre:not(.highlight),div.highlight{background:var(--syntax-background-color);color:var(--syntax-text-color);font-size:80%;border-radius:var(--radius);margin:0;overflow-x:auto;-webkit-overflow-scrolling:touch;overflow-wrap:initial}pre:not(.highlight) code,div.highlight code,li pre.highlight code,blockquote pre.highlight code{font-size:100%;padding:0}@media (min-width:768px){div.highlight .highlight{padding:var(--su-6)}}.highlight:hover .highlight__panel{visibility:visible}.highlight__panel-action:hover{opacity:1}.crayons-tag[href]:hover{color:var(--tag-color-hover)}@media (min-width:640px){.s\:mb-0{margin-bottom:0}.s\:fs-base{font-size:var(--fs-base)}.s\:fw-heavy{font-weight:var(--fw-heavy)}}@media (min-width:768px){.m\:-mt-4{margin-top:calc(var(--su-4) * -1)}.m\:-mb-4{margin-bottom:calc(var(--su-4) * -1)}.m\:fs-4xl{font-size:var(--fs-4xl)}.m\:block{display:block}.m\:relative{position:relative}}@media (min-width:1024px){.l\:fs-5xl{font-size:var(--fs-5xl)}}</style>
+<link rel=canonical href=https://dev.to/creativenull/installing-neovim-nightly-alongside-stable-10d0>
+<meta name=description content="Nvim v0.5 is the development branch of neovim and has been in constant feature update. Some of the ma... Tagged with vim, neovim, productivity, linux.">
+<meta name=keywords content="vim, neovim, productivity, linux, software, coding, development, engineering, inclusive, community">
+<meta property=og:type content=article>
+<meta property=og:url content=https://dev.to/creativenull/installing-neovim-nightly-alongside-stable-10d0>
+<meta property=og:title content="Installing neovim nightly alongside stable">
+<meta property=og:description content="Nvim v0.5 is the development branch of neovim and has been in constant feature update. Some of the ma...">
+<meta property=og:site_name content="DEV Community">
+<meta name=twitter:site content=@thepracticaldev>
+<meta name=twitter:creator content=@>
+<meta name=twitter:title content="Installing neovim nightly alongside stable">
+<meta name=twitter:description content="Nvim v0.5 is the development branch of neovim and has been in constant feature update. Some of the ma...">
+<meta name=twitter:card content=summary_large_image>
+<meta name=twitter:widgets:new-embed-design content=on>
+<meta name=robots content="max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta property=og:image content=https://dev.to/social_previews/article/516363.png>
+<meta name=twitter:image:src content=https://dev.to/social_previews/article/516363.png>
+<meta name=viewport content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name=apple-mobile-web-app-title content=dev.to>
+<meta name=application-name content=dev.to>
+<meta name=theme-color content=#000000>
+<link rel=search href=https://dev.to/open-search.xml type=application/opensearchdescription+xml title="DEV Community">
+<meta property=forem:name content="DEV Community">
+<meta property=forem:logo content=https://res.cloudinary.com/practicaldev/image/fetch/s--PFPhV65b--/c_limit,f_png,fl_progressive,q_80,w_512/https://practicaldev-herokuapp-com.freetls.fastly.net/assets/devlogo-pwa-512.png>
+<meta property=forem:domain content=dev.to>
+<meta name=csrf-param content=authenticity_token><meta name=csrf-token content="ngrRljyzVXoUDOg/ig3tajVVlmfba2E7dL9sf1lFKXqOQp+5r5PkPzOvI3sHu/h4sFKSAv+rcVb/4EH0K5NfFA=="><link href="data:image/png;base64,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" rel=icon sizes=192x192><style>.sf-hidden{display:none!important}</style></head>
+ <body data-user-status=logged-out class="sans-serif-article-body default-header" data-pusher-key=ef46a9ae106e4241008c data-app-domain=ZGV2LnRv data-honeybadger-key=a45862f6 data-deployed-at=2021-03-12T20:37:29Z data-latest-commit-id=cf3bde42592bca5d02e8dc3835c9800b6943ee89 data-ga-tracking=UA-71991109-1 data-loaded=true>
+ <style>*:focus:active{outline:0}*:focus:not(.focus-visible){outline:none}@keyframes loading-fadein{from{opacity:0}to{opacity:0.6}}@keyframes fade-in{0%{opacity:0}100%{opacity:1}}@keyframes swipe-in-from-left{0%{transform:translate(-280px,0)}100%{transform:translate(0em,0)}}@keyframes swipe-in-from-right{0%{transform:translate(calc(-100vw + 280px),0)}100%{transform:translate(-100vw,0)}}article{padding:0 0;position:relative}#audiocontent{position:fixed;bottom:0px;left:0px;right:0px;z-index:var(--z-sticky);font-family:var(--ff-sans-serif);display:block}:root{--podcast-spinning-animation:spin 20s linear infinite}@keyframes spin{100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@-webkit-keyframes slide-in-from-left{0%{left:-300px}100%{left:20px}}@keyframes spin{100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes blinker{50%{opacity:0}}@keyframes pulser{50%{opacity:0.8;box-shadow:2px 2px 0px #66e2d5;padding:18px}}@keyframes small-pulser{50%{opacity:0.6;box-shadow:2px 2px 0px #66e2d5}}</style>
+<style>.article-wrapper{min-width:0}.crayons-article__header{overflow-wrap:anywhere;word-break:break-word}.crayons-article__header__meta{padding:var(--content-padding-y) var(--content-padding-x) 0 var(--content-padding-x)}.crayons-article__subheader{font-size:var(--fs-base);color:var(--base-60);display:flex;flex-wrap:wrap;align-items:center}.crayons-article__main{padding:var(--content-padding-y) var(--content-padding-x)}.crayons-article-actions{position:fixed;left:0;right:0;bottom:0;padding:var(--su-2);background:var(--body-bg);box-shadow:0 -1px 1px rgba(0,0,0,0.1);z-index:var(--z-sticky)}@media (min-width:768px){.crayons-article-actions{padding:0;padding-bottom:0;display:grid;gap:var(--su-6);position:-webkit-sticky;position:sticky;box-shadow:none;justify-content:stretch;top:calc(var(--header-height) + var(--layout-padding) + 6vh);z-index:var(--z-elevate)}}.crayons-article-actions__inner{display:flex;align-items:center;justify-content:space-around;padding-bottom:env(safe-area-inset-bottom)}@media (min-width:768px){.crayons-article-actions__inner{display:grid;gap:var(--su-6);justify-content:stretch}}.crayons-reaction{--reaction-color:var(--button-ghost-color);--reaction-border:inset 0 0 0 0 transparent;--reaction-bg:transparent;border:none;padding:0;background:transparent;display:inline-flex;flex-direction:row;align-items:center}@media (min-width:768px){.crayons-reaction{flex-direction:column}}.crayons-reaction__icon{padding:var(--su-2);box-shadow:var(--reaction-border);background:var(--reaction-bg);color:var(--reaction-color);border-radius:50%;transition:all var(--transition-props)}.crayons-reaction__count{color:var(--base-70);font-size:var(--fs-s);display:block;min-width:var(--su-7)}@media (min-width:768px){.crayons-reaction__count{min-width:auto}}.crayons-reaction--like:hover,.crayons-reaction--like.user-activated{--reaction-color:var(--reaction-like-color);--reaction-bg:var(--reaction-like-bg)}.crayons-reaction--unicorn:hover,.crayons-reaction--unicorn.user-activated{--reaction-color:var(--reaction-custom-color);--reaction-bg:var(--reaction-custom-bg)}.crayons-reaction--readinglist:hover,.crayons-reaction--readinglist.user-activated{--reaction-color:var(--reaction-save-color);--reaction-bg:var(--reaction-save-bg)}@keyframes iconPop{0%{transform:scale(0.65)}50%{transform:scale(1.1)}100%{transform:scale(1)}}@keyframes ringPop{0%{transform:scale(2);box-shadow:0 0 0 4px currentColor;opacity:0}100%{box-shadow:0 0 0 1px currentColor;transform:scale(1);opacity:1}}@keyframes ringPop2{0%{box-shadow:0 0 0 currentColor;transform:scale(1);opacity:0.6}100%{box-shadow:0 0 1px 1px transparent;transform:scale(4);opacity:0}}.crayons-article-sticky{position:-webkit-sticky;position:sticky;top:calc(var(--header-height) + var(--layout-padding))}.user-metadata-details li+li{margin-top:var(--su-3)}.user-metadata-details .key{font-size:var(--fs-xs);font-weight:var(--fw-bold);text-transform:uppercase;color:var(--card-color-tertiary)}@keyframes slideInTitle{from{opacity:0;top:calc(var(--su-4) * -1)}to{opacity:1;top:0}}@keyframes slideInTags{from{opacity:0;top:calc(var(--su-4) * -1)}to{opacity:1;top:0}}@keyframes slideInBody{from{opacity:0;top:calc(var(--su-4) * -1)}to{opacity:1;top:0}}.comment-form{--preview-display:none;--field-display:flex;display:flex;margin-bottom:var(--su-4)}.comment-form__field{display:var(--field-display);flex:1 auto;flex-direction:column;margin-bottom:var(--su-3);background-color:var(--form-bg);border:1px solid var(--form-border);color:var(--body-color);border-radius:var(--radius);transition:all var(--transition-props)}.comment-form__field:focus-within{background-color:var(--form-bg-focus);border-color:var(--form-border-focus);box-shadow:1px 1px 0 var(--form-border-focus)}.comment-form__inner{display:flex;flex-flow:column;flex:1 auto;min-width:0}.comment-form .comment-textarea{resize:vertical;max-height:40vh}.comment-form .comment-textarea,.comment-form .comment-textarea:hover,.comment-form .comment-textarea:focus{padding:0.5em}#footer-container{content-visibility:auto;contain-intrinsic-size:300px}@media (min-width:1024px){#footer-container{contain-intrinsic-size:260px}}.crayons-footer{--footer-padding:var(--su-5);background:var(--footer-bg);color:var(--footer-color);padding:var(--footer-padding);position:relative;text-align:center}@media (min-width:768px){.crayons-footer{--footer-padding:var(--su-8)}}.crayons-footer__container{justify-items:center;margin-bottom:env(safe-area-inset-bottom)}@media (min-width:768px){.crayons-footer__container{grid-gap:var(--su-5);font-size:var(--fs-base)}}.crayons-footer__divider{border:none;border-top:1px solid var(--footer-color);opacity:0.15;width:20%;margin:0}.crayons-footer__mascot{position:absolute;right:var(--footer-padding);top:-2px;display:none;transform-origin:center top;transition:all var(--transition-props)}@media (min-width:1024px){.crayons-footer__mascot{display:block}}.crayons-footer__mascot:hover{transform:rotate(-3deg)}.crayons-footer .crayons-footer__description a{font-weight:var(--fw-bold)}.mod-actions-menu{position:fixed;top:var(--header-height);right:0;height:calc(100vh - var(--header-height));z-index:var(--z-drawer);transform:translateX(360px);transition:var(--transition-props)}</style>
+<style>:root{--header-height:56px;--site-width:1280px;--su-1:0.25rem;--su-2:0.5rem;--su-3:0.75rem;--su-4:1rem;--su-5:1.25rem;--su-6:1.5rem;--su-7:2rem;--su-8:3rem;--su-9:4rem;--su-10:8rem;--radius:5px;--transition-func:cubic-bezier(0.17,0.67,0.5,0.71);--transition-time:100ms;--transition-props:var(--transition-func) var(--transition-time);--ff-sans-serif:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';--ff-monospace:'SF Mono',SFMono-Regular,Consolas,'Liberation Mono',Menlo,Courier,monospace;--ff-serif:Palatino,'Palatino Linotype','Palatino LT STD','Book Antiqua',Georgia,serif;--ff-comic:'Comic Sans MS',cursive,sans-serif;--ff-dyslexic:OpenDyslexic,sans-serif;--fs-xs:0.75rem;--fs-s:0.875rem;--fs-base:1rem;--fs-l:1.125rem;--fs-xl:1.25rem;--fs-2xl:1.5rem;--fs-3xl:1.875rem;--fs-4xl:2.25rem;--fs-5xl:3rem;--fw-normal:400;--fw-medium:500;--fw-bold:700;--fw-heavy:800;--lh-tight:1.25;--lh-base:1.5;--z-negative:-1;--z-elevate:1;--z-sticky:100;--z-drawer:200;--z-modal:300;--z-dropdown:400;--z-popover:500}:root{--base:#08090a;--base-a90:rgba(8,9,10,0.9);--base-a80:rgba(8,9,10,0.8);--base-a70:rgba(8,9,10,0.7);--base-a60:rgba(8,9,10,0.6);--base-a50:rgba(8,9,10,0.5);--base-a40:rgba(8,9,10,0.4);--base-a30:rgba(8,9,10,0.3);--base-a20:rgba(8,9,10,0.2);--base-a10:rgba(8,9,10,0.1);--base-a5:rgba(8,9,10,0.05);--base-100:var(--base);--base-90:#202428;--base-80:#363d44;--base-70:#4d5760;--base-60:#64707d;--base-50:#7d8a97;--base-40:#99a3ad;--base-30:#b5bdc4;--base-20:#d2d6db;--base-10:#eef0f1;--base-0:#f9fafa;--base-inverted:#fff;--accent-brand:#3b49df;--accent-brand-darker:#1827ce;--accent-brand-lighter:#8d95f2;--accent-brand-a10:rgba(59,73,223,0.1);--accent-success:#26d9ca;--accent-success-darker:#1ab3a6;--accent-success-lighter:#79ece2;--accent-success-a10:rgba(38,217,202,0.1);--accent-warning:#ffcf4c;--accent-warning-darker:#f5b400;--accent-warning-lighter:#ffe499;--accent-warning-a10:rgba(255,207,76,0.1);--accent-danger:#dc1818;--accent-danger-darker:#c20a0a;--accent-danger-lighter:#ec5050;--accent-danger-a10:rgba(220,24,24,0.1);--body-bg:var(--base-10);--body-color:var(--base-100);--body-color-inverted:var(--base-inverted);--card-bg:var(--base-inverted);--card-color:var(--base-100);--card-color-secondary:var(--base-70);--card-color-tertiary:var(--base-60);--card-secondary-bg:var(--base-0);--card-secondary-color:var(--base-90);--card-headline-color:var(--base-100);--card-border:var(--base-a10);--card-secondary-border:var(--base-a5);--card-hover-bg:var(--base-10);--card-selected-bg:var(--base-20);--header-bg:var(--base-inverted);--header-bg-hover:var(--base-10);--header-button-focus-color:var(--accent-brand);--header-bg-current:var(--base-20);--header-shadow:rgba(0,0,0,0.1);--header-icons-color:var(--base-70);--header-icons-color-hover:var(--base-100);--logo-bg:var(--base-100);--logo-color:var(--base-inverted);--footer-bg:var(--base-20);--footer-color:var(--base-70);--footer-link-color:var(--base-80);--footer-link-color-hover:var(--base-100);--link-color:var(--base-90);--link-color-hover:var(--accent-brand-darker);--link-bg-hover:var(--base-a5);--link-bg-hover-alt:var(--base-inverted);--link-brand-color:var(--accent-brand);--link-color-current:var(--base-100);--link-color-secondary:var(--base-60);--link-color-secondary-hover:var(--base-70);--link-bg-current:var(--base-inverted);--button-primary-bg:var(--accent-brand);--button-primary-bg-hover:var(--accent-brand-darker);--button-primary-color:var(--base-0);--button-primary-color-hover:var(--base-0);--button-primary-inverted-bg:var(--accent-brand);--button-primary-inverted-bg-hover:var(--accent-brand-darker);--button-primary-inverted-color:var(--base-0);--button-primary-inverted-color-hover:var(--base-0);--button-secondary-bg:var(--base-20);--button-secondary-bg-hover:var(--base-30);--button-secondary-color:var(--base-80);--button-secondary-color-hover:var(--base-100);--button-secondary-inverted-bg:var(--base-70);--button-secondary-inverted-bg-hover:var(--base-60);--button-secondary-inverted-color:var(--base-10);--button-secondary-inverted-color-hover:var(--base-0);--button-outlined-bg:transparent;--button-outlined-bg-hover:rgba(0,0,0,0.035);--button-outlined-border:var(--base-20);--button-outlined-border-hover:var(--base-40);--button-outlined-color:var(--base-80);--button-outlined-color-hover:var(--base-100);--button-outlined-inverted-bg:transparent;--button-outlined-inverted-bg-hover:rgba(255,255,255,0.15);--button-outlined-inverted-border:var(--base-60);--button-outlined-inverted-border-hover:var(--base-40);--button-outlined-inverted-color:var(--base-30);--button-outlined-inverted-color-hover:var(--base-10);--button-ghost-bg:transparent;--button-ghost-bg-hover:rgba(0,0,0,0.035);--button-ghost-color:var(--base-80);--button-ghost-color-hover:var(--base-100);--button-ghost-dimmed-color:var(--base-60);--button-ghost-dimmed-color-hover:var(--base-100);--button-ghost-inverted-bg:transparent;--button-ghost-inverted-bg-hover:rgba(255,255,255,0.15);--button-ghost-inverted-color:var(--base-30);--button-ghost-inverted-color-hover:var(--base-10);--button-ghost-dimmed-inverted-color:var(--base-50);--button-ghost-dimmed-inverted-color-hover:var(--base-100);--form-bg:var(--base-0);--form-bg-focus:var(--base-inverted);--form-border:var(--base-30);--form-border-hover:var(--base-40);--form-border-focus:var(--accent-brand);--form-placeholder-color:var(--base-60);--label-primary:var(--base-90);--label-secondary:var(--base-60);--box:var(--base-90);--box-darker:var(--base-100);--snackbar-bg:var(--base-90);--snackbar-border:var(--base-100);--snackbar-color:var(--body-color-inverted);--indicator-accent-bg:var(--accent-brand);--indicator-accent-color:var(--body-color-inverted);--indicator-critical-bg:var(--accent-danger);--indicator-critical-color:var(--body-color-inverted);--indicator-default-bg:var(--button-secondary-bg);--indicator-default-color:var(--button-secondary-color);--tab-color:var(--base-80);--tab-color-hover:var(--accent-brand);--tab-color-current:var(--base-100);--tab-bg-hover:var(--accent-brand-a10);--tab-bg-current:var(--accent-brand);--tab-muted-color:var(--base-80);--tab-muted-color-hover:var(--base-90);--tab-muted-color-current:var(--base-100);--tab-muted-bg-hover:var(--base-a10);--tab-muted-bg-current:var(--base-20);--tab-pill-color-current:var(--base-inverted);--tag-color:var(--base-60);--tag-color-hover:var(--base-100);--story-comments-bg:var(--base-0);--select-icon:url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDE2TDYgMTBIMThMMTIgMTZaIiBmaWxsPSIjMDgwOTBBIi8+Cjwvc3ZnPg==);--reaction-like-color:var(--accent-danger);--reaction-like-bg:var(--accent-danger-a10);--reaction-custom-color:var(--accent-success);--reaction-custom-bg:var(--accent-success-a10);--reaction-save-color:var(--accent-brand);--reaction-save-bg:var(--accent-brand-a10);--reaction-comment-color:var(--accent-warning);--reaction-comment-bg:var(--accent-warning-a10)}[class^='crayons'],[class^='crayons']::before,[class^='crayons']::after,[class^='crayons'] *,[class^='crayons'] *::before,[class^='crayons'] *::after{box-sizing:border-box}ul[class]{padding:0}html{line-height:1.5;-webkit-text-size-adjust:100%}h1,h2,h3,p,ul[class],li,pre{margin:0}body{scroll-behavior:smooth;text-rendering:optimizeSpeed;line-height:1.5}ul[class]{list-style:none}pre,code{font-family:var(--ff-monospace);font-size:1em}button,input{font-family:inherit;font-size:100%;line-height:1.5;margin:0}input[type='text']{outline:0}button,[type='button']{-webkit-appearance:button;cursor:pointer}@media (prefers-reduced-motion:reduce){*,::before,::after{animation-delay:-1ms!important;animation-duration:1ms!important;animation-iteration-count:1!important;background-attachment:initial!important;scroll-behavior:auto!important;transition-duration:0s!important;transition-delay:0s!important}}body{background:var(--body-bg);color:var(--body-color);font-family:var(--ff-sans-serif);padding:0;margin:0;overflow-y:scroll;display:flex;flex-direction:column}body.default-header{padding-top:var(--header-height);min-height:calc(100vh - var(--header-height))}.wrapper{flex:1 auto;visibility:visible;font-size:18px}a{color:var(--link-brand-color);text-decoration:none}.site-logo{max-width:var(--max-width, 125px);font-size:var(--font-size, var(--fs-base));font-weight:var(--font-weight, var(--fw-medium));display:inline-flex;flex-shrink:0;align-self:stretch;align-items:center;vertical-align:middle;color:var(--base-100);text-decoration:none;letter-spacing:-0.01em;line-height:var(--lh-tight);overflow-wrap:anywhere}@media (min-width:640px){.site-logo{--max-width:150px}}@media (min-width:768px){.site-logo{--max-width:175px;--font-size:var(--fs-l);--font-weight:var(--fw-bold)}}@media (min-width:1024px){.site-logo{--max-width:200px;--font-size:var(--fs-xl)}}.site-logo:hover{color:var(--base-80);text-decoration:none}.site-logo svg{max-width:100%;width:auto;height:calc(var(--header-height) - var(--su-2) * 2);vertical-align:middle;display:inline-block}.branded-7{border-top:var(--su-7) solid var(--accent-brand)}.crayons-icon{vertical-align:bottom;-moz-transform:rotate(360deg)}.crayons-icon:not(.crayons-icon--default),.crayons-icon:not(.crayons-icon--default) *{fill:currentColor}:root{--layout-sidebar-left-display:block;--layout-sidebar-right-display:block;--layout-sidebar-left-width:100%;--layout-sidebar-right-width:100%;--layout-sidebar-left-row-end:initial;--layout-content-width:100%;--layout-drawer-width:300px;--layout-gap:var(--su-2);--layout-padding:0;--layout:100%}@media (min-width:768px){:root{--layout-sidebar-left-width:2fr;--layout-padding:var(--su-2);--layout:var(--layout-content-width)}}@media (min-width:1024px){:root{--layout-sidebar-left-width:240px;--layout-content-width:1fr;--layout-gap:var(--su-4);--layout-padding:var(--su-4)}}.crayons-layout{font-size:var(--fs-base);width:100%;max-width:var(--site-width);margin:0 auto;display:grid;grid-gap:var(--layout-gap);grid-template-columns:var(--layout);padding:var(--layout-padding)}.crayons-layout__sidebar-left{display:var(--layout-sidebar-left-display);grid-row-end:var(--layout-sidebar-left-row-end);width:var(--layout-sidebar-left-width)}.crayons-layout__sidebar-right{display:var(--layout-sidebar-right-display);width:var(--layout-sidebar-right-width)}.crayons-layout__content{min-width:0}.crayons-layout--limited-m{--site-width:768px}@media (min-width:768px){.crayons-layout--3-cols{--layout:var(--layout-sidebar-left-width) var(--layout-content-width);--layout-sidebar-left-row-end:span 2;--layout-sidebar-left-width:2fr;--layout-sidebar-right-width:5fr;--layout-content-width:5fr}}@media (min-width:1024px){.crayons-layout--3-cols{--layout-sidebar-left-width:240px;--layout-sidebar-right-width:1fr;--layout-sidebar-left-row-end:initial;--layout-content-width:2fr;--layout:var(--layout-sidebar-left-width) var(--layout-content-width) var(--layout-sidebar-right-width)}}.crayons-layout--article{--layout-gap:0}@media (min-width:768px){.crayons-layout--article{--layout-gap:var(--su-2);--layout-sidebar-left-width:var(--su-9);--layout:var(--layout-sidebar-left-width) 1fr;--layout-sidebar-left-row-end:span 2}}@media (min-width:1024px){.crayons-layout--article{--layout-gap:var(--su-4);--layout-sidebar-right-width:3fr;--layout-sidebar-left-row-end:initial;--layout-content-width:7fr;--layout:var(--layout-sidebar-left-width) var(--layout-content-width) var(--layout-sidebar-right-width)}}:root{--content-padding-x:var(--su-3);--content-padding-y:var(--su-3)}@media (min-width:640px){:root{--content-padding-x:var(--su-5);--content-padding-y:var(--su-5)}}@media (min-width:768px){:root{--content-padding-x:var(--su-8);--content-padding-y:var(--su-7)}}@media (min-width:1024px){:root{--content-padding-x:var(--su-9)}}.text-padding{padding:var(--content-padding-y) var(--content-padding-x)}:root{--content-font-size:var(--fs-l);--content-secondary-font-size:var(--fs-base);--content-tertiary-font-size:var(--fs-base);--content-rhythm:var(--content-font-size)}@media (min-width:640px){:root{--content-secondary-font-size:var(--fs-l)}}@media (min-width:1024px){:root{--content-font-size:var(--fs-xl)}}body.sans-serif-article-body{--content-font-family:var(--ff-sans-serif)}.text-styles{font-size:var(--content-font-size);font-family:var(--content-font-family);overflow-wrap:break-word}.text-styles>:last-child{margin-bottom:0}.text-styles a{text-decoration:underline;color:var(--accent-brand)}.text-styles a:hover{color:var(--accent-brand-darker)}.text-styles h2,.text-styles h3,.text-styles h4{font-family:var(--ff-sans-serif);margin:calc(var(--content-rhythm) / 2) 0;padding:0;font-weight:var(--fw-bold);line-height:var(--lh-tight)}.text-styles h2{font-size:1.5em}.text-styles h3{font-size:1.25em}.text-styles h4{font-size:1em}.text-styles hr{width:25%;opacity:0.1;border-radius:var(--radius);border:1px solid var(--body-color);margin:calc(var(--content-rhythm) * 2) auto}.text-styles p{margin:0 0 var(--content-rhythm) 0}.text-styles ul{padding-left:var(--su-6);margin:0 0 var(--content-rhythm) 0}.text-styles ul{list-style-type:disc}.text-styles blockquote{border-left:4px solid var(--base-20);padding:0 0 0 var(--content-rhythm);margin:0 0 var(--content-rhythm) 0}.text-styles pre:not(.highlight),.text-styles div.highlight{margin:0 0 var(--content-rhythm) 0}.crayons-avatar{display:inline-block;border-radius:100%;position:relative;background-color:var(--card-color-tertiary);width:var(--su-6);height:var(--su-6)}.crayons-avatar__image{border-radius:100%;width:100%;height:100%;display:inline-block;vertical-align:bottom}.crayons-avatar::after{content:'';border:1px solid var(--body-color);opacity:0.15;width:100%;height:100%;position:absolute;left:0;top:0;border-radius:100%;pointer-events:none}.crayons-avatar--l{width:var(--su-7);height:var(--su-7)}.crayons-avatar--xl{width:var(--su-8);height:var(--su-8)}@media (min-width:768px){.m\:crayons-avatar--l{width:var(--su-7);height:var(--su-7)}.m\:crayons-avatar--2xl{width:var(--su-9);height:var(--su-9)}}.crayons-btn{--brand-apple-bg:#000;--brand-apple-color:#fff;--brand-apple-bg-hover:#1b1b1b;--brand-twitter-bg:#1da1f2;--brand-twitter-color:#fff;--brand-twitter-bg-hover:#0096f2;--brand-github-bg:#24292e;--brand-github-color:#fff;--brand-github-bg-hover:#000;--brand-facebook-bg:#4267b2;--brand-facebook-color:#fff;--brand-facebook-bg-hover:#476fbf;--brand-email-bg:#24292e;--brand-email-color:#fff;--brand-email-bg-hover:#000}.crayons-btn{--border-width:0px;--shadow-color:rgba(0,0,0,0.05);--vertical-padding:var(--su-2);--horizontal-padding:var(--su-4);--font-size:var(--fs-base);--with-icon-padding:var(--su-3);--icon-margin:var(--su-2);position:relative;display:inline-block;padding:calc(var(--vertical-padding) - var(--border-width)) calc(var(--horizontal-padding) - var(--border-width));border-radius:var(--radius);outline:none;font-family:inherit;font-size:var(--font-size);line-height:var(--su-6);font-weight:var(--fw-medium);text-align:center;text-decoration:none;cursor:pointer;transition:all var(--transition-props);border:var(--border-width) solid;--bg:var(--button-primary-bg);--bg-hover:var(--button-primary-bg-hover);--border:transparent;--border-hover:transparent;--color:var(--button-primary-color);--color-hover:var(--button-primary-color-hover);--shadow:0 1px 3px var(--shadow-color);--shadow-hover:0 2px 5px var(--shadow-color);--bg-inverted:var(--button-primary-inverted-bg);--bg-inverted-hover:var(--button-primary-inverted-bg-hover);--color-inverted:var(--button-primary-inverted-color);--color-inverted-hover:var(--button-primary-inverted-color-hover);background-color:var(--bg);border-color:var(--border);box-shadow:var(--shadow);color:var(--color)}.crayons-btn[href]:hover,.crayons-btn[href]:focus,.crayons-btn:hover:enabled,.crayons-btn:active:enabled,.crayons-btn:focus:enabled,.crayons-btn:focus-within{background-color:var(--bg-hover);border-color:var(--border-hover);box-shadow:var(--shadow-hover);color:var(--color-hover);z-index:var(--z-elevate)}.crayons-btn--outlined{--bg:var(--button-outlined-bg);--bg-hover:var(--button-outlined-bg-hover);--border:var(--button-outlined-border);--border-hover:var(--button-outlined-border-hover);--color:var(--button-outlined-color);--color-hover:var(--button-outlined-color-hover);--bg-inverted:var(--button-outlined-inverted-bg);--bg-inverted-hover:var(--button-outlined-inverted-bg-hover);--border-inverted:var(--button-outlined-inverted-border);--border-inverted-hover:var(--button-outlined-inverted-border-hover);--color-inverted:var(--button-outlined-inverted-color);--color-inverted-hover:var(--button-outlined-inverted-color-hover);--border-width:2px}.crayons-btn--ghost-brand{--bg:var(--button-ghost-bg);--bg-hover:var(--button-ghost-bg-hover);--color:var(--accent-brand);--color-hover:var(--accent-brand-darker);--shadow:none;--shadow-hover:none;--bg-inverted:var(--button-ghost-inverted-bg);--bg-inverted-hover:var(--button-ghost-inverted-bg-hover);--color-inverted:var(--accent-brand-lighter);--color-inverted-hover:var(--accent-brand-lighter)}.crayons-btn--ghost-dimmed{--bg:var(--button-ghost-bg);--bg-hover:var(--button-ghost-bg-hover);--color:var(--button-ghost-dimmed-color);--color-hover:var(--button-ghost-dimmed-color-hover);--shadow:none;--shadow-hover:none;--bg-inverted:var(--button-ghost-inverted-bg);--bg-inverted-hover:var(--button-ghost-inverted-bg-hover);--color-inverted:var(--accent-ghost-dimmed-inverted-color);--color-inverted-hover:var(--accent-ghost-dimmed-inverted-color-hover)}.crayons-btn--icon-rounded{--horizontal-padding:var(--su-2);padding-left:calc(var(--horizontal-padding) - var(--border-width));padding-right:calc(var(--horizontal-padding) - var(--border-width))}.crayons-btn--icon-rounded{border-radius:1000px}.crayons-btn-group{display:flex}.crayons-btn-group .crayons-btn{border-radius:0}.crayons-btn-group .crayons-btn:first-child{border-top-left-radius:var(--radius);border-bottom-left-radius:var(--radius)}.crayons-btn-group .crayons-btn:last-child{border-top-right-radius:var(--radius);border-bottom-right-radius:var(--radius)}.crayons-card{border-radius:var(--radius);background:var(--card-bg);color:var(--card-color);box-shadow:0 0 0 1px var(--card-border);overflow-wrap:anywhere}.crayons-card--secondary{background:var(--card-secondary-bg);color:var(--card-secondary-color);box-shadow:0 0 0 1px var(--card-secondary-border)}.crayons-card__header{padding:var(--su-3) var(--su-4);border-bottom:1px solid var(--body-bg);display:flex;justify-content:space-between;align-items:center}.crayons-textfield{--border-width:1px;background-color:var(--form-bg);border:var(--border-width) solid var(--form-border);color:var(--body-color);appearance:none;-webkit-appearance:none;border-radius:var(--radius);transition:all var(--transition-props)}.crayons-select:hover,.crayons-checkbox:hover,.crayons-radio:hover,.crayons-textfield:hover{border-color:var(--form-border-hover)}.crayons-select:focus,.crayons-textfield:focus{background-color:var(--form-bg-focus);border-color:var(--form-border-focus);box-shadow:1px 1px 0 var(--form-border-focus)}.crayons-textfield{line-height:var(--lh-base);padding:calc(0.5em - var(--border-width)) 0.5em;font-family:inherit;font-size:var(--fs-base);width:100%}.crayons-textfield::placeholder{color:var(--form-placeholder-color)}.crayons-textfield--ghost,.crayons-textfield--ghost:hover,.crayons-textfield--ghost:focus{background:transparent;border:none;padding:0;margin:0;outline:none;width:100%;box-shadow:none;resize:none;transition:none}textarea.crayons-textfield.crayons-textfield--ghost{white-space:pre-wrap}.crayons-header{--indicator-outline:var(--header-bg);height:var(--header-height);background:var(--header-bg);box-shadow:0 1px 1px var(--header-shadow);z-index:var(--z-sticky)}.default-header .crayons-header{position:fixed;top:0px;left:0px;right:0px}.crayons-header__container{max-width:var(--site-width);padding:0 var(--layout-padding);margin:auto;display:flex;align-items:center;position:relative;height:var(--header-height)}.crayons-header--search{max-width:420px;flex:1 auto;margin:0 var(--su-2);display:none}@media (min-width:768px){.crayons-header--search{margin:0 var(--su-4);display:block}}.skip-content-link{position:absolute;left:50%;background:var(--body-color);color:var(--body-color-inverted);z-index:var(--z-popover);padding:var(--su-4);pointer-events:none;border-radius:var(--radius);height:var(--header-height);transform:translate(-50%,-200%);transition:transform var(--transition-props)}.skip-content-link:focus,.skip-content-link:focus-within{pointer-events:auto;transform:translate(-50%,0);outline:none;border:2px solid var(--header-button-focus-color)}.navigation-progress{--duration:3600ms;--delay:250ms;position:fixed;top:0;background:var(--accent-brand);z-index:var(--z-popover);height:var(--su-1);width:0}@keyframes showProgressBar{0%{width:0}100%{width:100%}}.crayons-subtitle-1,.crayons-subtitle-2{font-weight:var(--fw-bold);color:var(--base-90)}.crayons-subtitle-1{font-size:var(--fs-xl)}@media (min-width:640px){.crayons-subtitle-1{font-size:var(--fs-2xl)}}.crayons-subtitle-2{font-size:var(--fs-l)}@media (min-width:640px){.crayons-subtitle-2{font-size:var(--fs-xl)}}@keyframes placeHolderShimmer{0%{background-position:-468px 0}100%{background-position:468px 0}}.crayons-link{color:var(--link-color)}.crayons-link:hover{color:var(--link-color-hover)}.crayons-link--secondary{color:var(--link-color-secondary)}.crayons-link--secondary:hover{color:var(--link-color-secondary-hover)}.crayons-link--contentful{padding:var(--su-4);border-bottom:1px solid var(--body-bg)}.crayons-link--contentful:last-child{border-bottom:0;border-bottom-right-radius:var(--radius);border-bottom-left-radius:var(--radius)}.crayons-link--contentful .crayons-link__secondary{color:var(--link-color-secondary);font-size:var(--fs-s);padding-top:var(--su-1)}.crayons-link--contentful:hover{background:var(--link-bg-hover-alt)}.crayons-link--contentful:hover .crayons-link__secondary{color:var(--link-color-secondary-hover)}@keyframes crayons-spinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}:root{--syntax-background-color:#08090a;--syntax-text-color:#f8f8f2;--syntax-comment-color:#808080;--syntax-declaration-color:#f39c12;--syntax-literal-color:#dda0dd;--syntax-error-color:#f9690e;--syntax-name-color:#7ed07e;--syntax-string-color:#f2ca27}pre:not(.highlight),div.highlight{background:var(--syntax-background-color);color:var(--syntax-text-color);font-size:80%;border-radius:var(--radius);margin:0;overflow-x:auto;-webkit-overflow-scrolling:touch;overflow-wrap:initial}pre:not(.highlight) code,div.highlight code{font-size:100%;padding:0}div.highlight{position:relative}div.highlight .highlight{overflow:auto;padding:var(--su-2)}@media (min-width:768px){div.highlight .highlight{padding:var(--su-6)}}.highlight__panel{position:absolute;top:0;right:0;display:flex;visibility:hidden}.highlight:hover .highlight__panel{visibility:visible}.highlight__panel-action{display:flex;padding:var(--su-2);overflow:hidden;background:var(--base-60);border-bottom-left-radius:var(--radius);opacity:0.9}.highlight__panel-action:hover{opacity:1}.highlight-action{display:none;cursor:pointer;color:var(--base-inverted);width:var(--su-5);height:var(--su-5)}.highlight-action--fullscreen-on{display:block}.fullscreen-code{position:fixed;top:0;left:0;z-index:var(--z-modal);width:100%;height:100vh;background:var(--syntax-background-color);color:var(--syntax-text-color);overflow:auto;visibility:hidden;transform:scale(0.01);transition:transform var(--transition-props),visibility var(--transition-props)}code{background:rgba(0,0,0,0.1);color:var(--color-body-color);border-radius:var(--radius);max-width:100%;font-size:80%;padding:0.1em 0.25em}.highlight{background:var(--syntax-background-color);color:var(--syntax-text-color)}.highlight .c{color:var(--syntax-comment-color)}.highlight .k{color:var(--syntax-declaration-color)}.highlight .o{color:var(--syntax-error-color)}.highlight .p{color:var(--syntax-text-color)}.highlight .nb{color:var(--syntax-text-color)}.highlight .nt{color:var(--syntax-error-color)}.highlight .nv{color:var(--syntax-text-color)}.highlight .s2{color:var(--syntax-string-color)}.highlight .sr{color:var(--syntax-string-color)}.highlight .s1{color:var(--syntax-string-color)}.crayons-tag{font-size:var(--fs-s);color:var(--tag-color);line-height:1.3;border-radius:var(--radius);padding:var(--su-1);display:inline-block}.crayons-tag__prefix{opacity:0.4;font-weight:normal}.crayons-tag[href]:hover{color:var(--tag-color-hover)}.color-base-70{color:var(--base-70)}.border-base-10{border-color:var(--base-10)}.opacity-75{opacity:0.75}.opacity-25{opacity:0.25}.items-center{align-items:center}.justify-between{justify-content:space-between}.shrink-0{flex-shrink:0}.gap-4{grid-gap:var(--su-4)}.border-solid{border-style:solid}.border-0{border-width:0}.border-t-1{border-top-width:1px}.overflow-hidden{overflow:hidden}.w-100{width:100%}.h-100{height:100%}.mx-2{margin-left:var(--su-2);margin-right:var(--su-2)}.mt-4{margin-top:var(--su-4)}.mt-5{margin-top:var(--su-5)}.mt-6{margin-top:var(--su-6)}.-mt-4{margin-top:calc(var(--su-4) * -1)}.mb-0{margin-bottom:0}.mb-4{margin-bottom:var(--su-4)}.mb-6{margin-bottom:var(--su-6)}.ml-auto{margin-left:auto}.-ml-1{margin-left:calc(var(--su-1) * -1)}.mr-1{margin-right:var(--su-1)}.mr-2{margin-right:var(--su-2)}.mr-4{margin-right:var(--su-4)}.p-2{padding:var(--su-2)}.p-4{padding:var(--su-4)}.px-2{padding-left:var(--su-2);padding-right:var(--su-2)}.pt-0{padding-top:0}.pt-1{padding-top:var(--su-1)}.pt-4{padding-top:var(--su-4)}.fs-s{font-size:var(--fs-s)}.fs-xl{font-size:var(--fs-xl)}.fs-3xl{font-size:var(--fs-3xl)}.lh-tight{line-height:var(--lh-tight)}.fw-medium{font-weight:var(--fw-medium)}.fw-bold{font-weight:var(--fw-bold)}.align-center{text-align:center}.whitespace-nowrap{white-space:nowrap}.hidden{display:none}.block{display:block}.inline-block{display:inline-block}.flex{display:flex}.grid{display:grid}.static{position:static}.relative{position:relative}.break-word{word-break:break-word}@media (min-width:640px){.s\:mb-0{margin-bottom:0}.s\:fs-base{font-size:var(--fs-base)}.s\:fw-heavy{font-weight:var(--fw-heavy)}}@media (min-width:768px){.m\:-mt-4{margin-top:calc(var(--su-4) * -1)}.m\:-mb-4{margin-bottom:calc(var(--su-4) * -1)}.m\:fs-4xl{font-size:var(--fs-4xl)}.m\:block{display:block}.m\:relative{position:relative}}@media (min-width:1024px){.l\:fs-5xl{font-size:var(--fs-5xl)}}</style>
+ <div id=body-styles>
+ <style class=sf-hidden>:root{--accent-brand:#3b49df;--accent-brand-darker:#323ebe;--accent-brand-lighter:#4150f5;--accent-brand-a10:rgba(59,73,223,0.10)}</style>
+ </div>
+ <div id=audiocontent data-podcast>
+ 
+ </div>
+ <div class=navigation-progress id=navigation-progress></div>
+<header class="crayons-header print-hidden" role=banner>
+ <a href=#main-content class=skip-content-link>Skip to content</a>
+ <div class=crayons-header__container>
+ <button class="crayons-btn crayons-btn--ghost crayons-btn--icon-rounded js-hamburger-trigger inline-block m:hidden mx-2 sf-hidden">
+ <svg xmlns=http://www.w3.org/2000/svg width=24 height=24 viewBox="0 0 24 24" role=img aria-labelledby=al1h3duz932zllsn9087v9h01sx7m07p class=crayons-icon><title id=al1h3duz932zllsn9087v9h01sx7m07p>Navigation menu</title>
+ <path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z"></path>
+</svg>
+ </button>
+ <a href=https://dev.to/ class=site-logo aria-label="DEV Community Home">
+ <svg width=50 height=40 viewBox="0 0 50 40" fill=none xmlns=http://www.w3.org/2000/svg><rect width=50 height=40 rx=3 style=fill:currentColor></rect><path d="M19.099 23.508c0 1.31-.423 2.388-1.27 3.234-.838.839-1.942 1.258-3.312 1.258h-4.403V12.277h4.492c1.31 0 2.385.423 3.224 1.27.846.838 1.269 1.912 1.269 3.223v6.738zm-2.808 0V16.77c0-.562-.187-.981-.562-1.258-.374-.285-.748-.427-1.122-.427h-1.685v10.107h1.684c.375 0 .75-.138 1.123-.415.375-.285.562-.708.562-1.27zM28.185 28h-5.896c-.562 0-1.03-.187-1.404-.561-.375-.375-.562-.843-.562-1.404V14.243c0-.562.187-1.03.562-1.404.374-.375.842-.562 1.404-.562h5.896v2.808H23.13v3.65h3.088v2.808h-3.088v3.65h5.054V28zm7.12 0c-.936 0-1.684-.655-2.246-1.965l-3.65-13.758h3.089l2.807 10.804 2.808-10.804H41.2l-3.65 13.758C36.99 27.345 36.241 28 35.305 28z" style=fill:var(--base-inverted)></path></svg>
+</a>
+ <div id=pwa-nav-buttons class="pwa-nav-buttons sf-hidden">
+ 
+ 
+ 
+ </div>
+ <div class="crayons-header--search js-search-form" id=header-search><form action=/search accept-charset=UTF-8><input class="crayons-header--search-input crayons-textfield" type=text name=q placeholder=Search... autocomplete=off aria-label=search value></form>
+ 
+ </div>
+ <div class="flex items-center h-100 ml-auto">
+ <a class="crayons-header__link crayons-btn crayons-btn--ghost crayons-btn--icon-rounded m:hidden mx-2 sf-hidden" id=search-link aria-label=Search href=https://dev.to/search>
+ <svg xmlns=http://www.w3.org/2000/svg width=24 height=24 viewBox="0 0 24 24" role=img aria-labelledby=a1y5r3t71w75n9vqienngp9in137xvyb class=crayons-icon><title id=a1y5r3t71w75n9vqienngp9in137xvyb>Search</title>
+ <path d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283A8.96 8.96 0 0111 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9a8.96 8.96 0 01-1.969 5.617zm-2.006-.742A6.977 6.977 0 0018 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7a6.977 6.977 0 004.875-1.975l.15-.15z"></path>
+</svg>
+ </a>
+ <a href=https://dev.to/enter class="crayons-btn crayons-btn--ghost-brand mr-2 hidden m:block whitespace-nowrap ml-auto" data-no-instant>
+ Log in
+ </a>
+ <a href="https://dev.to/enter?state=new-user" class="crayons-btn mr-2 whitespace-nowrap fs-s s:fs-base" data-no-instant>
+ Create account
+ </a>
+ </div>
+ </div>
+</header>
+<div class="hamburger sf-hidden">
+ 
+ 
+</div>
+ <div id=active-broadcast class="broadcast-wrapper sf-hidden"></div>
+ <div id=message-notice></div>
+ <div class="app-shell-loader sf-hidden">
+ loading...
+ </div>
+ 
+ <div id=base-payment-pointer data-payment-pointer=$ilp.uphold.com/24HhrUGG7ekn></div>
+<div id=page-content class="wrapper stories stories-show" data-current-page=stories-show>
+ <div id=page-content-inner>
+ 
+ 
+ <script type=application/ld+json class=sf-hidden>{"@context":"http://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://dev.to/creativenull/installing-neovim-nightly-alongside-stable-10d0"},"url":"https://dev.to/creativenull/installing-neovim-nightly-alongside-stable-10d0","image":["https://dev.to/social_previews/article/516363.png","https://dev.to/social_previews/article/516363.png","https://dev.to/social_previews/article/516363.png"],"publisher":{"@context":"http://schema.org","@type":"Organization","name":"DEV Community","logo":{"@context":"http://schema.org","@type":"ImageObject","url":"https://res.cloudinary.com/practicaldev/image/fetch/s--t7tVouP9--/c_limit,f_png,fl_progressive,q_80,w_192/https://practicaldev-herokuapp-com.freetls.fastly.net/assets/devlogo-pwa-512.png","width":"192","height":"192"}},"headline":"Installing neovim nightly alongside stable","author":{"@context":"http://schema.org","@type":"Person","url":"https://dev.to/creativenull","name":"Arnold Chand"},"datePublished":"2020-12-07T17:58:44Z","dateModified":"2021-01-03T16:40:00Z"}</script>
+ 
+<div class="crayons-layout crayons-layout--3-cols crayons-layout--article">
+ <aside class=crayons-layout__sidebar-left aria-label="Article actions">
+ <div class=crayons-article-actions>
+ <div class=crayons-article-actions__inner>
+ <button role=checkbox id=reaction-butt-like class="crayons-reaction crayons-reaction--like activated" data-category=like title=Heart>
+ <span class="crayons-reaction__icon crayons-reaction__icon--inactive">
+ <svg xmlns=http://www.w3.org/2000/svg width=24 height=24 viewBox="0 0 24 24" role=img aria-labelledby=alet7jk8qhdypupgsd21tsci1zm260e1 class=crayons-icon><title id=alet7jk8qhdypupgsd21tsci1zm260e1>Heart</title>
+ <path d="M21.179 12.794l.013.014L12 22l-9.192-9.192.013-.014A6.5 6.5 0 0112 3.64a6.5 6.5 0 019.179 9.154zM4.575 5.383a4.5 4.5 0 000 6.364L12 19.172l7.425-7.425a4.5 4.5 0 10-6.364-6.364L8.818 9.626 7.404 8.21l3.162-3.162a4.5 4.5 0 00-5.99.334l-.001.001z"></path>
+</svg>
+ </span>
+ <span class=crayons-reaction__count id=reaction-number-like alt=count>11</span>
+</button>
+ <button role=checkbox id=reaction-butt-unicorn class="crayons-reaction crayons-reaction--unicorn activated" data-category=unicorn title=Unicorn>
+ <span class="crayons-reaction__icon crayons-reaction__icon--inactive">
+ <svg xmlns=http://www.w3.org/2000/svg width=24 height=24 role=img aria-labelledby=ahtp3h7u01kgwj8iudcl1lu980sbshs3 class=crayons-icon><title id=ahtp3h7u01kgwj8iudcl1lu980sbshs3>Unicorn</title>
+ <path d="M5.645 8.013c.013-.265-.261-.323-.4-.183-1.16 1.17-1.822 3.865-.344 7.32.294.961 1.938 3.19.84 6.131l-.003.006c-.094.255.206.404.366.263 1.395-1.226 1.933-3.593 1.1-6.375-.488-1.657-1.955-4.226-1.559-7.162zm-3.22 2.738c.05-.137-.124-.417-.326-.225-.939.893-1.316 2.863-.976 4.605.547 2.878 2.374 3.526 2.066 6.629-.028.102.176.38.348.154 1.546-2.033.409-4.453-.241-6.006-1.005-2.386-1.087-4.118-.871-5.157z" fill=#08090A></path>
+ <path fill-rule=evenodd clip-rule=evenodd d="M13.622 7.223l8.579-3.68c.598-.256 1.087.547.6.985l-6.618 5.941c.881 2.043 2.738 6.34 2.931 6.775 1.348 3.031-2.055 4.918-3.807 3.583a7.027 7.027 0 01-.623-.574c-.974-.965-2.419-2.398-5.207-1.877.284-2.115-.313-3.737-.883-5.288-.38-1.032-.747-2.032-.837-3.124-.346-3.329 3.763-8.23 4.696-7.953.386.115.326 1.229.266 2.319-.051.948-.102 1.88.143 2.12.145.142.428.43.76.773zM11.5 16.5l2.5.5 2.5 2 1-.5-2-4.5-1.5-4-1.5-1-1-1-1-1.5L10 8l-.5 1.5 1 2.5 1 4.5z"></path>
+</svg>
+ </span>
+ <span class=crayons-reaction__count id=reaction-number-unicorn alt=count>1</span>
+</button>
+ <button role=checkbox id=reaction-butt-readinglist class="crayons-reaction crayons-reaction--readinglist activated" data-category=readinglist title=Saved>
+ <span class="crayons-reaction__icon crayons-reaction__icon--inactive">
+ <svg xmlns=http://www.w3.org/2000/svg width=24 height=24 viewBox="0 0 24 24" role=img aria-labelledby=a2its1k3jd6uix0dm91ovgi0845uztxm class=crayons-icon><title id=a2its1k3jd6uix0dm91ovgi0845uztxm>Saved</title>
+ <path d="M5 2h14a1 1 0 011 1v19.143a.5.5 0 01-.766.424L12 18.03l-7.234 4.536A.5.5 0 014 22.143V3a1 1 0 011-1zm13 2H6v15.432l6-3.761 6 3.761V4z"></path>
+</svg>
+ </span>
+ <span class=crayons-reaction__count id=reaction-number-readinglist alt=count>5</span>
+</button>
+ <div class="align-center m:relative">
+ <button id=article-show-more-button class="dropbtn crayons-btn crayons-btn--ghost-dimmed crayons-btn--icon-rounded" aria-label="Toggle dropdown menu" has-dropdown-listener=true>
+ <svg xmlns=http://www.w3.org/2000/svg width=24 height=24 role=img aria-labelledby=a74dcrdhsz25lv67ej5q374et3v1p001 class="dropdown-icon crayons-icon"><title id=a74dcrdhsz25lv67ej5q374et3v1p001>More...</title><path fill-rule=evenodd clip-rule=evenodd d="M7 12a2 2 0 11-4 0 2 2 0 014 0zm7 0a2 2 0 11-4 0 2 2 0 014 0zm5 2a2 2 0 100-4 2 2 0 000 4z"></path></svg>
+ </button>
+ <div class="crayons-dropdown p-1 right-1 left-1 s:left-auto bottom-100 m:bottom-0 m:right-auto m:left-100 fs-base sf-hidden">
+ 
+ 
+ <template id=web-share-button>
+          <a href="#" class="dropdown-link-row crayons-link crayons-link--block">Share Post</a>
+        </template>
+ 
+ </div>
+ </div>
+ </div>
+</div>
+ <div class="html-variant-wrapper sf-hidden" id=html-variant-article-show-below-article data-variant-id=382>
+ 
+ </div>
+ </aside>
+ <main class="crayons-layout__content grid gap-4">
+ <div class=article-wrapper>
+ <article class="crayons-card crayons-article mb-4" id=article-show-container data-author-id=134682 data-path=/creativenull/installing-neovim-nightly-alongside-stable-10d0 data-published=true>
+ <header class=crayons-article__header id=main-title>
+ <div class=crayons-article__header__meta>
+ <h1 class="fs-3xl m:fs-4xl l:fs-5xl fw-bold s:fw-heavy lh-tight mb-4 medium">
+ Installing neovim nightly alongside stable
+ </h1>
+ <div class="mb-4 spec__tags">
+ <a class="crayons-tag mr-1" href=https://dev.to/t/vim style=background-color:#AA65CB;color:#FFFFFF><span class=crayons-tag__prefix>#</span>vim</a>
+ <a class="crayons-tag mr-1" href=https://dev.to/t/neovim style=background-color:;color:><span class=crayons-tag__prefix>#</span>neovim</a>
+ <a class="crayons-tag mr-1" href=https://dev.to/t/productivity style=background-color:#2A0798;color:#C8F7C5><span class=crayons-tag__prefix>#</span>productivity</a>
+ <a class="crayons-tag mr-1" href=https://dev.to/t/linux style=background-color:#000000;color:#4FF14F><span class=crayons-tag__prefix>#</span>linux</a>
+ </div>
+ <div class=crayons-article__subheader>
+ <a href=https://dev.to/creativenull class="flex items-center mr-4 mb-4 s:mb-0 fw-medium crayons-link">
+ <span class="crayons-avatar crayons-avatar--l mr-2"><img class=crayons-avatar__image src="data:image/webp;base64,UklGRkgDAABXRUJQVlA4IDwDAAAQEACdASoyADIAPmEmkEYkIaGhLhSbiIAMCWMAvRQW+a3a7fxji/2zo1PJhwPhziL9JDTZzP/HX9MewT+sXWFQNErCJj6Fz0paKWbrVm4oez70fmUJjTw6TbSc3QBwNQ3dCe8L69Ok/T13Q/xwOtqdbxfVhMc+mt/8lcqf5fhcerXisyXaACYhgAD+/nr/EPP1gfkH6/v2bW1E8O6/5Ga2Xn7/h4in9Y3dP+NQvC82KCjQt1XLjTbKVCFkiRo3ym6o29dUB8JXF8CeQ0y/K47aNQuh82fnedN8E7laXQfwiJRvh1cumt1T2CR8vJr8008OuMNiLY9Uc8IwYg/HmYGTzCnd4JVa3MSwW9F35PxDx5ud6mHNU7AMqyDHRqJLARYgjc3ILlkzOJiiCbw+WZtbx2HlUhpE4oGS2gcLPFm85WQum33wfUnphIboRIHOfMMZ52T+9EiPStF1kQCT3lc+mNhOzkYwqX5yPqdKPvEgpnSxQp5vwezEtflhwJOGIcgoSy5cl3arp5jymklBhd9uqZX66kqTK0L0L5F5M2yfNc0ktFy1GkxarrUIvQ931jJJDcSaReBxG6qbbEHTEfLyrndLgBg7zw2eSrtpT+6jWH/weIopEXDtaPnWHL0dQTKrsCdKIzFq0187+uK3qykApRMkB75HXczXaR2z7N25Yybck1h7ckLO4KsKN5+z+H16lRMsY6RD5GGrCK5D6vUvuoOfLvS+wWA8nKXL+GG0NahEXJReF82fCVuB9yQXUujkZVROkMFg/4ztaOrmIHuH751H9nsl/xBTzmStftZhLZ6K4PXV31v0F5Z/n6qhpzAtMaraf/heB70FESfBksoxOGZZ2r/LZWmYt5oAKsDIJKpxrJnPtvolg5EdtXd0ua3g1/R/D95LfMXKulcjbEXdlG0kPmAmGdBbvJlpdD0fNEL83JK6Ri62pVNdOs0Bf39Pmt09nXzo89/Lv40L0E7oTLsLwsQrcW5IjTPZO+LsAoi+poUg4vXs1Q+qa1WT50ho5QkgvDOOinCtfXUp+0NUZQbBfUJ5AgvtjXpOfrd5N0w9IaNOYk4YMLkHXc5bL7QAf8gFGRaaKFEAAAA=" alt="creativenull profile image"></span>
+ Arnold Chand
+ </a>
+ <span class="fs-s mb-4 s:mb-0">
+ <time datetime=2020-12-07T17:58:44Z class=date title="Monday, December 7, 2020, 6:58:44 PM">Dec 7, 2020</time>
+ ・<em>Updated on <time datetime=2021-01-03T16:40:00Z class=date-no-year title="Sunday, January 3, 2021, 5:40:00 PM">Jan 3</time></em>
+ <span class=mr-4>・6 min read</span>
+ </span>
+ <span id=action-space class="mb-4 s:mb-0"></span>
+ </div>
+ </div>
+ </header>
+ <div class=crayons-article__main>
+ <div class="crayons-article__body text-styles spec__body" data-article-id=516363 id=article-body>
+ <p>Nvim v0.5 is the development branch of neovim and has been in constant feature update. Some of the major features include (but still in development):</p>
+<ul>
+<li>built-in Language Server Client (aka nvim-lsp)</li>
+<li>treesitter (used for syntax highlighting - and a bit of syntax check, but a topic for another day perhaps)</li>
+<li>
+<code>init.lua</code> as a substitute config file instead of <code>init.vim</code> (Also coming soon in a future post)</li>
+</ul>
+<p>You can have a <a href=https://neovim.io/roadmap/>look at their roadmap here</a> to see what else is in development.</p>
+<p>But today, my focus will be on installing nightly (or v0.5, but for this post I will refer to as nightly) alongside your stable version.</p>
+<h2>
+ <a name=why-two-different-versions-and-not-just-update-to-nightly href=#why-two-different-versions-and-not-just-update-to-nightly class=anchor>
+ </a>
+ Why two different versions and not just update to nightly?
+</h2>
+<p>It's true you can just update to the nightly version and it will still work with your current config and go about your day. But, for someone like me who uses vim at work, I want to keep a stable version separate to the nightly where I may encounter breaking changes.</p>
+<p>I also want to try out the features from nightly and mess around but rather keep those separate to my stable config.</p>
+<p>If you also use vim at work but also want to experiment with the new features from nightly, then read on. Else you would most likely not care about the majority of this post, but feel free to read 🙂.</p>
+<h2>
+ <a name=requirements href=#requirements class=anchor>
+ </a>
+ Requirements
+</h2>
+<p>Couple resources and tools you may need before we get started will be listed here:</p>
+<p>Tools:</p>
+<ul>
+<li><a href=https://git-scm.com/>git</a></li>
+<li><a href=https://github.com/neovim/neovim/wiki/Building-Neovim#build-prerequisites>Build prerequisites from neovim wiki</a></li>
+</ul>
+<p>We will also make heavy use of the Build section of the neovim wiki resource:</p>
+<ul>
+<li><a href=https://github.com/neovim/neovim/wiki/Building-Neovim>Building Neovim</a></li>
+</ul>
+<h2>
+ <a name=clone-and-build href=#clone-and-build class=anchor>
+ </a>
+ Clone and Build
+</h2>
+<p>Once you have git and the build pre-requisites installed, we can continue and clone the neovim repo into your machine. These instructions are mostly for linux but they are similar for a Mac and for Windows (if you use WSL). My default directory will be the <code>$HOME</code> directory. So let's clone and <code>cd</code> into it.<br>
+</p>
+<div class="highlight js-code-highlight">
+<pre class="highlight shell"><code>git clone https://github.com/neovim/neovim.git <span class=nv>$HOME</span>/neovim
+<span class=nb>cd</span> <span class=nv>$HOME</span>/neovim
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+ <svg xmlns=http://www.w3.org/2000/svg width=20px height=20px viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+ <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+ <svg xmlns=http://www.w3.org/2000/svg width=20px height=20px viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+ <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+</div>
+</div>
+</div>
+<p>Next we compile the source, let's keep it a <code>Release</code> type because our focus is using neovim and not developing it:<br>
+</p>
+<div class="highlight js-code-highlight">
+<pre class="highlight plaintext"><code>make CMAKE_BUILD_TYPE=Release
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+ <svg xmlns=http://www.w3.org/2000/svg width=20px height=20px viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+ <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+ <svg xmlns=http://www.w3.org/2000/svg width=20px height=20px viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+ <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+</div>
+</div>
+</div>
+<p>Depending on your machine, this may take anywhere from 30 seconds to an hour or two. But eventually, if all goes well you should get no error messages and be able to see the executable at <code>build/bin</code>.</p>
+<h2>
+ <a name=setup href=#setup class=anchor>
+ </a>
+ Setup
+</h2>
+<p>Now we can also install the binary in a location of choice (by running <code>make CMAKE_INSTALL_PREFIX=/path/to/location install</code>, but I would prefer to just leave the binary at <code>build/bin/nvim</code> and work from there. The downside is that we will need to provide the runtime explicitly, so we run:<br>
+</p>
+<div class="highlight js-code-highlight">
+<pre class="highlight plaintext"><code>VIMRUNTIME=runtime ./build/bin/nvim
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+ <svg xmlns=http://www.w3.org/2000/svg width=20px height=20px viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+ <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+ <svg xmlns=http://www.w3.org/2000/svg width=20px height=20px viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+ <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+</div>
+</div>
+</div>
+<p>Congratulations! You got vim successfully compiled and running 🎉🥳🎉</p>
+<p>At this point you are done. But writing the above line every time you want to open nightly is quite a hassle, especially when you want to open from your project directory but the runtime directory is not relative to your project, so you will have to explicitly include the full path to the runtime and the neovim binary.</p>
+<p>A better way, would be to create a script file and call that instead. So let's make one!<br>
+</p>
+<div class="highlight js-code-highlight">
+<pre class="highlight shell"><code><span class=nb>touch</span> <span class=nv>$HOME</span>/.local/bin/nv.sh
+<span class=nb>chmod </span>u+x <span class=nv>$HOME</span>/.local/bin/nv.sh
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+ <svg xmlns=http://www.w3.org/2000/svg width=20px height=20px viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+ <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+ <svg xmlns=http://www.w3.org/2000/svg width=20px height=20px viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+ <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+</div>
+</div>
+</div>
+<blockquote>
+<p>A quick note, it is convention that when making script file you create it with the <code>.sh</code> extension, but you can omit that and just use the script name (like <code>nv</code> instead of <code>nv.sh</code>).</p>
+</blockquote>
+<p>Now inside <code>nv.sh</code>:<br>
+</p>
+<div class="highlight js-code-highlight">
+<pre class="highlight shell"><code><span class=c># nv.sh</span>
+<span class=nv>VIMRUNTIME</span><span class=o>=</span><span class=nv>$HOME</span>/neovim/runtime <span class=nv>$HOME</span>/neovim/build/bin/nvim
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+ <svg xmlns=http://www.w3.org/2000/svg width=20px height=20px viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+ <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+ <svg xmlns=http://www.w3.org/2000/svg width=20px height=20px viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+ <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+</div>
+</div>
+</div>
+<p>Assuming that <code>$HOME/.local/bin</code> is in your <code>$PATH</code> environment, calling <code>nv.sh</code> anywhere from your terminal should open neovim nightly.</p>
+<h2>
+ <a name=config href=#config class=anchor>
+ </a>
+ Config
+</h2>
+<p>Add your config at <code>$HOME/.config/nvim/init.vim</code> and have two separate configs for stable and nightly.<br>
+</p>
+<div class="highlight js-code-highlight">
+<pre class="highlight viml"><code><span class=c>" init.vim</span>
+
+<span class=k>let</span> $NVIM_CONFIG_DIR <span class=p>=</span> <span class=nb>expand</span><span class=p>(</span><span class=s1>'$HOME/.config/nvim'</span><span class=p>)</span>
+
+<span class=k>if</span> <span class=nb>has</span><span class=p>(</span><span class=s1>'nvim-0.5'</span><span class=p>)</span>
+    <span class=c>" nightly config</span>
+    <span class=k>source</span> $NVIM_CONFIG_DIR/nightly<span class=p>.</span><span class=k>vim</span>
+<span class=k>else</span>
+    <span class=c>" stable config</span>
+    <span class=k>source</span> $NVIM_CONFIG_DIR/stable<span class=p>.</span><span class=k>vim</span>
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+ <svg xmlns=http://www.w3.org/2000/svg width=20px height=20px viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+ <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+ <svg xmlns=http://www.w3.org/2000/svg width=20px height=20px viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+ <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+</div>
+</div>
+</div>
+<p>Then you can have a <code>stable.vim</code> for your stable config and then <code>nightly.vim</code> for your nightly config.</p>
+<hr>
+<p>However, we can take this a step further and separate them in different directories. So you can have a stable config at <code>$HOME/.config/nvim</code> and have your nightly config at <code>$HOME/.config/nvim-nightly</code>. While this works, there are a couple more tweaks you will have to do in order for it to work properly. If you are interested in this method then I would recommend you to read the next section, otherwise just jump to updating neovim nightly further below 😜.</p>
+<h3>
+ <a name=separate-directory-for-stable-and-nightly-optional href=#separate-directory-for-stable-and-nightly-optional class=anchor>
+ </a>
+ Separate directory for stable and nightly (OPTIONAL)
+</h3>
+<p>Now everything from here onward is optional for you to do. The reason why I did this is because I had issues with loading remote plugins (plugins with <code>rplugin</code> directory) where it would over-write the <code>rplugin.vim</code> manifest, if I switch between stable and nightly. This was due to me having different plugins for the two versions. </p>
+<p>The solution was to keep them in separate directory so there are no namespace clashes. So we should have the following directory structure for stable (<code>nvim</code>) and nightly (<code>nvim-nightly</code>).<br>
+</p>
+<div class="highlight js-code-highlight">
+<pre class="highlight plaintext"><code>$HOME/.config/
+├── nvim
+│&nbsp;&nbsp; └── init.vim
+├── nvim-nightly
+│&nbsp;&nbsp; └── init.vim
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+ <svg xmlns=http://www.w3.org/2000/svg width=20px height=20px viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+ <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+ <svg xmlns=http://www.w3.org/2000/svg width=20px height=20px viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+ <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+</div>
+</div>
+</div>
+<p>The same for the local directory:<br>
+</p>
+<div class="highlight js-code-highlight">
+<pre class="highlight plaintext"><code>$HOME/.local/share/
+├── nvim
+│&nbsp;&nbsp; ├── site/
+│   └── rplugin.vim
+├── nvim-nightly
+│   ├── site/
+│   └── rplugin.vim
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+ <svg xmlns=http://www.w3.org/2000/svg width=20px height=20px viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+ <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+ <svg xmlns=http://www.w3.org/2000/svg width=20px height=20px viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+ <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+</div>
+</div>
+</div>
+<h4>
+ <a name=update-raw-nvsh-endraw- href=#update-raw-nvsh-endraw- class=anchor>
+ </a>
+ Update <code>nv.sh</code>
+</h4>
+<p>Since <code>nvim/init.vim</code> is the file neovim looks for as the default config, we need to explicitly mention the config file we want loaded for nightly. And we also want to specify where remote plugins manifest will be placed.<br>
+</p>
+<div class="highlight js-code-highlight">
+<pre class="highlight shell"><code><span class=c># nv.sh</span>
+<span class=nv>NVIM_RPLUGIN_MANIFEST</span><span class=o>=</span><span class=nv>$HOME</span>/.local/share/nvim-nightly/rplugin.vim <span class=nv>VIMRUNTIME</span><span class=o>=</span><span class=nv>$HOME</span>/neovim/runtime <span class=nv>$HOME</span>/neovim/build/bin/nvim <span class=s2>"</span><span class=nv>$@</span><span class=s2>"</span> <span class=nt>-u</span> <span class=nv>$HOME</span>/.config/nvim-nightly/init.vim
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+ <svg xmlns=http://www.w3.org/2000/svg width=20px height=20px viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+ <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+ <svg xmlns=http://www.w3.org/2000/svg width=20px height=20px viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+ <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+</div>
+</div>
+</div>
+<blockquote>
+<p>Edit: Added the <code>$@</code> after the nvim executable. I've noticed that if you pass a file name to the script it will not load it. We want to be able pass down any number of arguments from the script to the executable.</p>
+</blockquote>
+<h4>
+ <a name=add-custom-paths-to-raw-runtimepath-endraw- href=#add-custom-paths-to-raw-runtimepath-endraw- class=anchor>
+ </a>
+ Add custom paths to <code>runtimepath</code>
+</h4>
+<p>Finally, we need to specify our config and local directory to be part of the <code>runtimepath</code>, else it will end up not picking plugins installed via a plugin manager. So within the config file, we want to remove all instances where we don't want <code>runtimepath</code> to search for and explicitly add our own custom path.<br>
+</p>
+<div class="highlight js-code-highlight">
+<pre class="highlight viml"><code><span class=c>" $HOME/.config/nvim-nightly/init.vim</span>
+
+<span class=k>set</span> <span class=nb>runtimepath</span><span class=p>-=~</span><span class=sr>/.config/</span>nvim
+<span class=k>set</span> <span class=nb>runtimepath</span><span class=p>-=~</span><span class=sr>/.config/</span>nvim/after
+<span class=k>set</span> <span class=nb>runtimepath</span><span class=p>-=~</span><span class=sr>/.local/</span>share<span class=sr>/nvim/</span>site
+<span class=k>set</span> <span class=nb>runtimepath</span><span class=p>-=~</span><span class=sr>/.local/</span>share<span class=sr>/nvim/</span>site/after
+
+<span class=k>set</span> <span class=nb>runtimepath</span><span class=p>+=~</span><span class=sr>/.config/</span>nvim<span class=p>-</span>nightly/after
+<span class=k>set</span> <span class=nb>runtimepath</span>^<span class=p>=~</span><span class=sr>/.config/</span>nvim<span class=p>-</span>nightly
+<span class=k>set</span> <span class=nb>runtimepath</span><span class=p>+=~</span><span class=sr>/.local/</span>share<span class=sr>/nvim-nightly/</span>site/after
+<span class=k>set</span> <span class=nb>runtimepath</span>^<span class=p>=~</span><span class=sr>/.local/</span>share<span class=sr>/nvim-nightly/</span>site
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+ <svg xmlns=http://www.w3.org/2000/svg width=20px height=20px viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+ <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+ <svg xmlns=http://www.w3.org/2000/svg width=20px height=20px viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+ <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+</div>
+</div>
+</div>
+<h4>
+ <a name=add-custom-paths-to-raw-packpath-endraw-if-using-minpac-or-similar-plugin-manager href=#add-custom-paths-to-raw-packpath-endraw-if-using-minpac-or-similar-plugin-manager class=anchor>
+ </a>
+ Add custom paths to <code>packpath</code> if using minpac or similar plugin manager
+</h4>
+<p>If you are using the native package handler, or using a plugin manager that utilizes the build-in package handling in vim like minpac. Then you may have to specify the custom path to your local directory.<br>
+</p>
+<div class="highlight js-code-highlight">
+<pre class="highlight viml"><code><span class=c>" $HOME/.config/nvim-nightly/init.vim</span>
+
+<span class=k>set</span> <span class=nb>packpath</span><span class=p>-=~</span><span class=sr>/.config/</span>nvim
+<span class=k>set</span> <span class=nb>packpath</span><span class=p>-=~</span><span class=sr>/.config/</span>nvim/after
+<span class=k>set</span> <span class=nb>packpath</span><span class=p>-=~</span><span class=sr>/.local/</span>share<span class=sr>/nvim/</span>site
+<span class=k>set</span> <span class=nb>packpath</span><span class=p>-=~</span><span class=sr>/.local/</span>share<span class=sr>/nvim/</span>site/after
+
+<span class=k>set</span> <span class=nb>packpath</span>^<span class=p>=~</span><span class=sr>/.config/</span>nvim<span class=p>-</span>nightly
+<span class=k>set</span> <span class=nb>packpath</span><span class=p>+=~</span><span class=sr>/.config/</span>nvim<span class=p>-</span>nightly/after
+<span class=k>set</span> <span class=nb>packpath</span>^<span class=p>=~</span><span class=sr>/.local/</span>share<span class=sr>/nvim-nightly/</span>site
+<span class=k>set</span> <span class=nb>packpath</span><span class=p>+=~</span><span class=sr>/.local/</span>share<span class=sr>/nvim-nightly/</span>site/after
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+ <svg xmlns=http://www.w3.org/2000/svg width=20px height=20px viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+ <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+ <svg xmlns=http://www.w3.org/2000/svg width=20px height=20px viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+ <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+</div>
+</div>
+</div>
+<h2>
+ <a name=update-neovim-nightly href=#update-neovim-nightly class=anchor>
+ </a>
+ Update neovim nightly
+</h2>
+<p>To update neovim, it's as easy as pulling all the latest changes to your local machine and doing a clean compile.<br>
+</p>
+<div class="highlight js-code-highlight">
+<pre class="highlight shell"><code><span class=nb>cd</span> <span class=nv>$HOME</span>/neovim
+git pull
+make distclean <span class=o>&amp;&amp;</span> make <span class=nv>CMAKE_BUILD_TYPE</span><span class=o>=</span>Release
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+ <svg xmlns=http://www.w3.org/2000/svg width=20px height=20px viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+ <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+ <svg xmlns=http://www.w3.org/2000/svg width=20px height=20px viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+ <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+</div>
+</div>
+</div>
+<h2>
+ <a name=conclusion href=#conclusion class=anchor>
+ </a>
+ Conclusion
+</h2>
+<p>I hope this guide helps you in setting up neovim nightly alongside the stable version, or at least to helps me reference in-case I forget. It is one of many ways of getting them installed in a machine, but this is the way I preferred on getting it installed.</p>
+<h2>
+ <a name=troubleshooting href=#troubleshooting class=anchor>
+ </a>
+ Troubleshooting
+</h2>
+<h3>
+ <a name=-raw-e149-sorry-no-help-for-endraw- href=#-raw-e149-sorry-no-help-for-endraw- class=anchor>
+ </a>
+ <code>E149: Sorry, no help for ...</code>
+</h3>
+<p>If you have problems accessing docs, since it was compiled from source you will have to manually generate docs. Fortunately, this can be done just once by running the vim ex command:<br>
+</p>
+<div class="highlight js-code-highlight">
+<pre class="highlight viml"><code><span class=p>:</span><span class=k>helptags</span> $VIMRUNTIME/doc
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+ <svg xmlns=http://www.w3.org/2000/svg width=20px height=20px viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+ <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+ <svg xmlns=http://www.w3.org/2000/svg width=20px height=20px viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+ <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+</div>
+</div>
+</div>
+<h3>
+ <a name=-raw-myvimrc-endraw-is-empty href=#-raw-myvimrc-endraw-is-empty class=anchor>
+ </a>
+ <code>$MYVIMRC</code> is empty
+</h3>
+<p>Some might use <code>:e $MYVIMRC</code> to open their config file, and because we are using different directory for configs, you may have to include <code>MYVIMRC</code> variable in <code>nv.sh</code>.<br>
+</p>
+<div class="highlight js-code-highlight">
+<pre class="highlight shell"><code><span class=c># nv.sh</span>
+<span class=nv>MYVIMRC</span><span class=o>=</span><span class=nv>$HOME</span>/.config/nvim-nightly/init.vim <span class=nv>NVIM_RPLUGIN_MANIFEST</span><span class=o>=</span><span class=nv>$HOME</span>/.local/share/nvim-nightly/rplugin.vim <span class=nv>VIMRUNTIME</span><span class=o>=</span><span class=nv>$HOME</span>/neovim/runtime <span class=nv>$HOME</span>/neovim/build/bin/nvim <span class=s2>"</span><span class=nv>$@</span><span class=s2>"</span> <span class=nt>-u</span> <span class=nv>$HOME</span>/.config/nvim-nightly/init.vim
+</code></pre>
+<div class="highlight__panel js-actions-panel">
+<div class="highlight__panel-action js-fullscreen-code-action">
+ <svg xmlns=http://www.w3.org/2000/svg width=20px height=20px viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-on"><title>Enter fullscreen mode</title>
+ <path d="M16 3h6v6h-2V5h-4V3zM2 3h6v2H4v4H2V3zm18 16v-4h2v6h-6v-2h4zM4 19h4v2H2v-6h2v4z"></path>
+</svg>
+ <svg xmlns=http://www.w3.org/2000/svg width=20px height=20px viewBox="0 0 24 24" class="highlight-action crayons-icon highlight-action--fullscreen-off"><title>Exit fullscreen mode</title>
+ <path d="M18 7h4v2h-6V3h2v4zM8 9H2V7h4V3h2v6zm10 8v4h-2v-6h6v2h-4zM8 15v6H6v-4H2v-2h6z"></path>
+</svg>
+</div>
+</div>
+</div>
+ </div>
+ </div>
+ <section id=comments data-updated-at="2021-03-15 04:19:26 UTC" class="text-padding mb-4 border-t-1 border-0 border-solid border-base-10">
+ <header class="relative flex justify-between items-center mb-6">
+ <h2 class=crayons-subtitle-1>Discussion <span class=js-comments-count data-comments-count=0>(0)</span> </h2>
+ <div id=comment-subscription><div class=static><div role=presentation class=crayons-btn-group><button class="crayons-btn crayons-btn--outlined" type=button>Subscribe</button></div></div>
+ 
+ </div>
+ </header>
+ <div id=comments-container data-commentable-id=516363 data-commentable-type=Article data-has-recent-comment-activity=false>
+ <div id=response-templates-data class="hidden sf-hidden"></div>
+<form class=comment-form id=new_comment action=/comments accept-charset=UTF-8 method=post>
+ 
+ 
+ 
+ 
+ <span class="crayons-avatar m:crayons-avatar--l mr-2 shrink-0">
+ <img src="data:image/webp;base64,UklGRloFAABXRUJQVlA4TE4FAAAv/8A/AIWfWnvzbNu2TZUqNSsR4zAT4zCVcAiHAEgbAGHgatV13fexWc6fu2vsEf2fAPnz/5////z/5/8////PZsV4M0CvURgu/6WI6iWG6MthOUbv21pLUsMFZrlu+3Fxsn9oOaLZLrDlCO7J3m2lDyfZ9ppgo5A20i9m+2GZ9O62XKB60rt5mH6Vu5NsazIdgtLo1/9SOwPcL0CmBxaTD3N3si3JBqA0+o0Ea6QlG1cinr/OnTwSQpYa/VZWAu4F47YAG/B57t4KIljp90Jq7OMyzHBGdsgMsFX0IbW7qR6Rw3QQMiPVpsC9FXRZpd8NS6QlDLJKD2ZMgrdkPVhvJygeZLFRm/fzhM4Cz6Q9m99OU2MXuWKM4WSfb5BZcC7Ws99PbO9zHqpDkD3IahPRMh6FGmGyIVbZR2bMg3O1Z2UPsozBHjnVvoa9MW/JhnF4Hxr7fMUIoEVWyMcc9fd6kCGvo7jV8dBfgi1ymo7IHmSxr9lM1dTUDJq32GE6aDFVNVVTNVVTNVVTNVXptRogMwbYwkBL+BzIb4XWxj62hGFyR2Syy1ktproHeJh8mIgitz5nsVG4heLsIzfELLXI8nEiqAwseJJg836esFihB8rXKdDY1bZnWWGfMyO2BNjS14li6+Nu+iRkMlA1dkR2068T1D4/9FEqZ8A3RJBawCvk86z08ZRHCdYAGyxgxaN5AhCzR2nxgGcEsDJwwr7P3gWpsctZrU/1jGyQ78O7iB0e3ANIDLDaBNjbLOxjg3VZoQcyJgAvg+wBlj6s3s/TdALsZQyNXc6lS+1kYIVMAF5Gbe8jjy5keqDYDNjLiNU+Z0vWYTXAljADuE30AmSyy1nQgS3gh+oM2E3WHIUOM5yRpcNwBrhAZgA3oQeZMUywBfxQ/YFMD5Y5sHuEeYnVAFvCD6sBtmRTgEd4uyQHnMV+YAv4bjIF9gxeoXoysP4wtADrJOARvERsjZyq/0D2aMYc2CP8ohJwZvzDKvvYYHOAZ7RLkBoDxf6BPeAbZA7sGbxE9Yhs+H9AC7DaJOARvEawRE6oiGjxIDMmwd6oeIAZIoKFfTyhk4BHeLsIjYFqIqpHZINMgj2D1wh2D24mYqlFis0C7sJgu6oycMLECr2bzJgFuwlb9Krs0QzBEjlVZwE3WVLU5BqcDFRVPfrIFTILdg8uiOo1gi3AHUitz73YNOA2IioqqqIqKldb7SMbUOjdbAnTYDe6MzLZ42TGGvADMg14JbUzsujZRy42D/ZKgtX7uWf2uWfMA97JCgOt0rvZYPNgL5Uau9xPD+wm84CX0iMSrjNh7yRYLiEzJgJ95Cn6Dlb80hM2E0uX89CXQGq8YoNMhG2B3eQdxA4fT1abCEstsOE1Ksc5M2ZioffXt1BkH89TdRoUlR4s9hJiaBy3QibBgIXez5Ywym4n2C4o9m2GznLQIwdkGIaPszqMLeHLeK6/90Z6qNqoYx0PHYVMDvJD9cuc9J+kh9nSKCd9MFuyUYZzFBfIp3XHyNVk1IUXCLZhZR7ibAlvYmUQG2xavEJeRJFG7SazwgPasz1OFBvHlA/ye5ItmfSsfJwgjzmg38ObtAzptfICahtHFMicsBVIX2p8nCA1xjbVOeGZIUFbXkBQQ2zJZEboW4JENZ18ntrKPrJAJoQ8q5rELTc+ThQbe8gKmQ2SflZAZaTmk3weVvJfZKvQuSDJcy0wk8GWlkZexKtEzcrhdHe2LUE+GXUbvS61JAVUxitQlu3qpNeIKJDruq01mck3K8abGkwuhhkuNrmhwQAzyJ////z/5/8////5/39IAw==" width=32 height=32 alt=pic class="crayons-avatar__image overflow-hidden" id=comment-primary-user-profile--avatar>
+ </span>
+ <div class=comment-form__inner>
+ <div class=comment-form__field>
+ <textarea placeholder="Add to the discussion" id=text-area required class="crayons-textfield comment-textarea crayons-textfield--ghost" aria-label="Add a comment to the discussion" name=comment[body_markdown]></textarea>
+ <div class="comment-form__toolbar sf-hidden">
+ 
+ 
+ 
+ </div>
+ </div>
+ <div class="response-templates-container crayons-card crayons-card--secondary p-4 mb-4 comment-form__templates fs-base hidden sf-hidden">
+ 
+ 
+ 
+ 
+ 
+ 
+ </div>
+ <div class="comment-form__preview text-styles text-styles--secondary sf-hidden" id=preview-div></div>
+ <div class="comment-form__buttons mb-4 sf-hidden">
+ 
+ 
+ 
+ </div>
+ </div>
+ <div class=code-of-conduct id=toggle-code-of-conduct-checkbox></div>
+</form>
+ <div class=comments id=comment-trees-container>
+ </div>
+ </div>
+ <div class=align-center>
+ <nav class="fs-s align-center block" aria-label="Conduct controls">
+ <a href=https://dev.to/code-of-conduct class="crayons-link crayons-link--secondary">Code of Conduct</a>
+ <span class="opacity-25 px-2" role=presentation>•</span>
+ <a href=https://dev.to/report-abuse class="crayons-link crayons-link--secondary">Report abuse</a>
+</nav>
+</div>
+ </section>
+ </article>
+ <section class="crayons-card crayons-card--secondary text-padding mb-4 print-hidden" id=bottom-content-read-next>
+ <h2 class=crayons-subtitle-1>Read next</h2>
+ <a href=https://dev.to/laurieontech/migrating-from-eslint-loader-to-eslint-webpack-plugin-52a7 data-preload-image class="crayons-link mt-6 block">
+ <div class="flex items-center">
+ <span class="crayons-avatar crayons-avatar--xl m:crayons-avatar--2xl mr-4 shrink-0">
+ <img loading=lazy alt="laurieontech profile image" class=crayons-avatar__image width=100 height=100 src="data:image/webp;base64,UklGRoIFAABXRUJQVlA4IHYFAADQGgCdASpkAGQAPnk6lkeko6IjqdiK0JAPCUAZp4Uli/lORkP3DM3BXmU6I2867zzP3OiBqBE7QJ3SSxgaZ5NtQzpPmty9LVb/jK9eaHGHyDAShF9L/uOAismGq8D/sN9pGCKH/rDNOW11bIpYaCL/yYzxSUYW5mz2LW40zBb5dS+6YSfzzmujtwU2KmBKam3PXpLOXIPStCGs9K1mH0iR9kBp6AXSD/tnEEzWKvx1zkl616LtuSkxdxAATongn40izKMFsh+tTKwwdVy7uxSfzV7lziCHqLN3JT8zvKbAAP73vZWVOvzuyVFkJTkCeKMJHPXtDaCnx4qp1f/kcx5+PziRHjFYd8PRwTf5jiHEFCd4Ute19P1liLE+UY5vvwQtxuzrM/5+sPUDlu/bKEvNkyYhjg23cqQR0B8hwlCX21S6RONVxoIsq9NIQu9yiQU5uDKiNHCaVGb+qIC52OGMP5SqvZGTk/wEjK1Nu/zqOpO7cbRoPWjwUfQdiCrC3CF0szry1YjD8ZNkGMcKZjio4frTL+frnPo+VZeeaEmtjix8UPI3xjxyna9Hy5rKxpSkrZfK1pZ9dw4MPGCNAthYTTx4T+8a7fSIX5MwVeg2gYORjsdJHTeJpcKn/INdKiFiQsnBvD6Fc2MoQ+EKHSfoR3dqUvgC831uLebjJgRAmEKmovBNGi+2LlGnisDMv3kauC3TskfAFac5wPRnqNfJWP1HaZjbVZ9kGCg6qmwZdvM7+8nV3MIh0kGdE+lTZznHbZpOVCpxVTY4TBbL3QdSvzyJR2mrGtbM7h1Px/ZLWavB7rmNbF56gfUKivG7+9p0W/gaG/Ur7cFcP46UFTFerTjtm1/M1X1XuDqKKfEjFGfcls74lCRZLMzU9BKVzUTk9tmjNreuJnUuLy4qD9BikcrUap0Gn7Fg93KdL71yrcvc9y8l4TyN9wMIBf3y2H5Er5uBjgCEfqVn1PaXhxdkKJxYyrgvL4VOHIWhj1PMHOg5SQVInki21pKZdMUTpEHYPXU2H5lQNKWstkhmctZMa9Us2bKRzo3q93b8dYbKpcRIfJH/MnLp0gUfkxSptgvmobij4Ha+Lvk9euX2gK3vV5Fpt0vGXfXCXj36vNnWk7YfaPFPH0mtX/mQCu/gwUvV+j0cQcv9aBX4GOiBHVHFSyUlaC9GfOh32Mut3hjwKkTc85DOlOYUIB8jK4sLBp93D+QHM4CNMpdwFGx3ycWSGxHPUFjoqpDu3fPlTr/5nWH5nXphL4PaxUTN7ETAlCkl5uM328shvmQs4jjVcLoMLZVKBYPQkPlGZBrUjFuFcmijAzmEsYWzeISPfESXLuCFZPKSs1JQOlbIAcpFJa2C/p80pj4nDbiIkQu+WcYqAlLT+lSQitmnaf4iy+A/YReyEayiT4gZhJNGzlF8YIUbD8z2mjmWUmo07yHcjF7MKeEQVsgMahfL4pkx+nbxjSzTtQhxr639yLz0ow+uH8aBT/OEFpijzGmHiklV3s4TIfm3v6pHNtafuAQqnOxNOodV5oufYeKgdNO0n+/zeAcrJPnTmsoKMOMxUwajV27hS2NMGeyGM7/GGP/xmXFM9cUihJoMg85M6GPFEyae6h2MwHQK6Uy7xmMDi6pY0AJLV4B7HLlsU/t209DmDi/EH7sVXgYuKdxPjnwGQTqqXUXv3Z3zIWbuB9tuT2G0z7mWNeIZaEvZ0oIDgWe57cuOSiDvzwDgHZdKWI5+93UviOUReh/cf4p1Ksf1zqvtXowY2ufGikWNa0PD3VFGmHk5/P4fMxj7WVttyfuyo1Hsp9ug3gbLMoAY+wsFskDD050TQvinMHliCiuB3sbiTfiW4VSgX/R7AAA=">
+ </span>
+ <div>
+ <h3 class="fs-xl mb-0 lh-tight">Migrating from eslint-loader to eslint-webpack-plugin</h3>
+ <p class="opacity-75 pt-1">
+ Laurie - <time datetime=2021-02-25T00:26:34Z>Feb 25</time>
+ </p>
+ </div>
+ </div>
+ </a>
+ <a href=https://dev.to/thatkevin07/zorin-os-new-master-of-master-3f3b data-preload-image=https://res.cloudinary.com/practicaldev/image/fetch/s--uGHx9NRF--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/j6uhja4gszy0699y5u5n.png class="crayons-link mt-6 block">
+ <div class="flex items-center">
+ <span class="crayons-avatar crayons-avatar--xl m:crayons-avatar--2xl mr-4 shrink-0">
+ <img loading=lazy alt="thatkevin07 profile image" class=crayons-avatar__image width=100 height=100 src="data:image/webp;base64,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">
+ </span>
+ <div>
+ <h3 class="fs-xl mb-0 lh-tight">Zorin OS | New Master of Master?</h3>
+ <p class="opacity-75 pt-1">
+ ThatKevin - <time datetime=2021-02-24T08:34:43Z>Feb 24</time>
+ </p>
+ </div>
+ </div>
+ </a>
+ <a href=https://dev.to/colewilson/sailboat-2aih data-preload-image=https://res.cloudinary.com/practicaldev/image/fetch/s--7SSOzeTD--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/vcgv4zvg2b2b60rrdvmo.PNG class="crayons-link mt-6 block">
+ <div class="flex items-center">
+ <span class="crayons-avatar crayons-avatar--xl m:crayons-avatar--2xl mr-4 shrink-0">
+ <img loading=lazy alt="colewilson profile image" class=crayons-avatar__image width=100 height=100 src="data:image/webp;base64,UklGRqwEAABXRUJQVlA4TJ8EAAAvY8AYEN+goG0bNuTuUZmCtm3YkLtHZQratmFD7h6VKYokqeFP4d8bhYrLmcD6/5+kEIgkCoFAkiggCQBhMBBukoOd5MHA0CRaVVpVCru7ACQBYKJGSVgErOIuy/9f2g5BcO4R/Z8AaDSH81hnZ7XWgqTW2o5+Oa4AL3puk9UC+XJw8xrfIMfLWyWwOknttpA6u1cn8Hn12WNHYTYC21R26yRfXmLDNKx3B8FrwrbJLrGxtFuB7UsXckv3RNin8rGdwxD2Ksa7kegl9jwsuYUwCuxbbum522H3co5PHQO+4RieOQd8RRrvJ44BX5JcqHcbfM8x1goOmyQiakHMqU4csUFh/X4d60fTY0hbHS8a0GuA73zO4jFUR4W8S3zenvB32tVjaC7eZfB5c0FpXtRjOCZO+tBztEN5Gp+jhbMTPu8iA6J4DPVVFgw+L1Zg2+doSiXZiwbUzvPPoTxKLo0N6pO3NYC2ZMIuchN0/BVkE2phgW8BXfxjxiZp49km5PLrNm2gi5wgmsBP+sobNUILI32wTXl9RYetDlfZohpB/3VRM2iOgrQobHVIADBjw3q7f+RzFtis3AHAtETCfNZ930ZN2C7NAKdqqVMbYBOvp878wRckqZSSVI2W2/RH+rNc97XPRlTC8VT9uTNBBoB8e6o07NSbmCMUHrqO3LD3T4TiRVbBqTcVoDyNdWxvPjPgElWGzuQO3GCq6M6Gi5WmKqoze7Ngq0Jvk32V3vXJiuML0c4K+oXQZs5CVag3OhjBYFXVG5qrKM1UR3eHw14QJsK6pj/UPvxIi8Pa7gWQ1OgXPw0Sq09v0ODyLxziATlYOygOqcEaLTmkjTVa1FOnrqbm5Y7x2idVNPj9juFcPrKEjD9CDOc6ilom2ErkzgSQASCdjv6g8c7wndNp/hJTyPAz7qrSlKdKY4DCPNIPMUcoDPaX3BIUXqYK7bCJKkOA4tv8cBGKz+HHlKB4lzX0CbeqIXdg7hIR1Q3M9UsnYM41XASwNVzggEXET2LkrBBxA+4teeQBwFcgD2yPKBdgj4jqYEXHUwcABMmTC+9EVAdvQxwuVpp5FgAguhYugfqsYm8WbLztCxbZwIGoD1beEE0Fz9LhRzAssfFWRLmwYEJUJys61pR+gCcOjonlEMlnTh4QaWEFxVE7/E6KpQ7OpRBR35wDEdFkjkfumP+AjYUul8UPISLOjOC+aGXcmiMu+Ps2LPKxJG0Cv+WWSuKHvlAvueR2yB2hdBUclFP8K3jC38rnv+6J8LdeCy6HXH0VRctCYff8c7cC/xbuzN9pNYR/y/HK33EbkEs+FcEpWYgo3Wd2ipCp3PSxEosJcRinyQrk2wjlaaYKT1LZg+IAbnBNNUo+seBUb0MuQMWVXkbdUDN78SrqgLpxfBO5pUoQHL2G8Amq3yO9hJwzPHjbdxBzhEfDSC8gfYaHw9Sf2hI8Hr3si9SRoMV96IncDY2ejroRc4Bm06aoC7J7gpbPUXSg5giNx32gxmi8EnS4WNGQGi/oNCxONKKmPUO/8fxo+RQp40OCzuM6G1mPlPN7hle8j9VpYhHK4bOcAVoEAA==">
+ </span>
+ <div>
+ <h3 class="fs-xl mb-0 lh-tight">Sailboat</h3>
+ <p class="opacity-75 pt-1">
+ Cole Wilson - <time datetime=2021-01-25T22:16:37Z>Jan 25</time>
+ </p>
+ </div>
+ </div>
+ </a>
+ <a href=https://dev.to/jmdejager/here-goes-nothing-o5o data-preload-image=https://res.cloudinary.com/practicaldev/image/fetch/s--I67hPgHd--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/mfujpweb7g15jec5cw94.jpg class="crayons-link mt-6 block">
+ <div class="flex items-center">
+ <span class="crayons-avatar crayons-avatar--xl m:crayons-avatar--2xl mr-4 shrink-0">
+ <img loading=lazy alt="jmdejager profile image" class=crayons-avatar__image width=100 height=100 src=data:image/webp;base64,UklGRtYDAABXRUJQVlA4IMoDAAAQGACdASpkAGQAPrlSokwnJLIoK9VbGkAXCWUAz8HxXJ4/adNrW2/aUEXLBTy8H6qFttakWRE2qTy8/ohlnK0BnGFrPjGxi8fLK49bmJVZcWPqS6YifDrCgkdYzE9vGhfu7t3QiSaVfJVJc0EdkWiPJunYkg2g6mKTNatIu0nf0SbDK5dAPo90Boz3B5UGF1fhqDRmNaYTFsn3zcY428OjPleCS07OJrIECDfQgbFWl+s1L7QAYEJs/iDdf/a00OWGp4bkP1uzMYAA/vD37+uZVTaTLwh5rJXsLF+VL9ZSsZmeVBk0/Zd3fz1mShWywUGCcdTlFrniNkCqyT3U26xVGQWxlMLvMIELsDuXZ+Xoome0v953MEUySHGG8RHowEj0OQgPxGF90eaJRNkDQ1Up6K9tp8Ue0APoGnXbITU+0oqIFWL6Jq9mt0J8YdYDBCmZhMiyVmhvJhZO5eQtwfbkv/OCRQbxhSsfmvUTvUxfzz1LZtDgIuJyNSrXNTzCtmGyy5SmwTj1DqLsBF7xXNlp++/FLfLPyZNywUY724r62F460UWXNN4qoSkEPAJgylPuFKkukjcW4E6r0NMJ4nPnnrOmxEW3LBNj1zglHcxvHD7RF07x05kksMNHBRlGFCclEEibmsOC18iVe4e9KZEyGZta7WC13rfPuVhWhEiz/7ILnsvJLRA06N35iMYFf70XWPfmNndEBgnPWqVU+oz6Ke+gANEjeZTqjdAIgfqv9D2VbD2GfIvkER9PmrAEOuqooZF0Uf1vNzy/4/8SJhAwVBp8Lpgf7m+sRiweGtVNzRuPOfk9Xh3zn9aUSMv+aWH//MOR64oFi8rD/BT/LAJmQwFLpLYXaKv7iVxRibptG/yud0tDx8eCXg5qAXpyRvugkC+QKvD5Ha5bMAGTJLj+Don+LILQa/99cUGmwc8BKTy839jTR6tFV0vNz6m+bZe/ZJ5Z8gzNjV6hVUkTLedG0Q1juYrilZP5Xu1B5ZZhP5ZfjBw0Y7ePmXXfrdRu98WK6fTXBragcHPUKGQUfAt5TQiQGjpSxzttdLwY0q+j+GP5zyo3n4SolFYPxEZvX+KgzrFZ5KVveSraKJZmMw4QszEoaU666noYTTAc7QnQXF2mtzBuC8sKtByucSHquU+6SXZ/XJPVXyxKh1wmRNFqfxKqF2R6YoaVEug+AJapRdOzPtj8UrTzt8bwhdov2kxeoAutx2/TcNdsBonTvExssb8yISPzWhlNw1aBq1T7BcNu25+nfwZn7NUOr16LjnqPjWoYo9e/RYAA>
+ </span>
+ <div>
+ <h3 class="fs-xl mb-0 lh-tight">Here goes nothing</h3>
+ <p class="opacity-75 pt-1">
+ Jasper de Jager - <time datetime=2021-02-24T13:52:36Z>Feb 24</time>
+ </p>
+ </div>
+ </div>
+ </a>
+ </section>
+ </div>
+ </main>
+ <aside class=crayons-layout__sidebar-right aria-label="Right sidebar navigation">
+ <div class="crayons-article-sticky grid gap-4 break-word print-hidden" id=article-show-primary-sticky-nav>
+ <div class="crayons-card crayons-card--secondary branded-7 p-4 pt-0 gap-4 grid" style=border-top-color:#0b4442>
+ <div class=-mt-4>
+ <a href=https://dev.to/creativenull class=flex>
+ <span class="crayons-avatar crayons-avatar--xl mr-2 shrink-0">
+ <img src=data:image/webp;base64,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 class=crayons-avatar__image alt="Arnold Chand profile image">
+ </span>
+ <span class="crayons-link crayons-subtitle-2 mt-5">Arnold Chand</span>
+ </a>
+ </div>
+ <div class=color-base-70>
+ Electrical Engineer, but strangely on a web dev train 🚆
+ </div>
+ <div>
+ <button class="crayons-btn follow-action-button w-100 whitespace-nowrap showing" data-info='{"id":134682,"className":"User","style":""}' data-follow-action-button=true>Follow</button></div>
+ <div class=user-metadata-details>
+ <ul class=user-metadata-details-inner>
+ <li>
+ <div class=key>
+ Work
+ </div>
+ <div class=value>
+ Software Engineer
+ </div>
+ </li>
+ <li>
+ <div class=key>
+ Education
+ </div>
+ <ul class=value>
+ MSEE
+ </ul>
+ </li>
+ <li>
+ <div class=key>
+ Joined
+ </div>
+ <div class=value>
+ <time datetime=2019-02-06T17:28:13Z class=date>Feb 6, 2019</time>
+ </div>
+ </li>
+ </ul>
+</div>
+ </div>
+ <div class="crayons-card crayons-card--secondary">
+ <header class=crayons-card__header>
+ <h3 class=crayons-subtitle-2>
+ Trending on <a href=https://dev.to/>DEV Community</a>
+ <svg xmlns=http://www.w3.org/2000/svg viewBox="0 0 44 44" width=24 height=24 role=img aria-labelledby=aocccapthj8u0bfmo2oai7lqpdybqjut class="crayons-icon crayons-icon--default"><title id=aocccapthj8u0bfmo2oai7lqpdybqjut>Hot</title>
+ <g class=nc-icon-wrapper>
+ <path fill=#F4900C d="M39 23a16.96 16.96 0 00-1.04-5.868c-.46 5.389-3.333 8.157-6.335 6.868-2.812-1.208-.917-5.917-.777-8.164.236-3.809-.012-8.169-6.931-11.794 2.875 5.5.333 8.917-2.333 9.125-2.958.231-5.667-2.542-4.667-7.042-3.238 2.386-3.332 6.402-2.333 9 1.042 2.708-.042 4.958-2.583 5.208-2.84.28-4.418-3.041-2.963-8.333A16.936 16.936 0 005 23c0 9.389 7.611 17 17 17s17-7.611 17-17z"></path>
+ <path fill=#FFCC4D d="M32.394 27.999c.148 3.084-2.561 4.293-4.019 3.709-2.106-.843-1.541-2.291-2.083-5.291s-2.625-5.083-5.708-6c2.25 6.333-1.247 8.667-3.08 9.084-1.872.426-3.753-.001-3.968-4.007A11.964 11.964 0 0010 34c0 .368.023.73.055 1.09C13.125 38.124 17.342 40 22 40s8.875-1.876 11.945-4.91c.032-.36.055-.722.055-1.09 0-2.187-.584-4.236-1.606-6.001z"></path>
+ </g>
+</svg>
+ </h3>
+ </header>
+ <div>
+ <a class="crayons-link crayons-link--contentful flex" href=https://dev.to/chryz_codez/7-short-tips-to-growth-as-a-developer-47o4>
+ <span class="crayons-avatar mr-2 shrink-0">
+ <img src=data:image/webp;base64,UklGRlgDAABXRUJQVlA4IEwDAABQEACdASpaAFoAPqVKokwmJCMtKBjo4aAUiWIAyFTQ2Nc5i27ntTlmTKzJdzb4pcstU4WIcbltrJBkgdyHBeCkYPGv2Xmz2A5G88bt/Kuo2pYvVwgm/UnKVXpRwrp0GaDKSsR4FP2UmW0d7Mu0+CumyC1WrDXYxdqgHWbM/dEWGziQq38gnIIcw73AAP78HdJ8CLCR7R/bvLa9T1CKHF2kBrBV8bkmbVOzZSycuZqxLQLT2Thj1h90mhQrIqZcinoDfWU111arxNkQ+3A3c/Q7pRHdVF/cDoBTeLSyFrgm0t/jvN0nOyx54Fk3hDiSc7v1c5lxVY3rI407vws82GDm1I7kQGXDEHIlgWyZQNxLgkpnFea7SBoRtjvOTLxJVk9JlsF78vUQL1BAOfe9Jev75qhFqXHcejv7HhsozLzMKGx38Vd/nTaYzqg9byCkbd+8ooTWHV+UcVmN7PIYu5q1VHMbdgkRsrm9IDH3Br/7lc36VqPHLjoHUnpGvGpyPV7W00HW0fiJ1lrRIe7RIczi4LN96fW9lpIAZTxN/we/gyLfK+p+2lj3FbcoXGxG/4R02ZAkNiFbS+T9QMiMnHa9LKpcQN772CVXow3lLmLGMc6Fn47M5H60crAAQocJdR6ML4KSoWrtpXbtnznQHJQk5PPxqh1tMoJsLWf1k4yBxqityc9nznTJI82VkcVZR3br75YcbttFwJkkxmdsYYY9xyQFRJbRDh28kOIcHBtOCb6RwpUlygP7nbOEA+Qx0Kbu/MgfaRxTkzMwggxWDroc3qxUOzLarfHNEMCjd6wAjtL/2ADWR2mWZNj8T5hk+oADsBj4dZQeUHphnAAkXUw6pEOdMuX9BvNK0YQ6XzHi3be9fyDxHm279Y0d3Z/3It/aA1tgaypIxTrduMs1rrN571JNK+hJ5IvL0EGlTIT5zTd6sE3iK3J/3Jn1AZ6L1lSRTS1jOuVglC9NHxt0hXGB52fzq0FlFFCP3KkH7ZYu1AnDCpIAfjvTNIZgi0vm+F4wvHq75rRJE+S8bmba8ducXtD/pRyVDfeuBF2Ak2HIOi9feUA95hipfEayyWRLJME8aTbVvnpRg88piFOexaMW7I40N9Qz22FTKAAA class=crayons-avatar__image loading=lazy alt="Olanrewaju Alaba profile image">
+ </span>
+ <div>
+ 7 Short Tips to Growth as a Developer
+ <div class="crayons-link__secondary -ml-1">
+ <span class=crayons-tag><span class=crayons-tag__prefix>#</span>codenewbie</span>
+ <span class=crayons-tag><span class=crayons-tag__prefix>#</span>javascript</span>
+ <span class=crayons-tag><span class=crayons-tag__prefix>#</span>programming</span>
+ <span class=crayons-tag><span class=crayons-tag__prefix>#</span>productivity</span>
+ </div>
+ </div>
+ </a>
+ <a class="crayons-link crayons-link--contentful flex" href=https://dev.to/pp/tailwindcss-apply-the-right-approach-5ghd>
+ <span class="crayons-avatar mr-2 shrink-0">
+ <img src="data:image/webp;base64,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" class=crayons-avatar__image loading=lazy alt="Paweł Ludwiczak profile image">
+ </span>
+ <div>
+ TailwindCSS @apply - the right approach?
+ <div class="crayons-link__secondary -ml-1">
+ <span class=crayons-tag><span class=crayons-tag__prefix>#</span>tailwindcss</span>
+ <span class=crayons-tag><span class=crayons-tag__prefix>#</span>discuss</span>
+ </div>
+ </div>
+ </a>
+ <a class="crayons-link crayons-link--contentful flex" href=https://dev.to/devggaurav/5-super-under-rated-free-tools-resources-i-use-almost-every-day-as-a-frontend-developer-5c6g>
+ <span class="crayons-avatar mr-2 shrink-0">
+ <img src="data:image/webp;base64,UklGRr4CAABXRUJQVlA4TLICAAAvWUAWAC/BNgDAMjFrjf3/O8d6g2EAAGWyXdP/B9pk2DaSouNnhp6/5t/Mzn+035fX5Qf5CeIFuwf+gFnxzcZsEk8xG8IldkN53b/ArOadcfU/s+JfjD/EHRJOnN2H844QPa0na75MYSflAMJI68kUdpRWczwc9UupEWDbtts0slzoHUNMHKbg8P//OEii5XlWRP8duG0bScrsvdvRbJLO8QQQHxsg/hkL0Ouqr2dzhbO856dz7ud6fpxzz/l9ijA5dx/OTeEE6+TuAy/rGbHT3Cj8Qhu8KLih3NQybbyO89z4FjfF18bzJL9sESd5nsXwJxD9hd7zifZ8fq9gocTt+NjCFlBvKyj3fXJothUUiOVCoH4w0TaIIz430Tz4YIB2x+cWcqI7DuMOJedzF2pAdIkCnfYcesRjxwp0Zi8EODLk2uCGUh1DgQxq7KP7A8DBKeWNOzgwnw+KViED+txK6sMScPO/1xMzg0e6HXpknCyl3/MZOKQnE8txXqsQ1Lxm6Ch2o2LoOcT6OssUuE1oz9/BwAHheYIJL5p5e9RH3x4UIWHf1kT74DQbuK+kuKglqT2GHPsAwtj9r0wBzveRxLJ9ZpTJ7QPD9leqVVQMN/V+9jg6q+S8z02I+iii/gCgGBkay86xJe9zOSRMPeAhUkHMcUQNHQJ3aHYx5AtRkiZGCDVupIyPJD4arSW5jl8Cbha2jAzrA4Iro2v2kp7d70c2V4IqoKFJt9pcUp8BDc0eb/iTRyNuDivu8qHJYhMlNS6VnExdvA/9ZA0znu2Os3AHQvF+TfeSTCS70QF7BLUcR3mGZhdLPm/3N9TwM786c0DpKaqwPK2mG10OPI0WHH4VZ0KG2Xv/ixSSuh/RVNvXMf+Hpg3jExGXX+/9HOSl12dBG0MO9c/6wD9kl3bhcwE=" class=crayons-avatar__image loading=lazy alt="Gaurav profile image">
+ </span>
+ <div>
+ 5 super under-rated free tools/resources I use almost every day. (As a Frontend developer)
+ <div class="crayons-link__secondary -ml-1">
+ <span class=crayons-tag><span class=crayons-tag__prefix>#</span>webdev</span>
+ <span class=crayons-tag><span class=crayons-tag__prefix>#</span>design</span>
+ <span class=crayons-tag><span class=crayons-tag__prefix>#</span>productivity</span>
+ <span class=crayons-tag><span class=crayons-tag__prefix>#</span>frontend</span>
+ </div>
+ </div>
+ </a>
+ </div>
+ </div>
+</div>
+ </aside>
+</div>
+<div class=mod-actions-menu></div>
+<div id=mod-actions-menu-btn-area></div>
+<div data-testid=flag-user-modal-container class="flag-user-modal-container hidden sf-hidden"></div>
+<div class="fullscreen-code js-fullscreen-code"></div>
+ 
+ </div>
+</div>
+ <footer class="crayons-footer print-hidden">
+ <div id=footer-container class="crayons-layout crayons-layout--limited-m crayons-footer__container">
+ <nav class=m:-mt-4>
+ <a href=https://dev.to/ class="crayons-link inline-block p-2">Home</a>
+ <a href=https://dev.to/listings class="crayons-link inline-block p-2">Listings</a>
+ <a href=https://dev.to/pod class="crayons-link inline-block p-2">Podcasts</a>
+ <a href=https://dev.to/videos class="crayons-link inline-block p-2">Videos</a>
+ <a href=https://dev.to/tags class="crayons-link inline-block p-2">Tags</a>
+ <a href=https://dev.to/code-of-conduct class="crayons-link inline-block p-2">Code of Conduct</a>
+ <a href=https://dev.to/faq class="crayons-link inline-block p-2">FAQ</a>
+ <a href=https://shop.dev.to/ class="crayons-link inline-block p-2">DEV Shop</a>
+ <a href=https://dev.to/sponsors class="crayons-link inline-block p-2">Sponsors</a>
+ <a href=https://dev.to/about class="crayons-link inline-block p-2">About</a>
+ <a href=https://dev.to/privacy class="crayons-link inline-block p-2">Privacy Policy</a>
+ <a href=https://dev.to/terms class="crayons-link inline-block p-2">Terms of use</a>
+ <a href=https://dev.to/contact class="crayons-link inline-block p-2">Contact</a>
+ <a href=https://dev.to/enter class="crayons-link fw-bold inline-block p-2">Sign In/Up</a>
+ <div class=pt-4> <a href=https://twitter.com/thepracticaldev target=_blank class="crayons-link crayons-link--secondary mx-2" rel=noopener>
+ <svg xmlns=http://www.w3.org/2000/svg width=24 height=24 viewBox="0 0 24 24" role=img aria-labelledby=apetxmxhay90u0fowya2emmdcsdweh9 class=crayons-icon><title id=apetxmxhay90u0fowya2emmdcsdweh9>Twitter</title>
+ <path d="M22.162 5.656a8.383 8.383 0 01-2.402.658A4.196 4.196 0 0021.6 4c-.82.488-1.719.83-2.656 1.015a4.182 4.182 0 00-7.126 3.814 11.874 11.874 0 01-8.62-4.37 4.168 4.168 0 00-.566 2.103c0 1.45.738 2.731 1.86 3.481a4.168 4.168 0 01-1.894-.523v.052a4.185 4.185 0 003.355 4.101 4.211 4.211 0 01-1.89.072A4.185 4.185 0 007.97 16.65a8.395 8.395 0 01-6.191 1.732 11.83 11.83 0 006.41 1.88c7.693 0 11.9-6.373 11.9-11.9 0-.18-.005-.362-.013-.54a8.495 8.495 0 002.087-2.165l-.001-.001z" fill=#65bbf2></path>
+</svg>
+ </a>
+ <a href=https://facebook.com/thepracticaldev target=_blank class="crayons-link crayons-link--secondary mx-2" rel=noopener>
+ <svg xmlns=http://www.w3.org/2000/svg width=24 height=24 viewBox="0 0 24 24" role=img aria-labelledby=a9dr9v8c1subswvmsj0ekzl58do5za6q class=crayons-icon><title id=a9dr9v8c1subswvmsj0ekzl58do5za6q>Facebook</title>
+ <path d="M15.402 21v-6.966h2.333l.349-2.708h-2.682V9.598c0-.784.218-1.319 1.342-1.319h1.434V5.857a19.188 19.188 0 00-2.09-.107c-2.067 0-3.482 1.262-3.482 3.58v1.996h-2.338v2.708h2.338V21H4a1 1 0 01-1-1V4a1 1 0 011-1h16a1 1 0 011 1v16a1 1 0 01-1 1h-4.598z"></path>
+</svg>
+ </a>
+ <a href=https://github.com/thepracticaldev target=_blank class="crayons-link crayons-link--secondary mx-2" rel=noopener>
+ <svg xmlns=http://www.w3.org/2000/svg width=24 height=24 viewBox="0 0 24 24" role=img aria-labelledby=a4gpqcnwb4rgb0gsc100nbkbjggv9mn0 class=crayons-icon><title id=a4gpqcnwb4rgb0gsc100nbkbjggv9mn0>Github</title>
+ <path d="M12 2C6.475 2 2 6.475 2 12a9.994 9.994 0 006.838 9.488c.5.087.687-.213.687-.476 0-.237-.013-1.024-.013-1.862-2.512.463-3.162-.612-3.362-1.175-.113-.288-.6-1.175-1.025-1.413-.35-.187-.85-.65-.013-.662.788-.013 1.35.725 1.538 1.025.9 1.512 2.338 1.087 2.912.825.088-.65.35-1.087.638-1.337-2.225-.25-4.55-1.113-4.55-4.938 0-1.088.387-1.987 1.025-2.688-.1-.25-.45-1.275.1-2.65 0 0 .837-.262 2.75 1.026a9.28 9.28 0 012.5-.338c.85 0 1.7.112 2.5.337 1.912-1.3 2.75-1.024 2.75-1.024.55 1.375.2 2.4.1 2.65.637.7 1.025 1.587 1.025 2.687 0 3.838-2.337 4.688-4.562 4.938.362.312.675.912.675 1.85 0 1.337-.013 2.412-.013 2.75 0 .262.188.574.688.474A10.016 10.016 0 0022 12c0-5.525-4.475-10-10-10z"></path>
+</svg>
+ </a>
+ <a href=https://instagram.com/thepracticaldev target=_blank class="crayons-link crayons-link--secondary mx-2" rel=noopener>
+ <svg xmlns=http://www.w3.org/2000/svg width=24 height=24 viewBox="0 0 24 24" role=img aria-labelledby=arbuvh7ye8ph7e93cfoffi3g0jj6ssfk class=crayons-icon><title id=arbuvh7ye8ph7e93cfoffi3g0jj6ssfk>Instagram</title>
+ <path d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153.509.5.902 1.105 1.153 1.772.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 01-1.153 1.772c-.5.508-1.105.902-1.772 1.153-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 01-1.772-1.153 4.904 4.904 0 01-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 011.153-1.772A4.897 4.897 0 015.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2zm0 5a5 5 0 100 10 5 5 0 000-10zm6.5-.25a1.25 1.25 0 10-2.5 0 1.25 1.25 0 002.5 0zM12 9a3 3 0 110 6 3 3 0 010-6z"></path>
+</svg>
+ </a>
+ <a href=https://twitch.com/thepracticaldev target=_blank class="crayons-link crayons-link--secondary mx-2" rel=noopener>
+ <svg xmlns=http://www.w3.org/2000/svg width=24 height=24 viewBox="0 0 24 24" role=img aria-labelledby=aa8bx2lapwy4kzhnal2jyq9kg0mkkg3m class=crayons-icon><title id=aa8bx2lapwy4kzhnal2jyq9kg0mkkg3m>Twitch</title>
+ <path d="M4.3 3H21v11.7l-4.7 4.7h-3.9l-2.5 2.4H7v-2.4H3V6.2L4.3 3zM5 17.4h4v2.4h.095l2.5-2.4h3.877L19 13.872V5H5v12.4zM15 8h2v4.7h-2V8zm0 0h2v4.7h-2V8zm-5 0h2v4.7h-2V8z"></path>
+</svg>
+ </a>
+</div>
+ </nav>
+ <hr class=crayons-footer__divider>
+ <p class="fs-s crayons-footer__description"><a href=https://dev.to/ aria-label="DEV Community Home" class=crayons-link>DEV Community</a> – A constructive and inclusive social network for software developers. With you every step of your journey.</p>
+ <div class="m:-mb-4 crayons-footer__description">
+ <p class=fs-s>Built on <a href=https://www.forem.com/ class=crayons-link target=_blank rel=noopener>Forem</a> — the <a href=https://dev.to/t/opensource target=_blank rel=noopener class=crayons-link>open source</a> software that powers <a href=https://dev.to/ target=_blank rel=noopener class=crayons-link>DEV</a> and other inclusive communities.</p>
+ <p class=fs-s>Made with love and <a href=https://dev.to/t/rails target=_blank rel=noopener class=crayons-link>Ruby on Rails</a>. DEV Community <span title=copyright>©</span> 2016 - 2021.</p>
+ <div><a href=https://www.forem.com/ target=_blank rel=noopener class="inline-block mt-4"><svg xmlns=http://www.w3.org/2000/svg width=24 height=24 viewBox="0 0 24 24" fill=none role=img aria-labelledby=ajk9ysr7wpzt61rg53je3ksp0iumdrg2 class="crayons-icon crayons-icon--default"><title id=ajk9ysr7wpzt61rg53je3ksp0iumdrg2>Forem logo</title>
+ <g clip-path=url(#clip0) fill=#1AB3A6>
+ <path d="M4.603 1.438a8.056 8.056 0 017.643 5.478 8.543 8.543 0 00-3.023 5.968H8.054C3.606 12.884 0 9.296 0 4.87V1.468a.03.03 0 01.03-.03h4.573zM23.97 6.515a.03.03 0 01.03.03v2.833c0 4.11-3.354 7.442-7.491 7.442h-2.881v5.726h-2.305V14.53l.022-1.145c.294-3.843 3.526-6.87 7.469-6.87h5.155z"></path>
+ </g>
+ <defs>
+ <clippath id=clip0>
+ <path fill=#fff d="M0 0h24v24H0z"></path>
+ </clippath>
+ </defs>
+</svg>
+</a></div>
+ </div>
+ </div>
+ <img class=crayons-footer__mascot alt="Sloan, the sloth mascot" width=52 height=120 loading=lazy src="data:image/webp;base64,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">
+</footer>
+<div id=snack-zone><div class="hidden sf-hidden"></div></div>
+ <div id=global-signup-modal class="authentication-modal hidden sf-hidden">
+</div>
+ 
+ 
+<div><template shadowmode=open><style class=sf-hidden>.vimiumReset,div.vimiumReset,span.vimiumReset,table.vimiumReset,a.vimiumReset,a:visited.vimiumReset,a:link.vimiumReset,a:hover.vimiumReset,td.vimiumReset,tr.vimiumReset{background:none;border:none;bottom:auto;box-shadow:none;color:black;cursor:auto;display:inline;float:none;font-family:"Helvetica Neue","Helvetica","Arial",sans-serif;font-size:inherit;font-style:normal;font-variant:normal;font-weight:normal;height:auto;left:auto;letter-spacing:0;line-height:100%;margin:0;max-height:none;max-width:none;min-height:0;min-width:0;opacity:1;padding:0;position:static;right:auto;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;top:auto;vertical-align:baseline;white-space:normal;width:auto;z-index:2140000000}thead.vimiumReset,tbody.vimiumReset{display:table-header-group}tbody.vimiumReset{display:table-row-group}div.internalVimiumHintMarker{position:absolute;display:block;top:-1px;left:-1px;white-space:nowrap;overflow:hidden;font-size:11px;padding:1px 3px 0px 3px;background:linear-gradient(to bottom,#FFF785 0%,#FFC542 100%);border:solid 1px #C38A22;border-radius:3px;box-shadow:0px 3px 7px 0px rgba(0,0,0,0.3)}div.internalVimiumHintMarker span{color:#302505;font-family:Helvetica,Arial,sans-serif;font-weight:bold;font-size:11px;text-shadow:0 1px 0 rgba(255,255,255,0.6)}div.internalVimiumHintMarker>.matchingCharacter{color:#D4AC3A}div>.vimiumActiveHintMarker span{color:#A07555!important}div.internalVimiumInputHint{position:absolute;display:block;background-color:rgba(255,247,133,0.3);border:solid 1px #C38A22;pointer-events:none}div.internalVimiumSelectedInputHint{background-color:rgba(255,102,102,0.3);border:solid 1px #993333!important}div.internalVimiumSelectedInputHint span{color:white!important}div.vimiumHighlightedFrame{position:fixed;top:0px;left:0px;width:100%;height:100%;padding:0px;margin:0px;border:5px solid yellow;box-sizing:border-box;pointer-events:none}iframe.vimiumHelpDialogFrame{background-color:rgba(10,10,10,0.6);padding:0px;top:0px;left:0px;width:100%;height:100%;display:block;position:fixed;border:none;z-index:2139999997}div#vimiumHelpDialogContainer{opacity:1.0;background-color:white;border:2px solid #b3b3b3;border-radius:6px;width:840px;max-width:calc(100% - 100px);max-height:calc(100% - 100px);margin:50px auto;overflow-y:auto;overflow-x:auto}div#vimiumHelpDialog{min-width:600px;padding:8px 12px}span#vimiumTitle,span#vimiumTitle span,span#vimiumTitle *{font-size:20px}#vimiumTitle{display:block;line-height:130%;white-space:nowrap}td.vimiumHelpDialogTopButtons{width:100%;text-align:right}#helpDialogOptionsPage,#helpDialogWikiPage{font-size:14px;padding-left:5px;padding-right:5px}div.vimiumColumn{width:50%;float:left;font-size:11px;line-height:130%}div.vimiumColumn tr{display:table-row}div.vimiumColumn td{display:table-cell;font-size:11px;line-height:130%}div.vimiumColumn table,div.vimiumColumn td,div.vimiumColumn tr{padding:0;margin:0}div.vimiumColumn table{width:100%;table-layout:auto}div.vimiumColumn td{vertical-align:top;padding:1px}div#vimiumHelpDialog div.vimiumColumn tr>td:first-of-type{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:14px;text-align:right;white-space:nowrap}span.vimiumHelpDialogKey{background-color:rgb(243,243,243);color:rgb(33,33,33);margin-left:2px;padding-top:1px;padding-bottom:1px;padding-left:4px;padding-right:4px;border-radius:3px;border:solid 1px #ccc;border-bottom-color:#bbb;box-shadow:inset 0 -1px 0 #bbb;font-family:monospace;font-size:11px}div#vimiumHelpDialog div.vimiumColumn tr>td:nth-of-type(3){width:100%}div#vimiumHelpDialog div.vimiumDivider{display:block;height:1px;width:100%;margin:10px auto;background-color:#9a9a9a}div#vimiumHelpDialog td.vimiumHelpSectionTitle{padding-top:3px;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:16px;font-weight:bold}div#vimiumHelpDialog td.vimiumHelpDescription{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:14px}div#vimiumHelpDialog span.vimiumCopyCommandNameName{font-style:italic;cursor:pointer;font-size:12px}div#vimiumHelpDialog tr.advanced{display:none}div#vimiumHelpDialog.showAdvanced tr.advanced{display:table-row}div#vimiumHelpDialog div.advanced td:nth-of-type(3){color:#555}div#vimiumHelpDialog a.closeButton{font-family:"courier new";font-weight:bold;color:#555;text-decoration:none;font-size:24px;position:relative;top:3px;padding-left:5px;cursor:pointer}div#vimiumHelpDialog a{text-decoration:underline}div#vimiumHelpDialog a.closeButton:hover{color:black;-webkit-user-select:none}div#vimiumHelpDialogFooter{display:block;position:relative;margin-bottom:37px}table.helpDialogBottom{width:100%}td.helpDialogBottomRight{width:100%;float:right;text-align:right}td.helpDialogBottomRight,td.helpDialogBottomLeft{padding:0px}div#vimiumHelpDialogFooter *{font-size:10px}a#toggleAdvancedCommands,span#help-dialog-tip{position:relative;top:19px;white-space:nowrap;font-size:10px}a:link.vimiumHelDialogLink,a:visited.vimiumHelDialogLink,a:hover.vimiumHelDialogLink,a:active.vimiumHelDialogLink,a#toggleAdvancedCommands{color:#2f508e;text-decoration:underline;cursor:pointer}div.vimiumHUD{display:block;position:fixed;width:calc(100% - 20px);bottom:8px;left:8px;background:#F1F1F1;text-align:left;border-radius:4px;box-shadow:0px 2px 10px rgba(0,0,0,0.8);border:1px solid #aaa;z-index:2139999999}iframe.vimiumHUDFrame{background-color:transparent;padding:0px;overflow:hidden;display:block;position:fixed;width:20%;min-width:300px;height:58px;bottom:-14px;right:20px;margin:0 0 0 -40%;border:none;z-index:2139999998;opacity:0}div.vimiumHUD .vimiumHUDSearchArea{display:block;padding:3px;background-color:#F1F1F1;border-radius:4px 4px 0 0}div.vimiumHUD .vimiumHUDSearchAreaInner{color:#777;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;height:30px;margin-bottom:0;padding:2px 4px;border-radius:3px;width:100%;outline:none;box-sizing:border-box;line-height:20px}div.vimiumHUD .hud-find{background:#fff;border:1px solid #ccc}div.vimiumHUD span#hud-find-input,div.vimiumHUD span#hud-match-count{color:#000;display:inline;outline:none;white-space:nowrap;overflow-y:hidden}div.vimiumHUD span#hud-find-input:before{content:"/"}div.vimiumHUD span#hud-match-count{color:#aaa;font-size:12px}div.vimiumHUD span#hud-find-input br{display:none}div.vimiumHUD span#hud-find-input *{display:inline;white-space:nowrap}body.vimiumFindMode ::selection{background:#ff9632}iframe.vomnibarFrame{background-color:transparent;padding:0px;overflow:hidden;display:block;position:fixed;width:calc(80% + 20px);min-width:400px;height:calc(100% - 70px);top:70px;left:50%;margin:0 0 0 -40%;border:none;font-family:sans-serif;z-index:2139999998}div.vimiumFlash{box-shadow:0px 0px 4px 2px #4183C4;padding:1px;background-color:transparent;position:absolute;z-index:2140000000}iframe.vimiumUIComponentHidden{display:none}iframe.vimiumUIComponentVisible{display:block}iframe.vimiumUIComponentReactivated{border:5px solid yellow}iframe.vimiumNonClickable{pointer-events:none}</style><iframe class="vimiumHUDFrame vimiumNonClickable vimiumUIComponentHidden sf-hidden"></iframe><style class=sf-hidden>iframe.vimiumHUDFrame.vimiumUIComponentVisible{opacity:1}</style></template></div><script data-template-shadow-root>(()=>{document.currentScript.remove();processNode(document);function processNode(node){node.querySelectorAll("template[shadowmode]").forEach(element=>{let shadowRoot = element.parentElement.shadowRoot;if (!shadowRoot) {try {shadowRoot=element.parentElement.attachShadow({mode:element.getAttribute("shadowmode"),delegatesFocus:Boolean(element.getAttribute("delegatesfocus"))});shadowRoot.innerHTML=element.innerHTML;element.remove()} catch (error) {} if (shadowRoot) {processNode(shadowRoot)}}})}})()</script>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Text overflow clamp</title>
+    <script src="./text-overflow-clamp.js"></script>
+
+    <style>
+      .clamp-text {
+        overflow: hidden;
+        max-height: 200px;
+        width: 120px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="module">
+      <div id="clamp-text" class="clamp-text">
+        aaa bbbb cccc dddd eeeee fffff
+      </div>
+    </div>
+
+    <script>
+      function createMeasureEl() {
+        const measureEl = document.createElement("span");
+        const style = measureEl.style;
+        style.position = "absolute";
+        style.visibility = "hidden";
+        style.whiteSpace = "pre";
+
+        return measureEl;
+      }
+
+      function getTextContent(el) {
+        return el.textContent;
+      }
+
+      function emptyEl(el) {
+        while (el.firstChild !== null) {
+          el.firstChild.remove();
+        }
+      }
+
+      function measureText(measureEl) {
+        const measureText = text.slice(startPos, stop + 1);
+        measureEl.append(document.createTextNode(measureText));
+        return measureEl.clientWidth;
+      }
+
+      function appendEl(parent, child) {
+        parent.append(child);
+      }
+
+      function getWidth(el) {
+        return el.clientWidth;
+      }
+
+      function createElement(tagName) {
+        return document.createElement(tagName);
+      }
+
+      function removeChild(parent, child) {
+        parent.removeChild(child);
+      }
+
+      function clamp(el, numLines) {
+        const measureEl = createMeasureEl();
+        const text = getTextContent(el).trim().replace(/\n/g, " ");
+        emptyEl(el);
+        appendEl(el, measureEl);
+        const width = getWidth(el);
+
+        let startPos = 0;
+        let prevStop = 0;
+        let lineCount = 0;
+        let lineText = "";
+        let newLine = false; // was a new line inserted in previous iteration
+
+        text.replace(/ /g, (_, stop) => {
+          if (lineCount === numLines) {
+            return;
+          }
+
+          const measureElWidth = measureText(measureEl);
+
+          if (measureElWidth > width) {
+            if (newLine) {
+              // this means we have a single word longer than width
+              // occupies an entire line by itself
+              lineText = text.slice(startPos, prevStop + 1);
+              startPos = stop + 1;
+            } else {
+              lineText = text.slice(startPos, prevStop + 1);
+              startPos = prevStop + 1;
+            }
+
+            const textEl = createElement("span");
+            textEl.textContent = lineText;
+            el.append(textEl);
+            ++lineCount;
+            newLine = true;
+          } else {
+            newLine = false;
+          }
+
+          removeChild(measureEl, measureEl.firstChild);
+          prevStop = stop;
+        });
+
+        // add last line of text
+        // const lineText = text.slice(startPos);
+        // const textEl = document.createElement("span");
+        // textEl.textContent = lineText;
+        // el.append(textEl);
+        removeChild(el, measureEl);
+      }
+
+      function domReady() {
+        clamp(document.getElementById("clamp-text"), 1);
+      }
+
+      if (document.readyState !== "loading") {
+        console.log("loading");
+
+        domReady();
+      } else {
+        document.addEventListener("DOMContentLoaded", domRead);
+        console.log("ready");
+      }
+    </script>
+  </body>
+</html>

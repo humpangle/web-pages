@@ -1,0 +1,290 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"> <html><!--
+ Page saved with SingleFile
+ url: http://lua-users.org/wiki/StringRecipes
+ saved date: Fri Apr 23 2021 22:43:56 GMT+0200 (Central European Summer Time)
+--><meta charset=utf-8><title>lua-users wiki: String Recipes</title>
+<style>BODY{background:white;color:navy}A:link{color:#DF6C00}A:active,A:visited{color:maroon}a.nav{text-decoration:none;color:navy;font-weight:bold;font-family:Arial,sans-serif;font-size:22px}pre.code{color:black}span.comment{color:#00a000}span.string{color:#009090}span.keyword{color:navy;font-weight:bold}span.library{color:#900090}dd pre.code{border-left:1px dotted maroon;margin-left:-1em;padding-left:1em}body{line-height:1.25;margin:0px auto;padding:16px;max-width:70em;width:95%}h1,h2,h3{font-family:Verdana,Geneva,sans-serif;font-weight:normal;font-style:normal;text-align:left}</style>
+<link type=image/x-icon rel="shortcut icon" href="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="><link rel=canonical href=http://lua-users.org/wiki/StringRecipes></head>
+<body><table width=100% border=0> <tbody><tr><td align=left width=100%><h1><a href="http://lua-users.org/cgi-bin/wiki.pl?action=search&amp;string=StringRecipes&amp;body=1" title="List pages referring to StringRecipes">String Recipes</a></h1><td align=right>
+ <table cellpadding=0 cellspacing=0 border=0 width=1%>
+ <tbody>
+ <tr>
+ <td><a href=http://lua-users.org/>
+ <img src=data:image/png;base64,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 alt="lua-users home" width=177 height=40 border=0></a></td>
+ </tr>
+ <tr>
+ <td>
+ <table cellpadding=0 cellspacing=0 border=0 width=100%>
+ <tbody>
+ <tr>
+ <td><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAoCAYAAAC4h3lxAAAACXBIWXMAAAsSAAALEgHS3X78AAAAhklEQVR42u3TsQmAQAyF4SgnWp0DiPM4iPM4hbO4hmB1pYJgY/Gs7e+Ew/+VKZJ8gZgip+smhXDqq5SWeQAAAAAAAAAAAAAAAAAg27jYDSXZth12XXf0ZauqtL5vX7VCkmIOGYbZ1nVPcu2mcbYso3lfpwPwAwAAAAAAAAAAAAAAAADwF8ADzh3T/PxicksAAAAASUVORK5CYII=" alt width=48 height=40></td>
+ <td nowrap valign=middle width=100%>
+ <a href=http://lua-users.org/wiki/ class=nav>wiki</a></td>
+ </tr>
+ </tbody>
+ </table>
+ </td>
+ </tr>
+ </tbody>
+ </table>
+<form method=post action=/wiki/FindPage enctype=application/x-www-form-urlencoded style=display:inline;margin:0>
+<input type=text name=string size=20 id=search_query1 value><input type=submit name=.submit value=Search></form></tr> </table>
+<br clear=all>
+Here are proposed solutions for doing various types of common string manipulations in Lua.
+<p>
+<h2>Substring matching</h2>
+<p>
+<h3>Check if string X starts or ends with string Y</h3>
+<dl>
+<dt><dd><pre class=code><span class=keyword>local</span> <span class=keyword>function</span> starts_with(str, start)
+   <span class=keyword>return</span> str:sub(1, #start) == start
+<span class=keyword>end</span>
+
+<span class=keyword>local</span> <span class=keyword>function</span> ends_with(str, ending)
+   <span class=keyword>return</span> ending == <span class=string>""</span> <span class=keyword>or</span> str:sub(-#ending) == ending
+<span class=keyword>end</span>
+</pre>
+</dl>
+<p>
+<h2>Trim (remove initial/trailing whitespace)</h2>
+<p>
+See <a href=http://lua-users.org/wiki/StringTrim>StringTrim</a>.
+<p>
+<h2>Changing case</h2>
+<p>
+<h3>Change the first character of a word to upper case</h3>
+<p>
+<dl>
+<dt><dd><pre class=code>str = str:gsub(<span class=string>"^%l"</span>, <span class=library>string.upper</span>)
+</pre>
+</dl>
+<p>
+<h3>Change the first alphabetic character of a word to upper case</h3>
+<p>
+<dl>
+<dt><dd><pre class=code>str = str:gsub(<span class=string>"%a"</span>, <span class=library>string.upper</span>, 1)
+</pre>
+</dl>
+<p>
+<h3>Put HTML tags in lowercase (but leaves attribute names untouched)</h3>
+<p>
+<dl>
+<dt><dd><pre class=code>str = str:gsub(<span class=string>"&lt;[^%s&gt;]+"</span>, <span class=library>string.lower</span>)
+</pre>
+</dl>
+<p>
+<h3>Change an entire string to Title Case (i.e. capitalise the first letter of each word)</h3>
+<p>
+<dl>
+<dt><dd><pre class=code><span class=keyword>local</span> <span class=keyword>function</span> tchelper(first, rest)
+   <span class=keyword>return</span> first:upper()..rest:lower()
+<span class=keyword>end</span>
+<span class=comment>-- Add extra characters to the pattern if you need to. _ and ' are</span>
+<span class=comment>--  found in the middle of identifiers and English words.</span>
+<span class=comment>-- We must also put %w_' into [%w_'] to make it handle normal stuff</span>
+<span class=comment>-- and extra stuff the same.</span>
+<span class=comment>-- This also turns hex numbers into, eg. 0Xa7d4</span>
+str = str:gsub(<span class=string>"(%a)([%w_']*)"</span>, tchelper)
+</pre>
+</dl>
+<p>
+<strong>Example:</strong>
+<p>
+<dl>
+<dt><dd><pre>&gt; str = "foo"
+&gt; str = str:gsub("^%l", string.upper)
+&gt; =str
+Foo
+&gt; str = "_foo"
+&gt; str = str:gsub("^%l", string.upper)
+&gt; =str
+_foo
+&gt; str = str:gsub("%a", string.upper, 1)
+&gt; =str
+_Foo
+</pre>
+</dl>
+<p>
+<h3>Convert words in all upper-case to lower-case</h3>
+<p>
+<dl>
+<dt><dd><pre class=code>str = str:gsub(<span class=string>"%f[%a]%u+%f[%A]"</span>, <span class=library>string.lower</span>)
+</pre>
+</dl>
+<p>
+Note the use here of the "frontier" regular expression patter %f. Without it it is hard to match on a word boundary, including where the boundary is at the start or end of the string to be matched. Try it on the string "AAA bbb CCC dddEEE FFFhhh JJJ". For more details read about the <a href=http://lua-users.org/wiki/FrontierPattern>FrontierPattern</a>.
+<p>
+<p>
+<h2>Splitting a string into a list of substrings</h2>
+<p>
+<h3>breaking the original string on occurrences of some separator character, character set, or pattern</h3>
+<p>
+See <a href=http://lua-users.org/wiki/SplitJoin>SplitJoin</a>.
+<p>
+<h3>Iterate over words in a string (adapted from Lua manual)</h3>
+<p>
+<dl>
+<dt><dd><pre class=code><span class=comment>-- words and numbers</span>
+<span class=keyword>for</span> word <span class=keyword>in</span> str:gmatch(<span class=string>"%w+"</span>) <span class=keyword>do</span> ... <span class=keyword>end</span>
+
+<span class=comment>-- identifiers in typical programming languages</span>
+<span class=keyword>for</span> id <span class=keyword>in</span> str:gmatch(<span class=string>"[_%a][_%w]*"</span>) <span class=keyword>do</span> ... <span class=keyword>end</span>
+
+<span class=comment>-- whitespace-separated components (without handling quotes)</span>
+<span class=keyword>for</span> id <span class=keyword>in</span> str:gmatch(<span class=string>"%S+"</span>) <span class=keyword>do</span> ... <span class=keyword>end</span>
+</pre>
+</dl>
+<p>
+<h3>Iterate over lines in a buffer, ignoring empty lines</h3>
+(works for both DOS and Unix line ending conventions)
+<p>
+<dl>
+<dt><dd><pre class=code><span class=keyword>for</span> line <span class=keyword>in</span> str:gmatch(<span class=string>"[^\r\n]+"</span>) <span class=keyword>do</span> ... <span class=keyword>end</span>
+</pre>
+</dl>
+<p>
+Any of the above can also be done as a function iterator:
+<p>
+<dl>
+<dt><dd><pre class=code><span class=comment>-- call func with each word in a string</span>
+str:gsub(<span class=string>"%w+"</span>, func)
+</pre>
+</dl>
+<p>
+<h2>Text Wrapping</h2>
+<p>
+<h3>Wrap a string at a given margin</h3>
+<p>
+This is intended for strings without newlines in them (i.e. after
+reflowing the text and breaking it into paragraphs.)
+<p>
+<dl>
+<dt><dd><pre class=code><span class=keyword>function</span> wrap(str, limit, indent, indent1)
+   indent = indent <span class=keyword>or</span> <span class=string>""</span>
+   indent1 = indent1 <span class=keyword>or</span> indent
+   limit = limit <span class=keyword>or</span> 72
+   <span class=keyword>local</span> here = 1-#indent1
+   <span class=keyword>local</span> <span class=keyword>function</span> check(sp, st, word, fi)
+      <span class=keyword>if</span> fi - here &gt; limit <span class=keyword>then</span>
+         here = st - #indent
+         <span class=keyword>return</span> <span class=string>"\n"</span>..indent..word
+      <span class=keyword>end</span>
+   <span class=keyword>end</span>
+   <span class=keyword>return</span> indent1..str:gsub(<span class=string>"(%s+)()(%S+)()"</span>, check)
+<span class=keyword>end</span>
+</pre>
+</dl>
+<p>
+<h3>Reflowing text into paragraphs</h3>
+<p>
+This builds on wrap to do a quick-and-dirty reflow: paragraphs
+are defined as lines starting with a space, or having a blank
+line between them:
+<p>
+<dl>
+<dt><dd><pre class=code><span class=keyword>function</span> reflow(str, limit, indent, indent1)
+   <span class=keyword>return</span> (str:gsub(<span class=string>"%s*\n%s+"</span>, <span class=string>"\n"</span>)
+              :gsub(<span class=string>"%s%s+"</span>, <span class=string>" "</span>)
+              :gsub(<span class=string>"[^\n]+"</span>,
+                    <span class=keyword>function</span>(line)
+                       <span class=keyword>return</span> wrap(line, limit, indent, indent1)
+                    <span class=keyword>end</span>))
+<span class=keyword>end</span>
+</pre>
+</dl>
+<p>
+<h2>Repetition</h2>
+<p>
+<h3>Check if a string is a repetition of some pattern</h3>
+<p>
+<dl>
+<dt><dd><pre class=code>str:gsub(pat, <span class=string>""</span>) == <span class=string>""</span>
+</pre>
+</dl>
+<p>
+<h3>Check if a string is a repetition of some pattern separated by whitespace</h3>
+<p>
+<dl>
+<dt><dd><pre class=code><span class=keyword>not</span> str:gsub(pat, <span class=string>""</span>):find<span class=string>"%S"</span>
+</pre>
+</dl>
+<p>
+<h3>Check if a string is a repetition of some pattern and also satisfies some condition</h3>
+<p>
+<dl>
+<dt><dd><pre class=code>str:gsub(pat, <span class=keyword>function</span>(s) <span class=keyword>return</span> ok(s) <span class=keyword>and</span> <span class=string>""</span> <span class=keyword>or</span> <span class=string>"*"</span> <span class=keyword>end</span>) == <span class=string>""</span>
+</pre>
+</dl>
+<p>
+<h2>Formatting</h2>
+<p>
+<h3>Interpolating variables into strings (string formatting)</h3>
+<p>
+Many languages provide a concise way to format variables into strings. Example:
+<p>
+<dl>
+<dt><dd><pre class=code><span class=library>print</span>( <span class=string>"%-5.5s is %5.2f"</span> % { <span class=string>"pi"</span>, <span class=library>math.pi</span> } ) <span class=comment>--&gt; pi    is  3.14</span>
+</pre>
+</dl>
+<p>
+See <a href=http://lua-users.org/wiki/StringInterpolation>StringInterpolation</a> for ways to do this in Lua.
+<p>
+<h2>URL/E-Mail/Web Processing</h2>
+<p>
+Note: see also <a href=http://lua-users.org/wiki/CgiUtils>CgiUtils</a>.
+<p>
+<h3>Decode a URL-encoded string</h3>
+<p>
+(Note that you should only decode a URL string after splitting it; this allows you to correctly process quoted "?" characters in the query string or base part, for instance.)
+<p>
+<dl>
+<dt><dd><pre class=code><span class=keyword>function</span> url_decode(str)
+   str = str:gsub(<span class=string>"+"</span>, <span class=string>" "</span>)
+   str = str:gsub(<span class=string>"%%(%x%x)"</span>, <span class=keyword>function</span>(h)
+      <span class=keyword>return</span> <span class=library>string.char</span>(<span class=library>tonumber</span>(h,16))
+   <span class=keyword>end</span>)
+   str = str:gsub(<span class=string>"\r\n"</span>, <span class=string>"\n"</span>)
+   <span class=keyword>return</span> str
+<span class=keyword>end</span>
+</pre>
+</dl>
+<p>
+<h3>URL-encode a string</h3>
+<p>
+<dl>
+<dt><dd><pre class=code><span class=keyword>function</span> url_encode(str)
+   <span class=keyword>if</span> str <span class=keyword>then</span>
+      str = str:gsub(<span class=string>"\n"</span>, <span class=string>"\r\n"</span>)
+      str = str:gsub(<span class=string>"([^%w %-%_%.%~])"</span>, <span class=keyword>function</span>(c)
+         <span class=keyword>return</span> (<span class=string>"%%%02X"</span>):format(<span class=library>string.byte</span>(c))
+      <span class=keyword>end</span>)
+      str = str:gsub(<span class=string>" "</span>, <span class=string>"+"</span>)
+   <span class=keyword>end</span>
+   <span class=keyword>return</span> str
+<span class=keyword>end</span>
+</pre>
+</dl>
+<p>
+<h3>Match Email addresses</h3>
+<p>
+<dl>
+<dt><dd><pre class=code>email=<span class=string>"alex@it-rfc.de"</span>
+<span class=keyword>if</span> email:match(<span class=string>"[A-Za-z0-9%.%%%+%-]+@[A-Za-z0-9%.%%%+%-]+%.%w%w%w?%w?"</span>) <span class=keyword>then</span>
+   <span class=library>print</span>(email .. <span class=string>" is a valid email address"</span>)
+<span class=keyword>end</span>
+</pre>
+</dl>
+<p>
+<h2>CSV (Comma-Separated Value) Parsing</h2>
+<p>
+See <a href=http://lua-users.org/wiki/CsvUtils>CsvUtils</a>.
+<p>
+<h2>See Also</h2>
+<p>
+<ul>
+<li> The string library in <a href=http://lua-users.org/wiki/CommonFunctions>CommonFunctions</a>
+<li> PenLight<a href="http://lua-users.org/cgi-bin/wiki.pl?action=edit&amp;id=PenLight">?</a> string functions <a href=http://penlight.luaforge.net/#T13>[1]</a><a href=http://penlight.luaforge.net/api/modules/pl.stringx.html>[2]</a>
+</ul>
+<hr>
+<a href=http://lua-users.org/wiki/RecentChanges>RecentChanges</a> · <a href="http://lua-users.org/cgi-bin/wiki.pl?action=editprefs">preferences</a><br>
+<a href="http://lua-users.org/cgi-bin/wiki.pl?action=edit&amp;id=StringRecipes">edit</a> · <a href="http://lua-users.org/cgi-bin/wiki.pl?action=history&amp;id=StringRecipes">history</a><br>Last edited December 7, 2018 2:49 pm GMT <a href="http://lua-users.org/cgi-bin/wiki.pl?action=browse&amp;diff=1&amp;id=StringRecipes">(diff)</a>
