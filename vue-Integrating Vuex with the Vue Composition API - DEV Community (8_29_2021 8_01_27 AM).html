@@ -1,0 +1,813 @@
+<!DOCTYPE html> <html lang=en class=js-focus-visible data-js-focus-visible style><!--
+ Page saved with SingleFile 
+ url: https://dev.to/chiborg/integrating-vuex-with-the-vue-composition-api-4da9 
+ saved date: Sun Aug 29 2021 08:01:27 GMT+0200 (Central European Summer Time)
+--><meta charset=utf-8>
+<title>Integrating Vuex with the Vue Composition API - DEV Community</title>
+<meta name=last-updated content="2021-08-28 08:47:12 UTC">
+<meta name=user-signed-in content=false>
+<meta name=head-cached-at content=1630140432>
+<meta name=monetization content=$ilp.uphold.com/24HhrUGG7ekn>
+<meta name=environment content=production>
+<style>*:focus:active{outline:0}*:focus:not(.focus-visible){outline:none}@keyframes loading-fadein{from{opacity:var(--opacity-0)}to{opacity:0.6}}@keyframes fade-in{0%{opacity:var(--opacity-0)}100%{opacity:1}}@keyframes swipe-in-from-left{0%{transform:translate(-280px,0)}100%{transform:translate(0em,0)}}@keyframes swipe-in-from-right{0%{transform:translate(calc(-100vw + 280px),0)}100%{transform:translate(-100vw,0)}}:root{scroll-padding-top:var(--header-height)}:root{--podcast-spinning-animation:spin 20s linear infinite}@keyframes spin{100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@-webkit-keyframes slide-in-from-left{0%{left:-300px}100%{left:20px}}.profile-preview-card__content.crayons-dropdown:hover{display:block;animation:hoverAppear 1s}.profile-preview-card__trigger:hover+.profile-preview-card__content.crayons-dropdown{display:block;animation:hoverAppear 1s}@keyframes hoverAppear{0%{opacity:var(--opacity-0);pointer-events:none}99%{opacity:var(--opacity-0);pointer-events:none}100%{opacity:var(--opacity-100);pointer-events:unset}}.crayons-btn[href]:hover,.ltag__wikipedia--container .ltag__wikipedia--btn[href]:hover,.ltag__reddit--container .ltag__reddit--btn[href]:hover,.gh-btn-container .gh-btn[href]:hover,.crayons-btn[href]:focus,.ltag__wikipedia--container .ltag__wikipedia--btn[href]:focus,.ltag__reddit--container .ltag__reddit--btn[href]:focus,.gh-btn-container .gh-btn[href]:focus,.crayons-btn:hover:enabled,.ltag__wikipedia--container .ltag__wikipedia--btn:hover:enabled,.ltag__reddit--container .ltag__reddit--btn:hover:enabled,.gh-btn-container .gh-btn:hover:enabled,.crayons-btn:active:enabled,.ltag__wikipedia--container .ltag__wikipedia--btn:active:enabled,.ltag__reddit--container .ltag__reddit--btn:active:enabled,.gh-btn-container .gh-btn:active:enabled,.crayons-btn:focus:enabled,.ltag__wikipedia--container .ltag__wikipedia--btn:focus:enabled,.ltag__reddit--container .ltag__reddit--btn:focus:enabled,.gh-btn-container .gh-btn:focus:enabled,.crayons-btn:focus-within,.ltag__wikipedia--container .ltag__wikipedia--btn:focus-within,.ltag__reddit--container .ltag__reddit--btn:focus-within,.gh-btn-container .gh-btn:focus-within{background-color:var(--bg-hover);border-color:var(--border-hover);box-shadow:var(--shadow-hover);color:var(--color-hover);z-index:var(--z-elevate)}.crayons-btn-group .crayons-btn:first-child,.crayons-btn-group .ltag__wikipedia--container .ltag__wikipedia--btn:first-child,.ltag__wikipedia--container .crayons-btn-group .ltag__wikipedia--btn:first-child,.crayons-btn-group .ltag__reddit--container .ltag__reddit--btn:first-child,.ltag__reddit--container .crayons-btn-group .ltag__reddit--btn:first-child,.crayons-btn-group .gh-btn-container .gh-btn:first-child,.gh-btn-container .crayons-btn-group .gh-btn:first-child{border-top-left-radius:var(--radius);border-bottom-left-radius:var(--radius)}.crayons-btn-group .crayons-btn:last-child,.crayons-btn-group .ltag__wikipedia--container .ltag__wikipedia--btn:last-child,.ltag__wikipedia--container .crayons-btn-group .ltag__wikipedia--btn:last-child,.crayons-btn-group .ltag__reddit--container .ltag__reddit--btn:last-child,.ltag__reddit--container .crayons-btn-group .ltag__reddit--btn:last-child,.crayons-btn-group .gh-btn-container .gh-btn:last-child,.gh-btn-container .crayons-btn-group .gh-btn:last-child{border-top-right-radius:var(--radius);border-bottom-right-radius:var(--radius)}@keyframes spin{100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}.crayons-btn[href]:hover,.ltag__wikipedia--container .ltag__wikipedia--btn[href]:hover,.ltag__reddit--container .ltag__reddit--btn[href]:hover,.gh-btn-container .gh-btn[href]:hover,.crayons-btn[href]:focus,.ltag__wikipedia--container .ltag__wikipedia--btn[href]:focus,.ltag__reddit--container .ltag__reddit--btn[href]:focus,.gh-btn-container .gh-btn[href]:focus,.crayons-btn:hover:enabled,.ltag__wikipedia--container .ltag__wikipedia--btn:hover:enabled,.ltag__reddit--container .ltag__reddit--btn:hover:enabled,.gh-btn-container .gh-btn:hover:enabled,.crayons-btn:active:enabled,.ltag__wikipedia--container .ltag__wikipedia--btn:active:enabled,.ltag__reddit--container .ltag__reddit--btn:active:enabled,.gh-btn-container .gh-btn:active:enabled,.crayons-btn:focus:enabled,.ltag__wikipedia--container .ltag__wikipedia--btn:focus:enabled,.ltag__reddit--container .ltag__reddit--btn:focus:enabled,.gh-btn-container .gh-btn:focus:enabled,.crayons-btn:focus-within,.ltag__wikipedia--container .ltag__wikipedia--btn:focus-within,.ltag__reddit--container .ltag__reddit--btn:focus-within,.gh-btn-container .gh-btn:focus-within{background-color:var(--bg-hover);border-color:var(--border-hover);box-shadow:var(--shadow-hover);color:var(--color-hover);z-index:var(--z-elevate)}.crayons-btn-group .crayons-btn:first-child,.crayons-btn-group .ltag__wikipedia--container .ltag__wikipedia--btn:first-child,.ltag__wikipedia--container .crayons-btn-group .ltag__wikipedia--btn:first-child,.crayons-btn-group .ltag__reddit--container .ltag__reddit--btn:first-child,.ltag__reddit--container .crayons-btn-group .ltag__reddit--btn:first-child,.crayons-btn-group .gh-btn-container .gh-btn:first-child,.gh-btn-container .crayons-btn-group .gh-btn:first-child{border-top-left-radius:var(--radius);border-bottom-left-radius:var(--radius)}.crayons-btn-group .crayons-btn:last-child,.crayons-btn-group .ltag__wikipedia--container .ltag__wikipedia--btn:last-child,.ltag__wikipedia--container .crayons-btn-group .ltag__wikipedia--btn:last-child,.crayons-btn-group .ltag__reddit--container .ltag__reddit--btn:last-child,.ltag__reddit--container .crayons-btn-group .ltag__reddit--btn:last-child,.crayons-btn-group .gh-btn-container .gh-btn:last-child,.gh-btn-container .crayons-btn-group .gh-btn:last-child{border-top-right-radius:var(--radius);border-bottom-right-radius:var(--radius)}.crayons-btn[href]:hover,.ltag__wikipedia--container .ltag__wikipedia--btn[href]:hover,.gh-btn-container .gh-btn[href]:hover,.ltag__reddit--container .ltag__reddit--btn[href]:hover,.crayons-btn[href]:focus,.ltag__wikipedia--container .ltag__wikipedia--btn[href]:focus,.gh-btn-container .gh-btn[href]:focus,.ltag__reddit--container .ltag__reddit--btn[href]:focus,.crayons-btn:hover:enabled,.ltag__wikipedia--container .ltag__wikipedia--btn:hover:enabled,.gh-btn-container .gh-btn:hover:enabled,.ltag__reddit--container .ltag__reddit--btn:hover:enabled,.crayons-btn:active:enabled,.ltag__wikipedia--container .ltag__wikipedia--btn:active:enabled,.gh-btn-container .gh-btn:active:enabled,.ltag__reddit--container .ltag__reddit--btn:active:enabled,.crayons-btn:focus:enabled,.ltag__wikipedia--container .ltag__wikipedia--btn:focus:enabled,.gh-btn-container .gh-btn:focus:enabled,.ltag__reddit--container .ltag__reddit--btn:focus:enabled,.crayons-btn:focus-within,.ltag__wikipedia--container .ltag__wikipedia--btn:focus-within,.gh-btn-container .gh-btn:focus-within,.ltag__reddit--container .ltag__reddit--btn:focus-within{background-color:var(--bg-hover);border-color:var(--border-hover);box-shadow:var(--shadow-hover);color:var(--color-hover);z-index:var(--z-elevate)}.crayons-btn-group .crayons-btn:first-child,.crayons-btn-group .ltag__wikipedia--container .ltag__wikipedia--btn:first-child,.ltag__wikipedia--container .crayons-btn-group .ltag__wikipedia--btn:first-child,.crayons-btn-group .gh-btn-container .gh-btn:first-child,.gh-btn-container .crayons-btn-group .gh-btn:first-child,.crayons-btn-group .ltag__reddit--container .ltag__reddit--btn:first-child,.ltag__reddit--container .crayons-btn-group .ltag__reddit--btn:first-child{border-top-left-radius:var(--radius);border-bottom-left-radius:var(--radius)}.crayons-btn-group .crayons-btn:last-child,.crayons-btn-group .ltag__wikipedia--container .ltag__wikipedia--btn:last-child,.ltag__wikipedia--container .crayons-btn-group .ltag__wikipedia--btn:last-child,.crayons-btn-group .gh-btn-container .gh-btn:last-child,.gh-btn-container .crayons-btn-group .gh-btn:last-child,.crayons-btn-group .ltag__reddit--container .ltag__reddit--btn:last-child,.ltag__reddit--container .crayons-btn-group .ltag__reddit--btn:last-child{border-top-right-radius:var(--radius);border-bottom-right-radius:var(--radius)}@keyframes blinker{50%{opacity:0}}@keyframes pulser{50%{opacity:0.8;box-shadow:2px 2px 0px #66e2d5;padding:18px}}@keyframes small-pulser{50%{opacity:0.6;box-shadow:2px 2px 0px #66e2d5}}@media (min-width:768px){.crayons-article-actions{border-top-left-radius:0;border-top-right-radius:0;padding:0;padding-bottom:0;background:var(--body-bg);display:grid;gap:var(--su-6);position:-webkit-sticky;position:sticky;box-shadow:none;justify-content:stretch;top:calc(var(--header-height) + var(--layout-padding) + 6vh);z-index:var(--z-elevate)}}@media (min-width:768px){.crayons-article-actions__inner{display:grid;gap:var(--su-6);justify-content:stretch}}@media (min-width:768px){.crayons-reaction{flex-direction:column}}@media (min-width:768px){.crayons-reaction__count{min-width:auto}}.crayons-reaction--like:hover,.crayons-reaction--like.user-activated{--reaction-color:var(--reaction-like-color);--reaction-bg:var(--reaction-like-bg)}.crayons-reaction--unicorn:hover,.crayons-reaction--unicorn.user-activated{--reaction-color:var(--reaction-custom-color);--reaction-bg:var(--reaction-custom-bg)}.crayons-reaction--readinglist:hover,.crayons-reaction--readinglist.user-activated{--reaction-color:var(--reaction-save-color);--reaction-bg:var(--reaction-save-bg)}@keyframes iconPop{0%{transform:scale(0.65)}50%{transform:scale(1.1)}100%{transform:scale(1)}}@keyframes ringPop{0%{transform:scale(2);box-shadow:0 0 0 4px currentColor;opacity:var(--opacity-0)}100%{box-shadow:0 0 0 1px currentColor;transform:scale(1);opacity:1}}@keyframes ringPop2{0%{box-shadow:0 0 0 currentColor;transform:scale(1);opacity:0.6}100%{box-shadow:0 0 1px 1px transparent;transform:scale(4);opacity:var(--opacity-0)}}.crayons-article-sticky{position:-webkit-sticky}@keyframes slideInTitle{from{opacity:var(--opacity-0);top:calc(var(--su-4) * -1)}to{opacity:1;top:0}}@keyframes slideInTags{from{opacity:var(--opacity-0);top:calc(var(--su-4) * -1)}to{opacity:1;top:0}}@keyframes slideInBody{from{opacity:var(--opacity-0);top:calc(var(--su-4) * -1)}to{opacity:1;top:0}}.crayons-btn[href]:hover,.crayons-btn[href]:focus,.crayons-btn:hover:enabled,.crayons-btn:active:enabled,.crayons-btn:focus:enabled,.crayons-btn:focus-within{background-color:var(--bg-hover);border-color:var(--border-hover);box-shadow:var(--shadow-hover);color:var(--color-hover);z-index:var(--z-elevate)}.crayons-btn-group .crayons-btn:first-child{border-top-left-radius:var(--radius);border-bottom-left-radius:var(--radius)}.crayons-btn-group .crayons-btn:last-child{border-top-right-radius:var(--radius);border-bottom-right-radius:var(--radius)}.comment-form__field:focus-within{background-color:var(--form-bg-focus);border-color:var(--form-border-focus);box-shadow:1px 1px 0 var(--form-border-focus)}.comment-form .comment-textarea,.comment-form .comment-textarea:hover,.comment-form .comment-textarea:focus{padding:0.5em}@media (min-width:768px){.comment-wrapper{--level-n-indent:calc(var(--su-4) + var(--su-1));--level-1-indent:calc(var(--su-6) + var(--su-1))}}.comment-wrapper>summary::-webkit-details-marker{display:none}.comment-wrapper[open]:hover>summary{display:block}.comment-wrapper[open]:hover .expanded,.comment-wrapper[open]:hover .collapsed{opacity:1}@media (min-width:768px){.comment{--comment-gap:var(--su-6)}}@media (min-width:640px){.comment__dropdown-trigger{opacity:var(--dropdown-opacity)}}.comment__inner:hover,.comment__inner:focus-within{--dropdown-opacity:1}@media (min-width:768px){.comment__header{font-size:var(--fs-base)}}@media (min-width:1024px){#footer-container{contain-intrinsic-size:260px}}@media (min-width:768px){.crayons-footer{--footer-padding:var(--su-8)}}@media (min-width:768px){.crayons-footer__container{grid-gap:var(--su-5);font-size:var(--fs-base)}}:root{--header-height:56px;--site-width:1280px;--su-1:0.25rem;--su-2:0.5rem;--su-3:0.75rem;--su-4:1rem;--su-5:1.25rem;--su-6:1.5rem;--su-7:2rem;--su-8:3rem;--su-9:4rem;--su-10:8rem;--radius:5px;--transition-func:cubic-bezier(0.17,0.67,0.5,0.71);--transition-time:100ms;--transition-props:var(--transition-func) var(--transition-time);--ff-sans-serif:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';--ff-monospace:'SF Mono',SFMono-Regular,Consolas,'Liberation Mono',Menlo,Courier,monospace;--ff-serif:Palatino,'Palatino Linotype','Palatino LT STD','Book Antiqua',Georgia,serif;--ff-comic:'Comic Sans MS',cursive,sans-serif;--ff-dyslexic:OpenDyslexic,sans-serif;--fs-xs:0.75rem;--fs-s:0.875rem;--fs-base:1rem;--fs-l:1.125rem;--fs-xl:1.25rem;--fs-2xl:1.5rem;--fs-3xl:1.875rem;--fs-4xl:2.25rem;--fs-5xl:3rem;--fw-normal:400;--fw-medium:500;--fw-bold:700;--fw-heavy:800;--lh-tight:1.25;--lh-base:1.5;--opacity-0:0.00001;--opacity-25:0.25;--opacity-50:0.5;--opacity-75:0.75;--opacity-100:1;--z-negative:-1;--z-elevate:1;--z-sticky:100;--z-drawer:200;--z-dropdown:400;--z-modal:500;--z-popover:500}:root{--base:#08090a;--base-a90:rgba(8,9,10,0.9);--base-a80:rgba(8,9,10,0.8);--base-a70:rgba(8,9,10,0.7);--base-a60:rgba(8,9,10,0.6);--base-a50:rgba(8,9,10,0.5);--base-a40:rgba(8,9,10,0.4);--base-a30:rgba(8,9,10,0.3);--base-a20:rgba(8,9,10,0.2);--base-a10:rgba(8,9,10,0.1);--base-a5:rgba(8,9,10,0.05);--base-100:var(--base);--base-90:#202428;--base-80:#363d44;--base-70:#4d5760;--base-60:#64707d;--base-50:#7d8a97;--base-40:#99a3ad;--base-30:#b5bdc4;--base-20:#d2d6db;--base-10:#eef0f1;--base-0:#f9fafa;--base-inverted:#fff;--accent-brand:#3b49df;--accent-brand-darker:#1827ce;--accent-brand-lighter:#8d95f2;--accent-brand-a10:rgba(59,73,223,0.1);--accent-success:#26d9ca;--accent-success-darker:#1ab3a6;--accent-success-lighter:#79ece2;--accent-success-a10:rgba(38,217,202,0.1);--accent-warning:#ffcf4c;--accent-warning-darker:#f5b400;--accent-warning-lighter:#ffe499;--accent-warning-a10:rgba(255,207,76,0.1);--accent-danger:#dc1818;--accent-danger-darker:#c20a0a;--accent-danger-lighter:#ec5050;--accent-danger-a10:rgba(220,24,24,0.1);--body-bg:var(--base-10);--body-color:var(--base-100);--body-color-inverted:var(--base-inverted);--card-bg:var(--base-inverted);--card-color:var(--base-100);--card-color-secondary:var(--base-70);--card-color-tertiary:var(--base-60);--card-secondary-bg:var(--base-0);--card-secondary-color:var(--base-90);--card-headline-color:var(--base-100);--card-border:var(--base-a10);--card-secondary-border:var(--base-a5);--card-hover-bg:var(--base-10);--card-selected-bg:var(--base-20);--header-bg:var(--base-inverted);--header-bg-hover:var(--base-10);--header-button-focus-color:var(--accent-brand);--header-bg-current:var(--base-20);--header-shadow:rgba(0,0,0,0.1);--header-icons-color:var(--base-70);--header-icons-color-hover:var(--base-100);--logo-bg:var(--base-100);--logo-color:var(--base-inverted);--footer-bg:var(--base-20);--footer-color:var(--base-70);--footer-link-color:var(--base-80);--footer-link-color-hover:var(--base-100);--link-color:var(--base-90);--link-color-hover:var(--accent-brand-darker);--link-bg-hover:var(--base-a5);--link-bg-hover-alt:var(--base-inverted);--link-brand-color:var(--accent-brand);--link-color-current:var(--base-100);--link-color-secondary:var(--base-60);--link-color-secondary-hover:var(--base-70);--link-bg-current:var(--base-inverted);--button-primary-bg:var(--accent-brand);--button-primary-bg-hover:var(--accent-brand-darker);--button-primary-color:var(--base-0);--button-primary-color-hover:var(--base-0);--button-primary-inverted-bg:var(--accent-brand);--button-primary-inverted-bg-hover:var(--accent-brand-darker);--button-primary-inverted-color:var(--base-0);--button-primary-inverted-color-hover:var(--base-0);--button-secondary-bg:var(--base-20);--button-secondary-bg-hover:var(--base-30);--button-secondary-color:var(--base-80);--button-secondary-color-hover:var(--base-100);--button-secondary-inverted-bg:var(--base-70);--button-secondary-inverted-bg-hover:var(--base-60);--button-secondary-inverted-color:var(--base-10);--button-secondary-inverted-color-hover:var(--base-0);--button-outlined-bg:transparent;--button-outlined-bg-hover:rgba(0,0,0,0.035);--button-outlined-border:var(--base-20);--button-outlined-border-hover:var(--base-40);--button-outlined-color:var(--base-80);--button-outlined-color-hover:var(--base-100);--button-outlined-inverted-bg:transparent;--button-outlined-inverted-bg-hover:rgba(255,255,255,0.15);--button-outlined-inverted-border:var(--base-60);--button-outlined-inverted-border-hover:var(--base-40);--button-outlined-inverted-color:var(--base-30);--button-outlined-inverted-color-hover:var(--base-10);--button-ghost-bg:transparent;--button-ghost-bg-hover:rgba(0,0,0,0.035);--button-ghost-color:var(--base-80);--button-ghost-color-hover:var(--base-100);--button-ghost-dimmed-color:var(--base-60);--button-ghost-dimmed-color-hover:var(--base-100);--button-ghost-inverted-bg:transparent;--button-ghost-inverted-bg-hover:rgba(255,255,255,0.15);--button-ghost-inverted-color:var(--base-30);--button-ghost-inverted-color-hover:var(--base-10);--button-ghost-dimmed-inverted-color:var(--base-50);--button-ghost-dimmed-inverted-color-hover:var(--base-100);--form-bg:var(--base-0);--form-bg-focus:var(--base-inverted);--form-border:var(--base-30);--form-border-hover:var(--base-40);--form-border-focus:var(--accent-brand);--form-placeholder-color:var(--base-60);--label-primary:var(--base-90);--label-secondary:var(--base-60);--box:var(--base-90);--box-darker:var(--base-100);--snackbar-bg:var(--base-90);--snackbar-border:var(--base-100);--snackbar-color:var(--body-color-inverted);--indicator-accent-bg:var(--accent-brand);--indicator-accent-color:var(--body-color-inverted);--indicator-critical-bg:var(--accent-danger);--indicator-critical-color:var(--body-color-inverted);--indicator-default-bg:var(--button-secondary-bg);--indicator-default-color:var(--button-secondary-color);--tab-color:var(--base-80);--tab-color-hover:var(--accent-brand);--tab-color-current:var(--base-100);--tab-bg-hover:var(--accent-brand-a10);--tab-bg-current:var(--accent-brand);--tab-muted-color:var(--base-80);--tab-muted-color-hover:var(--base-90);--tab-muted-color-current:var(--base-100);--tab-muted-bg-hover:var(--base-a10);--tab-muted-bg-current:var(--base-20);--tab-pill-color-current:var(--base-inverted);--tag-color:var(--base-60);--tag-color-hover:var(--base-100);--story-comments-bg:var(--base-0);--select-icon:url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDE2TDYgMTBIMThMMTIgMTZaIiBmaWxsPSIjMDgwOTBBIi8+Cjwvc3ZnPg==);--reaction-like-color:var(--accent-danger);--reaction-like-bg:var(--accent-danger-a10);--reaction-custom-color:var(--accent-success);--reaction-custom-bg:var(--accent-success-a10);--reaction-save-color:var(--accent-brand);--reaction-save-bg:var(--accent-brand-a10);--reaction-comment-color:var(--accent-warning);--reaction-comment-bg:var(--accent-warning-a10)}[class^='crayons'],[class^='crayons']::before,[class^='crayons']::after,[class^='crayons'] *,[class^='crayons'] *::before,[class^='crayons'] *::after{box-sizing:border-box}html{-webkit-text-size-adjust:100%}button,[type='button'],[type='submit']{-webkit-appearance:button}@media (prefers-reduced-motion:reduce){*,::before,::after{animation-delay:-1ms!important;animation-duration:1ms!important;animation-iteration-count:1!important;background-attachment:initial!important;scroll-behavior:auto!important;transition-duration:0s!important;transition-delay:0s!important}}@media (min-width:640px){.site-logo{--max-width:150px}}@media (min-width:768px){.site-logo{--max-width:175px;--font-size:var(--fs-l);--font-weight:var(--fw-bold)}}@media (min-width:1024px){.site-logo{--max-width:200px;--font-size:var(--fs-xl)}}.site-logo:hover{color:var(--base-80);text-decoration:none}.crayons-icon{-moz-transform:rotate(360deg)}.crayons-icon:not(.crayons-icon--default),.crayons-icon:not(.crayons-icon--default) *{fill:currentColor}:root{--layout-sidebar-left-display:block;--layout-sidebar-right-display:block;--layout-sidebar-left-width:100%;--layout-sidebar-right-width:100%;--layout-sidebar-left-row-end:initial;--layout-content-width:100%;--layout-drawer-width:300px;--layout-gap:var(--su-2);--layout-padding:0;--layout:100%}@media (min-width:768px){:root{--layout-sidebar-left-width:2fr;--layout-padding:var(--su-2);--layout:var(--layout-content-width)}}@media (min-width:1024px){:root{--layout-sidebar-left-width:240px;--layout-content-width:1fr;--layout-gap:var(--su-4);--layout-padding:var(--su-4)}}@media (min-width:768px){.crayons-layout--3-cols{--layout:var(--layout-sidebar-left-width) var(--layout-content-width);--layout-sidebar-left-row-end:span 2;--layout-sidebar-left-width:2fr;--layout-sidebar-right-width:5fr;--layout-content-width:5fr}}@media (min-width:1024px){.crayons-layout--3-cols{--layout-sidebar-left-width:240px;--layout-sidebar-right-width:1fr;--layout-sidebar-left-row-end:initial;--layout-content-width:2fr;--layout:var(--layout-sidebar-left-width) var(--layout-content-width) var(--layout-sidebar-right-width)}}@media (min-width:768px){.crayons-layout--article{--layout-gap:var(--su-2);--layout-sidebar-left-width:var(--su-9);--layout:var(--layout-sidebar-left-width) 1fr;--layout-sidebar-left-row-end:span 2}}@media (min-width:1024px){.crayons-layout--article{--layout-gap:var(--su-4);--layout-sidebar-right-width:3fr;--layout-sidebar-left-row-end:initial;--layout-content-width:7fr;--layout:var(--layout-sidebar-left-width) var(--layout-content-width) var(--layout-sidebar-right-width)}}:root{--content-padding-x:var(--su-3);--content-padding-y:var(--su-3)}@media (min-width:640px){:root{--content-padding-x:var(--su-5);--content-padding-y:var(--su-5)}}@media (min-width:768px){:root{--content-padding-x:var(--su-8);--content-padding-y:var(--su-7)}}@media (min-width:1024px){:root{--content-padding-x:var(--su-9)}}:root{--content-font-size:var(--fs-l);--content-secondary-font-size:var(--fs-base);--content-tertiary-font-size:var(--fs-base);--content-rhythm:var(--content-font-size)}@media (min-width:640px){:root{--content-secondary-font-size:var(--fs-l)}}@media (min-width:1024px){:root{--content-font-size:var(--fs-xl)}}.text-styles>:last-child{margin-bottom:0}.text-styles a:hover{color:var(--accent-brand-darker)}.text-styles pre:not(.highlight),.text-styles div.highlight{margin:0 0 var(--content-rhythm) 0}:root{--reach-combobox:1}.crayons-avatar::after{content:'';border:1px solid var(--body-color);opacity:0.15;width:100%;height:100%;position:absolute;left:0;top:0;border-radius:100%;pointer-events:none}@media (min-width:768px){.m\:crayons-avatar--l{width:var(--su-7);height:var(--su-7)}.m\:crayons-avatar--2xl{width:var(--su-9);height:var(--su-9)}}.crayons-btn[href]:hover,.crayons-btn[href]:focus,.crayons-btn:hover:enabled,.crayons-btn:active:enabled,.crayons-btn:focus:enabled,.crayons-btn:focus-within{background-color:var(--bg-hover);border-color:var(--border-hover);box-shadow:var(--shadow-hover);color:var(--color-hover);z-index:var(--z-elevate)}.crayons-btn-group .crayons-btn:first-child{border-top-left-radius:var(--radius);border-bottom-left-radius:var(--radius)}.crayons-btn-group .crayons-btn:last-child{border-top-right-radius:var(--radius);border-bottom-right-radius:var(--radius)}@media (min-width:640px){.crayons-dropdown{max-width:360px;width:max-content}}.crayons-textfield{-webkit-appearance:none}.crayons-select:hover,.crayons-checkbox:hover,.crayons-radio:hover,.crayons-textfield:hover{border-color:var(--form-border-hover)}.crayons-select:focus,.crayons-textfield:focus{background-color:var(--form-bg-focus);border-color:var(--form-border-focus);box-shadow:1px 1px 0 var(--form-border-focus)}.crayons-textfield::placeholder{color:var(--form-placeholder-color)}.crayons-fields--horizontal>.crayons-field:not(:last-child){margin-right:var(--su-4)}.crayons-textfield--ghost,.crayons-textfield--ghost:hover,.crayons-textfield--ghost:focus,.crayons-textfield--ghost[disabled]{background:transparent;border:none;padding:0;margin:0;outline:none;width:100%;box-shadow:none;resize:none;transition:none}@media (min-width:768px){.crayons-header--search{margin:0 var(--su-4);display:block}}.crayons-header--search .crayons-btn:focus{outline:revert}.js-focus-visible .skip-content-link:focus:not(.focus-visible){visibility:hidden}.js-focus-visible .skip-content-link:focus{pointer-events:auto;transform:translate(-50%,0);outline:none;border:2px solid var(--header-button-focus-color);opacity:var(--opacity-1)}@keyframes showProgressBar{0%{width:0}100%{width:100%}}@media (min-width:640px){.crayons-subtitle-1{font-size:var(--fs-2xl)}}@media (min-width:640px){.crayons-subtitle-2{font-size:var(--fs-xl)}}@keyframes placeHolderShimmer{0%{background-position:-468px 0}100%{background-position:468px 0}}.crayons-link:hover{color:var(--link-color-hover)}.crayons-link--secondary:hover{color:var(--link-color-secondary-hover)}.crayons-link--block:hover:not(.crayons-link--current){background:var(--link-bg-hover)}@media (min-width:640px){.crayons-link--block{padding:var(--su-2)}}.crayons-link--contentful:last-child{border-bottom:0;border-bottom-right-radius:var(--radius);border-bottom-left-radius:var(--radius)}.crayons-link--contentful:hover{background:var(--link-bg-hover-alt)}.crayons-link--contentful:hover .crayons-link__secondary{color:var(--link-color-secondary-hover)}@keyframes crayons-spinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}:root{--syntax-background-color:#08090a;--syntax-text-color:#f8f8f2;--syntax-comment-color:#808080;--syntax-declaration-color:#f39c12;--syntax-literal-color:#dda0dd;--syntax-error-color:#f9690e;--syntax-name-color:#7ed07e;--syntax-string-color:#f2ca27}pre:not(.highlight),div.highlight{background:var(--syntax-background-color);color:var(--syntax-text-color);font-size:80%;border-radius:var(--radius);margin:0;overflow-x:auto;-webkit-overflow-scrolling:touch;overflow-wrap:initial;padding:var(--su-2)}@media (min-width:768px){pre:not(.highlight),div.highlight{padding:var(--su-6)}}pre:not(.highlight) code,div.highlight code,li pre.highlight code,blockquote pre.highlight code{font-size:100%;padding:0}.crayons-tag[href]:hover{color:var(--tag-color-hover)}@keyframes slideIn{100%{transform:translateY(0) translateX(-50%)}}@media (min-width:640px){.s\:left-auto{left:auto}.s\:right-0{right:0}.s\:mb-0{margin-bottom:0}.s\:fs-base{font-size:var(--fs-base)}.s\:fw-heavy{font-weight:var(--fw-heavy)}}@media (min-width:768px){.m\:mx-1{margin-left:var(--su-1);margin-right:var(--su-1)}.m\:mt-3{margin-top:var(--su-3)}.m\:-mb-4{margin-bottom:calc(var(--su-4) * -1)}.m\:mr-1{margin-right:var(--su-1)}.m\:pl-0{padding-left:0}.m\:pl-1{padding-left:var(--su-1)}.m\:fs-4xl{font-size:var(--fs-4xl)}.m\:hidden{display:none}.m\:block{display:block}.m\:inline-block{display:inline-block}.m\:relative{position:relative}}@media (min-width:1024px){.l\:fs-5xl{font-size:var(--fs-5xl)}}</style>
+<link rel=canonical href=https://dev.to/chiborg/integrating-vuex-with-the-vue-composition-api-4da9>
+<meta name=description content="How to use the Vue Composition API with Vuex, mixing 'classic' components and composition API components. Tagged with vue, vuex, compositionapi, javascript.">
+<meta name=keywords content="vue, vuex, compositionapi, javascript, software, coding, development, engineering, inclusive, community">
+<meta property=og:type content=article>
+<meta property=og:url content=https://dev.to/chiborg/integrating-vuex-with-the-vue-composition-api-4da9>
+<meta property=og:title content="Integrating Vuex with the Vue Composition API">
+<meta property=og:description content="How to use the Vue Composition API with Vuex, mixing 'classic' components and composition API components">
+<meta property=og:site_name content="DEV Community">
+<meta name=twitter:site content=@thepracticaldev>
+<meta name=twitter:creator content=@chiborg>
+<meta name=twitter:title content="Integrating Vuex with the Vue Composition API">
+<meta name=twitter:description content="How to use the Vue Composition API with Vuex, mixing 'classic' components and composition API components">
+<meta name=twitter:card content=summary_large_image>
+<meta name=twitter:widgets:new-embed-design content=on>
+<meta name=robots content="max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta property=og:image content=https://dev.to/social_previews/article/482585.png>
+<meta name=twitter:image:src content=https://dev.to/social_previews/article/482585.png>
+<meta name=viewport content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name=apple-mobile-web-app-title content=dev.to>
+<meta name=application-name content=dev.to>
+<meta name=theme-color content=#000000>
+<link rel=search href=https://dev.to/open-search.xml type=application/opensearchdescription+xml title="DEV Community">
+<meta property=forem:name content="DEV Community">
+<meta property=forem:logo content=https://res.cloudinary.com/practicaldev/image/fetch/s--PFPhV65b--/c_limit,f_png,fl_progressive,q_80,w_512/https://practicaldev-herokuapp-com.freetls.fastly.net/assets/devlogo-pwa-512.png>
+<meta property=forem:domain content=dev.to>
+<meta name=csrf-param content=authenticity_token><meta name=csrf-token content="Y+khUHMVfwQd4LCLzzO5zb0CT9xea02Jm/iPRYqQ0/ZbBRWitd0HooZ00X7udHz0c+DnMMomtN3V0XpMnJsf+Q=="><link href="data:image/png;base64,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" rel=icon sizes=192x192><style>.sf-hidden{display:none!important}</style><meta http-equiv=content-security-policy content="default-src 'none'; font-src 'self' data:; img-src 'self' data:; style-src 'unsafe-inline'; media-src 'self' data:; script-src 'unsafe-inline' data:;"></head>
+ <body data-user-status=logged-out class="sans-serif-article-body default-header" data-pusher-key=ef46a9ae106e4241008c data-app-domain=ZGV2LnRv data-honeybadger-key=a45862f6 data-deployed-at=2021-08-27T23:50:52Z data-latest-commit-id=c3bfdc585d027ada033280f9a0734d2df9ac06c6 data-ga-tracking=UA-71991109-1 data-runtime=Browser-Windows data-loaded=true>
+ <style>*:focus:active{outline:0}*:focus:not(.focus-visible){outline:none}@keyframes loading-fadein{from{opacity:var(--opacity-0)}to{opacity:0.6}}@keyframes fade-in{0%{opacity:var(--opacity-0)}100%{opacity:1}}@keyframes swipe-in-from-left{0%{transform:translate(-280px,0)}100%{transform:translate(0em,0)}}@keyframes swipe-in-from-right{0%{transform:translate(calc(-100vw + 280px),0)}100%{transform:translate(-100vw,0)}}:root{scroll-padding-top:var(--header-height)}article{padding:0 0;position:relative}#audiocontent{position:fixed;bottom:0px;left:0px;right:0px;z-index:var(--z-sticky);font-family:var(--ff-sans-serif);display:block}:root{--podcast-spinning-animation:spin 20s linear infinite}@keyframes spin{100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@-webkit-keyframes slide-in-from-left{0%{left:-300px}100%{left:20px}}.profile-preview-card__content.crayons-dropdown{transition:border,border-top;transition-duration:300ms;color:var(--base-100);padding-top:0;top:100%;left:0;font-size:var(--fs-base)}.profile-preview-card__content.crayons-dropdown:hover{display:block;animation:hoverAppear 1s}.profile-preview-card__trigger:hover+.profile-preview-card__content.crayons-dropdown{display:block;animation:hoverAppear 1s}@keyframes hoverAppear{0%{opacity:var(--opacity-0);pointer-events:none}99%{opacity:var(--opacity-0);pointer-events:none}100%{opacity:var(--opacity-100);pointer-events:unset}}.crayons-btn[href]:hover,.ltag__wikipedia--container .ltag__wikipedia--btn[href]:hover,.ltag__reddit--container .ltag__reddit--btn[href]:hover,.gh-btn-container .gh-btn[href]:hover,.crayons-btn[href]:focus,.ltag__wikipedia--container .ltag__wikipedia--btn[href]:focus,.ltag__reddit--container .ltag__reddit--btn[href]:focus,.gh-btn-container .gh-btn[href]:focus,.crayons-btn:hover:enabled,.ltag__wikipedia--container .ltag__wikipedia--btn:hover:enabled,.ltag__reddit--container .ltag__reddit--btn:hover:enabled,.gh-btn-container .gh-btn:hover:enabled,.crayons-btn:active:enabled,.ltag__wikipedia--container .ltag__wikipedia--btn:active:enabled,.ltag__reddit--container .ltag__reddit--btn:active:enabled,.gh-btn-container .gh-btn:active:enabled,.crayons-btn:focus:enabled,.ltag__wikipedia--container .ltag__wikipedia--btn:focus:enabled,.ltag__reddit--container .ltag__reddit--btn:focus:enabled,.gh-btn-container .gh-btn:focus:enabled,.crayons-btn:focus-within,.ltag__wikipedia--container .ltag__wikipedia--btn:focus-within,.ltag__reddit--container .ltag__reddit--btn:focus-within,.gh-btn-container .gh-btn:focus-within{background-color:var(--bg-hover);border-color:var(--border-hover);box-shadow:var(--shadow-hover);color:var(--color-hover);z-index:var(--z-elevate)}.crayons-btn-group .crayons-btn:first-child,.crayons-btn-group .ltag__wikipedia--container .ltag__wikipedia--btn:first-child,.ltag__wikipedia--container .crayons-btn-group .ltag__wikipedia--btn:first-child,.crayons-btn-group .ltag__reddit--container .ltag__reddit--btn:first-child,.ltag__reddit--container .crayons-btn-group .ltag__reddit--btn:first-child,.crayons-btn-group .gh-btn-container .gh-btn:first-child,.gh-btn-container .crayons-btn-group .gh-btn:first-child{border-top-left-radius:var(--radius);border-bottom-left-radius:var(--radius)}.crayons-btn-group .crayons-btn:last-child,.crayons-btn-group .ltag__wikipedia--container .ltag__wikipedia--btn:last-child,.ltag__wikipedia--container .crayons-btn-group .ltag__wikipedia--btn:last-child,.crayons-btn-group .ltag__reddit--container .ltag__reddit--btn:last-child,.ltag__reddit--container .crayons-btn-group .ltag__reddit--btn:last-child,.crayons-btn-group .gh-btn-container .gh-btn:last-child,.gh-btn-container .crayons-btn-group .gh-btn:last-child{border-top-right-radius:var(--radius);border-bottom-right-radius:var(--radius)}@keyframes spin{100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}.crayons-btn[href]:hover,.ltag__wikipedia--container .ltag__wikipedia--btn[href]:hover,.ltag__reddit--container .ltag__reddit--btn[href]:hover,.gh-btn-container .gh-btn[href]:hover,.crayons-btn[href]:focus,.ltag__wikipedia--container .ltag__wikipedia--btn[href]:focus,.ltag__reddit--container .ltag__reddit--btn[href]:focus,.gh-btn-container .gh-btn[href]:focus,.crayons-btn:hover:enabled,.ltag__wikipedia--container .ltag__wikipedia--btn:hover:enabled,.ltag__reddit--container .ltag__reddit--btn:hover:enabled,.gh-btn-container .gh-btn:hover:enabled,.crayons-btn:active:enabled,.ltag__wikipedia--container .ltag__wikipedia--btn:active:enabled,.ltag__reddit--container .ltag__reddit--btn:active:enabled,.gh-btn-container .gh-btn:active:enabled,.crayons-btn:focus:enabled,.ltag__wikipedia--container .ltag__wikipedia--btn:focus:enabled,.ltag__reddit--container .ltag__reddit--btn:focus:enabled,.gh-btn-container .gh-btn:focus:enabled,.crayons-btn:focus-within,.ltag__wikipedia--container .ltag__wikipedia--btn:focus-within,.ltag__reddit--container .ltag__reddit--btn:focus-within,.gh-btn-container .gh-btn:focus-within{background-color:var(--bg-hover);border-color:var(--border-hover);box-shadow:var(--shadow-hover);color:var(--color-hover);z-index:var(--z-elevate)}.crayons-btn-group .crayons-btn:first-child,.crayons-btn-group .ltag__wikipedia--container .ltag__wikipedia--btn:first-child,.ltag__wikipedia--container .crayons-btn-group .ltag__wikipedia--btn:first-child,.crayons-btn-group .ltag__reddit--container .ltag__reddit--btn:first-child,.ltag__reddit--container .crayons-btn-group .ltag__reddit--btn:first-child,.crayons-btn-group .gh-btn-container .gh-btn:first-child,.gh-btn-container .crayons-btn-group .gh-btn:first-child{border-top-left-radius:var(--radius);border-bottom-left-radius:var(--radius)}.crayons-btn-group .crayons-btn:last-child,.crayons-btn-group .ltag__wikipedia--container .ltag__wikipedia--btn:last-child,.ltag__wikipedia--container .crayons-btn-group .ltag__wikipedia--btn:last-child,.crayons-btn-group .ltag__reddit--container .ltag__reddit--btn:last-child,.ltag__reddit--container .crayons-btn-group .ltag__reddit--btn:last-child,.crayons-btn-group .gh-btn-container .gh-btn:last-child,.gh-btn-container .crayons-btn-group .gh-btn:last-child{border-top-right-radius:var(--radius);border-bottom-right-radius:var(--radius)}.crayons-btn[href]:hover,.ltag__wikipedia--container .ltag__wikipedia--btn[href]:hover,.gh-btn-container .gh-btn[href]:hover,.ltag__reddit--container .ltag__reddit--btn[href]:hover,.crayons-btn[href]:focus,.ltag__wikipedia--container .ltag__wikipedia--btn[href]:focus,.gh-btn-container .gh-btn[href]:focus,.ltag__reddit--container .ltag__reddit--btn[href]:focus,.crayons-btn:hover:enabled,.ltag__wikipedia--container .ltag__wikipedia--btn:hover:enabled,.gh-btn-container .gh-btn:hover:enabled,.ltag__reddit--container .ltag__reddit--btn:hover:enabled,.crayons-btn:active:enabled,.ltag__wikipedia--container .ltag__wikipedia--btn:active:enabled,.gh-btn-container .gh-btn:active:enabled,.ltag__reddit--container .ltag__reddit--btn:active:enabled,.crayons-btn:focus:enabled,.ltag__wikipedia--container .ltag__wikipedia--btn:focus:enabled,.gh-btn-container .gh-btn:focus:enabled,.ltag__reddit--container .ltag__reddit--btn:focus:enabled,.crayons-btn:focus-within,.ltag__wikipedia--container .ltag__wikipedia--btn:focus-within,.gh-btn-container .gh-btn:focus-within,.ltag__reddit--container .ltag__reddit--btn:focus-within{background-color:var(--bg-hover);border-color:var(--border-hover);box-shadow:var(--shadow-hover);color:var(--color-hover);z-index:var(--z-elevate)}.crayons-btn-group .crayons-btn:first-child,.crayons-btn-group .ltag__wikipedia--container .ltag__wikipedia--btn:first-child,.ltag__wikipedia--container .crayons-btn-group .ltag__wikipedia--btn:first-child,.crayons-btn-group .gh-btn-container .gh-btn:first-child,.gh-btn-container .crayons-btn-group .gh-btn:first-child,.crayons-btn-group .ltag__reddit--container .ltag__reddit--btn:first-child,.ltag__reddit--container .crayons-btn-group .ltag__reddit--btn:first-child{border-top-left-radius:var(--radius);border-bottom-left-radius:var(--radius)}.crayons-btn-group .crayons-btn:last-child,.crayons-btn-group .ltag__wikipedia--container .ltag__wikipedia--btn:last-child,.ltag__wikipedia--container .crayons-btn-group .ltag__wikipedia--btn:last-child,.crayons-btn-group .gh-btn-container .gh-btn:last-child,.gh-btn-container .crayons-btn-group .gh-btn:last-child,.crayons-btn-group .ltag__reddit--container .ltag__reddit--btn:last-child,.ltag__reddit--container .crayons-btn-group .ltag__reddit--btn:last-child{border-top-right-radius:var(--radius);border-bottom-right-radius:var(--radius)}@keyframes blinker{50%{opacity:0}}@keyframes pulser{50%{opacity:0.8;box-shadow:2px 2px 0px #66e2d5;padding:18px}}@keyframes small-pulser{50%{opacity:0.6;box-shadow:2px 2px 0px #66e2d5}}</style>
+<style>.article-wrapper{min-width:0}.crayons-article__header{overflow-wrap:anywhere;word-break:break-word}.crayons-article__header__meta{padding:var(--content-padding-y) var(--content-padding-x) 0 var(--content-padding-x)}.crayons-article__subheader{font-size:var(--fs-base);color:var(--base-60);display:flex;flex-wrap:wrap;align-items:center}.crayons-article__main{padding:var(--content-padding-y) var(--content-padding-x)}.crayons-article-actions{position:fixed;left:0;right:0;bottom:0;border-top-left-radius:var(--radius);border-top-right-radius:var(--radius);background:var(--body-color-inverted);padding:var(--su-2);box-shadow:0 -1px 5px rgba(0,0,0,0.2);z-index:var(--z-sticky)}@media (min-width:768px){.crayons-article-actions{border-top-left-radius:0;border-top-right-radius:0;padding:0;padding-bottom:0;background:var(--body-bg);display:grid;gap:var(--su-6);position:-webkit-sticky;position:sticky;box-shadow:none;justify-content:stretch;top:calc(var(--header-height) + var(--layout-padding) + 6vh);z-index:var(--z-elevate)}}.crayons-article-actions__inner{display:flex;align-items:center;justify-content:space-around;padding-bottom:env(safe-area-inset-bottom)}@media (min-width:768px){.crayons-article-actions__inner{display:grid;gap:var(--su-6);justify-content:stretch}}.crayons-reaction{--reaction-color:var(--button-ghost-color);--reaction-border:inset 0 0 0 0 transparent;--reaction-bg:transparent;border:none;padding:0;background:transparent;display:inline-flex;flex-direction:row;align-items:center}@media (min-width:768px){.crayons-reaction{flex-direction:column}}.crayons-reaction__icon{padding:var(--su-2);box-shadow:var(--reaction-border);background:var(--reaction-bg);color:var(--reaction-color);border-radius:50%;transition:all var(--transition-props)}.crayons-reaction__count{color:var(--base-70);font-size:var(--fs-s);display:block;min-width:var(--su-7)}@media (min-width:768px){.crayons-reaction__count{min-width:auto}}.crayons-reaction--like:hover,.crayons-reaction--like.user-activated{--reaction-color:var(--reaction-like-color);--reaction-bg:var(--reaction-like-bg)}.crayons-reaction--unicorn:hover,.crayons-reaction--unicorn.user-activated{--reaction-color:var(--reaction-custom-color);--reaction-bg:var(--reaction-custom-bg)}.crayons-reaction--readinglist:hover,.crayons-reaction--readinglist.user-activated{--reaction-color:var(--reaction-save-color);--reaction-bg:var(--reaction-save-bg)}@keyframes iconPop{0%{transform:scale(0.65)}50%{transform:scale(1.1)}100%{transform:scale(1)}}@keyframes ringPop{0%{transform:scale(2);box-shadow:0 0 0 4px currentColor;opacity:var(--opacity-0)}100%{box-shadow:0 0 0 1px currentColor;transform:scale(1);opacity:1}}@keyframes ringPop2{0%{box-shadow:0 0 0 currentColor;transform:scale(1);opacity:0.6}100%{box-shadow:0 0 1px 1px transparent;transform:scale(4);opacity:var(--opacity-0)}}.crayons-article-sticky{position:-webkit-sticky;position:sticky;top:calc(var(--header-height) + var(--layout-padding))}.user-metadata-details li+li{margin-top:var(--su-3)}.user-metadata-details .key{font-size:var(--fs-xs);font-weight:var(--fw-bold);text-transform:uppercase;color:var(--card-color-tertiary)}@keyframes slideInTitle{from{opacity:var(--opacity-0);top:calc(var(--su-4) * -1)}to{opacity:1;top:0}}@keyframes slideInTags{from{opacity:var(--opacity-0);top:calc(var(--su-4) * -1)}to{opacity:1;top:0}}@keyframes slideInBody{from{opacity:var(--opacity-0);top:calc(var(--su-4) * -1)}to{opacity:1;top:0}}.crayons-btn[href]:hover,.crayons-btn[href]:focus,.crayons-btn:hover:enabled,.crayons-btn:active:enabled,.crayons-btn:focus:enabled,.crayons-btn:focus-within{background-color:var(--bg-hover);border-color:var(--border-hover);box-shadow:var(--shadow-hover);color:var(--color-hover);z-index:var(--z-elevate)}.crayons-btn-group .crayons-btn:first-child{border-top-left-radius:var(--radius);border-bottom-left-radius:var(--radius)}.crayons-btn-group .crayons-btn:last-child{border-top-right-radius:var(--radius);border-bottom-right-radius:var(--radius)}.comment-form{--preview-display:none;--field-display:flex;display:flex;margin-bottom:var(--su-4)}.comment-form__field{display:var(--field-display);flex:1 auto;flex-direction:column;margin-bottom:var(--su-3);background-color:var(--form-bg);border:1px solid var(--form-border);color:var(--body-color);border-radius:var(--radius);transition:all var(--transition-props)}.comment-form__field:focus-within{background-color:var(--form-bg-focus);border-color:var(--form-border-focus);box-shadow:1px 1px 0 var(--form-border-focus)}.comment-form__inner{display:flex;flex-flow:column;flex:1 auto;min-width:0}.comment-form .comment-textarea{resize:vertical;max-height:40vh}.comment-form .comment-textarea,.comment-form .comment-textarea:hover,.comment-form .comment-textarea:focus{padding:0.5em}.comment-wrapper{--level-n-indent:var(--su-3);--level-1-indent:var(--su-4);position:relative}@media (min-width:768px){.comment-wrapper{--level-n-indent:calc(var(--su-4) + var(--su-1));--level-1-indent:calc(var(--su-6) + var(--su-1))}}.comment-wrapper>summary{display:block;align-items:center;transform:initial;left:var(--indent);cursor:pointer;font-size:var(--fs-s);color:var(--base-60);margin-bottom:var(--su-4);font-style:italic;border-radius:var(--radius)}.comment-wrapper>summary::-webkit-details-marker{display:none}.comment-wrapper--deep-0>summary{--indent:0}.comment-wrapper[open]>summary{position:absolute;top:var(--su-8);background:transparent;width:auto;padding:var(--su-1) 0;margin-left:0}.comment-wrapper[open]>summary .expanded{display:block}.comment-wrapper[open]>summary .collapsed{display:none}.comment-wrapper[open]>summary .expanded,.comment-wrapper[open]>summary .collapsed{opacity:0.5;transition:all var(--transition-props)}.comment-wrapper[open]:hover>summary{display:block}.comment-wrapper[open]:hover .expanded,.comment-wrapper[open]:hover .collapsed{opacity:1}.comment{--comment-gap:var(--su-4);--dropdown-opacity:0.5;--footer-display:flex}@media (min-width:768px){.comment{--comment-gap:var(--su-6)}}@media (min-width:640px){.comment__dropdown-trigger{opacity:var(--dropdown-opacity)}}.comment__dropdown{margin-left:auto;margin-right:calc(-1 * var(--su-3));position:relative;top:calc(-1 * var(--su-2))}.comment__inner{display:flex;align-items:flex-start;margin-bottom:var(--comment-gap)}.comment__inner:hover,.comment__inner:focus-within{--dropdown-opacity:1}.comment__details{padding-left:var(--su-2);flex:1 auto;min-width:0}.comment__content{padding:var(--su-1)}.comment__header{display:flex;align-items:center;padding:var(--su-2) var(--su-3) 0;font-size:var(--fs-s)}@media (min-width:768px){.comment__header{font-size:var(--fs-base)}}.comment__body{padding:0 var(--su-3);margin:var(--su-2) 0 var(--su-4)}.comment__footer{padding-top:var(--su-1);display:var(--footer-display);align-items:center}#footer-container{content-visibility:auto;contain-intrinsic-size:300px}@media (min-width:1024px){#footer-container{contain-intrinsic-size:260px}}.crayons-footer{--footer-padding:var(--su-5);background:var(--footer-bg);color:var(--footer-color);padding:var(--footer-padding);position:relative;text-align:center}@media (min-width:768px){.crayons-footer{--footer-padding:var(--su-8)}}.crayons-footer__container{justify-items:center;margin-bottom:env(safe-area-inset-bottom)}@media (min-width:768px){.crayons-footer__container{grid-gap:var(--su-5);font-size:var(--fs-base)}}.crayons-footer .crayons-footer__description a{font-weight:var(--fw-bold)}.reaction-icon--like{color:var(--reaction-like-color)}.crayons-btn--ghost .reaction-icon{--not-reacted-display:inline-block;--reacted-display:none;filter:grayscale(1)}.crayons-btn--ghost .reaction-icon.not-reacted{display:var(--not-reacted-display)}.crayons-btn--ghost .reaction-icon.reacted{display:var(--reacted-display)}.mod-actions-menu{position:fixed;top:var(--header-height);right:0;height:calc(100vh - var(--header-height));z-index:var(--z-drawer);transform:translateX(360px);transition:var(--transition-props)}</style>
+<style>:root{--header-height:56px;--site-width:1280px;--su-1:0.25rem;--su-2:0.5rem;--su-3:0.75rem;--su-4:1rem;--su-5:1.25rem;--su-6:1.5rem;--su-7:2rem;--su-8:3rem;--su-9:4rem;--su-10:8rem;--radius:5px;--transition-func:cubic-bezier(0.17,0.67,0.5,0.71);--transition-time:100ms;--transition-props:var(--transition-func) var(--transition-time);--ff-sans-serif:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';--ff-monospace:'SF Mono',SFMono-Regular,Consolas,'Liberation Mono',Menlo,Courier,monospace;--ff-serif:Palatino,'Palatino Linotype','Palatino LT STD','Book Antiqua',Georgia,serif;--ff-comic:'Comic Sans MS',cursive,sans-serif;--ff-dyslexic:OpenDyslexic,sans-serif;--fs-xs:0.75rem;--fs-s:0.875rem;--fs-base:1rem;--fs-l:1.125rem;--fs-xl:1.25rem;--fs-2xl:1.5rem;--fs-3xl:1.875rem;--fs-4xl:2.25rem;--fs-5xl:3rem;--fw-normal:400;--fw-medium:500;--fw-bold:700;--fw-heavy:800;--lh-tight:1.25;--lh-base:1.5;--opacity-0:0.00001;--opacity-25:0.25;--opacity-50:0.5;--opacity-75:0.75;--opacity-100:1;--z-negative:-1;--z-elevate:1;--z-sticky:100;--z-drawer:200;--z-dropdown:400;--z-modal:500;--z-popover:500}:root{--base:#08090a;--base-a90:rgba(8,9,10,0.9);--base-a80:rgba(8,9,10,0.8);--base-a70:rgba(8,9,10,0.7);--base-a60:rgba(8,9,10,0.6);--base-a50:rgba(8,9,10,0.5);--base-a40:rgba(8,9,10,0.4);--base-a30:rgba(8,9,10,0.3);--base-a20:rgba(8,9,10,0.2);--base-a10:rgba(8,9,10,0.1);--base-a5:rgba(8,9,10,0.05);--base-100:var(--base);--base-90:#202428;--base-80:#363d44;--base-70:#4d5760;--base-60:#64707d;--base-50:#7d8a97;--base-40:#99a3ad;--base-30:#b5bdc4;--base-20:#d2d6db;--base-10:#eef0f1;--base-0:#f9fafa;--base-inverted:#fff;--accent-brand:#3b49df;--accent-brand-darker:#1827ce;--accent-brand-lighter:#8d95f2;--accent-brand-a10:rgba(59,73,223,0.1);--accent-success:#26d9ca;--accent-success-darker:#1ab3a6;--accent-success-lighter:#79ece2;--accent-success-a10:rgba(38,217,202,0.1);--accent-warning:#ffcf4c;--accent-warning-darker:#f5b400;--accent-warning-lighter:#ffe499;--accent-warning-a10:rgba(255,207,76,0.1);--accent-danger:#dc1818;--accent-danger-darker:#c20a0a;--accent-danger-lighter:#ec5050;--accent-danger-a10:rgba(220,24,24,0.1);--body-bg:var(--base-10);--body-color:var(--base-100);--body-color-inverted:var(--base-inverted);--card-bg:var(--base-inverted);--card-color:var(--base-100);--card-color-secondary:var(--base-70);--card-color-tertiary:var(--base-60);--card-secondary-bg:var(--base-0);--card-secondary-color:var(--base-90);--card-headline-color:var(--base-100);--card-border:var(--base-a10);--card-secondary-border:var(--base-a5);--card-hover-bg:var(--base-10);--card-selected-bg:var(--base-20);--header-bg:var(--base-inverted);--header-bg-hover:var(--base-10);--header-button-focus-color:var(--accent-brand);--header-bg-current:var(--base-20);--header-shadow:rgba(0,0,0,0.1);--header-icons-color:var(--base-70);--header-icons-color-hover:var(--base-100);--logo-bg:var(--base-100);--logo-color:var(--base-inverted);--footer-bg:var(--base-20);--footer-color:var(--base-70);--footer-link-color:var(--base-80);--footer-link-color-hover:var(--base-100);--link-color:var(--base-90);--link-color-hover:var(--accent-brand-darker);--link-bg-hover:var(--base-a5);--link-bg-hover-alt:var(--base-inverted);--link-brand-color:var(--accent-brand);--link-color-current:var(--base-100);--link-color-secondary:var(--base-60);--link-color-secondary-hover:var(--base-70);--link-bg-current:var(--base-inverted);--button-primary-bg:var(--accent-brand);--button-primary-bg-hover:var(--accent-brand-darker);--button-primary-color:var(--base-0);--button-primary-color-hover:var(--base-0);--button-primary-inverted-bg:var(--accent-brand);--button-primary-inverted-bg-hover:var(--accent-brand-darker);--button-primary-inverted-color:var(--base-0);--button-primary-inverted-color-hover:var(--base-0);--button-secondary-bg:var(--base-20);--button-secondary-bg-hover:var(--base-30);--button-secondary-color:var(--base-80);--button-secondary-color-hover:var(--base-100);--button-secondary-inverted-bg:var(--base-70);--button-secondary-inverted-bg-hover:var(--base-60);--button-secondary-inverted-color:var(--base-10);--button-secondary-inverted-color-hover:var(--base-0);--button-outlined-bg:transparent;--button-outlined-bg-hover:rgba(0,0,0,0.035);--button-outlined-border:var(--base-20);--button-outlined-border-hover:var(--base-40);--button-outlined-color:var(--base-80);--button-outlined-color-hover:var(--base-100);--button-outlined-inverted-bg:transparent;--button-outlined-inverted-bg-hover:rgba(255,255,255,0.15);--button-outlined-inverted-border:var(--base-60);--button-outlined-inverted-border-hover:var(--base-40);--button-outlined-inverted-color:var(--base-30);--button-outlined-inverted-color-hover:var(--base-10);--button-ghost-bg:transparent;--button-ghost-bg-hover:rgba(0,0,0,0.035);--button-ghost-color:var(--base-80);--button-ghost-color-hover:var(--base-100);--button-ghost-dimmed-color:var(--base-60);--button-ghost-dimmed-color-hover:var(--base-100);--button-ghost-inverted-bg:transparent;--button-ghost-inverted-bg-hover:rgba(255,255,255,0.15);--button-ghost-inverted-color:var(--base-30);--button-ghost-inverted-color-hover:var(--base-10);--button-ghost-dimmed-inverted-color:var(--base-50);--button-ghost-dimmed-inverted-color-hover:var(--base-100);--form-bg:var(--base-0);--form-bg-focus:var(--base-inverted);--form-border:var(--base-30);--form-border-hover:var(--base-40);--form-border-focus:var(--accent-brand);--form-placeholder-color:var(--base-60);--label-primary:var(--base-90);--label-secondary:var(--base-60);--box:var(--base-90);--box-darker:var(--base-100);--snackbar-bg:var(--base-90);--snackbar-border:var(--base-100);--snackbar-color:var(--body-color-inverted);--indicator-accent-bg:var(--accent-brand);--indicator-accent-color:var(--body-color-inverted);--indicator-critical-bg:var(--accent-danger);--indicator-critical-color:var(--body-color-inverted);--indicator-default-bg:var(--button-secondary-bg);--indicator-default-color:var(--button-secondary-color);--tab-color:var(--base-80);--tab-color-hover:var(--accent-brand);--tab-color-current:var(--base-100);--tab-bg-hover:var(--accent-brand-a10);--tab-bg-current:var(--accent-brand);--tab-muted-color:var(--base-80);--tab-muted-color-hover:var(--base-90);--tab-muted-color-current:var(--base-100);--tab-muted-bg-hover:var(--base-a10);--tab-muted-bg-current:var(--base-20);--tab-pill-color-current:var(--base-inverted);--tag-color:var(--base-60);--tag-color-hover:var(--base-100);--story-comments-bg:var(--base-0);--select-icon:url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDE2TDYgMTBIMThMMTIgMTZaIiBmaWxsPSIjMDgwOTBBIi8+Cjwvc3ZnPg==);--reaction-like-color:var(--accent-danger);--reaction-like-bg:var(--accent-danger-a10);--reaction-custom-color:var(--accent-success);--reaction-custom-bg:var(--accent-success-a10);--reaction-save-color:var(--accent-brand);--reaction-save-bg:var(--accent-brand-a10);--reaction-comment-color:var(--accent-warning);--reaction-comment-bg:var(--accent-warning-a10)}[class^='crayons'],[class^='crayons']::before,[class^='crayons']::after,[class^='crayons'] *,[class^='crayons'] *::before,[class^='crayons'] *::after{box-sizing:border-box}ul[class]{padding:0}html{line-height:1.5;-webkit-text-size-adjust:100%}h1,h2,h3,p,ul[class],li,pre{margin:0}body{scroll-behavior:smooth;text-rendering:optimizeSpeed;line-height:1.5}ul[class]{list-style:none}pre,code{font-family:var(--ff-monospace);font-size:1em}button,input{font-family:inherit;font-size:100%;line-height:1.5;margin:0}input[type='text']{outline:0}button,[type='button'],[type='submit']{-webkit-appearance:button;cursor:pointer}@media (prefers-reduced-motion:reduce){*,::before,::after{animation-delay:-1ms!important;animation-duration:1ms!important;animation-iteration-count:1!important;background-attachment:initial!important;scroll-behavior:auto!important;transition-duration:0s!important;transition-delay:0s!important}}body{background:var(--body-bg);color:var(--body-color);font-family:var(--ff-sans-serif);padding:0;margin:0;overflow-y:scroll;display:flex;flex-direction:column}body.default-header{padding-top:var(--header-height);min-height:calc(100vh - var(--header-height))}body #main-content{scroll-margin-top:var(--header-height)}.wrapper{flex:1 auto;visibility:visible;font-size:18px}a{color:var(--link-brand-color);text-decoration:none}.site-logo{max-width:var(--max-width, 125px);font-size:var(--font-size, var(--fs-base));font-weight:var(--font-weight, var(--fw-medium));display:inline-flex;flex-shrink:0;align-self:stretch;align-items:center;vertical-align:middle;color:var(--base-100);text-decoration:none;letter-spacing:-0.01em;line-height:var(--lh-tight);overflow-wrap:anywhere}@media (min-width:640px){.site-logo{--max-width:150px}}@media (min-width:768px){.site-logo{--max-width:175px;--font-size:var(--fs-l);--font-weight:var(--fw-bold)}}@media (min-width:1024px){.site-logo{--max-width:200px;--font-size:var(--fs-xl)}}.site-logo:hover{color:var(--base-80);text-decoration:none}.site-logo svg{max-width:100%;width:auto;height:calc(var(--header-height) - var(--su-2) * 2);vertical-align:middle;display:inline-block}.branded-7{border-top:var(--su-7) solid var(--accent-brand)}.screen-reader-only{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}.crayons-icon{vertical-align:bottom;-moz-transform:rotate(360deg)}.crayons-icon:not(.crayons-icon--default),.crayons-icon:not(.crayons-icon--default) *{fill:currentColor}:root{--layout-sidebar-left-display:block;--layout-sidebar-right-display:block;--layout-sidebar-left-width:100%;--layout-sidebar-right-width:100%;--layout-sidebar-left-row-end:initial;--layout-content-width:100%;--layout-drawer-width:300px;--layout-gap:var(--su-2);--layout-padding:0;--layout:100%}@media (min-width:768px){:root{--layout-sidebar-left-width:2fr;--layout-padding:var(--su-2);--layout:var(--layout-content-width)}}@media (min-width:1024px){:root{--layout-sidebar-left-width:240px;--layout-content-width:1fr;--layout-gap:var(--su-4);--layout-padding:var(--su-4)}}.crayons-layout{font-size:var(--fs-base);width:100%;max-width:var(--site-width);margin:0 auto;display:grid;grid-gap:var(--layout-gap);grid-template-columns:var(--layout);padding:var(--layout-padding)}.crayons-layout__sidebar-left{display:var(--layout-sidebar-left-display);grid-row-end:var(--layout-sidebar-left-row-end);width:var(--layout-sidebar-left-width)}.crayons-layout__sidebar-right{display:var(--layout-sidebar-right-display);width:var(--layout-sidebar-right-width)}.crayons-layout__content{min-width:0}.crayons-layout--limited-m{--site-width:768px}@media (min-width:768px){.crayons-layout--3-cols{--layout:var(--layout-sidebar-left-width) var(--layout-content-width);--layout-sidebar-left-row-end:span 2;--layout-sidebar-left-width:2fr;--layout-sidebar-right-width:5fr;--layout-content-width:5fr}}@media (min-width:1024px){.crayons-layout--3-cols{--layout-sidebar-left-width:240px;--layout-sidebar-right-width:1fr;--layout-sidebar-left-row-end:initial;--layout-content-width:2fr;--layout:var(--layout-sidebar-left-width) var(--layout-content-width) var(--layout-sidebar-right-width)}}.crayons-layout--article{--layout-gap:0}@media (min-width:768px){.crayons-layout--article{--layout-gap:var(--su-2);--layout-sidebar-left-width:var(--su-9);--layout:var(--layout-sidebar-left-width) 1fr;--layout-sidebar-left-row-end:span 2}}@media (min-width:1024px){.crayons-layout--article{--layout-gap:var(--su-4);--layout-sidebar-right-width:3fr;--layout-sidebar-left-row-end:initial;--layout-content-width:7fr;--layout:var(--layout-sidebar-left-width) var(--layout-content-width) var(--layout-sidebar-right-width)}}:root{--content-padding-x:var(--su-3);--content-padding-y:var(--su-3)}@media (min-width:640px){:root{--content-padding-x:var(--su-5);--content-padding-y:var(--su-5)}}@media (min-width:768px){:root{--content-padding-x:var(--su-8);--content-padding-y:var(--su-7)}}@media (min-width:1024px){:root{--content-padding-x:var(--su-9)}}.text-padding{padding:var(--content-padding-y) var(--content-padding-x)}:root{--content-font-size:var(--fs-l);--content-secondary-font-size:var(--fs-base);--content-tertiary-font-size:var(--fs-base);--content-rhythm:var(--content-font-size)}@media (min-width:640px){:root{--content-secondary-font-size:var(--fs-l)}}@media (min-width:1024px){:root{--content-font-size:var(--fs-xl)}}body.sans-serif-article-body{--content-font-family:var(--ff-sans-serif)}.text-styles{font-size:var(--content-font-size);font-family:var(--content-font-family);overflow-wrap:break-word}.text-styles--secondary{font-size:var(--content-secondary-font-size)}.text-styles>:last-child{margin-bottom:0}.text-styles a{text-decoration:underline;color:var(--accent-brand)}.text-styles a:hover{color:var(--accent-brand-darker)}.text-styles h2{font-family:var(--ff-sans-serif);margin:calc(var(--content-rhythm) / 2) 0;padding:0;font-weight:var(--fw-bold);line-height:var(--lh-tight)}.text-styles h2{font-size:1.5em}.text-styles p{margin:0 0 var(--content-rhythm) 0}.text-styles pre:not(.highlight),.text-styles div.highlight{margin:0 0 var(--content-rhythm) 0}:root{--reach-combobox:1}.crayons-avatar{display:inline-block;border-radius:100%;position:relative;background-color:var(--card-color-tertiary);width:var(--su-6);height:var(--su-6)}.crayons-avatar__image{border-radius:100%;width:100%;height:100%;display:inline-block;vertical-align:bottom}.crayons-avatar::after{content:'';border:1px solid var(--body-color);opacity:0.15;width:100%;height:100%;position:absolute;left:0;top:0;border-radius:100%;pointer-events:none}.crayons-avatar--l{width:var(--su-7);height:var(--su-7)}.crayons-avatar--xl{width:var(--su-8);height:var(--su-8)}@media (min-width:768px){.m\:crayons-avatar--l{width:var(--su-7);height:var(--su-7)}.m\:crayons-avatar--2xl{width:var(--su-9);height:var(--su-9)}}.crayons-btn{--brand-apple-bg:#000;--brand-apple-color:#fff;--brand-apple-bg-hover:#1b1b1b;--brand-twitter-bg:#1da1f2;--brand-twitter-color:#fff;--brand-twitter-bg-hover:#0096f2;--brand-github-bg:#24292e;--brand-github-color:#fff;--brand-github-bg-hover:#000;--brand-facebook-bg:#4267b2;--brand-facebook-color:#fff;--brand-facebook-bg-hover:#476fbf;--brand-email-bg:#24292e;--brand-email-color:#fff;--brand-email-bg-hover:#000}.crayons-btn{--border-width:0px;--shadow-color:rgba(0,0,0,0.05);--vertical-padding:var(--su-2);--horizontal-padding:var(--su-4);--font-size:var(--fs-base);--with-icon-padding:var(--su-3);--icon-margin:var(--su-2);position:relative;display:inline-block;padding:calc(var(--vertical-padding) - var(--border-width)) calc(var(--horizontal-padding) - var(--border-width));border-radius:var(--radius);outline:none;font-family:inherit;font-size:var(--font-size);line-height:var(--su-6);font-weight:var(--fw-medium);text-align:center;text-decoration:none;cursor:pointer;transition:all var(--transition-props);border:var(--border-width) solid;overflow-wrap:normal;--bg:var(--button-primary-bg);--bg-hover:var(--button-primary-bg-hover);--border:transparent;--border-hover:transparent;--color:var(--button-primary-color);--color-hover:var(--button-primary-color-hover);--shadow:0 1px 3px var(--shadow-color);--shadow-hover:0 2px 5px var(--shadow-color);--bg-inverted:var(--button-primary-inverted-bg);--bg-inverted-hover:var(--button-primary-inverted-bg-hover);--color-inverted:var(--button-primary-inverted-color);--color-inverted-hover:var(--button-primary-inverted-color-hover);background-color:var(--bg);border-color:var(--border);box-shadow:var(--shadow);color:var(--color)}.crayons-btn[href]:hover,.crayons-btn[href]:focus,.crayons-btn:hover:enabled,.crayons-btn:active:enabled,.crayons-btn:focus:enabled,.crayons-btn:focus-within{background-color:var(--bg-hover);border-color:var(--border-hover);box-shadow:var(--shadow-hover);color:var(--color-hover);z-index:var(--z-elevate)}.crayons-btn--s{--vertical-padding:var(--su-1);--horizontal-padding:var(--su-3);--font-size:var(--fs-s);--with-icon-padding:var(--su-2);--icon-margin:var(--su-1);font-weight:normal}.crayons-btn>*{pointer-events:none}.crayons-btn--outlined{--bg:var(--button-outlined-bg);--bg-hover:var(--button-outlined-bg-hover);--border:var(--button-outlined-border);--border-hover:var(--button-outlined-border-hover);--color:var(--button-outlined-color);--color-hover:var(--button-outlined-color-hover);--bg-inverted:var(--button-outlined-inverted-bg);--bg-inverted-hover:var(--button-outlined-inverted-bg-hover);--border-inverted:var(--button-outlined-inverted-border);--border-inverted-hover:var(--button-outlined-inverted-border-hover);--color-inverted:var(--button-outlined-inverted-color);--color-inverted-hover:var(--button-outlined-inverted-color-hover);--border-width:2px}.crayons-btn--ghost{--bg:var(--button-ghost-bg);--bg-hover:var(--button-ghost-bg-hover);--color:var(--button-ghost-color);--color-hover:var(--button-ghost-color-hover);--shadow:none;--shadow-hover:none;--bg-inverted:var(--button-ghost-inverted-bg);--bg-inverted-hover:var(--button-ghost-inverted-bg-hover);--color-inverted:var(--button-ghost-inverted-color);--color-inverted-hover:var(--button-ghost-inverted-color-hover)}.crayons-btn--ghost-brand{--bg:var(--button-ghost-bg);--bg-hover:var(--button-ghost-bg-hover);--color:var(--accent-brand);--color-hover:var(--accent-brand-darker);--shadow:none;--shadow-hover:none;--bg-inverted:var(--button-ghost-inverted-bg);--bg-inverted-hover:var(--button-ghost-inverted-bg-hover);--color-inverted:var(--accent-brand-lighter);--color-inverted-hover:var(--accent-brand-lighter)}.crayons-btn--ghost-dimmed{--bg:var(--button-ghost-bg);--bg-hover:var(--button-ghost-bg-hover);--color:var(--button-ghost-dimmed-color);--color-hover:var(--button-ghost-dimmed-color-hover);--shadow:none;--shadow-hover:none;--bg-inverted:var(--button-ghost-inverted-bg);--bg-inverted-hover:var(--button-ghost-inverted-bg-hover);--color-inverted:var(--accent-ghost-dimmed-inverted-color);--color-inverted-hover:var(--accent-ghost-dimmed-inverted-color-hover)}.crayons-btn--icon,.crayons-btn--icon-rounded{--horizontal-padding:var(--su-2);padding-left:calc(var(--horizontal-padding) - var(--border-width));padding-right:calc(var(--horizontal-padding) - var(--border-width))}.crayons-btn--icon.crayons-btn--s,.crayons-btn--icon-rounded.crayons-btn--s{--horizontal-padding:var(--su-1)}.crayons-btn--icon-rounded{border-radius:1000px}.crayons-btn--icon-left{padding-left:calc(var(--with-icon-padding) - var(--border-width))}.crayons-btn--icon-left .crayons-icon{margin-right:var(--icon-margin)}.crayons-btn-group{display:flex}.crayons-btn-group .crayons-btn{border-radius:0}.crayons-btn-group .crayons-btn:first-child{border-top-left-radius:var(--radius);border-bottom-left-radius:var(--radius)}.crayons-btn-group .crayons-btn:last-child{border-top-right-radius:var(--radius);border-bottom-right-radius:var(--radius)}.crayons-card{border-radius:var(--radius);background:var(--card-bg);color:var(--card-color);box-shadow:0 0 0 1px var(--card-border);overflow-wrap:anywhere}.crayons-card--secondary{background:var(--card-secondary-bg);color:var(--card-secondary-color);box-shadow:0 0 0 1px var(--card-secondary-border)}.crayons-card__header{padding:var(--su-3) var(--su-4);border-bottom:1px solid var(--body-bg);display:flex;justify-content:space-between;align-items:center}.crayons-dropdown{background:var(--card-bg);border:2px solid var(--card-color);box-shadow:4px 4px 0 var(--card-color);color:var(--card-color);border-radius:var(--radius);position:absolute;display:none;padding:var(--su-4);min-width:250px;z-index:var(--z-dropdown)}@media (min-width:640px){.crayons-dropdown{max-width:360px;width:max-content}}.crayons-textfield{--border-width:1px;background-color:var(--form-bg);border:var(--border-width) solid var(--form-border);color:var(--body-color);appearance:none;-webkit-appearance:none;border-radius:var(--radius);transition:all var(--transition-props)}.crayons-select:hover,.crayons-checkbox:hover,.crayons-radio:hover,.crayons-textfield:hover{border-color:var(--form-border-hover)}.crayons-select:focus,.crayons-textfield:focus{background-color:var(--form-bg-focus);border-color:var(--form-border-focus);box-shadow:1px 1px 0 var(--form-border-focus)}.crayons-textfield{line-height:var(--lh-base);padding:calc(0.5em - var(--border-width)) 0.5em;font-family:inherit;font-size:var(--fs-base);width:100%;resize:vertical}.crayons-textfield::placeholder{color:var(--form-placeholder-color)}.crayons-field{display:flex;flex-flow:column;font-size:var(--fs-base)}.crayons-field>*+*{margin-top:var(--su-2)}.crayons-fields{display:flex}.crayons-fields--horizontal{flex-flow:row;flex-wrap:wrap}.crayons-fields--horizontal>.crayons-field:not(:last-child){margin-right:var(--su-4)}.crayons-textfield--ghost,.crayons-textfield--ghost:hover,.crayons-textfield--ghost:focus{background:transparent;border:none;padding:0;margin:0;outline:none;width:100%;box-shadow:none;resize:none;transition:none}textarea.crayons-textfield.crayons-textfield--ghost{white-space:pre-wrap}.crayons-header{--indicator-outline:var(--header-bg);height:var(--header-height);background:var(--header-bg);box-shadow:0 1px 1px var(--header-shadow);z-index:var(--z-sticky)}.default-header .crayons-header{position:fixed;top:0px;left:0px;right:0px}.crayons-header__container{max-width:var(--site-width);padding:0 var(--layout-padding);margin:auto;display:flex;align-items:center;position:relative;height:var(--header-height)}.crayons-header--search{max-width:420px;flex:1 auto;margin:0 var(--su-2);display:none}@media (min-width:768px){.crayons-header--search{margin:0 var(--su-4);display:block}}.crayons-header--search .crayons-btn:focus{outline:revert}.skip-content-link{position:absolute;left:50%;background:var(--body-color);color:var(--body-color-inverted);z-index:var(--z-popover);padding:var(--su-4);pointer-events:none;border-radius:var(--radius);height:var(--header-height);transform:translate(-50%,-200%);transition:transform var(--transition-props);opacity:var(--opacity-0)}.js-focus-visible .skip-content-link:focus:not(.focus-visible){visibility:hidden}.js-focus-visible .skip-content-link:focus{pointer-events:auto;transform:translate(-50%,0);outline:none;border:2px solid var(--header-button-focus-color);opacity:var(--opacity-1)}.navigation-progress{--duration:3600ms;--delay:250ms;position:fixed;top:0;background:var(--accent-brand);z-index:var(--z-popover);height:var(--su-1);width:0}@keyframes showProgressBar{0%{width:0}100%{width:100%}}.crayons-subtitle-1,.crayons-subtitle-2{font-weight:var(--fw-bold);color:var(--base-90)}.crayons-subtitle-1{font-size:var(--fs-xl)}@media (min-width:640px){.crayons-subtitle-1{font-size:var(--fs-2xl)}}.crayons-subtitle-2{font-size:var(--fs-l)}@media (min-width:640px){.crayons-subtitle-2{font-size:var(--fs-xl)}}@keyframes placeHolderShimmer{0%{background-position:-468px 0}100%{background-position:468px 0}}.crayons-link{color:var(--link-color)}.crayons-link:hover{color:var(--link-color-hover)}.crayons-link--secondary{color:var(--link-color-secondary)}.crayons-link--secondary:hover{color:var(--link-color-secondary-hover)}.crayons-link--block{display:flex;align-items:center;padding:var(--su-3);border-radius:var(--radius);transition:background var(--transition-props),color var(--transition-props)}.crayons-link--block:hover:not(.crayons-link--current){background:var(--link-bg-hover)}@media (min-width:640px){.crayons-link--block{padding:var(--su-2)}}.crayons-link--contentful{padding:var(--su-4);border-bottom:1px solid var(--body-bg)}.crayons-link--contentful:last-child{border-bottom:0;border-bottom-right-radius:var(--radius);border-bottom-left-radius:var(--radius)}.crayons-link--contentful .crayons-link__secondary{color:var(--link-color-secondary);font-size:var(--fs-s);padding-top:var(--su-1)}.crayons-link--contentful:hover{background:var(--link-bg-hover-alt)}.crayons-link--contentful:hover .crayons-link__secondary{color:var(--link-color-secondary-hover)}@keyframes crayons-spinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}:root{--syntax-background-color:#08090a;--syntax-text-color:#f8f8f2;--syntax-comment-color:#808080;--syntax-declaration-color:#f39c12;--syntax-literal-color:#dda0dd;--syntax-error-color:#f9690e;--syntax-name-color:#7ed07e;--syntax-string-color:#f2ca27}pre:not(.highlight),div.highlight{background:var(--syntax-background-color);color:var(--syntax-text-color);font-size:80%;border-radius:var(--radius);margin:0;overflow-x:auto;-webkit-overflow-scrolling:touch;overflow-wrap:initial;padding:var(--su-2)}@media (min-width:768px){pre:not(.highlight),div.highlight{padding:var(--su-6)}}pre:not(.highlight) code,div.highlight code{font-size:100%;padding:0}div.highlight{position:relative}div.highlight .highlight{overflow:auto}.fullscreen-code{position:fixed;top:0;left:0;z-index:var(--z-modal);width:100%;height:100vh;background:var(--syntax-background-color);color:var(--syntax-text-color);overflow:auto;visibility:hidden;transform:scale(0.01);transition:transform var(--transition-props),visibility var(--transition-props)}code{background:rgba(0,0,0,0.1);color:var(--color-body-color);border-radius:var(--radius);max-width:100%;font-size:80%;padding:0.1em 0.25em}.highlight{background:var(--syntax-background-color);color:var(--syntax-text-color)}.highlight .k{color:var(--syntax-declaration-color)}.highlight .o{color:var(--syntax-error-color)}.highlight .p{color:var(--syntax-text-color)}.highlight .c1{color:var(--syntax-comment-color)}.highlight .kc{color:var(--syntax-declaration-color)}.highlight .kd{color:var(--syntax-declaration-color)}.highlight .s{color:var(--syntax-string-color)}.highlight .na{color:var(--syntax-name-color)}.highlight .nx{color:var(--syntax-name-color)}.highlight .nt{color:var(--syntax-error-color)}.highlight .dl{color:var(--syntax-string-color)}.highlight .s2{color:var(--syntax-string-color)}.highlight .si{color:var(--syntax-string-color)}.crayons-tag{font-size:var(--fs-s);color:var(--tag-color);line-height:1.3;border-radius:var(--radius);padding:var(--su-1);display:inline-block}.crayons-tag__prefix{opacity:0.4;font-weight:normal}.crayons-tag[href]:hover{color:var(--tag-color-hover)}@keyframes slideIn{100%{transform:translateY(0) translateX(-50%)}}.color-base-70{color:var(--base-70)}.color-base-30{color:var(--base-30)}.border-base-10{border-color:var(--base-10)}.opacity-75{opacity:0.75}.opacity-25{opacity:0.25}.pointer-events-none{pointer-events:none}.items-center{align-items:center}.justify-between{justify-content:space-between}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.gap-4{grid-gap:var(--su-4)}.border-solid{border-style:solid}.border-0{border-width:0}.border-t-1{border-top-width:1px}.top-0{top:0}.bottom-0{bottom:0}.right-1{right:var(--su-1)}.right-2{right:var(--su-2)}.overflow-hidden{overflow:hidden}.w-100{width:100%}.h-100{height:100%}.m-1{margin:var(--su-1)}.mt-4{margin-top:var(--su-4)}.mt-5{margin-top:var(--su-5)}.mt-6{margin-top:var(--su-6)}.-mt-4{margin-top:calc(var(--su-4) * -1)}.mb-0{margin-bottom:0}.mb-4{margin-bottom:var(--su-4)}.mb-6{margin-bottom:var(--su-6)}.ml-auto{margin-left:auto}.-ml-1{margin-left:calc(var(--su-1) * -1)}.mr-1{margin-right:var(--su-1)}.mr-2{margin-right:var(--su-2)}.mr-4{margin-right:var(--su-4)}.p-4{padding:var(--su-4)}.px-2{padding-left:var(--su-2);padding-right:var(--su-2)}.pt-0{padding-top:0}.pt-1{padding-top:var(--su-1)}.fs-s{font-size:var(--fs-s)}.fs-base{font-size:var(--fs-base)}.fs-xl{font-size:var(--fs-xl)}.fs-3xl{font-size:var(--fs-3xl)}.lh-tight{line-height:var(--lh-tight)}.fw-medium{font-weight:var(--fw-medium)}.fw-bold{font-weight:var(--fw-bold)}.align-center{text-align:center}.align-middle{vertical-align:middle}.whitespace-nowrap{white-space:nowrap}.hidden{display:none}.block{display:block}.inline-block{display:inline-block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.static{position:static}.absolute{position:absolute}.relative{position:relative}.break-word{word-break:break-word}@media (min-width:640px){.s\:left-auto{left:auto}.s\:right-0{right:0}.s\:mb-0{margin-bottom:0}.s\:fs-base{font-size:var(--fs-base)}.s\:fw-heavy{font-weight:var(--fw-heavy)}}@media (min-width:768px){.m\:mx-1{margin-left:var(--su-1);margin-right:var(--su-1)}.m\:mt-3{margin-top:var(--su-3)}.m\:-mb-4{margin-bottom:calc(var(--su-4) * -1)}.m\:mr-1{margin-right:var(--su-1)}.m\:pl-0{padding-left:0}.m\:pl-1{padding-left:var(--su-1)}.m\:fs-4xl{font-size:var(--fs-4xl)}.m\:hidden{display:none}.m\:block{display:block}.m\:inline-block{display:inline-block}.m\:relative{position:relative}}@media (min-width:1024px){.l\:fs-5xl{font-size:var(--fs-5xl)}}</style>
+ <div id=body-styles>
+ <style class=sf-hidden>:root{--accent-brand:#3b49df;--accent-brand-darker:#323ebe;--accent-brand-lighter:#4150f5;--accent-brand-a10:rgba(59,73,223,0.10)}</style>
+ </div>
+ <div id=audiocontent data-podcast>
+ 
+ </div>
+ <div class=navigation-progress id=navigation-progress></div>
+<header class="crayons-header print-hidden">
+ <a href=#main-content class=skip-content-link>Skip to content</a>
+ <div class=crayons-header__container>
+ <button class="crayons-btn crayons-btn--ghost crayons-btn--icon-rounded js-hamburger-trigger inline-block m:hidden mx-2 sf-hidden">
+ <svg xmlns=http://www.w3.org/2000/svg width=24 height=24 viewBox="0 0 24 24" role=img aria-labelledby=a87m9jf40int4kw1ntyhxz4zenlfzfsy class=crayons-icon><title id=a87m9jf40int4kw1ntyhxz4zenlfzfsy>Navigation menu</title>
+ <path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z"></path>
+</svg>
+ </button>
+ <a href=https://dev.to/ class=site-logo aria-label="DEV Community Home">
+ <svg width=50 height=40 viewBox="0 0 50 40" fill=none xmlns=http://www.w3.org/2000/svg><rect width=50 height=40 rx=3 style=fill:currentColor></rect><path d="M19.099 23.508c0 1.31-.423 2.388-1.27 3.234-.838.839-1.942 1.258-3.312 1.258h-4.403V12.277h4.492c1.31 0 2.385.423 3.224 1.27.846.838 1.269 1.912 1.269 3.223v6.738zm-2.808 0V16.77c0-.562-.187-.981-.562-1.258-.374-.285-.748-.427-1.122-.427h-1.685v10.107h1.684c.375 0 .75-.138 1.123-.415.375-.285.562-.708.562-1.27zM28.185 28h-5.896c-.562 0-1.03-.187-1.404-.561-.375-.375-.562-.843-.562-1.404V14.243c0-.562.187-1.03.562-1.404.374-.375.842-.562 1.404-.562h5.896v2.808H23.13v3.65h3.088v2.808h-3.088v3.65h5.054V28zm7.12 0c-.936 0-1.684-.655-2.246-1.965l-3.65-13.758h3.089l2.807 10.804 2.808-10.804H41.2l-3.65 13.758C36.99 27.345 36.241 28 35.305 28z" style=fill:var(--base-inverted)></path></svg>
+</a>
+ <div id=pwa-nav-buttons class="pwa-nav-buttons sf-hidden">
+ 
+ 
+ 
+ </div>
+ <div class="crayons-header--search js-search-form" id=header-search><form action=/search role=search accept-charset=UTF-8><div class="crayons-fields crayons-fields--horizontal"><div class="crayons-field flex-1 relative"><input class="crayons-header--search-input crayons-textfield" type=text name=q placeholder=Search... autocomplete=off aria-label="Search term" value><button type=submit aria-label=Search class="crayons-btn crayons-btn--ghost crayons-btn--s crayons-btn--icon-rounded absolute right-2 bottom-0 top-0 m-1"><svg xmlns=http://www.w3.org/2000/svg width=24 height=24 viewBox="0 0 24 24" class=crayons-icon><path d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283A8.96 8.96 0 0111 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9a8.96 8.96 0 01-1.969 5.617zm-2.006-.742A6.977 6.977 0 0018 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7a6.977 6.977 0 004.875-1.975l.15-.15z"></path></svg></button></div></div></form>
+ 
+ </div>
+ <div class="flex items-center h-100 ml-auto">
+ <a class="crayons-header__link crayons-btn crayons-btn--ghost crayons-btn--icon-rounded m:hidden mx-2 sf-hidden" id=search-link aria-label=Search href=https://dev.to/search>
+ <svg xmlns=http://www.w3.org/2000/svg width=24 height=24 viewBox="0 0 24 24" role=img aria-labelledby=a22pe1tvq6gqz24cwc1813rs9v1vogwd class=crayons-icon><title id=a22pe1tvq6gqz24cwc1813rs9v1vogwd>Search</title>
+ <path d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283A8.96 8.96 0 0111 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9a8.96 8.96 0 01-1.969 5.617zm-2.006-.742A6.977 6.977 0 0018 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7a6.977 6.977 0 004.875-1.975l.15-.15z"></path>
+</svg>
+ </a>
+ <a href=https://dev.to/enter class="crayons-btn crayons-btn--ghost-brand mr-2 hidden m:block whitespace-nowrap ml-auto" data-no-instant>
+ Log in
+ </a>
+ <a href="https://dev.to/enter?state=new-user" class="crayons-btn mr-2 whitespace-nowrap fs-s s:fs-base" data-no-instant>
+ Create account
+ </a>
+ </div>
+ </div>
+</header>
+<div class="hamburger sf-hidden">
+ 
+ 
+</div>
+ <div id=active-broadcast class="broadcast-wrapper sf-hidden"></div>
+ <div id=message-notice></div>
+ <div class="app-shell-loader sf-hidden">
+ loading...
+ </div>
+ <div id=base-payment-pointer data-payment-pointer=$ilp.uphold.com/24HhrUGG7ekn></div>
+<div id=page-content class="wrapper stories stories-show" data-current-page=stories-show>
+ <div id=page-content-inner data-follow-clicks-initialized=true>
+ <div id=page-route-change class=screen-reader-only aria-live=polite aria-atomic=true></div>
+ 
+ 
+ <script type=application/ld+json class=sf-hidden>{"@context":"http://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://dev.to/chiborg/integrating-vuex-with-the-vue-composition-api-4da9"},"url":"https://dev.to/chiborg/integrating-vuex-with-the-vue-composition-api-4da9","image":["https://dev.to/social_previews/article/482585.png","https://dev.to/social_previews/article/482585.png","https://dev.to/social_previews/article/482585.png"],"publisher":{"@context":"http://schema.org","@type":"Organization","name":"DEV Community","logo":{"@context":"http://schema.org","@type":"ImageObject","url":"https://res.cloudinary.com/practicaldev/image/fetch/s--t7tVouP9--/c_limit,f_png,fl_progressive,q_80,w_192/https://practicaldev-herokuapp-com.freetls.fastly.net/assets/devlogo-pwa-512.png","width":"192","height":"192"}},"headline":"Integrating Vuex with the Vue Composition API","author":{"@context":"http://schema.org","@type":"Person","url":"https://dev.to/chiborg","name":"Gabriel Birke"},"datePublished":"2020-10-09T21:59:35Z","dateModified":"2020-10-09T21:59:35Z"}</script>
+ 
+<div class="crayons-layout crayons-layout--3-cols crayons-layout--article">
+ <aside class=crayons-layout__sidebar-left aria-label="Article actions">
+ <div class="crayons-article-actions print-hidden">
+ <div class=crayons-article-actions__inner>
+ <button id=reaction-butt-like aria-label=Like aria-pressed=false class="crayons-reaction crayons-reaction--like activated" data-category=like title=Heart>
+ <span class="crayons-reaction__icon crayons-reaction__icon--inactive">
+ <svg xmlns=http://www.w3.org/2000/svg width=24 height=24 viewBox="0 0 24 24" aria-hidden=true class=crayons-icon>
+ <path d="M21.179 12.794l.013.014L12 22l-9.192-9.192.013-.014A6.5 6.5 0 0112 3.64a6.5 6.5 0 019.179 9.154zM4.575 5.383a4.5 4.5 0 000 6.364L12 19.172l7.425-7.425a4.5 4.5 0 10-6.364-6.364L8.818 9.626 7.404 8.21l3.162-3.162a4.5 4.5 0 00-5.99.334l-.001.001z"></path>
+</svg>
+ </span>
+ <span class=crayons-reaction__count id=reaction-number-like>8</span>
+</button>
+ <button id=reaction-butt-unicorn aria-label="React with unicorn" aria-pressed=false class="crayons-reaction crayons-reaction--unicorn activated" data-category=unicorn title=Unicorn>
+ <span class="crayons-reaction__icon crayons-reaction__icon--inactive">
+ <svg xmlns=http://www.w3.org/2000/svg width=24 height=24 aria-hidden=true class=crayons-icon>
+ <path d="M5.645 8.013c.013-.265-.261-.323-.4-.183-1.16 1.17-1.822 3.865-.344 7.32.294.961 1.938 3.19.84 6.131l-.003.006c-.094.255.206.404.366.263 1.395-1.226 1.933-3.593 1.1-6.375-.488-1.657-1.955-4.226-1.559-7.162zm-3.22 2.738c.05-.137-.124-.417-.326-.225-.939.893-1.316 2.863-.976 4.605.547 2.878 2.374 3.526 2.066 6.629-.028.102.176.38.348.154 1.546-2.033.409-4.453-.241-6.006-1.005-2.386-1.087-4.118-.871-5.157z" fill=#08090A></path>
+ <path fill-rule=evenodd clip-rule=evenodd d="M13.622 7.223l8.579-3.68c.598-.256 1.087.547.6.985l-6.618 5.941c.881 2.043 2.738 6.34 2.931 6.775 1.348 3.031-2.055 4.918-3.807 3.583a7.027 7.027 0 01-.623-.574c-.974-.965-2.419-2.398-5.207-1.877.284-2.115-.313-3.737-.883-5.288-.38-1.032-.747-2.032-.837-3.124-.346-3.329 3.763-8.23 4.696-7.953.386.115.326 1.229.266 2.319-.051.948-.102 1.88.143 2.12.145.142.428.43.76.773zM11.5 16.5l2.5.5 2.5 2 1-.5-2-4.5-1.5-4-1.5-1-1-1-1-1.5L10 8l-.5 1.5 1 2.5 1 4.5z"></path>
+</svg>
+ </span>
+ <span class=crayons-reaction__count id=reaction-number-unicorn>2</span>
+</button>
+ <button id=reaction-butt-readinglist aria-label="Add to reading list" aria-pressed=false class="crayons-reaction crayons-reaction--readinglist activated" data-category=readinglist title=Save>
+ <span class="crayons-reaction__icon crayons-reaction__icon--inactive">
+ <svg xmlns=http://www.w3.org/2000/svg width=24 height=24 viewBox="0 0 24 24" aria-hidden=true class=crayons-icon>
+ <path d="M5 2h14a1 1 0 011 1v19.143a.5.5 0 01-.766.424L12 18.03l-7.234 4.536A.5.5 0 014 22.143V3a1 1 0 011-1zm13 2H6v15.432l6-3.761 6 3.761V4z"></path>
+</svg>
+ </span>
+ <span class=crayons-reaction__count id=reaction-number-readinglist>10</span>
+</button>
+ <div class="align-center m:relative">
+ <button id=article-show-more-button aria-controls=article-show-more-dropdown aria-expanded=false aria-haspopup=true class="dropbtn crayons-btn crayons-btn--ghost-dimmed crayons-btn--icon-rounded" aria-label="Share post options" data-initialized=true>
+ <svg xmlns=http://www.w3.org/2000/svg width=24 height=24 aria-hidden=true class="dropdown-icon crayons-icon"><title>More...</title><path fill-rule=evenodd clip-rule=evenodd d="M7 12a2 2 0 11-4 0 2 2 0 014 0zm7 0a2 2 0 11-4 0 2 2 0 014 0zm5 2a2 2 0 100-4 2 2 0 000 4z"></path></svg>
+ </button>
+ <div id=article-show-more-dropdown class="crayons-dropdown side-bar left-1 s:left-auto m:left-100 sf-hidden">
+ 
+ 
+ 
+ <template id=web-share-button>
+          <a href="#" class="dropdown-link-row crayons-link crayons-link--block">Share Post via...</a>
+        </template>
+ 
+ </div>
+ </div>
+ </div>
+</div>
+ <div class="html-variant-wrapper sf-hidden" id=html-variant-article-show-below-article data-variant-id=382>
+ 
+ </div>
+ </aside>
+ <main id=main-content class="crayons-layout__content grid gap-4">
+ <div class=article-wrapper>
+ <article class="crayons-card crayons-article mb-4" id=article-show-container data-article-id=482585 data-author-id=1544 data-path=/chiborg/integrating-vuex-with-the-vue-composition-api-4da9 data-published=true data-pin-path=/stories/feed/pinned_article data-pinned-article-id>
+ <header class=crayons-article__header id=main-title>
+ <div class=crayons-article__header__meta>
+ <h1 class="fs-3xl m:fs-4xl l:fs-5xl fw-bold s:fw-heavy lh-tight mb-4 medium">
+ Integrating Vuex with the Vue Composition API
+ </h1>
+ <div class="mb-4 spec__tags">
+ <a class="crayons-tag mr-1" href=https://dev.to/t/vue style=background-color:#41b883;color:#35495e><span class=crayons-tag__prefix>#</span>vue</a>
+ <a class="crayons-tag mr-1" href=https://dev.to/t/vuex><span class=crayons-tag__prefix>#</span>vuex</a>
+ <a class="crayons-tag mr-1" href=https://dev.to/t/compositionapi><span class=crayons-tag__prefix>#</span>compositionapi</a>
+ <a class="crayons-tag mr-1" href=https://dev.to/t/javascript style=background-color:#F7DF1E;color:#000000><span class=crayons-tag__prefix>#</span>javascript</a>
+ </div>
+ <div class=crayons-article__subheader>
+ <a href=https://dev.to/chiborg class="flex items-center mr-2 m:mr-1 mb-4 s:mb-0 fw-medium crayons-link">
+ <span class="crayons-avatar crayons-avatar--l mr-2 m:mr-1"><img class=crayons-avatar__image src="data:image/webp;base64,UklGRiADAABXRUJQVlA4IBQDAAAwDgCdASoyADIAPpk6lkgloyIhMBn9+LATCWIAxQvRCmi9PgJYc8wMYrHYyNXf3OXcgTeFb759pDqafyCq8PNSjXoEaWq8GsPmSGz624PNx2QMobHGUj5OyO8E7AWDuSvKPgPltnawhKD7JJIQF5/2XAhzCCedxJOrgAD+/vYZ4QNeo4VdLcN7Q546753fxbZXebyY2BHx84BnTMUs5Zjr5kNqP3i7YXKOX8liUF1Gt1+aa+BiAlYiZpTm1Qc6yRdexw6RY+rGAfSk6q87ARU/HbyqYtr/LQAJ2HvZgV7JE88mfqr4WrDJudcFeLphn8vdS180CM+L6FwfW2S1URiyy9qO1lWq5F5Kk8WUAfyWkKcLbd4IoYamifYwlNa6Hhyo/rkD1KrADc4pbXY2SuMltYWYbOAyHSRGs305nC4vl8YqzyOBW+Ti6QC31RzobNtxGQKZTL3ObQB4xjpscupw0xoIV9/ArftBr1ZqtULgrnTjdBdyyf8LotR1Zf7bIWGRRa/TiwTly8V+AJTIKBHSYAwGiAFuOgiGA37JCNl9i1tSAk5j25QGHeC0lXXV/3AoRAVVVkZGMw5gVayJwOFmguwAoSbw9CuU+5iSJquvtOTQriOC8OQgaMEpNdedtJGKaqdySMUHr6JEZF/nIf+P0a1YMyitTAPk7fACn1KO/0Ku1v4omH+L9RPTP57pidcZ1lpYKSVypsmOI8sEXAcHJkqO9wA46dcLyu/hM9DhSWVgVVOQCnJEtzL5yNDjO3Wc8cT0TpaddEl9HdSdAUUu2bVzAXwwRAp0hWEOLtMUs3gg8CTba+wA0sZUM1EgatJ3DA4QClOG6taLgq6By8r2na/YFYbvbbXkv0K7K2kziY35qJL8eiWjuofzHC5pp0rtwmxPywDQL5eYgvlwFUpdtcyw9ziRPS5eolKjchkwYpE3xY9A9GZWXUgVG29DbCSgv8zTyNRA8WcMTknzTVOf3vVRtogt8cswy4WitIZJzKgpU9xxqoyE+LdbYhKJ1CrBxgEf0ySQAw/si7lKFAi1kwAAAA==" alt></span>
+ <span class="block m:hidden sf-hidden">Gabriel Birke</span>
+ </a>
+ <div class="profile-preview-card relative mr-2 mb-4 s:mb-0 fw-medium">
+ <button id=profile-preview-trigger class="profile-preview-card__trigger crayons-btn crayons-btn--ghost px-2 hidden m:block" aria-label="Gabriel Birke profile details" aria-expanded=false aria-controls=profile-preview-content aria-haspopup=true data-initialized=true>Gabriel Birke</button>
+ <div id=profile-preview-content class="profile-preview-card__content crayons-dropdown sf-hidden" style="--card-color:#280331;border-top:var(--su-7) solid var(--card-color)" data-testid=profile-preview-card data-repositioning-dropdown=true>
+ 
+</div>
+ </div>
+ <span class="fs-s mb-4 s:mb-0">
+ <time datetime=2020-10-09T21:59:35Z class=date title="Freitag, 9. Oktober 2020, 23:59:35">9. Okt. 2020</time>
+ <span class=mr-4>・6 min read</span>
+ </span>
+ <span id=action-space class="mb-4 s:mb-0"></span>
+ </div>
+ </div>
+ </header>
+ <div class=crayons-article__main>
+ <div class="crayons-article__body text-styles spec__body" data-article-id=482585 id=article-body>
+ <p><a href=https://lebenplusplus.de/2020/09/27/integrating-vuex-with-the-vue-composition-api/>This post was originally published on my blog</a></p>
+<p>This post shows my step-by-step journey using the Vue composition API in a Vue project that uses Vuex. I started with the question "How can you gradually introduce the composition API without having to rewrite everything?"</p>
+<p>You can find the complete source code <a href=https://github.com/gbirke/vuex-composition-doodle>on GitHub</a></p>
+<h2>
+ <a name=starting-application href=#starting-application class=anchor>
+ </a>
+ Starting application
+</h2>
+<p>For my exploration, I started out with a minimalistic application that uses Vuex: A button that toggles the state of "Awesomeness" on and off.<br>
+</p>
+<div class=highlight><pre class="highlight vue"><code><span class=nt>&lt;</span><span class=k>template</span><span class=nt>&gt;</span>
+  <span class=nt>&lt;div&gt;</span>
+    <span class=nt>&lt;p&gt;</span>
+      Awesomeness is <span class=nt>&lt;strong&gt;</span><span class=si>{{</span> <span class=nx>awesomeness</span> <span class=si>}}</span><span class=nt>&lt;/strong&gt;</span>
+    <span class=nt>&lt;/p&gt;</span>
+    <span class=nt>&lt;p&gt;&lt;button</span> <span class=na>v-on:click=</span><span class=s>"toggle"</span><span class=nt>&gt;</span>Toggle<span class=nt>&lt;/button&gt;&lt;/p&gt;</span>
+  <span class=nt>&lt;/div&gt;</span>
+<span class=nt>&lt;/</span><span class=k>template</span><span class=nt>&gt;</span>
+
+<span class=nt>&lt;</span><span class=k>script</span><span class=nt>&gt;</span>
+<span class=k>import</span> <span class=p>{</span> <span class=nx>mapState</span> <span class=p>}</span> <span class=k>from</span> <span class=dl>"</span><span class=s2>vuex</span><span class=dl>"</span><span class=p>;</span>
+
+<span class=k>export</span> <span class=k>default</span> <span class=p>{</span>
+  <span class=na>computed</span><span class=p>:</span> <span class=nx>mapState</span><span class=p>([</span><span class=dl>"</span><span class=s2>awesomeness</span><span class=dl>"</span><span class=p>]),</span>
+  <span class=na>methods</span><span class=p>:</span> <span class=p>{</span>
+    <span class=nx>toggle</span><span class=p>()</span> <span class=p>{</span>
+      <span class=k>this</span><span class=p>.</span><span class=nx>$store</span><span class=p>.</span><span class=nx>commit</span><span class=p>(</span><span class=dl>"</span><span class=s2>toggleAwesomeness</span><span class=dl>"</span><span class=p>);</span>
+    <span class=p>}</span>
+  <span class=p>}</span>
+<span class=p>};</span>
+<span class=nt>&lt;/</span><span class=k>script</span><span class=nt>&gt;</span>
+</code></pre></div>
+<p>The store looks like this:<br>
+</p>
+<div class=highlight><pre class="highlight javascript"><code><span class=k>import</span> <span class=nx>Vue</span> <span class=k>from</span> <span class=dl>"</span><span class=s2>vue</span><span class=dl>"</span><span class=p>;</span>
+<span class=k>import</span> <span class=nx>Vuex</span> <span class=k>from</span> <span class=dl>"</span><span class=s2>vuex</span><span class=dl>"</span><span class=p>;</span>
+
+<span class=nx>Vue</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=nx>Vuex</span><span class=p>);</span>
+
+<span class=k>export</span> <span class=k>default</span> <span class=k>new</span> <span class=nx>Vuex</span><span class=p>.</span><span class=nx>Store</span><span class=p>({</span>
+  <span class=na>state</span><span class=p>:</span> <span class=p>{</span>
+    <span class=na>awesomeness</span><span class=p>:</span> <span class=dl>"</span><span class=s2>On</span><span class=dl>"</span>
+  <span class=p>},</span>
+  <span class=na>mutations</span><span class=p>:</span> <span class=p>{</span>
+    <span class=nx>toggleAwesomeness</span><span class=p>(</span><span class=nx>state</span><span class=p>)</span> <span class=p>{</span>
+      <span class=k>if</span> <span class=p>(</span><span class=nx>state</span><span class=p>.</span><span class=nx>awesomeness</span> <span class=o>===</span> <span class=dl>"</span><span class=s2>On</span><span class=dl>"</span><span class=p>)</span> <span class=p>{</span>
+        <span class=nx>state</span><span class=p>.</span><span class=nx>awesomeness</span> <span class=o>=</span> <span class=dl>"</span><span class=s2>Off</span><span class=dl>"</span><span class=p>;</span>
+        <span class=k>return</span><span class=p>;</span>
+      <span class=p>}</span>
+      <span class=nx>state</span><span class=p>.</span><span class=nx>awesomeness</span> <span class=o>=</span> <span class=dl>"</span><span class=s2>On</span><span class=dl>"</span><span class=p>;</span>
+    <span class=p>}</span>
+  <span class=p>},</span>
+  <span class=na>actions</span><span class=p>:</span> <span class=p>{},</span>
+  <span class=na>modules</span><span class=p>:</span> <span class=p>{}</span>
+<span class=p>});</span>
+</code></pre></div>
+<p>The file <code>main.js</code> imports the store and passes it to the root component:<br>
+</p>
+<div class=highlight><pre class="highlight javascript"><code><span class=k>import</span> <span class=nx>Vue</span> <span class=k>from</span> <span class=dl>"</span><span class=s2>vue</span><span class=dl>"</span><span class=p>;</span>
+<span class=k>import</span> <span class=nx>App</span> <span class=k>from</span> <span class=dl>"</span><span class=s2>./App.vue</span><span class=dl>"</span><span class=p>;</span>
+<span class=k>import</span> <span class=nx>store</span> <span class=k>from</span> <span class=dl>"</span><span class=s2>./store</span><span class=dl>"</span><span class=p>;</span>
+<span class=k>import</span> <span class=nx>CompositionAPI</span> <span class=k>from</span> <span class=dl>"</span><span class=s2>@vue/composition-api</span><span class=dl>"</span><span class=p>;</span>
+
+<span class=nx>Vue</span><span class=p>.</span><span class=nx>config</span><span class=p>.</span><span class=nx>productionTip</span> <span class=o>=</span> <span class=kc>false</span><span class=p>;</span>
+<span class=nx>Vue</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=nx>CompositionAPI</span><span class=p>);</span>
+
+<span class=k>new</span> <span class=nx>Vue</span><span class=p>({</span>
+  <span class=nx>store</span><span class=p>,</span>
+  <span class=na>render</span><span class=p>:</span> <span class=nx>h</span> <span class=o>=&gt;</span> <span class=nx>h</span><span class=p>(</span><span class=nx>App</span><span class=p>)</span>
+<span class=p>}).</span><span class=nx>$mount</span><span class=p>(</span><span class=dl>"</span><span class=s2>#app</span><span class=dl>"</span><span class=p>);</span>
+</code></pre></div>
+<p>Side note: With only one stateful component, using Vuex is<br>
+over-engineering since the main purpose of Vuex is to <em>share state between components</em>. But I want to expand my example to show how components with and without and composition API can share the same store, so bear with me.</p>
+<h2>
+ <a name=first-attempt-getting-the-store-from-the-root-element href=#first-attempt-getting-the-store-from-the-root-element class=anchor>
+ </a>
+ First attempt - getting the store from the root element
+</h2>
+<p>In the <code>setup</code> method of the component API you don't have a reference to the Vue component instance, you can't call <code>this.$store</code>. There is a workaround, though: The <code>setup</code> method has a second parameter, <code>context</code>, that allows you to access the <em>root</em> instance of the Vue component tree. If that root instance has a store (because the application initialization code called <code>Vue.use(Vuex)</code>), then you can access that store instance. The component looks like this:<br>
+</p>
+<div class=highlight><pre class="highlight vue"><code><span class=nt>&lt;</span><span class=k>template</span><span class=nt>&gt;</span>
+  <span class=nt>&lt;div&gt;</span>
+    <span class=nt>&lt;p&gt;</span>
+      Awesomeness is <span class=nt>&lt;strong&gt;</span><span class=si>{{</span> <span class=nx>awesomeness</span> <span class=si>}}</span><span class=nt>&lt;/strong&gt;</span>
+    <span class=nt>&lt;/p&gt;</span>
+    <span class=nt>&lt;p&gt;&lt;button</span> <span class=na>v-on:click=</span><span class=s>"toggle"</span><span class=nt>&gt;</span>Toggle<span class=nt>&lt;/button&gt;&lt;/p&gt;</span>
+  <span class=nt>&lt;/div&gt;</span>
+<span class=nt>&lt;/</span><span class=k>template</span><span class=nt>&gt;</span>
+
+<span class=nt>&lt;</span><span class=k>script</span><span class=nt>&gt;</span>
+<span class=k>import</span> <span class=p>{</span> <span class=nx>computed</span> <span class=p>}</span> <span class=k>from</span> <span class=dl>"</span><span class=s2>@vue/composition-api</span><span class=dl>"</span><span class=p>;</span>
+
+<span class=k>export</span> <span class=k>default</span> <span class=p>{</span>
+  <span class=nx>setup</span><span class=p>(</span><span class=nx>_</span><span class=p>,</span> <span class=nx>ctx</span><span class=p>)</span> <span class=p>{</span>
+    <span class=kd>const</span> <span class=nx>store</span> <span class=o>=</span> <span class=nx>ctx</span><span class=p>.</span><span class=nx>root</span><span class=p>.</span><span class=nx>$store</span><span class=p>;</span>
+    <span class=kd>const</span> <span class=nx>awesomeness</span> <span class=o>=</span> <span class=nx>computed</span><span class=p>(()</span> <span class=o>=&gt;</span> <span class=nx>store</span><span class=p>.</span><span class=nx>state</span><span class=p>.</span><span class=nx>awesomeness</span><span class=p>);</span>
+    <span class=kd>const</span> <span class=nx>toggle</span> <span class=o>=</span> <span class=p>()</span> <span class=o>=&gt;</span> <span class=nx>store</span><span class=p>.</span><span class=nx>commit</span><span class=p>(</span><span class=dl>"</span><span class=s2>toggleAwesomeness</span><span class=dl>"</span><span class=p>);</span>
+    <span class=k>return</span> <span class=p>{</span> <span class=nx>awesomeness</span><span class=p>,</span> <span class=nx>toggle</span> <span class=p>};</span>
+  <span class=p>}</span>
+<span class=p>};</span>
+</code></pre></div>
+<p>You can see that the component has more lines than the component without the composition API. This is because it doesn't do what the composition API is good at - encapsulating behavior in separate modules, independent from the Vue code and re-using it in different components. <a href=https://github.com/gbirke/vuex-composition-doodle>My example repository</a> shows how to put the behavior in a separate module, but for reading the examples side by side I chose this structure.</p>
+<p>The unit test for this component needs one more line than the test for the "classic" unit test - adding the composition API wrapper plugin to the local Vue instance. With Vue 3, even that line will become unnecessary. </p>
+<p>With the composition API there is no need for the <code>mapState</code>,<br>
+<code>mapGetters</code> or other Vuex helpers. Instead, you write small, one-line wrapper functions yourself. This gives you much more fine-grained control over which parts of the store you connect to the component. Some people may see that implicitness as boilerplate and adding more lines to<br>
+the code, but that's for you to decide.</p>
+<h2>
+ <a name=second-attempt-using-node-module-singleton-pattern href=#second-attempt-using-node-module-singleton-pattern class=anchor>
+ </a>
+ Second attempt - using Node module singleton pattern
+</h2>
+<p>I admit that I prefer to write object-oriented backend code, using PHP with dependency injection and implicit instantiation. I still have to get used to the idea, that whenever a Node module instantiates a class and exports it -<br>
+like in our example store above - that same instance will get re-used whenever you <code>import</code> it. In our case, it allows us to write the component like this:<br>
+</p>
+<div class=highlight><pre class="highlight vue"><code><span class=nt>&lt;</span><span class=k>template</span><span class=nt>&gt;</span>
+  <span class=nt>&lt;div&gt;</span>
+    <span class=nt>&lt;p&gt;</span>
+      Awesomeness is <span class=nt>&lt;strong&gt;</span><span class=si>{{</span> <span class=nx>awesomeness</span> <span class=si>}}</span><span class=nt>&lt;/strong&gt;</span>
+    <span class=nt>&lt;/p&gt;</span>
+    <span class=nt>&lt;p&gt;&lt;button</span> <span class=na>v-on:click=</span><span class=s>"toggle"</span><span class=nt>&gt;</span>Toggle<span class=nt>&lt;/button&gt;&lt;/p&gt;</span>
+  <span class=nt>&lt;/div&gt;</span>
+<span class=nt>&lt;/</span><span class=k>template</span><span class=nt>&gt;</span>
+
+<span class=nt>&lt;</span><span class=k>script</span><span class=nt>&gt;</span>
+<span class=k>import</span> <span class=nx>store</span> <span class=k>from</span> <span class=dl>"</span><span class=s2>../../store</span><span class=dl>"</span><span class=p>;</span>
+<span class=k>import</span> <span class=p>{</span> <span class=nx>computed</span> <span class=p>}</span> <span class=k>from</span> <span class=dl>"</span><span class=s2>@vue/composition-api</span><span class=dl>"</span><span class=p>;</span>
+
+<span class=k>export</span> <span class=k>default</span> <span class=p>{</span>
+  <span class=nx>setup</span><span class=p>()</span> <span class=p>{</span>
+    <span class=kd>const</span> <span class=nx>awesomeness</span> <span class=o>=</span> <span class=nx>computed</span><span class=p>(()</span> <span class=o>=&gt;</span> <span class=nx>store</span><span class=p>.</span><span class=nx>state</span><span class=p>.</span><span class=nx>awesomeness</span><span class=p>);</span>
+    <span class=kd>const</span> <span class=nx>toggle</span> <span class=o>=</span> <span class=p>()</span> <span class=o>=&gt;</span> <span class=nx>store</span><span class=p>.</span><span class=nx>commit</span><span class=p>(</span><span class=dl>"</span><span class=s2>toggleAwesomeness</span><span class=dl>"</span><span class=p>);</span>
+    <span class=k>return</span> <span class=p>{</span> <span class=nx>awesomeness</span><span class=p>,</span> <span class=nx>toggle</span> <span class=p>};</span>
+  <span class=p>}</span>
+<span class=p>};</span>
+</code></pre></div>
+<p>The <code>store</code>, directly imported into the component, refers to the same store that I imported in my <code>main.js</code> file. </p>
+<p>What looks straightforward and concise, becomes a nightmare to test: In the unit tests, you have to mock the imported <code>store</code> module. All my attempts to use <code>Jest.mock</code> failed. I think it's an issue of circular dependencies: mocking a module means you have to import it at the top of the test. But before you can import it, you have to parameterize the returned mock, which is impossible, because the import of the mocked module has to happen before any other code is executed. Maybe some Jest-Gurus can enlighten me with a <a href=https://github.com/gbirke/vuex-composition-doodle>pull request</a>.</p>
+<h2>
+ <a name=third-attempt-using-provide-and-inject href=#third-attempt-using-provide-and-inject class=anchor>
+ </a>
+ Third attempt - using provide and inject
+</h2>
+<p>The composition API has the <code>provide</code> function that delivers an instance to all child components. The modified <code>main.js</code> now looks like this:<br>
+</p>
+<div class=highlight><pre class="highlight javascript"><code><span class=k>import</span> <span class=nx>Vue</span> <span class=k>from</span> <span class=dl>"</span><span class=s2>vue</span><span class=dl>"</span><span class=p>;</span>
+<span class=k>import</span> <span class=nx>App</span> <span class=k>from</span> <span class=dl>"</span><span class=s2>./App.vue</span><span class=dl>"</span><span class=p>;</span>
+<span class=k>import</span> <span class=nx>store</span> <span class=k>from</span> <span class=dl>"</span><span class=s2>./store</span><span class=dl>"</span><span class=p>;</span>
+<span class=k>import</span> <span class=p>{</span> <span class=nx>provide</span> <span class=p>},</span> <span class=nx>CompositionAPI</span> <span class=k>from</span> <span class=dl>"</span><span class=s2>@vue/composition-api</span><span class=dl>"</span><span class=p>;</span>
+
+<span class=nx>Vue</span><span class=p>.</span><span class=nx>config</span><span class=p>.</span><span class=nx>productionTip</span> <span class=o>=</span> <span class=kc>false</span><span class=p>;</span>
+<span class=nx>Vue</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=nx>CompositionAPI</span><span class=p>);</span>
+
+<span class=k>new</span> <span class=nx>Vue</span><span class=p>({</span>
+  <span class=nx>setup</span><span class=p>(){</span>
+    <span class=nx>provide</span><span class=p>(</span><span class=dl>"</span><span class=s2>vuex-store</span><span class=dl>"</span><span class=p>,</span> <span class=nx>store</span><span class=p>);</span>
+  <span class=p>},</span>
+  <span class=nx>store</span><span class=p>,</span>
+  <span class=na>render</span><span class=p>:</span> <span class=nx>h</span> <span class=o>=&gt;</span> <span class=nx>h</span><span class=p>(</span><span class=nx>App</span><span class=p>)</span>
+<span class=p>}).</span><span class=nx>$mount</span><span class=p>(</span><span class=dl>"</span><span class=s2>#app</span><span class=dl>"</span><span class=p>);</span>
+</code></pre></div>
+<p>Our component can access the store by calling <code>inject</code> in its setup method:<br>
+</p>
+<div class=highlight><pre class="highlight vue"><code><span class=nt>&lt;</span><span class=k>template</span><span class=nt>&gt;</span>
+  <span class=nt>&lt;div&gt;</span>
+    <span class=nt>&lt;p&gt;</span>
+      Awesomeness is <span class=nt>&lt;strong&gt;</span><span class=si>{{</span> <span class=nx>awesomeness</span> <span class=si>}}</span><span class=nt>&lt;/strong&gt;</span>
+    <span class=nt>&lt;/p&gt;</span>
+    <span class=nt>&lt;p&gt;&lt;button</span> <span class=na>v-on:click=</span><span class=s>"toggle"</span><span class=nt>&gt;</span>Toggle<span class=nt>&lt;/button&gt;&lt;/p&gt;</span>
+  <span class=nt>&lt;/div&gt;</span>
+<span class=nt>&lt;/</span><span class=k>template</span><span class=nt>&gt;</span>
+
+<span class=nt>&lt;</span><span class=k>script</span><span class=nt>&gt;</span>
+<span class=k>import</span> <span class=p>{</span> <span class=nx>computed</span><span class=p>,</span> <span class=nx>inject</span> <span class=p>}</span> <span class=k>from</span> <span class=dl>"</span><span class=s2>@vue/composition-api</span><span class=dl>"</span><span class=p>;</span>
+
+<span class=k>export</span> <span class=k>default</span> <span class=p>{</span>
+  <span class=nx>setup</span><span class=p>()</span> <span class=p>{</span>
+    <span class=kd>const</span> <span class=nx>store</span> <span class=o>=</span> <span class=nx>inject</span><span class=p>(</span><span class=dl>"</span><span class=s2>vuex-store</span><span class=dl>"</span><span class=p>);</span>
+    <span class=kd>const</span> <span class=nx>awesomeness</span> <span class=o>=</span> <span class=nx>computed</span><span class=p>(()</span> <span class=o>=&gt;</span> <span class=nx>store</span><span class=p>.</span><span class=nx>state</span><span class=p>.</span><span class=nx>awesomeness</span><span class=p>);</span>
+    <span class=kd>const</span> <span class=nx>toggle</span> <span class=o>=</span> <span class=p>()</span> <span class=o>=&gt;</span> <span class=nx>store</span><span class=p>.</span><span class=nx>commit</span><span class=p>(</span><span class=dl>"</span><span class=s2>toggleAwesomeness</span><span class=dl>"</span><span class=p>);</span>
+    <span class=k>return</span> <span class=p>{</span> <span class=nx>awesomeness</span><span class=p>,</span> <span class=nx>toggle</span> <span class=p>};</span>
+  <span class=p>}</span>
+<span class=p>};</span>
+</code></pre></div>
+<p>The test can provide the component with its own mock implementation of the store.</p>
+<p>In my <a href=https://github.com/gbirke/vuex-composition-doodle>example repository</a>, I have wrapped the calls to <code>provide</code> and <code>inject</code> in custom function calls to make them more semantic and enable searching for specific usages of the store, in case you use <code>inject</code> for different things. It also encapsulates <code>inject</code>, so you could use a different state management library later.</p>
+<h2>
+ <a name=replacing-vuex-with-your-own-state-management href=#replacing-vuex-with-your-own-state-management class=anchor>
+ </a>
+ Replacing Vuex with your own state management
+</h2>
+<p>If you want to replace Vuex with your custom state management, I recommend reading the article "<a href=https://vueschool.io/articles/vuejs-tutorials/state-management-with-composition-api/>State Management with Composition API</a>".</p>
+<p>Implementing a custom store that shares its state across all components looks like this:<br>
+</p>
+<div class=highlight><pre class="highlight javascript"><code><span class=k>import</span> <span class=nx>Vue</span> <span class=k>from</span> <span class=dl>"</span><span class=s2>vue</span><span class=dl>"</span><span class=p>;</span>
+<span class=k>import</span> <span class=nx>CompositionAPI</span><span class=p>,</span> <span class=p>{</span> <span class=nx>ref</span> <span class=p>}</span> <span class=k>from</span> <span class=dl>"</span><span class=s2>@vue/composition-api</span><span class=dl>"</span><span class=p>;</span>
+
+<span class=c1>// Boilerplate for Vue 2</span>
+<span class=nx>Vue</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=nx>CompositionAPI</span><span class=p>);</span>
+
+<span class=c1>// Put inside `useRef` for non-shared state</span>
+<span class=kd>const</span> <span class=nx>awesomeness</span> <span class=o>=</span> <span class=nx>ref</span><span class=p>(</span><span class=dl>"</span><span class=s2>On</span><span class=dl>"</span><span class=p>);</span>
+
+<span class=k>export</span> <span class=kd>function</span> <span class=nx>useAwesomeness</span><span class=p>()</span> <span class=p>{</span>
+  <span class=kd>function</span> <span class=nx>toggle</span><span class=p>()</span> <span class=p>{</span>
+    <span class=k>if</span> <span class=p>(</span><span class=nx>awesomeness</span><span class=p>.</span><span class=nx>value</span> <span class=o>===</span> <span class=dl>"</span><span class=s2>On</span><span class=dl>"</span><span class=p>)</span> <span class=p>{</span>
+      <span class=nx>awesomeness</span><span class=p>.</span><span class=nx>value</span> <span class=o>=</span> <span class=dl>"</span><span class=s2>Off</span><span class=dl>"</span><span class=p>;</span>
+      <span class=k>return</span><span class=p>;</span>
+    <span class=p>}</span>
+    <span class=nx>awesomeness</span><span class=p>.</span><span class=nx>value</span> <span class=o>=</span> <span class=dl>"</span><span class=s2>On</span><span class=dl>"</span><span class=p>;</span>
+  <span class=p>}</span>
+
+  <span class=k>return</span> <span class=p>{</span>
+    <span class=nx>awesomeness</span><span class=p>,</span>
+    <span class=nx>toggle</span>
+  <span class=p>};</span>
+<span class=p>}</span>
+</code></pre></div>
+<p>The component using the store can call <code>useRef</code> directly in <code>setup()</code>:<br>
+</p>
+<div class=highlight><pre class="highlight vue"><code><span class=nt>&lt;</span><span class=k>template</span><span class=nt>&gt;</span>
+  <span class=nt>&lt;div&gt;</span>
+    <span class=nt>&lt;p&gt;</span>
+      Awesomeness is <span class=nt>&lt;strong&gt;</span><span class=si>{{</span> <span class=nx>awesomeness</span> <span class=si>}}</span><span class=nt>&lt;/strong&gt;</span>
+    <span class=nt>&lt;/p&gt;</span>
+    <span class=nt>&lt;p&gt;&lt;button</span> <span class=na>v-on:click=</span><span class=s>"toggle"</span><span class=nt>&gt;</span>Toggle<span class=nt>&lt;/button&gt;&lt;/p&gt;</span>
+  <span class=nt>&lt;/div&gt;</span>
+<span class=nt>&lt;/</span><span class=k>template</span><span class=nt>&gt;</span>
+
+<span class=nt>&lt;</span><span class=k>script</span><span class=nt>&gt;</span>
+<span class=k>import</span> <span class=p>{</span> <span class=nx>useAwesomeness</span> <span class=p>}</span> <span class=k>from</span> <span class=dl>"</span><span class=s2>./useAwesomeness</span><span class=dl>"</span><span class=p>;</span>
+
+<span class=k>export</span> <span class=k>default</span> <span class=p>{</span>
+  <span class=nx>setup</span><span class=p>()</span> <span class=p>{</span>
+    <span class=k>return</span> <span class=nx>useAwesomeness</span><span class=p>();</span>
+  <span class=p>}</span>
+<span class=p>};</span>
+</code></pre></div>
+<p>If you are not in a greenfield project and need to synchronize your custom store with Vuex, you need to write a synchronization plugin, that changes your reactive objects on every store mutation and commits new values to the store on every value change, using the <code>watch</code> function from the composition API. There is a danger to trigger an endless loop, so you need to keep track where a change is coming from.<br>
+This is how a Vuex plugin could look like:<br>
+</p>
+<div class=highlight><pre class="highlight javascript"><code><span class=k>import</span> <span class=p>{</span> <span class=nx>watch</span> <span class=p>}</span> <span class=k>from</span> <span class=dl>"</span><span class=s2>@vue/composition-api</span><span class=dl>"</span><span class=p>;</span>
+<span class=k>import</span> <span class=p>{</span> <span class=nx>useRef</span> <span class=p>}</span> <span class=k>from</span> <span class=dl>"</span><span class=s2>./components/composition/useRef</span><span class=dl>"</span><span class=p>;</span>
+
+<span class=k>export</span> <span class=kd>function</span> <span class=nx>synchronizeAwesomeness</span><span class=p>(</span><span class=nx>store</span><span class=p>)</span> <span class=p>{</span>
+  <span class=kd>const</span> <span class=p>{</span> <span class=nx>awesomeness</span><span class=p>,</span> <span class=nx>toggle</span> <span class=p>}</span> <span class=o>=</span> <span class=nx>useRef</span><span class=p>();</span>
+  <span class=kd>let</span> <span class=nx>inWatcher</span> <span class=o>=</span> <span class=kc>false</span><span class=p>;</span>
+
+  <span class=nx>store</span><span class=p>.</span><span class=nx>subscribe</span><span class=p>(</span><span class=nx>mutation</span> <span class=o>=&gt;</span> <span class=p>{</span>
+    <span class=k>if</span> <span class=p>(</span><span class=nx>mutation</span><span class=p>.</span><span class=nx>type</span> <span class=o>===</span> <span class=dl>"</span><span class=s2>toggleAwesomeness</span><span class=dl>"</span> <span class=o>&amp;&amp;</span> <span class=o>!</span><span class=nx>inWatcher</span><span class=p>)</span> <span class=p>{</span>
+      <span class=nx>toggle</span><span class=p>();</span>
+    <span class=p>}</span>
+  <span class=p>});</span>
+
+  <span class=nx>watch</span><span class=p>(</span><span class=nx>awesomeness</span><span class=p>,</span> <span class=nx>newAwesomness</span> <span class=o>=&gt;</span> <span class=p>{</span>
+    <span class=k>if</span> <span class=p>(</span><span class=nx>newAwesomness</span> <span class=o>!==</span> <span class=nx>store</span><span class=p>.</span><span class=nx>state</span><span class=p>.</span><span class=nx>awesomeness</span><span class=p>)</span> <span class=p>{</span>
+      <span class=nx>inWatcher</span> <span class=o>=</span> <span class=kc>true</span><span class=p>;</span>
+      <span class=nx>store</span><span class=p>.</span><span class=nx>commit</span><span class=p>(</span><span class=dl>"</span><span class=s2>toggleAwesomeness</span><span class=dl>"</span><span class=p>);</span>
+      <span class=nx>inWatcher</span> <span class=o>=</span> <span class=kc>false</span><span class=p>;</span>
+    <span class=p>}</span>
+  <span class=p>});</span>
+<span class=p>}</span>
+</code></pre></div>
+<h2>
+ <a name=conclusion href=#conclusion class=anchor>
+ </a>
+ Conclusion
+</h2>
+<p>Using <code>provide</code> and <code>inject</code> looks like the most promising migration path - your code stays functional, your component is independent from the root component and you can mock the store in the unit tests. You can gradually migrate your existing components to the composition API or create new<br>
+components with the composition API. </p>
+<p>If you encapsulate the usage of Vuex behind a function, not using <code>inject</code> directly in your component, (see <a href=https://github.com/gbirke/vuex-composition-doodle>example repository</a>), you can replace Vuex with a pure composition API state management solution when all your components use the function.</p>
+<p>I think the synchronization layer solution is too clever and too error-prone and adds a maintenance burden to all future state changes.</p>
+ </div>
+ </div>
+ <section id=comments data-follow-button-container=true data-updated-at="2021-08-28 08:47:12 UTC" class="text-padding mb-4 border-t-1 border-0 border-solid border-base-10">
+ <header class="relative flex justify-between items-center mb-6">
+ <h2 class=crayons-subtitle-1>Discussion <span class=js-comments-count data-comments-count=1>(1)</span></h2>
+ <div id=comment-subscription class=print-hidden><div class=static><div role=presentation class=crayons-btn-group><button class="crayons-btn crayons-btn--outlined" type=button>Subscribe</button></div></div>
+ 
+ </div>
+ </header>
+ <div id=comments-container data-testid=comments-container data-commentable-id=482585 data-commentable-type=Article data-has-recent-comment-activity=false>
+ <div id=response-templates-data class="hidden sf-hidden"></div>
+<form class="comment-form print-hidden" id=new_comment action=/comments accept-charset=UTF-8 method=post>
+ 
+ 
+ 
+ 
+ <span class="crayons-avatar m:crayons-avatar--l mr-2 shrink-0">
+ <img src="data:image/webp;base64,UklGRloFAABXRUJQVlA4TE4FAAAv/8A/AIWfWnvzbNu2TZUqNSsR4zAT4zCVcAiHAEgbAGHgatV13fexWc6fu2vsEf2fAPnz/5////z/5/8////PZsV4M0CvURgu/6WI6iWG6MthOUbv21pLUsMFZrlu+3Fxsn9oOaLZLrDlCO7J3m2lDyfZ9ppgo5A20i9m+2GZ9O62XKB60rt5mH6Vu5NsazIdgtLo1/9SOwPcL0CmBxaTD3N3si3JBqA0+o0Ea6QlG1cinr/OnTwSQpYa/VZWAu4F47YAG/B57t4KIljp90Jq7OMyzHBGdsgMsFX0IbW7qR6Rw3QQMiPVpsC9FXRZpd8NS6QlDLJKD2ZMgrdkPVhvJygeZLFRm/fzhM4Cz6Q9m99OU2MXuWKM4WSfb5BZcC7Ws99PbO9zHqpDkD3IahPRMh6FGmGyIVbZR2bMg3O1Z2UPsozBHjnVvoa9MW/JhnF4Hxr7fMUIoEVWyMcc9fd6kCGvo7jV8dBfgi1ymo7IHmSxr9lM1dTUDJq32GE6aDFVNVVTNVVTNVVTNVXptRogMwbYwkBL+BzIb4XWxj62hGFyR2Syy1ktproHeJh8mIgitz5nsVG4heLsIzfELLXI8nEiqAwseJJg836esFihB8rXKdDY1bZnWWGfMyO2BNjS14li6+Nu+iRkMlA1dkR2068T1D4/9FEqZ8A3RJBawCvk86z08ZRHCdYAGyxgxaN5AhCzR2nxgGcEsDJwwr7P3gWpsctZrU/1jGyQ78O7iB0e3ANIDLDaBNjbLOxjg3VZoQcyJgAvg+wBlj6s3s/TdALsZQyNXc6lS+1kYIVMAF5Gbe8jjy5keqDYDNjLiNU+Z0vWYTXAljADuE30AmSyy1nQgS3gh+oM2E3WHIUOM5yRpcNwBrhAZgA3oQeZMUywBfxQ/YFMD5Y5sHuEeYnVAFvCD6sBtmRTgEd4uyQHnMV+YAv4bjIF9gxeoXoysP4wtADrJOARvERsjZyq/0D2aMYc2CP8ohJwZvzDKvvYYHOAZ7RLkBoDxf6BPeAbZA7sGbxE9Yhs+H9AC7DaJOARvEawRE6oiGjxIDMmwd6oeIAZIoKFfTyhk4BHeLsIjYFqIqpHZINMgj2D1wh2D24mYqlFis0C7sJgu6oycMLECr2bzJgFuwlb9Krs0QzBEjlVZwE3WVLU5BqcDFRVPfrIFTILdg8uiOo1gi3AHUitz73YNOA2IioqqqIqKldb7SMbUOjdbAnTYDe6MzLZ42TGGvADMg14JbUzsujZRy42D/ZKgtX7uWf2uWfMA97JCgOt0rvZYPNgL5Uau9xPD+wm84CX0iMSrjNh7yRYLiEzJgJ95Cn6Dlb80hM2E0uX89CXQGq8YoNMhG2B3eQdxA4fT1abCEstsOE1Ksc5M2ZioffXt1BkH89TdRoUlR4s9hJiaBy3QibBgIXez5Ywym4n2C4o9m2GznLQIwdkGIaPszqMLeHLeK6/90Z6qNqoYx0PHYVMDvJD9cuc9J+kh9nSKCd9MFuyUYZzFBfIp3XHyNVk1IUXCLZhZR7ibAlvYmUQG2xavEJeRJFG7SazwgPasz1OFBvHlA/ye5ItmfSsfJwgjzmg38ObtAzptfICahtHFMicsBVIX2p8nCA1xjbVOeGZIUFbXkBQQ2zJZEboW4JENZ18ntrKPrJAJoQ8q5rELTc+ThQbe8gKmQ2SflZAZaTmk3weVvJfZKvQuSDJcy0wk8GWlkZexKtEzcrhdHe2LUE+GXUbvS61JAVUxitQlu3qpNeIKJDruq01mck3K8abGkwuhhkuNrmhwQAzyJ////z/5/8////5/39IAw==" width=32 height=32 alt=pic class="crayons-avatar__image overflow-hidden" id=comment-primary-user-profile--avatar loading=lazy>
+ </span>
+ <div class=comment-form__inner>
+ <div class=comment-form__field>
+ <textarea placeholder="Add to the discussion" id=text-area required class="crayons-textfield comment-textarea crayons-textfield--ghost" aria-label="Add a comment to the discussion" name=comment[body_markdown]></textarea>
+ <div class="comment-form__toolbar sf-hidden">
+ 
+ 
+ 
+ </div>
+ </div>
+ <div class="response-templates-container crayons-card crayons-card--secondary p-4 mb-4 comment-form__templates fs-base hidden sf-hidden">
+ 
+ 
+ 
+ 
+ 
+ 
+ </div>
+ <div class="comment-form__preview text-styles text-styles--secondary sf-hidden" id=preview-div></div>
+ <div class="comment-form__buttons mb-4 sf-hidden">
+ 
+ 
+ 
+ </div>
+ </div>
+ <div class=code-of-conduct id=toggle-code-of-conduct-checkbox></div>
+</form>
+ <div class=comments id=comment-trees-container>
+ <details class="comment-wrapper js-comment-wrapper comment-wrapper--deep-0 root" open>
+ <summary>
+ <span class="m:mx-1 inline-block align-middle">
+ <svg xmlns=http://www.w3.org/2000/svg width=24 height=24 viewBox="0 0 24 24" role=img aria-labelledby=af31t5h8w9er77ha9rryz5ha2vycw3ro class="crayons-icon expanded"><title id=af31t5h8w9er77ha9rryz5ha2vycw3ro>Collapse</title>
+ <path d="M12 10.677L8 6.935 9 6l3 2.807L15 6l1 .935-4 3.742zm0 4.517L9 18l-1-.935 4-3.742 4 3.742-1 .934-3-2.805z"></path>
+</svg>
+ <svg xmlns=http://www.w3.org/2000/svg width=24 height=24 viewBox="0 0 24 24" role=img aria-labelledby=ajo95bd6jd2cei01gv0xdms1v2guovf4 class="crayons-icon collapsed"><title id=ajo95bd6jd2cei01gv0xdms1v2guovf4>Expand</title>
+ <path d="M12 18l-4-3.771 1-.943 3 2.829 3-2.829 1 .943L12 18zm0-10.115l-3 2.829-1-.943L12 6l4 3.771-1 .942-3-2.828z"></path>
+</svg>
+ </span>
+ <span class="js-collapse-comment-content inline-block align-middle"></span>
+ </summary>
+ <div id=comment-node-672481 class="comment single-comment-node root comment--deep-0" data-comment-id=672481 data-path=/chiborg/integrating-vuex-with-the-vue-composition-api-4da9/comments/1c6kh data-comment-author-id=585770 data-content-user-id=585770>
+ 
+<div class=comment__inner>
+ <a href=https://dev.to/omersoncruz class="shrink-0 crayons-avatar m:crayons-avatar--l mt-4 m:mt-3">
+ <img class=crayons-avatar__image width=32 height=32 src="data:image/webp;base64,UklGRoQAAABXRUJQVlA4THgAAAAvMUAMAD+gpm0Dhj/bvrs01LZtw/x/q0v6lEVt2yjQ/sveC1QU8x9ITVZ3EdBdAvTO/4FRbdtKfpr/E/wERgC4AfCx3/4LdxlF9H8CxIWGmKvnNZwb/EYiAP2sEgAGHdcs74yx4y3JwE4OpiuSSqx6V+KiKOQ6Zw4=" alt="omersoncruz profile image" loading=lazy>
+ </a>
+ <div class="inner-comment comment__details">
+ <div class="comment__content crayons-card">
+ 
+ <div class="comment__header m:pl-1">
+ <a href=https://dev.to/omersoncruz class="crayons-link crayons-link--secondary flex items-center fw-medium m:hidden">
+ <span class=js-comment-username>omerson-cruz</span>
+ </a>
+ <div class="profile-preview-card relative mb-4 s:mb-0 fw-medium hidden m:block">
+ <button id=comment-profile-preview-trigger-672481 aria-controls=comment-profile-preview-content-672481 class="profile-preview-card__trigger px-2 crayons-btn crayons-btn--ghost" aria-label="omerson-cruz profile details" aria-expanded=false aria-haspopup=true data-initialized=true>
+ omerson-cruz
+ </button>
+ <div id=comment-profile-preview-content-672481 class="profile-preview-card__content crayons-dropdown" style="--card-color:#160533;border-top:var(--su-7) solid var(--card-color)" data-testid=profile-preview-card data-repositioning-dropdown=true>
+ <div class="gap-4 grid">
+ <div class=-mt-4>
+ <a href=https://dev.to/omersoncruz class=flex>
+ <span class="crayons-avatar crayons-avatar--xl mr-2 shrink-0">
+ <img src="data:image/webp;base64,UklGRoAAAABXRUJQVlA4THQAAAAvWUAWAB+goG0bhj/bvl0kQgLi/zsjJMkEBW3bMPwJFsPdgTD/gb+Bb6wENpFtO3ngIZvAAhLidUj1EIEFTOCAmp9DRWwi+j8BdJE7+HptwnP9x7UAdh8BIDNExOZxYfsphFjYWpPvIYRIKeKjMjNzEuO6Ag==" class=crayons-avatar__image alt loading=lazy>
+ </span>
+ <span class="crayons-link crayons-subtitle-2 mt-5">omerson-cruz</span>
+ </a>
+</div>
+<div class=print-hidden>
+ <button name=button type=button data-info='{"id":585770,"className":"User","style":""}' class="crayons-btn follow-action-button whitespace-nowrap w-100 follow-user" data-fetched=fetched>Follow</button>
+</div>
+ <div class=user-metadata-details>
+ <ul class=user-metadata-details-inner>
+ <li>
+ <div class=key>
+ Joined
+ </div>
+ <div class=value>
+ <time datetime=2021-02-24T21:51:37Z class=date title="Mittwoch, 24. Februar 2021, 22:51:37">24. Feb. 2021</time>
+ </div>
+ </li>
+ </ul>
+ </div>
+ </div>
+</div>
+ </div>
+ <span class="color-base-30 px-2 m:pl-0" role=presentation>•</span>
+<a href=https://dev.to/omersoncruz/comment/1c6kh class="comment-date crayons-link crayons-link--secondary fs-s">
+ <time datetime=2021-03-06T06:19:36Z title="Samstag, 6. März 2021, 07:19:36">
+ Mar 6
+ </time>
+</a>
+ <div class=comment__dropdown>
+ <button id=comment-dropdown-trigger-672481 aria-controls=comment-dropdown-672481 aria-expanded=false class="dropbtn comment__dropdown-trigger crayons-btn crayons-btn--s crayons-btn--ghost crayons-btn--icon" aria-label="Toggle dropdown menu" aria-haspopup=true data-initialized=true>
+ <svg xmlns=http://www.w3.org/2000/svg width=24 height=24 viewBox="0 0 24 24" role=img aria-labelledby=a15samafo0qqvxav5bpczqv6579uibe1 class="crayons-icon pointer-events-none"><title id=a15samafo0qqvxav5bpczqv6579uibe1>Dropdown menu</title>
+ <path fill-rule=evenodd clip-rule=evenodd d="M8.25 12a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zm5.25 0a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zm3.75 1.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path>
+</svg>
+ </button>
+ <ul id=comment-dropdown-672481 class="crayons-dropdown p-1 right-1 s:right-0 s:left-auto fs-base dropdown">
+ <li><a href=https://dev.to/omersoncruz/comment/1c6kh class="crayons-link crayons-link--block permalink-copybtn" aria-label="Copy link to omerson-cruz's comment" data-no-instant>Copy link</a></li>
+ <li class="comment-actions hidden" data-user-id=585770 data-action=settings-button data-path=https://dev.to/omersoncruz/comment/1c6kh/settings aria-label="Go to omerson-cruz's comment settings"></li>
+ <li class="comment-actions hidden" data-action=hide-button data-commentable-user-id=1544 data-user-id=585770>
+ <a href=# class="crayons-link crayons-link--block hide-comment" data-hide-type=hide data-comment-id=672481 aria-label="Hide omerson-cruz's comment">
+ Hide
+ </a>
+ </li>
+ <li class="mod-actions hidden mod-actions-comment-button" data-path=https://dev.to/omersoncruz/comment/1c6kh/mod aria-label="Moderate omerson-cruz's comment"></li>
+ <li class=report-abuse-link-wrapper data-path="/report-abuse?url=https://dev.to/omersoncruz/comment/1c6kh" aria-label="Report omerson-cruz's comment as abusive or violating our code of conduct and/or terms and conditions"><a href="https://dev.to/report-abuse?url=https://dev.to/omersoncruz/comment/1c6kh" class="crayons-link crayons-link--block">Report abuse</a></li>
+ <li class=current-user-actions></li>
+ </ul>
+ </div>
+</div>
+ <div class="comment__body text-styles text-styles--secondary body">
+ <p>great article. Thanks for this guide as I wanted to start moving our legacy Vue 2 application to utilizing the new composition API</p>
+ </div>
+ </div>
+ <footer class="comment__footer print-hidden">
+ <button class="crayons-btn crayons-btn--ghost crayons-btn--icon-left crayons-btn--s mr-1 reaction-like inline-flex reaction-button" id=button-for-comment-672481 data-comment-id=672481 title=heart>
+ <svg xmlns=http://www.w3.org/2000/svg width=24 height=24 role=img aria-labelledby=aa4zkey5dptf7q2itx26q5s9r2ohfayq class="crayons-icon reaction-icon not-reacted"><title id=aa4zkey5dptf7q2itx26q5s9r2ohfayq>Like comment:</title><path d="M18.884 12.595l.01.011L12 19.5l-6.894-6.894.01-.01A4.875 4.875 0 0112 5.73a4.875 4.875 0 016.884 6.865zM6.431 7.037a3.375 3.375 0 000 4.773L12 17.38l5.569-5.569a3.375 3.375 0 10-4.773-4.773L9.613 10.22l-1.06-1.062 2.371-2.372a3.375 3.375 0 00-4.492.25v.001z"></path></svg>
+ <svg xmlns=http://www.w3.org/2000/svg width=24 height=24 viewBox="0 0 24 24" role=img aria-labelledby=a8u9tsx10i94tt3uu0luaj51azups1sx class="crayons-icon reaction-icon--like reaction-icon reacted"><title id=a8u9tsx10i94tt3uu0luaj51azups1sx>Like comment: </title>
+ <path d="M5.116 12.595a4.875 4.875 0 015.56-7.68h-.002L7.493 8.098l1.06 1.061 3.181-3.182a4.875 4.875 0 016.895 6.894L12 19.5l-6.894-6.894.01-.01z"></path>
+</svg>
+ <span class=reactions-count>
+ 1
+ </span>
+ <span class="reactions-label hidden m:inline-block">
+ &nbsp;like
+ </span>
+ </button>
+ <a class="actions crayons-btn crayons-btn--ghost crayons-btn--s crayons-btn--icon-left toggle-reply-form mr-1 inline-flex" href=#/chiborg/integrating-vuex-with-the-vue-composition-api-4da9/comments/new/1c6kh data-comment-id=672481 data-path=/chiborg/integrating-vuex-with-the-vue-composition-api-4da9/comments/1c6kh rel=nofollow>
+ <svg xmlns=http://www.w3.org/2000/svg width=24 height=24 role=img aria-labelledby=akfihh52xnzyoylia056cituj7wt7wwb class="crayons-icon reaction-icon not-reacted"><title id=akfihh52xnzyoylia056cituj7wt7wwb>Comment button</title><path d="M10.5 5h3a6 6 0 110 12v2.625c-3.75-1.5-9-3.75-9-8.625a6 6 0 016-6zM12 15.5h1.5a4.501 4.501 0 001.722-8.657A4.5 4.5 0 0013.5 6.5h-3A4.5 4.5 0 006 11c0 2.707 1.846 4.475 6 6.36V15.5z"></path></svg>
+ <span class="hidden m:inline-block">Reply</span>
+ </a>
+</footer>
+ </div>
+</div>
+ </div>
+ </details>
+ </div>
+ </div>
+ <div class=align-center>
+ <nav class="fs-s align-center block" aria-label="Conduct controls">
+ <a href=https://dev.to/code-of-conduct class="crayons-link crayons-link--secondary">Code of Conduct</a>
+ <span class="opacity-25 px-2" role=presentation>•</span>
+ <a href=https://dev.to/report-abuse class="crayons-link crayons-link--secondary">Report abuse</a>
+</nav>
+</div>
+ </section>
+ </article>
+ <section class="crayons-card crayons-card--secondary text-padding mb-4 print-hidden" id=bottom-content-read-next>
+ <h2 class=crayons-subtitle-1>Read next</h2>
+ <a href=https://dev.to/chaoocharles/javascript-form-validation-and-css-neumorphism-video-tutorial-4chb data-preload-image=https://res.cloudinary.com/practicaldev/image/fetch/s--8EmriAFy--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/fa8d5qmtjpwm6ebqzeyn.png class="crayons-link mt-6 block">
+ <div class="flex items-center">
+ <span class="crayons-avatar crayons-avatar--xl m:crayons-avatar--2xl mr-4 shrink-0">
+ <img loading=lazy alt="chaoocharles profile image" class=crayons-avatar__image width=100 height=100 src="data:image/webp;base64,UklGRpgDAABXRUJQVlA4IIwDAABQFwCdASpkAGQAPrlSo00nJK8oqnIK6eAXCWUAy2DpVLFGh0k7uE6wH/tpVHtWYHKzwt2fBxWwuBqtwQ672Sln2c9P385hxRyEXVcjeI9qR61Z6d/e9ij9jvzy7NewvqaxHywuMf+QSlRUL9i2T8m9Vb1uZQ0/hfW76U/gs6wN4kg5KyWwcvoWm3uwFj+ANezLFZ012WeuZ9z9yc3CxAi4uk9MkxNe33HQaqJi7x5F02D1YJfto6Io5WiZgsFEn1/w1NwA/u/YPnt5mXrY8Mb2tjkTBUxGre9YTxOs3OMzoutVsiayWB52PVuOA2uOO8eL/Y92Vw78eq/qRhB/r91e1zRjUeShoWC2xyP+x1llJHjKSHHph6AvAnWXiVOu1Li/+aCrhqgy7sazvaQXPmliH29MOftAfSWBStMRd2Ka5lri+v0ZoSS4A1fpZAlhY/Tpcin+viGoLI9oNbwNvxLovoLVTUSFaMgJDQzFqb8nlApArkycvEQXZuKi+/vtylaYRoM3fMfGFER+63/+pE8Xg55TsLZ11443dVpXvrwId760Ybhphp2iQ+in+bDFURxb0OH9fJPC4Pedtfk02mSepX3eJ2ZGiXq2LibHK2RgefQZsf9lmaGjyITm5RVZR94ZPW4co/oMbRKOPGLTuLz1qgS5fLFzslCYbwNFZdKt0APt/R3s7EuDo/ICzYAO3lxTX0cbTCCrzdxQ4C5CSQ4S3CrflJ4sJ2fTiWTnYjuzz+9DMKOtY3KTKWbzVIvwUoG3N2Nke/fQljjCZFiGPBD3pWfCnJgVqAIa2slMEDpO7h/tC/4PZebRZ7MA/Vykcai0V+k4ssj1g57lFNTTPgBAuLlkv+Dhv0u1bTQ6tKk9k0bcuoVo+3pIOi60IpOxaSDmhO6Daei9yd8MqrDIBlwNkaVEYakCanzKGKHz2lRim5Fk0WTpTCRiqaE38g+SPIZXZefGCqR2RDf9E98A1mlUPGa3Kw5L59Xs4mRIgwG5g7FqEvmSKyJ0go0+wgi73IurSrUVkRbUeQQ7KS/gBTf4+QxhlK3TFSN/AGuI0syWmz2G3NMtJ6U/N2dIIIBPGBLrnM7cxzYueZMG8D2HWXjvqLidWePgy1wjpbOQuXelL53ZcjvYzqcx5Xq9327MlzavrpWgca8Egwl8vLUcJJ/51YWEIOJE7nzSl63seKfqA87xPjsbpnvIIMYAAA==">
+ </span>
+ <div>
+ <h3 class="fs-xl mb-0 lh-tight">JavaScript Form Validation and CSS Neumorphism (Video Tutorial)</h3>
+ <p class="opacity-75 pt-1">
+ Chaoo Charles - <time datetime=2021-08-18T08:25:32Z>Aug 18</time>
+ </p>
+ </div>
+ </div>
+ </a>
+ <a href=https://dev.to/utitofon_udoekong/fixing-the-core-js-error-2hcg data-preload-image=https://res.cloudinary.com/practicaldev/image/fetch/s--iofkdKMy--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ebufg8n0kz5xzvi8msp9.png class="crayons-link mt-6 block">
+ <div class="flex items-center">
+ <span class="crayons-avatar crayons-avatar--xl m:crayons-avatar--2xl mr-4 shrink-0">
+ <img loading=lazy alt="utitofon_udoekong profile image" class=crayons-avatar__image width=100 height=100 src="data:image/webp;base64,UklGRrwAAABXRUJQVlA4TLAAAAAvY8AYAEegKAAZqH9a/NhZQ23bSMj+ax58DS1Jbds2zP/feuzJ/AcT3QUQKTvn/ynk7rkKbmPbVpXv8f9I7hK6FEABXoGmDrnfwu+e/yCCF0X0fwKcv2ZzZLxibifGh7bf8aq/qYQPkKu+9eAhqV1HvxHbfo0EHYwTffIBx/jYLltu9BqV0IPmBil9LBjBF9pu04Wepw76UFigC0/RG2BwLOjBw7IrlvSMubiELvyyAQ==">
+ </span>
+ <div>
+ <h3 class="fs-xl mb-0 lh-tight">FIXING THE CORE-JS ERROR</h3>
+ <p class="opacity-75 pt-1">
+ Utitofon Samuel - <time datetime=2021-07-30T21:33:53Z>Jul 30</time>
+ </p>
+ </div>
+ </div>
+ </a>
+ <a href=https://dev.to/alexdevero/4-important-differences-between-regular-and-arrow-functions-59f9 data-preload-image=https://res.cloudinary.com/practicaldev/image/fetch/s--mNRbluJi--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/84mirkgb9ewbsrcjle71.jpg class="crayons-link mt-6 block">
+ <div class="flex items-center">
+ <span class="crayons-avatar crayons-avatar--xl m:crayons-avatar--2xl mr-4 shrink-0">
+ <img loading=lazy alt="alexdevero profile image" class=crayons-avatar__image width=100 height=100 src=data:image/webp;base64,UklGRoYCAABXRUJQVlA4IHoCAABQEwCdASpkAGQAPsVYp02npSQjJpTb4PAYiWkACC2nZZwlIdbgL3QAaJL7N8cQ6UzJIvyY/V2jWLNshuOw7USFImIEpTnSFu45GOBnb8L2On6sNIidhcwiv9TX40ZDHCjlIZd5W1v3KdSf1SvHeITmy8yWYqPMSaaEDRUGJtvWsX34ApTwfm/aD1lOMjY8tM9xbtIWNNQg/oq1+37+uER1iy+AAP7rYo1SnBZn4vEtmG4vkGlO1ScmIF680amwl56KAs19khx1OfZE9PTDxaCmrSsu6gAHLoU40/W/NCwTh9NlSQwnnP/HMSoTpN29Lamy4Y0EftuE7Lqpu9r9nXIVClkk5fxwc6GiNNX4H9N9Ght4hOnxMtcP0fYAidOHEBhUjmC/7DLcBXlEYdbnFxmVq7TEls4uUS4kUGor4jQt11UVv2wHIEuz/KevdJ05xQLhpL0Q31iepJxZ8M9g/4wl9uTQCRxZxOnvKBKmzcW+AUnzSRPJofzHwsY4Ht7E0TUf5kBFdj0VHLRnoJVOW0AQ6NhceeAzr4742tqpt8Og7ZOL150jwm85YTsUtAF16V+LktuNCNfOmUA+GBqu3CqTWkfgTK+a+wpR7gUtN596QJ9YhhIZgyGZRS/RfZW836yWLNl0+jC+BNTgXN9XnPjNLivZNrFpFtJCM1jOBJj3TKI+WghTqnWWRSgKm7NqY5QqxGnS2DzVfCB7cxAUbMb6s9kPPg4vV8cKz8nEA1+1yp5NJ0e5/d0T9e5wRQcP3GZDLymG2hG+iDTGepMdNlRdKwJ9d5nZS4r+nBMPCUtMuyePjp1EMSUzoCOgMuA16l4jCH7LmJYgAAAA>
+ </span>
+ <div>
+ <h3 class="fs-xl mb-0 lh-tight">4 Important Differences Between Regular And Arrow Functions</h3>
+ <p class="opacity-75 pt-1">
+ Alex Devero - <time datetime=2021-08-23T07:27:07Z>Aug 23</time>
+ </p>
+ </div>
+ </div>
+ </a>
+ <a href=https://dev.to/asayerio_techblog/catching-errors-in-react-with-error-boundaries-2b99 data-preload-image=https://res.cloudinary.com/practicaldev/image/fetch/s--5jP1GxSo--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/s3nr61s4va22v2j2n3z2.png class="crayons-link mt-6 block">
+ <div class="flex items-center">
+ <span class="crayons-avatar crayons-avatar--xl m:crayons-avatar--2xl mr-4 shrink-0">
+ <img loading=lazy alt="asayerio_techblog profile image" class=crayons-avatar__image width=100 height=100 src="data:image/webp;base64,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">
+ </span>
+ <div>
+ <h3 class="fs-xl mb-0 lh-tight">Catching Errors in React with Error Boundaries</h3>
+ <p class="opacity-75 pt-1">
+ OpenReplay Tech Blog - <time datetime=2021-08-08T10:25:05Z>Aug 8</time>
+ </p>
+ </div>
+ </div>
+ </a>
+ </section>
+ </div>
+ </main>
+ <aside class=crayons-layout__sidebar-right aria-label="Author details">
+ <div class="crayons-article-sticky grid gap-4 break-word" id=article-show-primary-sticky-nav>
+ <div class="crayons-card crayons-card--secondary branded-7 p-4 pt-0 gap-4 grid" style=border-top-color:#280331>
+ <div class=-mt-4>
+ <a href=https://dev.to/chiborg class=flex>
+ <span class="crayons-avatar crayons-avatar--xl mr-2 shrink-0">
+ <img src="data:image/webp;base64,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" class=crayons-avatar__image alt loading=lazy>
+ </span>
+ <span class="crayons-link crayons-subtitle-2 mt-5">Gabriel Birke</span>
+ </a>
+</div>
+<div class=print-hidden>
+ <button name=button type=button data-info='{"id":1544,"className":"User","style":""}' class="crayons-btn follow-action-button whitespace-nowrap w-100 follow-user" data-fetched=fetched>Follow</button>
+</div>
+ <div class=color-base-70>
+ Software crafter, storytelling gamer, empathetic communicator
+ </div>
+ <div class=user-metadata-details>
+ <ul class=user-metadata-details-inner>
+ <li>
+ <div class=key>
+ Location
+ </div>
+ <div class=value>
+ Berlin, Germany
+ </div>
+ </li>
+ <li>
+ <div class=key>
+ work
+ </div>
+ <div class=value>
+ Tech Lead at Wikimedia Deutschland
+ </div>
+ </li>
+ <li>
+ <div class=key>
+ Joined
+ </div>
+ <div class=value>
+ <time datetime=2017-01-09T11:37:19Z class=date>9. Jan. 2017</time>
+ </div>
+ </li>
+ </ul>
+ </div>
+ </div>
+ <div class="crayons-card crayons-card--secondary">
+ <header class=crayons-card__header>
+ <h3 class=crayons-subtitle-2>
+ Trending on <a href=https://dev.to/>DEV Community</a>
+ <svg xmlns=http://www.w3.org/2000/svg viewBox="0 0 44 44" width=24 height=24 role=img aria-labelledby=amtns39ul687iej8e82yrpbdhf8cunuk class="crayons-icon crayons-icon--default"><title id=amtns39ul687iej8e82yrpbdhf8cunuk>Hot</title>
+ <g class=nc-icon-wrapper>
+ <path fill=#F4900C d="M39 23a16.96 16.96 0 00-1.04-5.868c-.46 5.389-3.333 8.157-6.335 6.868-2.812-1.208-.917-5.917-.777-8.164.236-3.809-.012-8.169-6.931-11.794 2.875 5.5.333 8.917-2.333 9.125-2.958.231-5.667-2.542-4.667-7.042-3.238 2.386-3.332 6.402-2.333 9 1.042 2.708-.042 4.958-2.583 5.208-2.84.28-4.418-3.041-2.963-8.333A16.936 16.936 0 005 23c0 9.389 7.611 17 17 17s17-7.611 17-17z"></path>
+ <path fill=#FFCC4D d="M32.394 27.999c.148 3.084-2.561 4.293-4.019 3.709-2.106-.843-1.541-2.291-2.083-5.291s-2.625-5.083-5.708-6c2.25 6.333-1.247 8.667-3.08 9.084-1.872.426-3.753-.001-3.968-4.007A11.964 11.964 0 0010 34c0 .368.023.73.055 1.09C13.125 38.124 17.342 40 22 40s8.875-1.876 11.945-4.91c.032-.36.055-.722.055-1.09 0-2.187-.584-4.236-1.606-6.001z"></path>
+ </g>
+</svg>
+ </h3>
+ </header>
+ <div>
+ <a class="crayons-link crayons-link--contentful flex" href=https://dev.to/bertilmuth/have-you-built-a-modular-monolith-4ll4>
+ <span class="crayons-avatar mr-2 shrink-0">
+ <img src="data:image/jpeg;base64,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" class=crayons-avatar__image loading=lazy alt="Bertil Muth profile image">
+ </span>
+ <div>
+ Have you built a modular monolith?
+ <div class="crayons-link__secondary -ml-1">
+ <span class=crayons-tag><span class=crayons-tag__prefix>#</span>discuss</span>
+ </div>
+ </div>
+ </a>
+ <a class="crayons-link crayons-link--contentful flex" href=https://dev.to/allthecode/i-bet-you-don-t-keep-a-developer-journal-3-reasons-you-should-4kn3>
+ <span class="crayons-avatar mr-2 shrink-0">
+ <img src="data:image/webp;base64,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" class=crayons-avatar__image loading=lazy alt="Simon Barker profile image">
+ </span>
+ <div>
+ I Bet You Don't Keep A Developer Journal: 3 Reasons You Should
+ <div class="crayons-link__secondary -ml-1">
+ <span class=crayons-tag><span class=crayons-tag__prefix>#</span>webdev</span>
+ <span class=crayons-tag><span class=crayons-tag__prefix>#</span>career</span>
+ <span class=crayons-tag><span class=crayons-tag__prefix>#</span>codenewbie</span>
+ <span class=crayons-tag><span class=crayons-tag__prefix>#</span>beginners</span>
+ </div>
+ </div>
+ </a>
+ <a class="crayons-link crayons-link--contentful flex" href=https://dev.to/lionelrowe/what-makes-a-package-useless-or-when-should-i-reinvent-the-wheel-4j5n>
+ <span class="crayons-avatar mr-2 shrink-0">
+ <img src="data:image/webp;base64,UklGRlAEAABXRUJQVlA4IEQEAABQFQCdASpaAFoAPp1GnUqlo6KhqPTbELATiUBcpW8u55Xd/gOynIF43fZ5Mb9G3P52bTlIGQ1YNeboBXu3bPn/2jNmeIk4kosLI2gmtAbeJkYiaN57JCDuyLzrgLhsyqu1nZyNu1JtA9ukcpYLExx/wOfygrzWSn8pKbiVhBwwpaaFwrNhDCKJkZASUYhIoSYHTXn7Om71YkjW7GZdVeuR0Twvvg5pup4wDlA2yHMmS6ISwAD+7HuNq/ln/P72Gy4JlbBVLFLl/+W15FROoMXt4yQPw620FeNCE+tu56gbX9FGFtwQAfqJMyuPw/tNyo9JM7zDG30F7d5wqknAbBNCwSbTauwAgbrG5w4pojz9YLXN6fTQEHt6pZXARCA69mOdk5AvEwEP3GsnI5gEBPHgQdRDJvHGp/SonSxe2f7ToD5heHjjLvBt5YMZc1SgMDNvmpXrggkfJ5X/ZVKMezme+hRU1zGENgqL21+mkXigywaOd3osOSi9ZpkKu3x31vmu/v3aUgoioEDyMqPgkgcrFBmCr+LfwsoQ4rWDZbXbHADix4dekbSgXQXyI0Yv5+FdKxt/G9oPfniL5m+KjptJ6hSeHchSNEW3vUEbtDytsqnfFBJLhk+aQT5El5mwI7a6LBiyIhOmK1fn70489/sFl9wH6we5yS/dJ/3MZ0ojGQPpMSTpqSX+dHM/21Z/BJlkhzQVDFZb3oBrtWZMRMlHi4UgCX+hzyI4qb9ZLctfqhttkN/77KLjvnUuMJqgGgMW0RFSAkcGeQesnl44YIgPm/CIHoG9Ect7K4lIkLHx/9bfyMn6nPDqF0DJ0KxRIVD3gwSDCtd3pr6ZtE8SIf4JZZnhJ8tMkJ1SbYSXyUGFXgIAuz4gm8kGjLLiZHXynRA2tVfpuTVfNe/9JtWfeaR1ccrh3i2jccvtHw/i89+/xw13V1nT/DGvKvm+aQ2y+nn1VBPWvvXEXo36j44sa/OF5OTsLIerXqtNWvE7iMPU2sAp0LCn0zmQ+ear1ENEqAHS+rfM6swE+A+q7gtjTlp1l2rYUDE1ARKz/sA59TiVdTB0zEsUWdygaXTwHPvjkVOXzhDzQLTIJR55+AwtHmFjMSmGJ/Gihd6H4n+i9b8JS6IdzOXWz5l9GKQqUGMnapXdJr7nmji79W1xaBgkofNXX/H9O7eXeBXrFbYHjs+xvdxwMDA7iHFnjqoNlhHau/fU3Ofy9uYRIXUxioPiZsMnae8ojwev84TfhRK7JeygUAmtCchaZuiARlyTPiJES28oozomtUkBm/YjHKTcgpWR+PdrVnvFVmoP9sf99f+EjshA50fstZtQXwsawv/eSXGqLMSqEcIDXihJt12C6YIpkSRz+YJsfnbmD1mdzEOVH8m+RijOhQoojAc4MaI9TPly2NNIIj2RiPh6s6EGuPkq/T3DaiCoJXzT3tu+1beYqvoFEAA=" class=crayons-avatar__image loading=lazy alt="lionel-rowe profile image">
+ </span>
+ <div>
+ What makes a package useless, or "When should I reinvent the wheel"?
+ <div class="crayons-link__secondary -ml-1">
+ <span class=crayons-tag><span class=crayons-tag__prefix>#</span>javascript</span>
+ <span class=crayons-tag><span class=crayons-tag__prefix>#</span>webdev</span>
+ <span class=crayons-tag><span class=crayons-tag__prefix>#</span>npm</span>
+ </div>
+ </div>
+ </a>
+ </div>
+ </div>
+</div>
+ </aside>
+</div>
+<div class="mod-actions-menu print-hidden"></div>
+<div id=mod-actions-menu-btn-area class=print-hidden></div>
+<div data-testid=flag-user-modal-container class="flag-user-modal-container hidden sf-hidden"></div>
+<div class="fullscreen-code js-fullscreen-code"></div>
+ 
+ 
+ </div>
+</div>
+ <footer class="crayons-footer print-hidden">
+ <div id=footer-container class="crayons-layout crayons-layout--limited-m crayons-footer__container">
+ <p class="fs-s crayons-footer__description"><a href=https://dev.to/ aria-label="DEV Community Home" class=crayons-link>DEV Community</a> – A constructive and inclusive social network for software developers. With you every step of your journey.</p>
+ <div class="m:-mb-4 crayons-footer__description">
+ <p class=fs-s>Built on <a href=https://www.forem.com/ class=crayons-link target=_blank rel=noopener>Forem</a> — the <a href=https://dev.to/t/opensource target=_blank rel=noopener class=crayons-link>open source</a> software that powers <a href=https://dev.to/ target=_blank rel=noopener class=crayons-link>DEV</a> and other inclusive communities.</p>
+ <p class=fs-s>Made with love and <a href=https://dev.to/t/rails target=_blank rel=noopener class=crayons-link>Ruby on Rails</a>. DEV Community <span title=copyright>©</span> 2016 - 2021.</p>
+ <div><a href=https://www.forem.com/ target=_blank rel=noopener class="inline-block mt-4"><svg xmlns=http://www.w3.org/2000/svg width=24 height=24 viewBox="0 0 24 24" fill=none role=img aria-labelledby=ah7l5k9dncl8qixnao97hp21mte3ovm5 class="crayons-icon crayons-icon--default"><title id=ah7l5k9dncl8qixnao97hp21mte3ovm5>Forem logo</title>
+ <g clip-path=url(#clip0) fill=#1AB3A6>
+ <path d="M4.603 1.438a8.056 8.056 0 017.643 5.478 8.543 8.543 0 00-3.023 5.968H8.054C3.606 12.884 0 9.296 0 4.87V1.468a.03.03 0 01.03-.03h4.573zM23.97 6.515a.03.03 0 01.03.03v2.833c0 4.11-3.354 7.442-7.491 7.442h-2.881v5.726h-2.305V14.53l.022-1.145c.294-3.843 3.526-6.87 7.469-6.87h5.155z"></path>
+ </g>
+ <defs>
+ <clippath id=clip0>
+ <path fill=#fff d="M0 0h24v24H0z"></path>
+ </clippath>
+ </defs>
+</svg>
+</a></div>
+ </div>
+ </div>
+</footer>
+<div id=snack-zone><div class="hidden sf-hidden"></div></div>
+ <div id=global-signup-modal class="authentication-modal hidden sf-hidden">
+</div>
+ 
+ 
