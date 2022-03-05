@@ -1,0 +1,862 @@
+<!DOCTYPE html> <html style><!--
+ Page saved with SingleFile 
+ url: https://devsday.ru/blog/details/52750 
+ saved date: Sat Mar 05 2022 13:30:34 GMT+0100 (Central European Standard Time)
+--><meta charset=utf-8>
+<noscript><div><img src="https://mc.yandex.ru/watch/50453443" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<noscript>
+    <img src="//counter.rambler.ru/top100.cnt?pid=6941757" alt="Топ-100" />
+</noscript>
+<link rel=alternate type=application/rss+xml title=Подписаться href=https://devsday.ru/rss/rss.xml>
+<meta property=og:title content="Interactive Fuzzy Finding in Vim without Plugins">
+<meta property=og:type content=article>
+<meta property=og:url content=https://devsday.ru/blog/details/52750>
+<meta property=og:image content=/Content/img/logo-social.png>
+<meta property=og:site_name content=DevsDay.ru>
+<meta property=og:locale content=ru_RU>
+<meta property=og:description content="Table of Contents
+
+
+
+Overview
+The Setup
+Bonus
+Caveat
+Summary
+
+
+
+  
+  
+  Overview
+
+
+FZF is a great command-line fuzzy-finder and there is fzf. vim plugin that integrates with Vim to provide features, like :Files to fuzzy search over files and :Rg to fuzzy search over text using ripgrep. ">
+<meta name=twitter:card content=summary>
+<meta name=twitter:site content=@devsday_ru>
+<meta name=twitter:creator content=@devsday_ru>
+<meta name=twitter:image content=/Content/img/logo-social.png>
+<meta name=twitter:title content="Interactive Fuzzy Finding in Vim without Plugins">
+<meta name=twitter:description content="Table of Contents
+
+
+
+Overview
+The Setup
+Bonus
+Caveat
+Summary
+
+
+
+  
+  
+  Overview
+
+
+FZF is a great command-line fuzzy-finder and there is fzf. vim plugin that integrates with Vim to provide features, like :Files to fuzzy search over files and :Rg to fuzzy search over text using ripgrep. ">
+<meta name=description content="Table of Contents
+
+
+
+Overview
+The Setup
+Bonus
+Caveat
+Summary
+
+
+
+  
+  
+  Overview
+
+
+FZF is a great command-line fuzzy-finder and there is fzf. vim plugin that integrates with Vim to provide features, like :Files to fuzzy search over files and :Rg to fuzzy search over text using ripgrep. ">
+<meta name=viewport content="width=device-width, initial-scale=1.0">
+<meta name=keywords content=vim>
+<link rel=canonical href=https://devsday.ru/blog/details/52750>
+<link rel="shortcut icon" type=image/png href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAA3NCSVQICAjb4U/gAAABTklEQVQokWNkSJvJQApgwSnz7z/Dxx9QNi87AwsTXg3//qtLCNyYHQ7hBU3cuv7SY4geJlwW/Pn3D87+/RfBxrDh5x+GH38Yfv99xs9FyA///zN8+DEh3ibF3ZCbhWnzxYd4Nfz/z/D734PpSfLCvFCbfv/BqgHmhx9/FiU7wFUzMDCwMGP3HkyUkTHQXA3C/PLrz5I9F45cf4Jbw///DGzM3KzMEKGaFUdi+3atvoLQwMzIiOYHRoa///7COC0RNrpivA6GynBFR55/YGBiRLKBkYHhz9/lh69BhHjYWJI9jJXFBSDcu68/vX2GpoGBgYGDJW7ewYdvPqO5+D8DQ8iErQwciNBHeJqBlUmhcNGiA1e+/v4LEdt45g5L7rwLzz8wIIUYI0pq/c/A8PM3w8+/DP/+MzAyMLCzMLCzwB2D7GmEdgYOVgYOVgbcAAD6b22W5a5ANAAAAABJRU5ErkJggg==">
+<title>Interactive Fuzzy Finding in Vim without Plugins | DevsDay.ru</title>
+<style>html{font-family:sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}body{margin:0}a:focus{outline:thin dotted}a:active,a:hover{outline:0}h1{margin:.67em 0}b,strong{font-weight:bold}hr{height:0;-moz-box-sizing:content-box;box-sizing:content-box}pre{white-space:pre-wrap}img{border:0}svg:not(:root){overflow:hidden}button,input{margin:0}button{text-transform:none}button{-webkit-appearance:button}input[type="search"]{-webkit-box-sizing:content-box;-moz-box-sizing:content-box;-webkit-appearance:textfield}input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}*,*:before,*:after{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}html{font-size:62.5%;-webkit-tap-highlight-color:rgba(0,0,0,0)}body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:14px;line-height:1.428571429;color:#333;background-color:#fff}input,button{font-family:inherit}button,input{background-image:none}a{text-decoration:none}a:hover,a:focus{color:#2a6496;text-decoration:underline}a:focus{outline:thin dotted #333;outline:5px auto -webkit-focus-ring-color;outline-offset:-2px}img{vertical-align:middle}.img-responsive{display:block;height:auto;max-width:100%}hr{margin-top:20px;margin-bottom:20px;border:0;border-top:1px solid #eee}p{margin:0 0 10px}h1,h2,h3{margin-top:20px;margin-bottom:10px}ul,ol{margin-top:0;margin-bottom:10px}ul ul{margin-bottom:0}blockquote{padding:10px 20px;margin:0 0 20px;border-left:5px solid #eee}blockquote p{font-weight:300;line-height:1.25}blockquote p:last-child{margin-bottom:0}q:before,q:after,blockquote:before,blockquote:after{content:""}code,pre{font-family:Monaco,Menlo,Consolas,"Courier New",monospace}code{padding:2px 4px;font-size:90%;color:#c7254e;background-color:#f9f2f4;border-radius:4px}pre{display:block;padding:9.5px;margin:0 0 10px;font-size:13px;line-height:1.428571429;color:#333;word-break:break-all;word-wrap:break-word;background-color:#f5f5f5;border:1px solid #ccc;border-radius:4px}pre code{padding:0;font-size:inherit;color:inherit;white-space:pre-wrap;background-color:transparent;border:0}.container{padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}.container:before,.container:after{display:table;content:" "}.container:after{clear:both}.container:before,.container:after{display:table;content:" "}.container:after{clear:both}.row{margin-right:-15px;margin-left:-15px}.row:before,.row:after{display:table;content:" "}.row:after{clear:both}.row:before,.row:after{display:table;content:" "}.row:after{clear:both}.col-xs-2,.col-xs-6,.col-xs-10,.col-xs-12,.col-md-2,.col-md-3,.col-md-9,.col-md-10,.col-md-12{position:relative;min-height:1px;padding-right:15px;padding-left:15px}.col-xs-2,.col-xs-3,.col-xs-6,.col-xs-10{float:left}.col-xs-2{width:16.666666666666664%}.col-xs-3{width:25%}.col-xs-10{width:83.33333333333334%}.col-xs-12{width:100%}@media (min-width:768px){.container{max-width:750px}}@media (min-width:992px){.container{max-width:970px}.col-md-2,.col-md-3,.col-md-9,.col-md-10{float:left}.col-md-2{width:16.666666666666664%}.col-md-3{width:25%}.col-md-9{width:75%}.col-md-10{width:83.33333333333334%}.col-md-12{width:100%}}@media (min-width:1200px){.container{max-width:1170px}}input[type="search"]{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}.form-control::-webkit-input-placeholder{color:#999}.form-control{display:block;width:100%;height:34px;padding:6px 12px;font-size:14px;line-height:1.428571429;color:#555;vertical-align:middle;background-color:#fff;border:1px solid #ccc;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075);box-shadow:inset 0 1px 1px rgba(0,0,0,.075);-webkit-transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s;transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s}.form-control:focus{border-color:#66afe9;outline:0;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)}.form-group{margin-bottom:15px}.btn{display:inline-block;padding:6px 12px;margin-bottom:0;font-size:14px;font-weight:normal;line-height:1.428571429;text-align:center;white-space:nowrap;vertical-align:middle;cursor:pointer;border:1px solid transparent;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;-o-user-select:none;user-select:none}.btn:focus{outline:thin dotted #333;outline:5px auto -webkit-focus-ring-color;outline-offset:-2px}.btn:hover,.btn:focus{color:#333;text-decoration:none}.btn:active,.btn.active{background-image:none;outline:0;-webkit-box-shadow:inset 0 3px 5px rgba(0,0,0,.125);box-shadow:inset 0 3px 5px rgba(0,0,0,.125)}.btn-primary{color:#fff;background-color:#428bca;border-color:#357ebd}.btn-primary:hover,.btn-primary:focus,.btn-primary:active,.btn-primary.active,.open .dropdown-toggle.btn-primary{color:#fff;background-color:#3276b1;border-color:#285e8e}.btn-primary:active,.btn-primary.active,.open .dropdown-toggle.btn-primary{background-image:none}.collapse{display:none}.nav{padding-left:0;margin-bottom:0;list-style:none}.nav:before,.nav:after{display:table;content:" "}.nav:after{clear:both}.nav:before,.nav:after{display:table;content:" "}.nav:after{clear:both}.nav>li{position:relative;display:block}.nav>li>a{position:relative;display:block;padding:10px 15px}.nav>li>a:hover,.nav>li>a:focus{text-decoration:none;background-color:#eee}.navbar{min-height:50px;margin-bottom:20px;border:1px solid transparent}.navbar:before,.navbar:after{display:table;content:" "}.navbar:after{clear:both}.navbar:before,.navbar:after{display:table;content:" "}.navbar:after{clear:both}@media (min-width:768px){.navbar{border-radius:4px}}.navbar-header:before,.navbar-header:after{display:table;content:" "}.navbar-header:after{clear:both}.navbar-header:before,.navbar-header:after{display:table;content:" "}.navbar-header:after{clear:both}@media (min-width:768px){.navbar-header{float:left}}.navbar-collapse{max-height:340px;padding-right:15px;padding-left:15px;overflow-x:visible;border-top:1px solid transparent;box-shadow:inset 0 1px 0 rgba(255,255,255,.1);-webkit-overflow-scrolling:touch}.navbar-collapse:before,.navbar-collapse:after{display:table;content:" "}.navbar-collapse:after{clear:both}.navbar-collapse:before,.navbar-collapse:after{display:table;content:" "}.navbar-collapse:after{clear:both}@media (min-width:768px){.navbar-collapse{width:auto;border-top:0;box-shadow:none}.navbar-collapse.collapse{display:block!important;height:auto!important;padding-bottom:0;overflow:visible!important}}.container>.navbar-header,.container>.navbar-collapse{margin-right:-15px;margin-left:-15px}@media (min-width:768px){.container>.navbar-header,.container>.navbar-collapse{margin-right:0;margin-left:0}}.navbar-fixed-top{position:fixed;right:0;left:0;border-width:0 0 1px}@media (min-width:768px){.navbar-fixed-top{border-radius:0}}.navbar-fixed-top{top:0;z-index:1030}.navbar-nav{margin:7.5px -15px}.navbar-nav>li>a{padding-top:10px;padding-bottom:10px;line-height:20px}@media (min-width:768px){.navbar-nav{float:left;margin:0}.navbar-nav>li{float:left}.navbar-nav>li>a{padding-top:15px;padding-bottom:15px}}.navbar-default{border-color:#e7e7e7}@-webkit-keyframes progress-bar-stripes{from{background-position:40px 0}to{background-position:0 0}}@-moz-keyframes progress-bar-stripes{from{background-position:40px 0}to{background-position:0 0}}@-o-keyframes progress-bar-stripes{from{background-position:0 0}to{background-position:40px 0}}@keyframes progress-bar-stripes{from{background-position:40px 0}to{background-position:0 0}}.clearfix:before,.clearfix:after{display:table;content:" "}.clearfix:after{clear:both}@-ms-viewport{width:device-width}@media screen and (max-width:400px){@-ms-viewport{width:320px}}.hidden-xs{display:block!important}@media (max-width:767px){.hidden-xs{display:none!important}}@media (min-width:768px)and (max-width:991px){.hidden-xs.hidden-sm{display:none!important}}.hidden-sm{display:block!important}@media (max-width:767px){.hidden-sm.hidden-xs{display:none!important}}@media (min-width:768px)and (max-width:991px){.hidden-sm{display:none!important}}body{padding-top:50px}.body-content{padding-left:15px;padding-right:15px;font:17px BaseFont,Arial,serif;color:#000}h2{color:#184066;font-size:25px!important}h2,h3{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:500;line-height:1.1}.navbar-custom{background-color:#1e538b}.navbar-link{color:#fff}.nav>li>a:hover{background-color:#3e72af;color:#fff}#header-section{background:#dfebfa;border-bottom:2px solid #d4dfed;margin-bottom:20px}.form-control{border-radius:0!important}.vacancy-block-vacancy-title-link{color:#184066}.vacancy-block-company-name{color:#666;font-size:11px}.block-header{font-weight:bold;font-size:16px}.vacancy-block-row{margin-bottom:5px}.reviews-block-row{margin-bottom:10px}.companycomment-block-content-link{color:#000;text-decoration:none;vertical-align:baseline}.companycomment-block-content{margin-bottom:5px}.companycomment-block-content-link:hover{color:#000}.companycomment-block-row{margin-top:10px;padding:9px 10px 10px;border-radius:4px;border:1px solid #ccc;box-shadow:0 -1px 0 rgba(0,0,0,.075) inset}.companycomment-block-companyname-link,.lastfive-events-block-name-link{font-weight:bold}.companycomment-block-username-link,.companycomment-block-companyname-link,.lastfive-events-block-name-link{color:#0060af}.companycomment-block-creationdate{color:grey}.companycomment-block-creationdate-container{margin-top:5px}#companycomment-last-three-list{font-size:11px}#footer{background-color:#131e24;color:#d8d8d8;min-height:208px;margin-top:20px}#footer a{color:#9b9b9b;transition:color .75s ease}#footer a:hover{color:#fff}#footer ul{list-style-type:none}#footer ul a{color:#9b9b9b;display:block;font-size:15px;transition:color .75s ease}#footer ul a:hover{color:#fff}#footer-container{padding-top:20px}#wrap{min-height:62vh}.event-last-five-list-container{border-radius:3px;border:1px solid #b9cfe5;background:#e4f1f9;position:relative;margin-top:20px}.event-block-row{border-bottom:1px solid #b8d4ef;padding-left:10px;padding-bottom:10px;padding-top:10px}.lastfive-events-row-title{padding-right:0;color:grey;font-size:11px}.publication-sub-title{line-height:25px;margin-top:20px;margin-bottom:20px;padding:0}.publication-sub-title>span{padding-right:10px;padding-left:0}.publication-source{font-size:14px;color:#a6a6a6;margin-top:20px}.publication-list-item-image{margin-bottom:10px;display:block;margin-left:auto;margin-right:auto}.publication-list-item-image:hover{-webkit-filter:grayscale(40%);filter:grayscale(40%)}.list-search-form>.form-group{margin-left:0;margin-right:0}.list-search-form{margin-top:20px}.no-padding-left{padding-left:0!important}.no-padding-right{padding-right:0!important}.display-tag{display:inline-block;padding-left:10px;padding-right:10px;padding-top:5px;padding-bottom:5px;color:#46799b;background:#e0eaf1;white-space:nowrap;overflow:hidden;border-radius:2px 0 0 2px;font-size:14px}.display-tag{cursor:pointer}.display-tag:hover{background:#dcdcdc}a{color:#184066}#top-logo{margin-top:17px;margin-bottom:17px}@keyframes spin{from{transform:scale(1) rotate(0deg)}to{transform:scale(1) rotate(365deg)}}@-webkit-keyframes spinw{from{-webkit-transform:rotate(0deg)}to{-webkit-transform:rotate(365deg)}}@-moz-keyframes spinm{from{-moz-transform:rotate(0deg)}to{-moz-transform:rotate(365deg)}}input[type="search"]::-webkit-search-cancel-button{-webkit-appearance:searchfield-cancel-button}.right-sidebar-see-all-link{font-weight:bold;color:#333;font-size:13px}blockquote p,blockquote{font-size:14px;font-style:italic}.headline{font-size:25px!important;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:500;line-height:1.1}.overflow-auto{overflow:auto}@media (max-width:768px){.nav>li>a{position:relative;display:block;padding:10px 10px}}#trending-publications a,#trending-blogs a{font-size:17px;line-height:inherit;color:#1779ba;text-decoration:none;cursor:pointer}#trending-publications a:hover,#trending-blogs a:hover{color:#2a6496}.trending-publication-item{border-top:1px solid #ebebeb;padding-top:10px;padding-bottom:10px}.overflow-auto.event-details-description>div{width:auto!important;max-width:100%!important;height:auto!important}code{white-space:pre-wrap!important}.hot-event-block{margin-bottom:20px}.hot-event-block img{margin-top:15px;max-height:300px}.hot-event-block .event-last-five-list-container{border:1px solid #ffeeba;background:#fff3cd}.hot-sign{color:red;font-size:20px}.sf-hidden{display:none!important}</style><meta http-equiv=content-security-policy content="default-src 'none'; font-src 'self' data:; img-src 'self' data:; style-src 'unsafe-inline'; media-src 'self' data:; script-src 'unsafe-inline' data:;"></head>
+<body>
+ 
+ <div class="navbar navbar-fixed-top navbar-custom">
+ <div class=container>
+ 
+<div class=navbar-header>
+ <button type=button class="navbar-toggle sf-hidden" data-toggle=collapse data-target=.navbar-collapse>
+ 
+ 
+ 
+ </button>
+ <h4 style=padding-left:20px;padding-top:5px class="hidden-md hidden-lg hidden-sm sf-hidden">
+ 
+ 
+ </h4>
+</div>
+ <div class="navbar-collapse collapse">
+ <ul class="nav navbar-nav">
+ <li>
+ <a href=https://devsday.ru/ class=navbar-link title="Главное в сфере IT">Главная</a>
+</li>
+ <li>
+ <a href=https://devsday.ru/news/list class=navbar-link title="Последние новости в IT">
+ Новости
+ </a>
+ </li>
+ <li>
+ <a href=https://devsday.ru/blog/list class=navbar-link title=IT-блоги>
+ Блоги
+ </a>
+ </li>
+ <li>
+ <a href=https://devsday.ru/event/list class=navbar-link title="Последние события в сфере IT">
+ События
+ </a>
+ </li>
+ <li>
+ <a href=https://devsday.ru/vacancy/list title="Вакансии в сфере IT-технологий" class=navbar-link>
+ Вакансии
+ </a>
+ </li>
+ <li>
+ <a href=https://devsday.ru/company/list class=navbar-link title="Список IT компаний России">
+ Компании
+ </a>
+ </li>
+ <li>
+ <a href=https://devsday.ru/reviews class=navbar-link title="Отзывы о работе в IT-компаниях">
+ Отзывы
+ </a>
+</li>
+ <li>
+ <a href=https://devsday.ru/user/login class=navbar-link title="Войти в аккаунт DevsDay.Ru">
+ Войти
+ </a>
+ </li>
+ </ul>
+</div>
+ </div>
+ </div>
+ <div id=header-section>
+ <div class=container>
+ <div class="row col-md-12">
+ <div class="hidden-xs hidden-sm col-md-2 no-padding-left">
+ <a href=https://devsday.ru/ title="IT сообщество в России">
+ <img src="data:image/svg+xml;base64,PHN2ZyBpZD0i0JTQlCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMTMyMy41MSAzMjIuNDkiPg0KICA8ZGVmcz4NCiAgICA8c3R5bGU+DQogICAgICAuY2xzLTEgew0KICAgICAgICBmaWxsOiAjMGYyNDNlOw0KICAgICAgfQ0KICAgIDwvc3R5bGU+DQogIDwvZGVmcz4NCiAgPHRpdGxlPkREPC90aXRsZT4NCiAgPGc+DQogICAgPGc+DQogICAgICA8cGF0aCBkPSJNNTkuNDIsMTQuNDhIMTE3LjNxOTMsMCw5Myw5MC4yNCwwLDkyLjIzLTkzLDkyLjIzSDU5LjQyWk04My41NywxNzUuM0gxMTYuOHEzOS43LDAsNTQuMTQtMTguNDh0MTQuNDMtNTIuMDlRMTg1LjM4LDcyLDE3MSw1NC4wNlQxMTYuOCwzNi4xNEg4My41N1oiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01OS40MiAtMTQuNDgpIi8+DQogICAgICA8cGF0aCBkPSJNMjk5Ljg0LDIwMC4wN3EtMjkuMTIsMC00Ni44LTE4LjI0VDIzNS4zNywxMzFxMC0zMi4zNSwxNy4xMi01MC43MlQyOTcuMjMsNjEuOXEyOC4yNSwwLDQ1LjEyLDE4dDE2Ljg3LDUxdjUuNkgyNTkuNzdxMS40OSwyMi45MSwxMi42MywzNHQyNy40NSwxMS4wOGE0MC41OCw0MC41OCwwLDAsMCwyMi4yMi02LjI4LDIxLjE1LDIxLjE1LDAsMCwwLDEwLjM5LTE3Ljg2aDI0LjI3UTM1NCwxNzcuOSwzMzguMjQsMTg5VDI5OS44NCwyMDAuMDdabTM0LjYtODEuOXEtMi44Ni0xOS4wNS0xMi44Mi0yOC41MXQtMjQuNC05LjQ1YTM0LjIxLDM0LjIxLDAsMCwwLTI0LjE1LDkuMzlRMjYzLDk5LDI2MC4yNiwxMTguMTZaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTkuNDIgLTE0LjQ4KSIvPg0KICAgICAgPHBhdGggZD0iTTQ5NS41OCw2NC45LDQ0NS42NywxOTYuOTVINDI0Ljc2TDM3NC44NSw2NC45aDI1LjM5bDM1LDEwMy4zLDM1LTEwMy4zWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU5LjQyIC0xNC40OCkiLz4NCiAgICAgIDxwYXRoIGQ9Ik01NjYuNzMsMjAwLjA3cS01NC4xNCwwLTU2LjYzLTQyLjU3aDIzLjUycS4yNSwyNC4xNSwzMi44NiwyNC4xNSwxNC41NiwwLDIyLjIyLTZ0Ny42NS0xNS4xMnEwLTktNy40Ny0xMi42M3QtMzAuOC05LjUycS0yMy4zNC01Ljg1LTM0LjEtMTMuMDdUNTEzLjIxLDk5Ljg2cTAtMTYuNDMsMTMuMzgtMjcuMTlUNTYyLjM3LDYxLjlxNTEuOTEsMCw1MywzN0g1OTJRNTkwLjc1LDgwLjIsNTY0LDgwLjJxLTExLjgzLDAtMTkuNiw0LjQ4dC03Ljc4LDEzLjA3cTAsNy43Miw2LDExLjE0dDI5LjkzLDkuMjJxMjQsNS43OCwzNS42LDEzLjV0MTEuNjQsMjYuNjRxMCwxOC4wNS0xNC4zOCwyOS45M1Q1NjYuNzMsMjAwLjA3WiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU5LjQyIC0xNC40OCkiLz4NCiAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTY1My40MywxNC40OGg1Ny44OHE5MywwLDkzLDkwLjI0LDAsOTIuMjMtOTMsOTIuMjNINjUzLjQzWk02NzcuNTcsMTc1LjNoMzMuMjRxMzkuNjgsMCw1NC4xNC0xOC40OHQxNC40My01Mi4wOVE3NzkuMzgsNzIsNzY1LDU0LjA2VDcxMC44MSwzNi4xNEg2NzcuNTdaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTkuNDIgLTE0LjQ4KSIvPg0KICAgICAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJNOTIxLjM1LDE4My4zOHEtMTcuOTIsMTYuNjgtNDYuMTgsMTYuNjktMTkuNjYsMC0zMi4zNi0xMC42NVQ4MzAuMTIsMTYycTAtNDYuMjksNzkuNzktNDYuM2gxMS40NXEwLTE0LjE5LTEuNDktMjAuNnQtOC4zNC0xMC42NHEtNi44NS00LjIzLTIxLjc5LTQuMjMtMzEuMzYsMC0zMi4zNSwyMi40SDgzNHEyLjYxLTQwLjcsNTctNDAuNywyNS40LDAsMzkuNTksMTAuMDl0MTQuMTgsMzkuNTh2ODUuMzloLTIzLjRabTAtMjEuMTVWMTMzSDkwNS4zcS01MSwwLTUxLDI3Ljc1LDAsMTAuMDksNy40NywxNS41dDIwLjE2LDUuNDJhNTEsNTEsMCwwLDAsMjIuNDEtNS4yM0E0My4wNyw0My4wNywwLDAsMCw5MjEuMzUsMTYyLjIzWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU5LjQyIC0xNC40OCkiLz4NCiAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTk5MC4yNiwyMjguODFxMTcuNDIsMCwyOC41LTMxLjg2TDk2OC44Niw2NC45aDI1LjM5bDM1LDEwMy4zLDM1LTEwMy4zaDI1LjM5bC00OS45MSwxMzIuMDVxLTcuMjMsMTguOTItMTIuMjYsMjkuMThhNTMuOTEsNTMuOTEsMCwwLDEtMTMuMTksMTcuM3EtOC4xNiw3LTIwLDdhNTgsNTgsMCwwLDEtMTUuMTgtMS43NVYyMjcuMDdBMzYuOCwzNi44LDAsMCwwLDk5MC4yNiwyMjguODFaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTkuNDIgLTE0LjQ4KSIvPg0KICAgICAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTE0NC40MywxOTYuOTVoLTI1LjUyVjE3MS40M2gyNS41MloiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01OS40MiAtMTQuNDgpIi8+DQogICAgICA8cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0xMjU2LjI3LDg2LjNxLTUtMS41LTE0LjMxLTEuNS0xNy45MywwLTMwLjc1LDE4Ljh2OTMuMzVoLTIzLjUyVjY0LjloMjMuNTJWODMuMzFRMTIyNiw2MS45LDEyNDUuNTcsNjEuOWE2Mi4yNyw2Mi4yNywwLDAsMSwxMC43LDFaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTkuNDIgLTE0LjQ4KSIvPg0KICAgICAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTM1OS41MywxODAuMTVxLTE3LjU1LDE5LjkxLTM5LjQ1LDE5LjkyLTQ0LjY5LDAtNDQuNjktNDguNzlWNjQuOWgyMy41MnY4NS4zOHEwLDE2LjE4LDUuNzMsMjMuMjh0MTguOTIsNy4wOXExOS42NywwLDM2LTIxLjE1VjY0LjloMjMuNFYxOTYuOTVoLTIzLjRaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTkuNDIgLTE0LjQ4KSIvPg0KICAgIDwvZz4NCiAgICA8Zz4NCiAgICAgIDxwYXRoIGQ9Ik01OS40MiwzMzUuODdWMjcxLjQxSDc5LjM0cTcsMCwxMC4zOCwxLjIzYTE0LDE0LDAsMCwxLDcuMyw2LjJBMjEuMjIsMjEuMjIsMCwwLDEsOTkuNzQsMjkwcTAsOC43MS00LjQ0LDE0LjJUODAsMzA5LjY3SDY2LjQxdjI2LjIxWm03LTMzLjgxSDgwLjA5cTYuNDYsMCw5LjQ1LTIuOTN0My04LjgxYTEzLjYzLDEzLjYzLDAsMCwwLTEuNDctNi41NUE4LjMyLDguMzIsMCwwLDAsODcuNSwyODBxLTIuMDktMS03LjU0LTFINjYuNDFaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTkuNDIgLTE0LjQ4KSIvPg0KICAgICAgPHBhdGggZD0iTTE0Mi40NSwzMzAuMTFhMjQuMTQsMjQuMTQsMCwwLDEtNi43Nyw1LjEsMTYuNDcsMTYuNDcsMCwwLDEtNy4zLDEuNzEsMTIuODIsMTIuODIsMCwwLDEtOS41NC0zLjYxcS0zLjU2LTMuNi0zLjU2LTkuNzJhMTUsMTUsMCwwLDEsMS42Ny03LjE3LDEyLjQsMTIuNCwwLDAsMSw0LjU3LTQuODgsMjQsMjQsMCwwLDEsOC43OS0yLjU5LDQ5LjA2LDQ5LjA2LDAsMCwwLDExLjYxLTIuNzdsMC0ycTAtNC43OS0xLjcxLTYuNzMtMi40Mi0yLjgxLTcuNDMtMi44MS00LjUzLDAtNi43NywxLjg4dC0zLjMsN2wtNi4zOC0xLjA2cTEuMzctNy41Miw1LjUyLTEwLjk1dDExLjg5LTMuNDNxNiwwLDkuNDUsMi4yN2E5Ljc0LDkuNzQsMCwwLDEsNC4zMyw1LjYsMzkuODEsMzkuODEsMCwwLDEsLjksOS43NnYxMC41NWExMzQuOTIsMTM0LjkyLDAsMCwwLC40MiwxNCwyMC43MiwyMC43MiwwLDAsMCwxLjY1LDUuNjFoLTYuNzdBMTkuNywxOS43LDAsMCwxLDE0Mi40NSwzMzAuMTFabS0uNTMtMTcuNjhhNDEuMDYsNDEuMDYsMCwwLDEtMTAuNiwzLDE5LjYyLDE5LjYyLDAsMCwwLTUuNzIsMS42MSw2LjI1LDYuMjUsMCwwLDAtMi41MywyLjU1LDcuNzUsNy43NSwwLDAsMC0uOSwzLjgsNy4xMiw3LjEyLDAsMCwwLDIuMDcsNS4zNSw3LjksNy45LDAsMCwwLDUuNzIsMiwxMS40OSwxMS40OSwwLDAsMCw2LjMxLTEuOCwxMS4yMiwxMS4yMiwwLDAsMCw0LjI0LTQuODJxMS40LTMsMS40MS04Ljc3WiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU5LjQyIC0xNC40OCkiLz4NCiAgICAgIDxwYXRoIGQ9Ik0xOTYuNDUsMjY5LjkyaDUuNzZjLS4yNiwzLjIzLS44NSw1LjQ0LTEuNzYsNi42N2E1Ljg5LDUuODksMCwwLDEtMy40MywyLjMsNDIuNDgsNDIuNDgsMCwwLDEtOCwuNDhxLTcuODcsMC0xMC44NCwxLjgyYTEwLjQsMTAuNCwwLDAsMC00LjI5LDYuMDcsNDAuODcsNDAuODcsMCwwLDAtMS40OSwxMC44cTQuODgtOC44OCwxMy4xLTguODhBMTUuMTYsMTUuMTYsMCwwLDEsMTk4LDI5NS41NXE0Ljg4LDYuMzcsNC44OCwxNywwLDEwLjE2LTQuNTMsMTcuMjVhMTQuNjQsMTQuNjQsMCwwLDEtMTMuMTUsNy4xMXEtNi40MiwwLTEwLjI3LTMuNWEyMi45NCwyMi45NCwwLDAsMS02LTkuNjVxLTIuMTYtNi4xNi0yLjE1LTIwLjYyLDAtMTguOSw1LjEyLTI1LjMzdDE1Ljg1LTYuNDJxNi42NCwwLDcuNTQtLjMxQTEuNiwxLjYsMCwwLDAsMTk2LjQ1LDI2OS45MlptLS4zMSw0Mi40cTAtNy44NC0zLTEyLjIzYTkuMzYsOS4zNiwwLDAsMC0xNi4xMi40cS0yLjksNC44LTIuOSwxMy4zdDMuMywxMi41OGE5Ljg5LDkuODksMCwwLDAsOCw0LjE5cTQuNTcsMCw3LjY1LTQuOTNUMTk2LjE0LDMxMi4zMloiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01OS40MiAtMTQuNDgpIi8+DQogICAgICA8cGF0aCBkPSJNMjE3Ljg3LDMxMi41M3EwLTEyLjEsNS4wOC0xOC4yNWExNi40NCwxNi40NCwwLDAsMSwyNS42NiwwcTUuMTQsNi4xNiw1LjE0LDE3Ljc2LDAsMTIuNTctNS4wNiwxOC43M2ExNi40OCwxNi40OCwwLDAsMS0yNS43LDBRMjE3Ljg3LDMyNC41NywyMTcuODcsMzEyLjUzWm02LjY0LDBxMCw5LjA4LDMuMywxMy41YTkuODgsOS44OCwwLDAsMCw4LjE4LDQuNDJxNC41NywwLDcuODUtNC40N3QzLjI4LTEzLjQ1cTAtOS0zLjMtMTMuNDVhOS44OCw5Ljg4LDAsMCwwLTguMTgtNC40MnEtNC42MiwwLTcuODcsNC40NVQyMjQuNTEsMzEyLjVaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTkuNDIgLTE0LjQ4KSIvPg0KICAgICAgPHBhdGggZD0iTTI2Ny42OSwyODkuMThoMzEuMDl2Ni41NUgyODYuNDd2NDAuMTRIMjgwVjI5NS43M0gyNjcuNjlaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTkuNDIgLTE0LjQ4KSIvPg0KICAgICAgPHBhdGggZD0iTTMzOS41OSwzMzAuMTFhMjQuMTQsMjQuMTQsMCwwLDEtNi43Nyw1LjEsMTYuNDcsMTYuNDcsMCwwLDEtNy4zLDEuNzEsMTIuODIsMTIuODIsMCwwLDEtOS41NC0zLjYxcS0zLjU2LTMuNi0zLjU2LTkuNzJhMTUsMTUsMCwwLDEsMS42Ny03LjE3LDEyLjQsMTIuNCwwLDAsMSw0LjU3LTQuODgsMjQsMjQsMCwwLDEsOC43OS0yLjU5LDQ5LjA2LDQ5LjA2LDAsMCwwLDExLjYxLTIuNzdsMC0ycTAtNC43OS0xLjcxLTYuNzMtMi40Mi0yLjgxLTcuNDMtMi44MS00LjUzLDAtNi43NywxLjg4dC0zLjMsN2wtNi4zOC0xLjA2cTEuMzctNy41Miw1LjUyLTEwLjk1dDExLjg5LTMuNDNxNiwwLDkuNDUsMi4yN2E5Ljc0LDkuNzQsMCwwLDEsNC4zMyw1LjYsMzkuODEsMzkuODEsMCwwLDEsLjksOS43NnYxMC41NWExMzQuOTIsMTM0LjkyLDAsMCwwLC40MiwxNCwyMC43MiwyMC43MiwwLDAsMCwxLjY1LDUuNjFoLTYuNzdBMTkuNywxOS43LDAsMCwxLDMzOS41OSwzMzAuMTFabS0uNTMtMTcuNjhhNDEuMDYsNDEuMDYsMCwwLDEtMTAuNiwzLDE5LjYyLDE5LjYyLDAsMCwwLTUuNzIsMS42MSw2LjI1LDYuMjUsMCwwLDAtMi41MywyLjU1LDcuNzUsNy43NSwwLDAsMC0uOSwzLjgsNy4xMiw3LjEyLDAsMCwwLDIuMDcsNS4zNSw3LjksNy45LDAsMCwwLDUuNzIsMiwxMS40OSwxMS40OSwwLDAsMCw2LjMxLTEuOCwxMS4yMiwxMS4yMiwwLDAsMCw0LjI0LTQuODJxMS40LTMsMS40MS04Ljc3WiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU5LjQyIC0xNC40OCkiLz4NCiAgICAgIDxwYXRoIGQ9Ik0zOTUuODEsMjg5LjE4aDE0Ljk1YTI0LjM5LDI0LjM5LDAsMCwxLDcuOCwxLDEwLjI4LDEwLjI4LDAsMCwxLDQuODQsNCwxMi42LDEyLjYsMCwwLDEsMi4xMyw3LjQ2cTAsNi42OS00LjYsMTAsNi4zMiwyLjgxLDYuMzIsMTEuMjZBMTMuODgsMTMuODgsMCwwLDEsNDI0LDMzMnEtMy4yMSwzLjgzLTEwLjk1LDMuODNIMzk1LjgxWm02LjQ2LDE5LjY1aDYuOTNhMjAuMzgsMjAuMzgsMCwwLDAsNS42OC0uNTMsNiw2LDAsMCwwLDIuNzktMi4xNCw2LjI2LDYuMjYsMCwwLDAsMS4yMy0zLjkzcTAtMy42OS0yLjE3LTUuMXQtNy4zLTEuNDFoLTcuMTVabTAsMjAuNTNoOC42cTUuNTEsMCw3LjYyLTEuNjlhNi4zNCw2LjM0LDAsMCwwLDIuMTEtNS4yNmMwLTIuNTItLjc0LTQuMzMtMi4yMi01LjQzcy00LjIxLTEuNjQtOC4xOC0xLjY0aC03LjkzWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU5LjQyIC0xNC40OCkiLz4NCiAgICAgIDxwYXRoIGQ9Ik00NzcuMTcsMzM1Ljg3VjI3MS40MWg3djY0LjQ2WiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU5LjQyIC0xNC40OCkiLz4NCiAgICAgIDxwYXRoIGQ9Ik01MTkuNjUsMzM1Ljg3VjI3OUg1MDIuMjR2LTcuNjFoNDEuOVYyNzloLTE3LjV2NTYuODVaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTkuNDIgLTE0LjQ4KSIvPg0KICAgICAgPHBhdGggZD0iTTU1My44NiwzMzUuODd2LTloNy4zOXY5WiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU5LjQyIC0xNC40OCkiLz4NCiAgICAgIDxwYXRoIGQ9Ik02MTMuMjQsMzM1Ljg3VjI3MS40MWg3djI2LjQ3aDI3LjQ5VjI3MS40MWg3djY0LjQ2aC03VjMwNS40OUg2MjAuMjN2MzAuMzhaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTkuNDIgLTE0LjQ4KSIvPg0KICAgICAgPHBhdGggZD0iTTY3Mi45MiwzMTIuNTNxMC0xMi4xLDUuMDctMTguMjVhMTYuNDUsMTYuNDUsMCwwLDEsMjUuNjYsMHE1LjE0LDYuMTYsNS4xNCwxNy43NiwwLDEyLjU3LTUuMDYsMTguNzNhMTYuNDcsMTYuNDcsMCwwLDEtMjUuNywwUTY3Mi45MiwzMjQuNTcsNjcyLjkyLDMxMi41M1ptNi42NCwwcTAsOS4wOCwzLjMsMTMuNWE5Ljg4LDkuODgsMCwwLDAsOC4xOCw0LjQycTQuNTgsMCw3Ljg1LTQuNDd0My4yNy0xMy40NXEwLTktMy4zLTEzLjQ1YTkuODgsOS44OCwwLDAsMC04LjE4LTQuNDJxLTQuNjIsMC03Ljg3LDQuNDVUNjc5LjU2LDMxMi41WiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU5LjQyIC0xNC40OCkiLz4NCiAgICAgIDxwYXRoIGQ9Ik03MjYuMjcsMjg5LjE4aDE0Ljk1YTI0LjMsMjQuMywwLDAsMSw3LjgsMSwxMC4yMiwxMC4yMiwwLDAsMSw0Ljg0LDQsMTIuNTcsMTIuNTcsMCwwLDEsMi4xNCw3LjQ2cTAsNi42OS00LjYsMTAsNi4zMSwyLjgxLDYuMzEsMTEuMjZBMTMuOTEsMTMuOTEsMCwwLDEsNzU0LjUsMzMycS0zLjIxLDMuODMtMTAuOTUsMy44M0g3MjYuMjdabTYuNDYsMTkuNjVoNi45M2EyMC40NCwyMC40NCwwLDAsMCw1LjY4LS41Myw1LjkyLDUuOTIsMCwwLDAsMi43OC0yLjE0LDYuMjYsNi4yNiwwLDAsMCwxLjIzLTMuOTNxMC0zLjY5LTIuMTctNS4xdC03LjMtMS40MWgtNy4xNVptMCwyMC41M2g4LjU5cTUuNTEsMCw3LjYyLTEuNjlhNi4zMyw2LjMzLDAsMCwwLDIuMTItNS4yNmMwLTIuNTItLjc0LTQuMzMtMi4yMi01LjQzcy00LjIxLTEuNjQtOC4xOC0xLjY0aC03LjkzWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU5LjQyIC0xNC40OCkiLz4NCiAgICAgIDxwYXRoIGQ9Ik03NzIuNjYsMzEyLjUzcTAtMTIuMSw1LjA3LTE4LjI1YTE2LjQ1LDE2LjQ1LDAsMCwxLDI1LjY2LDBxNS4xNCw2LjE2LDUuMTQsMTcuNzYsMCwxMi41Ny01LjA2LDE4LjczYTE2LjQ3LDE2LjQ3LDAsMCwxLTI1LjcsMFE3NzIuNjYsMzI0LjU3LDc3Mi42NiwzMTIuNTNabTYuNjQsMHEwLDkuMDgsMy4zLDEzLjVhOS44OCw5Ljg4LDAsMCwwLDguMTgsNC40MnE0LjU4LDAsNy44NS00LjQ3dDMuMjctMTMuNDVxMC05LTMuMy0xMy40NWE5Ljg4LDkuODgsMCwwLDAtOC4xOC00LjQycS00LjYyLDAtNy44Nyw0LjQ1VDc3OS4zLDMxMi41WiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU5LjQyIC0xNC40OCkiLz4NCiAgICAgIDxwYXRoIGQ9Ik04NTEsMzE4Ljc3bDYuMzgsMXEtMS4wOSw4LjM1LTUuNTIsMTIuNzVhMTQuNSwxNC41LDAsMCwxLTEwLjYxLDQuNCwxNS4wOCwxNS4wOCwwLDAsMS0xMi4zNy02LjE3UTgyNCwzMjQuNTcsODI0LDMxMi40OHQ0LjktMTguMjdhMTUuNDgsMTUuNDgsMCwwLDEsMTIuNi02LjA5LDE0LjMyLDE0LjMyLDAsMCwxLDEwLDMuNjlxNC4wOCwzLjY5LDUuMjEsMTEuMDhMODUwLjQxLDMwNEExMy43MywxMy43MywwLDAsMCw4NDcuMiwyOTdhNy40Miw3LjQyLDAsMCwwLTUuNS0yLjM0LDkuNTIsOS41MiwwLDAsMC03LjkzLDQuMjRxLTMuMTUsNC4yNS0zLjE1LDEzLjQ4LDAsOS41NCwzLDEzLjgxYTkuMTIsOS4xMiwwLDAsMCw3LjcyLDQuMjcsOC4zMiw4LjMyLDAsMCwwLDYuMzEtMi44M1E4NTAuMjgsMzI0Ljc0LDg1MSwzMTguNzdaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTkuNDIgLTE0LjQ4KSIvPg0KICAgICAgPHBhdGggZD0iTTg2OS4xNSwyODkuMThoMzEuMDl2Ni41NUg4ODcuOTN2NDAuMTRoLTYuNDZWMjk1LjczSDg2OS4xNVoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01OS40MiAtMTQuNDgpIi8+DQogICAgICA8cGF0aCBkPSJNOTE2LjIsMjg5LjE4aDYuNDZ2MzUuNTRsMTgtMzUuNTRoN3Y0Ni43aC02LjQ2VjMwMC41NGwtMTgsMzUuMzNoLTdaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTkuNDIgLTE0LjQ4KSIvPg0KICAgICAgPHBhdGggZD0iTTk2OS4xNSwzMzUuODd2LTloNy4zOXY5WiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU5LjQyIC0xNC40OCkiLz4NCiAgICAgIDxwYXRoIGQ9Ik0xMDY2LjA4LDMxMy4yN2w3LDIuMTVxLTIuMzMsMTAuODYtOC4xNSwxNi4yMWEyMC4yOCwyMC4yOCwwLDAsMS0xNC4xOCw1LjM0LDIxLjU1LDIxLjU1LDAsMCwxLTEyLjU1LTMuNTlxLTUuMjItMy41OS04LjUzLTExLjVhNDguMSw0OC4xLDAsMCwxLTMuMzItMTguN3EwLTEwLjY1LDMuMzItMThhMjUuNDYsMjUuNDYsMCwwLDEsOS0xMS4xMywyMi40OCwyMi40OCwwLDAsMSwxMi42OC0zLjc2LDE5LjQzLDE5LjQzLDAsMCwxLDEzLjE2LDQuNzZxNS41LDQuNzYsNy43LDE0bC02Ljg2LDJxLTMuNTItMTMuNDItMTQuMTMtMTMuNDFhMTUuNjEsMTUuNjEsMCwwLDAtOS4xNiwyLjcxLDE4LjI0LDE4LjI0LDAsMCwwLTYuMTgsOC40MiwzOSwzOSwwLDAsMC0yLjMxLDE0LjQ3cTAsMTMuMjYsNC42NiwxOS44N2ExNC40NSwxNC40NSwwLDAsMCwxMi40LDYuNjIsMTMuNTksMTMuNTksMCwwLDAsOS44Ny00LjA3UTEwNjQuNjgsMzIxLjU0LDEwNjYuMDgsMzEzLjI3WiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU5LjQyIC0xNC40OCkiLz4NCiAgICAgIDxwYXRoIGQ9Ik0xMDg4LjIsMzEyLjUzcTAtMTIuMSw1LjA3LTE4LjI1YTE2LjQ1LDE2LjQ1LDAsMCwxLDI1LjY2LDBxNS4xNCw2LjE2LDUuMTQsMTcuNzYsMCwxMi41Ny01LjA2LDE4LjczYTE2LjQ3LDE2LjQ3LDAsMCwxLTI1LjcsMFExMDg4LjIsMzI0LjU3LDEwODguMiwzMTIuNTNabTYuNjQsMHEwLDkuMDgsMy4zLDEzLjVhOS44OCw5Ljg4LDAsMCwwLDguMTgsNC40MnE0LjU4LDAsNy44NS00LjQ3dDMuMjctMTMuNDVxMC05LTMuMy0xMy40NWE5Ljg4LDkuODgsMCwwLDAtOC4xOC00LjQycS00LjYyLDAtNy44Nyw0LjQ1VDEwOTQuODQsMzEyLjVaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTkuNDIgLTE0LjQ4KSIvPg0KICAgICAgPHBhdGggZD0iTTExNjkuNiwyNjkuOTJoNS43NmMtLjI2LDMuMjMtLjg1LDUuNDQtMS43Niw2LjY3YTUuODYsNS44NiwwLDAsMS0zLjQzLDIuMyw0Mi41NCw0Mi41NCwwLDAsMS04LC40OGMtNS4yNSwwLTguODYuNjEtMTAuODQsMS44MmExMC40MywxMC40MywwLDAsMC00LjI4LDYuMDcsNDAuNjksNDAuNjksMCwwLDAtMS40OSwxMC44cTQuODgtOC44OCwxMy4xLTguODhhMTUuMTYsMTUuMTYsMCwwLDEsMTIuNTgsNi4zOHE0Ljg4LDYuMzcsNC44OCwxNywwLDEwLjE2LTQuNTMsMTcuMjVhMTQuNjQsMTQuNjQsMCwwLDEtMTMuMTUsNy4xMXEtNi40MiwwLTEwLjI3LTMuNWEyMi45MywyMi45MywwLDAsMS02LTkuNjVxLTIuMTUtNi4xNi0yLjE1LTIwLjYyLDAtMTguOSw1LjEzLTI1LjMzdDE1Ljg1LTYuNDJxNi42NCwwLDcuNTUtLjMxQTEuNjEsMS42MSwwLDAsMCwxMTY5LjYsMjY5LjkyWm0tLjMxLDQyLjRxMC03Ljg0LTMtMTIuMjNhOS4zNiw5LjM2LDAsMCwwLTE2LjEyLjRxLTIuOSw0LjgtMi45LDEzLjN0My4zLDEyLjU4YTkuODksOS44OSwwLDAsMCw4LDQuMTlxNC41OCwwLDcuNjUtNC45M1QxMTY5LjI5LDMxMi4zMloiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01OS40MiAtMTQuNDgpIi8+DQogICAgICA8cGF0aCBkPSJNMTE5My40OCwyODkuMThoNi40NnYxOC4yNWg4LjI1cTguODYsMCwxMi43OCw0LjE4YTE0LjI4LDE0LjI4LDAsMCwxLDMuOSwxMC4xMSwxNSwxNSwwLDAsMS0zLjU0LDkuODlxLTMuNTQsNC4yNi0xMS42Niw0LjI3aC0xNi4yWm02LjQ2LDQwLjE5aDYuODJxNy40MywwLDkuNDUtMi4zOGE3LjkyLDcuOTIsMCwwLDAsMi01LjI1LDcuMjEsNy4yMSwwLDAsMC0yLjMzLTUuNzdxLTIuMzMtMi04LjI3LTJoLTcuNjlabTMxLjM5LDYuNTF2LTQ2LjdoNi40NnY0Ni43WiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU5LjQyIC0xNC40OCkiLz4NCiAgICAgIDxwYXRoIGQ9Ik0xMjU0LjcsMjg5LjE4aDMxLjA5djYuNTVoLTEyLjMxdjQwLjE0SDEyNjdWMjk1LjczSDEyNTQuN1oiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01OS40MiAtMTQuNDgpIi8+DQogICAgICA8cGF0aCBkPSJNMTMwMS43NiwyODkuMThoNi40NnYzNS41NGwxOC0zNS41NGg3djQ2LjdoLTYuNDZWMzAwLjU0bC0xOCwzNS4zM2gtN1oiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01OS40MiAtMTQuNDgpIi8+DQogICAgICA8cGF0aCBkPSJNMTM4Mi45MywyODkuMTh2NDYuN2gtNi40NnYtMTguMmgtMy43OGE5LjY3LDkuNjcsMCwwLDAtNSwxLjA2cS0xLjcxLDEuMDYtNSw2Ljk1bC01LjYyLDEwLjJoLThsNy0xMi41OHEzLjIxLTUuNzYsNi4zOC02LjUxYTExLjg2LDExLjg2LDAsMCwxLTguMjItNC45MSwxNS43MywxNS43MywwLDAsMS0yLjY4LTkuMDhxMC02LjQyLDMuNjItMTBjMi40My0yLjQsNS43Ny0zLjYxLDEwLjA1LTMuNjFabS02LjQ2LDYuNTVoLTkuMjJjLTMuODUsMC02LjM0Ljc0LTcuNDUsMi4yMmE4LjI1LDguMjUsMCwwLDAtMS42Nyw1LjEycTAsNC4yMiwyLjQ4LDYuMTZ0OC43MSwxLjkzaDcuMTVaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTkuNDIgLTE0LjQ4KSIvPg0KICAgIDwvZz4NCiAgPC9nPg0KPC9zdmc+DQo=" id=top-logo class=img-responsive alt="IT сообщество России">
+ </a>
+ </div>
+ <div class=col-md-10>
+ <form class="list-search-form row" role=search action=/blog/list>
+ <div class="form-group col-xs-10 no-padding-right">
+ <input type=search class=form-control placeholder="Искать в блогах..." name=tag value>
+ </div>
+ <div class="form-group col-xs-2 no-padding-left">
+ <button type=submit class="form-control btn-primary btn col-xs-6">
+ <span class="glyphicon glyphicon-search hidden-lg hidden-md sf-hidden"></span>
+ <span class="hidden-xs hidden-sm">Искать</span>
+ </button>
+ </div>
+ </form>
+ <style class=sf-hidden>#categories-list a{display:inline-block;padding-right:20px}</style>
+ <p id=categories-list class="hidden-sm hidden-xs">
+ <a href="https://devsday.ru/blog/list?specializationid=2" title="Блоги о разработке программного обеспечения" class=companycomment-block-companyname-link>Разработка</a>
+ <a href="https://devsday.ru/blog/list?specializationid=1" title="Блоги о тестировании программного обеспечения" class=companycomment-block-companyname-link>QA</a>
+ <a href="https://devsday.ru/blog/list?specializationid=3" title="Блоги об администрировании" class=companycomment-block-companyname-link>DevOps</a>
+ <a href="https://devsday.ru/blog/list?specializationid=4" title="Блоги о дизайне в IT" class=companycomment-block-companyname-link>Дизайн</a>
+ <a href="https://devsday.ru/blog/list?specializationid=5" title="Блоги о разработке компьютерных игр" class=companycomment-block-companyname-link>GameDev</a>
+ <a href="https://devsday.ru/blog/list?specializationid=6" title="Блоги о поисковом продвижении (SEO)" class=companycomment-block-companyname-link>SEO</a>
+ <a href="https://devsday.ru/blog/list?specializationid=Security" title="Кибербезопасность - статьи и блоги" class=companycomment-block-companyname-link>Безопасность</a>
+ </p>
+ <div class="nav navbar-nav publication-menu publication-menu-mobile hidden-md hidden-lg sf-hidden">
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+ <div class=container id=wrap>
+ <div class=row>
+ <div class="col-md-9 body-content">
+ 
+<div id=publication-details>
+ <h1 class=headline>
+ <a href=https://devsday.ru/blog/list>IT-блоги </a> 
+ <span> • </span>
+ Interactive Fuzzy Finding in Vim without Plugins
+ </h1>
+ <div class=publication-sub-title>
+ <span>
+ <strong>
+ <a href="https://devsday.ru/blog/list?blogid=218" title="Читать публикации dev.to">dev.to</a>
+ </strong>
+ </span>
+ <span>25 июля 2021 г.</span>
+ <span>
+ <a href=https://dev.to/pbnj/interactive-fuzzy-finding-in-vim-without-plugins-4kkj target=_blank title="Автор публикации"></a>
+ </span>
+ </div>
+ <p>
+ <ul class="rrssb-buttons clearfix rrssb-1">
+ <li class=rrssb-vk style=width:20% data-initwidth=20 data-size=48>
+ <a href="https://vk.com/share.php?url=https://devsday.ru/blog/details/52750" class=popup>
+ <span class=rrssb-icon>
+ <svg xmlns=http://www.w3.org/2000/svg width=28 height=28 viewBox="70 70 378.7 378.7">
+ <path d="M254.998 363.106h21.217s6.408-.706 9.684-4.23c3.01-3.24 2.914-9.32 2.914-9.32s-.415-28.47 12.796-32.663c13.03-4.133 29.755 27.515 47.482 39.685 13.407 9.206 23.594 7.19 23.594 7.19l47.407-.662s24.797-1.53 13.038-21.027c-.96-1.594-6.85-14.424-35.247-40.784-29.728-27.59-25.743-23.126 10.063-70.85 21.807-29.063 30.523-46.806 27.8-54.405-2.596-7.24-18.636-5.326-18.636-5.326l-53.375.33s-3.96-.54-6.892 1.216c-2.87 1.716-4.71 5.726-4.71 5.726s-8.452 22.49-19.714 41.618c-23.77 40.357-33.274 42.494-37.16 39.984-9.037-5.842-6.78-23.462-6.78-35.983 0-39.112 5.934-55.42-11.55-59.64-5.802-1.4-10.076-2.327-24.915-2.48-19.046-.192-35.162.06-44.29 4.53-6.072 2.975-10.757 9.6-7.902 9.98 3.528.47 11.516 2.158 15.75 7.92 5.472 7.444 5.28 24.154 5.28 24.154s3.145 46.04-7.34 51.758c-7.193 3.922-17.063-4.085-38.253-40.7-10.855-18.755-19.054-39.49-19.054-39.49s-1.578-3.873-4.398-5.947c-3.42-2.51-8.2-3.307-8.2-3.307l-50.722.33s-7.612.213-10.41 3.525c-2.488 2.947-.198 9.036-.198 9.036s39.707 92.902 84.672 139.72c41.234 42.93 88.048 40.112 88.048 40.112"></path>
+ </svg>
+ </span><span class=rrssb-text>vk.com</span>
+ </a>
+ </li>
+ <li class=rrssb-twitter style=width:20% data-initwidth=20 data-size=53>
+ <a title="Поделиться в Twitter" href="https://twitter.com/intent/tweet?text=Interactive+Fuzzy+Finding+in+Vim+without+Plugins:%20https://devsday.ru/blog/details/52750" class=popup>
+ <span class=rrssb-icon>
+ <svg xmlns=http://www.w3.org/2000/svg width=28 height=28 viewBox="0 0 28 28">
+ <path d="M24.253 8.756C24.69 17.08 18.297 24.182 9.97 24.62c-3.122.162-6.22-.646-8.86-2.32 2.702.18 5.375-.648 7.507-2.32-2.072-.248-3.818-1.662-4.49-3.64.802.13 1.62.077 2.4-.154-2.482-.466-4.312-2.586-4.412-5.11.688.276 1.426.408 2.168.387-2.135-1.65-2.73-4.62-1.394-6.965C5.574 7.816 9.54 9.84 13.802 10.07c-.842-2.738.694-5.64 3.434-6.48 2.018-.624 4.212.043 5.546 1.682 1.186-.213 2.318-.662 3.33-1.317-.386 1.256-1.248 2.312-2.4 2.942 1.048-.106 2.07-.394 3.02-.85-.458 1.182-1.343 2.15-2.48 2.71z"></path>
+ </svg>
+ </span><span class=rrssb-text>twitter</span>
+ </a>
+ </li>
+ <li class=rrssb-linkedin style=width:20% data-initwidth=20 data-size=56>
+ <a title="Поделиться в LinkedIn" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://devsday.ru/blog/details/52750&amp;title=Interactive+Fuzzy+Finding+in+Vim+without+Plugins&amp;summary=Table%20of%20ContentsOverviewThe%20SetupBonusCaveatSummary%20%20%20%20%20%20OverviewFZF%20is%20a%20great%20command-line%20fuzzy-finder%20and%20there%20is%20fzf.vim%20plugin%20that%20integrates%20with%20Vim%20to%20provide%20features,%20like%20:Files%20to%20fuzzy%20search%20over%20files%20and%20..." class=popup>
+ <span class=rrssb-icon>
+ <svg xmlns=http://www.w3.org/2000/svg viewBox="0 0 28 28">
+ <path d="M25.424 15.887v8.447h-4.896v-7.882c0-1.98-.71-3.33-2.48-3.33-1.354 0-2.158.91-2.514 1.802-.13.315-.162.753-.162 1.194v8.216h-4.9s.067-13.35 0-14.73h4.9v2.087c-.01.017-.023.033-.033.05h.032v-.05c.65-1.002 1.812-2.435 4.414-2.435 3.222 0 5.638 2.106 5.638 6.632zM5.348 2.5c-1.676 0-2.772 1.093-2.772 2.54 0 1.42 1.066 2.538 2.717 2.546h.032c1.71 0 2.77-1.132 2.77-2.546C8.056 3.593 7.02 2.5 5.344 2.5h.005zm-2.48 21.834h4.896V9.604H2.867v14.73z"></path>
+ </svg>
+ </span><span class=rrssb-text>linkedin</span>
+ </a>
+ </li>
+ <li class=rrssb-facebook style=width:20% data-initwidth=20 data-size=68>
+ <a title="Поделиться в Facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://devsday.ru/blog/details/52750" class=popup>
+ <span class=rrssb-icon>
+ <svg xmlns=http://www.w3.org/2000/svg viewBox="0 0 29 29">
+ <path d="M26.4 0H2.6C1.714 0 0 1.715 0 2.6v23.8c0 .884 1.715 2.6 2.6 2.6h12.393V17.988h-3.996v-3.98h3.997v-3.062c0-3.746 2.835-5.97 6.177-5.97 1.6 0 2.444.173 2.845.226v3.792H21.18c-1.817 0-2.156.9-2.156 2.168v2.847h5.045l-.66 3.978h-4.386V29H26.4c.884 0 2.6-1.716 2.6-2.6V2.6c0-.885-1.716-2.6-2.6-2.6z"></path>
+ </svg>
+ </span>
+ <span class=rrssb-text>facebook</span>
+ </a>
+ </li>
+ <li class=rrssb-email style=width:20% data-initwidth=20 data-size=37>
+ <a title="Поделиться по E-mail" href="mailto:?subject=Interactive%20Fuzzy%20Finding%20in%20Vim%20without%20Plugins&amp;body=Table%20of%20ContentsOverviewThe%20SetupBonusCaveatSummary%20%20%20%20%20%20OverviewFZF%20is%20a%20great%20command-line%20fuzzy-finder%20and%20there%20is%20fzf.vim%20plugin%20that%20integrates%20with%20Vim%20to%20provide%20features,%20like%20:Files%20to%20fuzzy%20search%20over%20files%20and%20...%20https://devsday.ru/blog/details/52750">
+ <span class=rrssb-icon>
+ <svg xmlns=http://www.w3.org/2000/svg width=24 height=24 viewBox="0 0 24 24">
+ <path d="M21.386 2.614H2.614A2.345 2.345 0 0 0 .279 4.961l-.01 14.078a2.353 2.353 0 0 0 2.346 2.347h18.771a2.354 2.354 0 0 0 2.347-2.347V4.961a2.356 2.356 0 0 0-2.347-2.347zm0 4.694L12 13.174 2.614 7.308V4.961L12 10.827l9.386-5.866v2.347z"></path>
+ </svg>
+ </span><span class=rrssb-text>email</span>
+ </a>
+ </li>
+ 
+</ul>
+ <p></p>
+ <hr>
+ <div class="overflow-auto event-details-description">
+ <h2>
+ <a href=https://dev.to/#table-of-contents>
+ </a>
+ Table of Contents
+</h2>
+<ul>
+<li><a href=https://dev.to/#overview>Overview</a></li>
+<li><a href=https://dev.to/#the-setup>The Setup</a></li>
+<li><a href=https://dev.to/#bonus>Bonus</a></li>
+<li><a href=https://dev.to/#caveat>Caveat</a></li>
+<li><a href=https://dev.to/#summary>Summary</a></li>
+</ul>
+<h2>
+ <a href=https://dev.to/#overview>
+ </a>
+ Overview
+</h2>
+<p><a href=https://github.com/junegunn/fzf>FZF</a> is a great command-line fuzzy-finder and there is <a href=https://github.com/junegunn/fzf.vim>fzf.vim</a> plugin that integrates with Vim to provide features, like <a href=https://github.com/junegunn/fzf.vim/blob/e34f6c129d39b90db44df1107c8b7dfacfd18946/doc/fzf-vim.txt#L118><code>:Files</code></a> to fuzzy search over files and <a href=https://github.com/junegunn/fzf.vim/blob/e34f6c129d39b90db44df1107c8b7dfacfd18946/doc/fzf-vim.txt#L124><code>:Rg</code></a> to fuzzy search over text using <a href=https://github.com/BurntSushi/ripgrep><code>ripgrep</code></a>.</p>
+<p>Recently, however, I have been experimenting with a plugin-free Vim setup and while <a href=http://vimdoc.sourceforge.net/htmldoc/editing.html#:find><code>:find</code></a> is sufficient for some use-cases, I found myself quitting vim and running <code>fzf</code> to find deeply nested files in new or large projects. </p>
+<p>There has to be a simple way to integrate a command-line program with a command-line editor, right?</p>
+<h2>
+ <a href=https://dev.to/#the-setup>
+ </a>
+ The Setup
+</h2>
+<p>This setup is simple and it leverages a feature in vim called <a href=http://vimdoc.sourceforge.net/htmldoc/quickfix.html#quickfix>quickfix</a>.</p>
+<p>The flow is:</p>
+<ol>
+<li>Call <code>fzf</code>
+</li>
+<li>Format the output to make it compatible with <a href=http://vimdoc.sourceforge.net/htmldoc/quickfix.html#errorformats><code>errorformat</code></a>
+</li>
+<li>Write the results to a temporary file</li>
+<li>Load the results into Vim's quickfix list with <a href=http://vimdoc.sourceforge.net/htmldoc/quickfix.html#:cfile><code>:cfile</code></a> or <a href=http://vimdoc.sourceforge.net/htmldoc/quickfix.html#:cgetfile><code>:cgetfile</code></a>, so that we can navigate through the results with <a href=http://vimdoc.sourceforge.net/htmldoc/quickfix.html#:cnext><code>:cnext</code></a>/<code>:cprevious</code> or <a href=http://vimdoc.sourceforge.net/htmldoc/quickfix.html#:copen><code>:copen</code></a>
+</li>
+<li>Clean up temporary file</li>
+</ol>
+<p>Here is what the final vimscript looks like:<br>
+</p>
+<div class="highlight js-code-highlight">
+<pre class="highlight viml"><code><span class=k>function</span><span class=p>!</span> FZF<span class=p>()</span> abort
+    <span class=k>let</span> <span class=k>l</span><span class=p>:</span><span class=nb>tempname</span> <span class=p>=</span> <span class=nb>tempname</span><span class=p>()</span>
+    <span class=c>" fzf | awk '{ print $1":1:0" }' &gt; file</span>
+    <span class=nb>execute</span> <span class=s1>'silent !fzf --multi '</span> <span class=p>.</span> <span class=s1>'| awk ''{ print $1":1:0" }'' &gt; '</span> <span class=p>.</span> <span class=nb>fnameescape</span><span class=p>(</span><span class=k>l</span><span class=p>:</span><span class=nb>tempname</span><span class=p>)</span>
+    <span class=k>try</span>
+        <span class=nb>execute</span> <span class=s1>'cfile '</span> <span class=p>.</span> <span class=k>l</span><span class=p>:</span><span class=nb>tempname</span>
+        <span class=k>redraw</span><span class=p>!</span>
+    <span class=k>finally</span>
+        <span class=k>call</span> <span class=k>delete</span><span class=p>(</span><span class=k>l</span><span class=p>:</span><span class=nb>tempname</span><span class=p>)</span>
+    <span class=k>endtry</span>
+<span class=k>endfunction</span>
+
+<span class=c>" :Files</span>
+command<span class=p>!</span> <span class=p>-</span>nargs<span class=p>=</span>* Files <span class=k>call</span> FZF<span class=p>()</span>
+
+<span class=c>" \ff</span>
+nnoremap <span class=p>&lt;</span>leader<span class=p>&gt;</span><span class=nb>ff</span> <span class=p>:</span>Files<span class=p>&lt;</span><span class=k>cr</span><span class=p>&gt;</span>
+</code></pre>
+</div>
+<p>A quick breakdown:</p>
+<ul>
+<li>
+<code>let l:tempname = tempname()</code>
+<ul>
+<li>Generate a path to a temporary file and store it in a variable.</li>
+<li>See <a href=http://vimdoc.sourceforge.net/htmldoc/eval.html#tempname()><code>:h tempname()</code></a>
+</li>
+</ul>
+</li>
+<li>
+<code>execute 'silent !fzf --multi ' . '| awk ''{ print $1":1:0" }'' &gt; ' . fnameescape(l:tempname)</code>
+<ul>
+<li>Call <code>fzf</code> with <code>--multi</code> to allow for selecting multiple files</li>
+<li>Pipe to <code>awk</code> to append <code>:1:0</code> to fzf results to make them <code>errorformat</code>-compatible.</li>
+<li>Note: you can drop this <code>awk</code> command if you <code>set errorformat+=%f</code> in your vimrc, but I found <code>%f</code> to capture a lot of false-positives from other programs' outputs and therefore <code>:cnext</code>/<code>:cprevious</code> don't function on these false-positive results.</li>
+<li>Finally, direct the results into the temp file</li>
+</ul>
+</li>
+<li>
+<code>execute 'cfile ' . l:tempname</code>
+<ul>
+<li>Load results from temp file into quickfix list and jump to the 1st result.</li>
+<li>Note #1: you may use <code>:cgetfile</code> to only load results into quickfix list without jumping to the 1st result.</li>
+<li>Note #2: you may replace <code>:cfile</code>/<code>:cgetfile</code> with <code>:lfile</code>/<code>:lgetfile</code> to use location list instead of quickfix list. Location lists are window-specific, whereas quickfix lists are global. So if you prefer to have different set of results per vim window, then use <code>:lfile</code>/<code>:lgetfile</code>.</li>
+</ul>
+</li>
+<li>
+<code>call delete(l:tempname)</code>
+<ul>
+<li>Clean up by deleting the temp file</li>
+</ul>
+</li>
+<li>
+<code>command! -nargs=* Files call FZF()</code>
+<ul>
+<li>Invoke <code>FZF()</code> function when we call <code>:Files</code> in vim</li>
+</ul>
+</li>
+<li>
+<code>nnoremap &lt;leader&gt;ff :Files&lt;cr&gt;</code>
+<ul>
+<li>Normal-mode mapping so that we can trigger this flow with <code>&lt;leader&gt;ff</code>
+</li>
+</ul>
+</li>
+</ul>
+<h2>
+ <a href=https://dev.to/#bonus>
+ </a>
+ Bonus
+</h2>
+<p>While <code>:set grepprg=rg\ --vimgrep</code> is again sufficient for most of my use-cases, those who have used <code>:Rg</code> in fzf.vim will appreciate the interactive fuzzy grepping experience and the ability to preview results before opening files in vim.</p>
+<p>Well, here is a similar experience with pure vim (<em>obviously, <code>fzf</code> and <code>rg</code> binaries are still required</em>):<br>
+</p>
+<div class="highlight js-code-highlight">
+<pre class="highlight viml"><code><span class=k>function</span><span class=p>!</span> RG<span class=p>(</span><span class=k>args</span><span class=p>)</span> abort
+    <span class=k>let</span> <span class=k>l</span><span class=p>:</span><span class=nb>tempname</span> <span class=p>=</span> <span class=nb>tempname</span><span class=p>()</span>
+    <span class=k>let</span> <span class=k>l</span><span class=p>:</span>pattern <span class=p>=</span> <span class=s1>'.'</span>
+    <span class=k>if</span> <span class=nb>len</span><span class=p>(</span><span class=nv>a:args</span><span class=p>)</span> <span class=p>&gt;</span> <span class=m>0</span>
+        <span class=k>let</span> <span class=k>l</span><span class=p>:</span>pattern <span class=p>=</span> <span class=nv>a:args</span>
+    <span class=k>endif</span>
+    <span class=c>" rg --vimgrep &lt;pattern&gt; | fzf -m &gt; file</span>
+    <span class=nb>execute</span> <span class=s1>'silent !rg --vimgrep '''</span> <span class=p>.</span> <span class=k>l</span><span class=p>:</span>pattern <span class=p>.</span> <span class=s1>''' | fzf -m &gt; '</span> <span class=p>.</span> <span class=nb>fnameescape</span><span class=p>(</span><span class=k>l</span><span class=p>:</span><span class=nb>tempname</span><span class=p>)</span>
+    <span class=k>try</span>
+        <span class=nb>execute</span> <span class=s1>'cfile '</span> <span class=p>.</span> <span class=k>l</span><span class=p>:</span><span class=nb>tempname</span>
+        <span class=k>redraw</span><span class=p>!</span>
+    <span class=k>finally</span>
+        <span class=k>call</span> <span class=k>delete</span><span class=p>(</span><span class=k>l</span><span class=p>:</span><span class=nb>tempname</span><span class=p>)</span>
+    <span class=k>endtry</span>
+<span class=k>endfunction</span>
+
+<span class=c>" :Rg [pattern]</span>
+command<span class=p>!</span> <span class=p>-</span>nargs<span class=p>=</span>* Rg <span class=k>call</span> RG<span class=p>(&lt;</span><span class=k>q</span><span class=p>-</span><span class=k>args</span><span class=p>&gt;)</span>
+
+<span class=c>" \fs</span>
+nnoremap <span class=p>&lt;</span>leader<span class=p>&gt;</span><span class=nb>fs</span> <span class=p>:</span>Rg<span class=p>&lt;</span><span class=k>cr</span><span class=p>&gt;</span>
+</code></pre>
+</div>
+<p>This offers the same experience where:</p>
+<ul>
+<li>
+<code>:Rg</code> without arguments will load all text into vim and allow users to interactively type and preview results before selecting files</li>
+<li>
+<code>:Rg [pattern]</code> will pre-filter results to just ones that match <code>[pattern]</code> before passing them to <code>fzf</code> for further fuzzy searching.</li>
+</ul>
+<h2>
+ <a href=https://dev.to/#caveat>
+ </a>
+ Caveat
+</h2>
+<p>In my testing, I found one major caveat that did not impact me too much, but it is still worth calling out here:</p>
+<p>Executing shell commands in vim with bangs, like <code>:!fzf</code>, is not meant to be interactive (at least, not out of the box). This could be a problem in GVim/MacVim. The vim <a href=http://vimdoc.sourceforge.net/htmldoc/various.html#:!>docs</a> mention the following workaround:</p>
+<blockquote>
+<p>On Unix the command normally runs in a non-interactive shell. If you want an interactive shell to be used (to use aliases) set 'shellcmdflag' to "-ic".</p>
+</blockquote>
+<p>Setting <code>shellcmdflag=-ic</code> could incur a time penalty, depending on your shell startup/initialization times.</p>
+<h2>
+ <a href=https://dev.to/#summary>
+ </a>
+ Summary
+</h2>
+<p>Vim is extremely versatile and customizable. </p>
+<p>With some knowledge of vim concepts (e.g. quickfix, <code>:cfile</code>/<code>:lfile</code>) and a little bit of (vim &amp; bash) scripting, you can achieve a richer experience and pleasant integrations to enhance your productivity in a way that suits you and your workflow.</p>
+<p>I hope you enjoyed this post and I hope it inspires you to develop and share your productivity tips and tricks in vim.</p>
+<p>Happy hacking!</p>
+ </div>
+ 
+ <p class=publication-source>
+ <b>Источник: </b>
+ <a target=blank href=https://dev.to/pbnj/interactive-fuzzy-finding-in-vim-without-plugins-4kkj>dev.to</a>
+ </p>
+ <p>
+ Наш сайт является <a target=_blank href=https://devsday.ru/info/Status>информационным посредником</a>. <a target=_blank href=mailto:support@devsday.ru>Сообщить</a> о нарушении авторских прав.
+ </p>
+ <a class=display-tag href="https://devsday.ru/blog/list?tag=vim">vim</a>
+ <hr>
+ <ul class="rrssb-buttons clearfix rrssb-2">
+ <li class=rrssb-vk style=width:20% data-initwidth=20 data-size=48>
+ <a href="https://vk.com/share.php?url=https://devsday.ru/blog/details/52750" class=popup>
+ <span class=rrssb-icon>
+ <svg xmlns=http://www.w3.org/2000/svg width=28 height=28 viewBox="70 70 378.7 378.7">
+ <path d="M254.998 363.106h21.217s6.408-.706 9.684-4.23c3.01-3.24 2.914-9.32 2.914-9.32s-.415-28.47 12.796-32.663c13.03-4.133 29.755 27.515 47.482 39.685 13.407 9.206 23.594 7.19 23.594 7.19l47.407-.662s24.797-1.53 13.038-21.027c-.96-1.594-6.85-14.424-35.247-40.784-29.728-27.59-25.743-23.126 10.063-70.85 21.807-29.063 30.523-46.806 27.8-54.405-2.596-7.24-18.636-5.326-18.636-5.326l-53.375.33s-3.96-.54-6.892 1.216c-2.87 1.716-4.71 5.726-4.71 5.726s-8.452 22.49-19.714 41.618c-23.77 40.357-33.274 42.494-37.16 39.984-9.037-5.842-6.78-23.462-6.78-35.983 0-39.112 5.934-55.42-11.55-59.64-5.802-1.4-10.076-2.327-24.915-2.48-19.046-.192-35.162.06-44.29 4.53-6.072 2.975-10.757 9.6-7.902 9.98 3.528.47 11.516 2.158 15.75 7.92 5.472 7.444 5.28 24.154 5.28 24.154s3.145 46.04-7.34 51.758c-7.193 3.922-17.063-4.085-38.253-40.7-10.855-18.755-19.054-39.49-19.054-39.49s-1.578-3.873-4.398-5.947c-3.42-2.51-8.2-3.307-8.2-3.307l-50.722.33s-7.612.213-10.41 3.525c-2.488 2.947-.198 9.036-.198 9.036s39.707 92.902 84.672 139.72c41.234 42.93 88.048 40.112 88.048 40.112"></path>
+ </svg>
+ </span><span class=rrssb-text>vk.com</span>
+ </a>
+ </li>
+ <li class=rrssb-twitter style=width:20% data-initwidth=20 data-size=53>
+ <a title="Поделиться в Twitter" href="https://twitter.com/intent/tweet?text=Interactive+Fuzzy+Finding+in+Vim+without+Plugins:%20https://devsday.ru/blog/details/52750" class=popup>
+ <span class=rrssb-icon>
+ <svg xmlns=http://www.w3.org/2000/svg width=28 height=28 viewBox="0 0 28 28">
+ <path d="M24.253 8.756C24.69 17.08 18.297 24.182 9.97 24.62c-3.122.162-6.22-.646-8.86-2.32 2.702.18 5.375-.648 7.507-2.32-2.072-.248-3.818-1.662-4.49-3.64.802.13 1.62.077 2.4-.154-2.482-.466-4.312-2.586-4.412-5.11.688.276 1.426.408 2.168.387-2.135-1.65-2.73-4.62-1.394-6.965C5.574 7.816 9.54 9.84 13.802 10.07c-.842-2.738.694-5.64 3.434-6.48 2.018-.624 4.212.043 5.546 1.682 1.186-.213 2.318-.662 3.33-1.317-.386 1.256-1.248 2.312-2.4 2.942 1.048-.106 2.07-.394 3.02-.85-.458 1.182-1.343 2.15-2.48 2.71z"></path>
+ </svg>
+ </span><span class=rrssb-text>twitter</span>
+ </a>
+ </li>
+ <li class=rrssb-linkedin style=width:20% data-initwidth=20 data-size=56>
+ <a title="Поделиться в LinkedIn" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://devsday.ru/blog/details/52750&amp;title=Interactive+Fuzzy+Finding+in+Vim+without+Plugins&amp;summary=Table%20of%20ContentsOverviewThe%20SetupBonusCaveatSummary%20%20%20%20%20%20OverviewFZF%20is%20a%20great%20command-line%20fuzzy-finder%20and%20there%20is%20fzf.vim%20plugin%20that%20integrates%20with%20Vim%20to%20provide%20features,%20like%20:Files%20to%20fuzzy%20search%20over%20files%20and%20..." class=popup>
+ <span class=rrssb-icon>
+ <svg xmlns=http://www.w3.org/2000/svg viewBox="0 0 28 28">
+ <path d="M25.424 15.887v8.447h-4.896v-7.882c0-1.98-.71-3.33-2.48-3.33-1.354 0-2.158.91-2.514 1.802-.13.315-.162.753-.162 1.194v8.216h-4.9s.067-13.35 0-14.73h4.9v2.087c-.01.017-.023.033-.033.05h.032v-.05c.65-1.002 1.812-2.435 4.414-2.435 3.222 0 5.638 2.106 5.638 6.632zM5.348 2.5c-1.676 0-2.772 1.093-2.772 2.54 0 1.42 1.066 2.538 2.717 2.546h.032c1.71 0 2.77-1.132 2.77-2.546C8.056 3.593 7.02 2.5 5.344 2.5h.005zm-2.48 21.834h4.896V9.604H2.867v14.73z"></path>
+ </svg>
+ </span><span class=rrssb-text>linkedin</span>
+ </a>
+ </li>
+ <li class=rrssb-facebook style=width:20% data-initwidth=20 data-size=68>
+ <a title="Поделиться в Facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://devsday.ru/blog/details/52750" class=popup>
+ <span class=rrssb-icon>
+ <svg xmlns=http://www.w3.org/2000/svg viewBox="0 0 29 29">
+ <path d="M26.4 0H2.6C1.714 0 0 1.715 0 2.6v23.8c0 .884 1.715 2.6 2.6 2.6h12.393V17.988h-3.996v-3.98h3.997v-3.062c0-3.746 2.835-5.97 6.177-5.97 1.6 0 2.444.173 2.845.226v3.792H21.18c-1.817 0-2.156.9-2.156 2.168v2.847h5.045l-.66 3.978h-4.386V29H26.4c.884 0 2.6-1.716 2.6-2.6V2.6c0-.885-1.716-2.6-2.6-2.6z"></path>
+ </svg>
+ </span>
+ <span class=rrssb-text>facebook</span>
+ </a>
+ </li>
+ <li class=rrssb-email style=width:20% data-initwidth=20 data-size=37>
+ <a title="Поделиться по E-mail" href="mailto:?subject=Interactive%20Fuzzy%20Finding%20in%20Vim%20without%20Plugins&amp;body=Table%20of%20ContentsOverviewThe%20SetupBonusCaveatSummary%20%20%20%20%20%20OverviewFZF%20is%20a%20great%20command-line%20fuzzy-finder%20and%20there%20is%20fzf.vim%20plugin%20that%20integrates%20with%20Vim%20to%20provide%20features,%20like%20:Files%20to%20fuzzy%20search%20over%20files%20and%20...%20https://devsday.ru/blog/details/52750">
+ <span class=rrssb-icon>
+ <svg xmlns=http://www.w3.org/2000/svg width=24 height=24 viewBox="0 0 24 24">
+ <path d="M21.386 2.614H2.614A2.345 2.345 0 0 0 .279 4.961l-.01 14.078a2.353 2.353 0 0 0 2.346 2.347h18.771a2.354 2.354 0 0 0 2.347-2.347V4.961a2.356 2.356 0 0 0-2.347-2.347zm0 4.694L12 13.174 2.614 7.308V4.961L12 10.827l9.386-5.866v2.347z"></path>
+ </svg>
+ </span><span class=rrssb-text>email</span>
+ </a>
+ </li>
+ 
+</ul>
+</div>
+<div id=hot-event-block-mobile class="hidden-md hidden-lg hot-event-block sf-hidden">
+ 
+</div>
+<style>.rrssb-buttons{box-sizing:border-box;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:12px;height:36px;margin:0;padding:0;width:100%}.rrssb-buttons:after{clear:both}.rrssb-buttons:after,.rrssb-buttons:before{content:' ';display:table}.rrssb-buttons li{box-sizing:border-box;float:left;height:100%;line-height:13px;list-style:none;margin:0;padding:0 2px}.rrssb-buttons li.rrssb-email a{background-color:#0a88ff}.rrssb-buttons li.rrssb-email a:hover{background-color:#006ed6}.rrssb-buttons li.rrssb-facebook a{background-color:#306199}.rrssb-buttons li.rrssb-facebook a:hover{background-color:#244872}.rrssb-buttons li.rrssb-linkedin a{background-color:#007bb6}.rrssb-buttons li.rrssb-linkedin a:hover{background-color:#005983}.rrssb-buttons li.rrssb-twitter a{background-color:#26c4f1}.rrssb-buttons li.rrssb-twitter a:hover{background-color:#0eaad6}.rrssb-buttons li.rrssb-vk a{background-color:#4d71a9}.rrssb-buttons li.rrssb-vk a:hover{background-color:#3d5a86}.rrssb-buttons li a{border-radius:2px;box-sizing:border-box;display:block;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-weight:700;height:100%;padding:11px 7px 12px 27px;position:relative;text-align:center;text-decoration:none;text-transform:uppercase;-webkit-transition:background-color .2s ease-in-out;transition:background-color .2s ease-in-out;width:100%}.rrssb-buttons li a .rrssb-icon{display:block;left:10px;padding-top:9px;position:absolute;top:0;width:10%}.rrssb-buttons li a .rrssb-icon svg{height:17px;width:17px}.rrssb-buttons li a .rrssb-icon svg path{fill:#fff}.rrssb-buttons li a .rrssb-text{color:#fff}.rrssb-buttons li a:active{box-shadow:inset 1px 3px 15px 0 rgba(22,0,0,.25)}</style>
+<style>@-moz-keyframes blink{0%{}50%{background-color:transparent}100%{}}@-webkit-keyframes blink{0%{}50%{background-color:transparent}100%{}}@keyframes blink{0%{}50%{background-color:transparent}100%{}}</style>
+ </div>
+ <div class=col-md-3>
+ <div id=right-sidebar class=col-xs-12>
+ <div class=row>
+ <div id=hot-event-block class=hot-event-block>
+ <div data-bind="if: HotEvent">
+ <h3 class=block-header>Горячее событие</h3>
+ <div class="container event-last-five-list-container">
+ <div data-bind="if: $root.GetImageUrl()">
+ <img class="publication-list-item-image img-responsive" data-bind="attr: { 'src' : $root.GetImageUrl(), 'alt': HotEvent().Title, 'title': HotEvent().Title }" src=data:image/png;base64,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 alt="Онлайн-хакатон «ТИМ ФОРС Альянс»" title="Онлайн-хакатон «ТИМ ФОРС Альянс»">
+ </div>
+ <div class="row event-block-row">
+ <div class=lastfive-events-row-title>
+ <a href=https://devsday.ru/hotevent/info>Горячее</a>
+ <span> • </span>
+ <span data-bind="text: moment(HotEvent().Start).format('LL')">10 марта 2022 г.</span>
+ <span data-bind="text: HotEvent().City ? '- ' + HotEvent().City : ''"></span>
+ </div>
+ <div>
+ <span class=hot-sign>♨</span>
+ <a data-bind="attr: { 'href' : '/event/details/' + HotEvent().EventId }, text: HotEvent().Title" class=lastfive-events-block-name-link href=https://devsday.ru/event/details/18574>Онлайн-хакатон «ТИМ ФОРС Альянс»</a>
+ </div>
+ <div data-bind="html: $root.GetDescription()">Платформа токенизации проектных ИТ-команд «ТФ Альянс» с 11 по 13 марта 2022 года проводит онлайн-хакатон, в рамках которого участникам пре... <a href=https://devsday.ru/event/details/18574>далее</a></div>
+ </div>
+ </div>
+</div>
+</div>
+ <div class="right-side-ad sf-hidden" id=add-vacancy-right-rail-ad>
+ 
+ 
+</div>
+ <center>
+<a target=_blank rel=nofollow href="https://ad.admitad.com/g/8qabvyx02u3533bb267765a37ca03d/?i=4"><img width=240 height=400 border=0 src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt=GeekBrains srvw3u3r4 class=sf-hidden></a>
+</center>
+<div id=vacancy-last-five-list>
+ <div data-bind="if: Vacancies()">
+ <h3 class=block-header>Вакансии</h3>
+ <div class="container col-md-12" data-bind="foreach: $root.Vacancies">
+ <div class="row vacancy-block-row">
+ <a data-bind="attr: {'href' : '/vacancy/details/' + VacancyId, title: 'Вакансия ' + Title + ' от компании ' + CompanyName}, text: Title" class=vacancy-block-vacancy-title-link href=https://devsday.ru/vacancy/details/105506 title="Вакансия UX/UI дизайнер от компании One technologies">UX/UI дизайнер</a> 
+ <a data-bind="attr: {href: '/company/details/' + CompanyId, title: 'Профиль компании ' + CompanyName }" href=https://devsday.ru/company/details/72417 title="Профиль компании One technologies">
+ <span class=vacancy-block-company-name data-bind="text: CompanyName">One technologies</span>
+ </a>
+ </div>
+ 
+ <div class="row vacancy-block-row">
+ <a data-bind="attr: {'href' : '/vacancy/details/' + VacancyId, title: 'Вакансия ' + Title + ' от компании ' + CompanyName}, text: Title" class=vacancy-block-vacancy-title-link href=https://devsday.ru/vacancy/details/105505 title="Вакансия Системный администратор от компании ГБУЗ Госпиталь для ветеранов войн № 1 Департамента здравоохранения города Москвы">Системный администратор</a> 
+ <a data-bind="attr: {href: '/company/details/' + CompanyId, title: 'Профиль компании ' + CompanyName }" href=https://devsday.ru/company/details/902882 title="Профиль компании ГБУЗ Госпиталь для ветеранов войн № 1 Департамента здравоохранения города Москвы">
+ <span class=vacancy-block-company-name data-bind="text: CompanyName">ГБУЗ Госпиталь для ветеранов войн № 1 Департамента здравоохранения города Москвы</span>
+ </a>
+ </div>
+ 
+ <div class="row vacancy-block-row">
+ <a data-bind="attr: {'href' : '/vacancy/details/' + VacancyId, title: 'Вакансия ' + Title + ' от компании ' + CompanyName}, text: Title" class=vacancy-block-vacancy-title-link href=https://devsday.ru/vacancy/details/105504 title="Вакансия Начальник отдела информационных технологий от компании Тавр, Ростовский колбасный завод">Начальник отдела информационных технологий</a> 
+ <a data-bind="attr: {href: '/company/details/' + CompanyId, title: 'Профиль компании ' + CompanyName }" href=https://devsday.ru/company/details/17324 title="Профиль компании Тавр, Ростовский колбасный завод">
+ <span class=vacancy-block-company-name data-bind="text: CompanyName">Тавр, Ростовский колбасный завод</span>
+ </a>
+ </div>
+ 
+ <div class="row vacancy-block-row">
+ <a data-bind="attr: {'href' : '/vacancy/details/' + VacancyId, title: 'Вакансия ' + Title + ' от компании ' + CompanyName}, text: Title" class=vacancy-block-vacancy-title-link href=https://devsday.ru/vacancy/details/105503 title="Вакансия Руководитель цифрового продукта от компании Почта России">Руководитель цифрового продукта</a> 
+ <a data-bind="attr: {href: '/company/details/' + CompanyId, title: 'Профиль компании ' + CompanyName }" href=https://devsday.ru/company/details/10433 title="Профиль компании Почта России">
+ <span class=vacancy-block-company-name data-bind="text: CompanyName">Почта России</span>
+ </a>
+ </div>
+ 
+ <div class="row vacancy-block-row">
+ <a data-bind="attr: {'href' : '/vacancy/details/' + VacancyId, title: 'Вакансия ' + Title + ' от компании ' + CompanyName}, text: Title" class=vacancy-block-vacancy-title-link href=https://devsday.ru/vacancy/details/105502 title="Вакансия Младший системный администратор от компании Русская лаборатория">Младший системный администратор</a> 
+ <a data-bind="attr: {href: '/company/details/' + CompanyId, title: 'Профиль компании ' + CompanyName }" href=https://devsday.ru/company/details/900814 title="Профиль компании Русская лаборатория">
+ <span class=vacancy-block-company-name data-bind="text: CompanyName">Русская лаборатория</span>
+ </a>
+ </div>
+ </div>
+ <a class=right-sidebar-see-all-link href=https://devsday.ru/vacancy/list/%D0%B2%D1%81%D0%B5-%D0%B2%D0%B0%D0%BA%D0%B0%D0%BD%D1%81%D0%B8%D0%B8-%D0%B2-IT title="Просмотреть все IT вакансии">Просмотреть все</a>
+ </div>
+</div>
+<center>
+<br>
+<a target=_blank rel=nofollow href="https://ad.admitad.com/g/amfjfrw3iy3533bb267765a37ca03d/?i=4"><img width=240 height=400 border=0 src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt=GeekBrains srvw3u3r4 class=sf-hidden></a>
+</center>
+ <br>
+<div class="right-side-ad sf-hidden">
+ 
+ 
+</div>
+ <div id=last-reviews-list>
+ <div data-bind="if: Reviews()">
+ <h3 class=block-header>Отзывы о работе</h3>
+ <div class="container col-md-12" data-bind="foreach: $root.Reviews">
+ <div class="row reviews-block-row">
+ <a data-bind="attr: {'href' : '/reviews/details/' + CompanyRecallId, title: 'Отзыв о работе в компании ' + Company.Name}, text: Title" class=vacancy-block-vacancy-title-link href=https://devsday.ru/reviews/details/6427 title="Отзыв о работе в компании ООО «ЭлитСофт»">Работаю в отделе маркетинга</a>
+ <a data-bind="attr: {href: '/companyrecall/list/' + Company.CompanyId, title: 'Все отзывы о компании ' + Company.Name }" href=https://devsday.ru/companyrecall/list/18688 title="Все отзывы о компании ООО «ЭлитСофт»">
+ (<span class=companycomment-block-companyname-link data-bind="text: Company.Name">ООО «ЭлитСофт»</span>)
+ </a>
+ </div>
+ 
+ <div class="row reviews-block-row">
+ <a data-bind="attr: {'href' : '/reviews/details/' + CompanyRecallId, title: 'Отзыв о работе в компании ' + Company.Name}, text: Title" class=vacancy-block-vacancy-title-link href=https://devsday.ru/reviews/details/6426 title="Отзыв о работе в компании ITS Partner">Компания оставила о себе приятное впечатление, как с точки зрения личных взаимоотношений, так и профессионального роста</a>
+ <a data-bind="attr: {href: '/companyrecall/list/' + Company.CompanyId, title: 'Все отзывы о компании ' + Company.Name }" href=https://devsday.ru/companyrecall/list/18043 title="Все отзывы о компании ITS Partner">
+ (<span class=companycomment-block-companyname-link data-bind="text: Company.Name">ITS Partner</span>)
+ </a>
+ </div>
+ 
+ <div class="row reviews-block-row">
+ <a data-bind="attr: {'href' : '/reviews/details/' + CompanyRecallId, title: 'Отзыв о работе в компании ' + Company.Name}, text: Title" class=vacancy-block-vacancy-title-link href=https://devsday.ru/reviews/details/6425 title="Отзыв о работе в компании ООО СНМТ Технолоджис">Работаю в компании с недавнего времени, и уже могу сказать что мне тут очень комфортно</a>
+ <a data-bind="attr: {href: '/companyrecall/list/' + Company.CompanyId, title: 'Все отзывы о компании ' + Company.Name }" href=https://devsday.ru/companyrecall/list/18690 title="Все отзывы о компании ООО СНМТ Технолоджис">
+ (<span class=companycomment-block-companyname-link data-bind="text: Company.Name">ООО СНМТ Технолоджис</span>)
+ </a>
+ </div>
+ 
+ <div class="row reviews-block-row">
+ <a data-bind="attr: {'href' : '/reviews/details/' + CompanyRecallId, title: 'Отзыв о работе в компании ' + Company.Name}, text: Title" class=vacancy-block-vacancy-title-link href=https://devsday.ru/reviews/details/6424 title="Отзыв о работе в компании Techvice LLC">Скажу так - Techvice просто нереальная компания</a>
+ <a data-bind="attr: {href: '/companyrecall/list/' + Company.CompanyId, title: 'Все отзывы о компании ' + Company.Name }" href=https://devsday.ru/companyrecall/list/18402 title="Все отзывы о компании Techvice LLC">
+ (<span class=companycomment-block-companyname-link data-bind="text: Company.Name">Techvice LLC</span>)
+ </a>
+ </div>
+ 
+ <div class="row reviews-block-row">
+ <a data-bind="attr: {'href' : '/reviews/details/' + CompanyRecallId, title: 'Отзыв о работе в компании ' + Company.Name}, text: Title" class=vacancy-block-vacancy-title-link href=https://devsday.ru/reviews/details/6423 title="Отзыв о работе в компании ООО СНМТ Технолоджис">Очень радует дружеская атмосфера в коллективе и возможность работать удаленно</a>
+ <a data-bind="attr: {href: '/companyrecall/list/' + Company.CompanyId, title: 'Все отзывы о компании ' + Company.Name }" href=https://devsday.ru/companyrecall/list/18690 title="Все отзывы о компании ООО СНМТ Технолоджис">
+ (<span class=companycomment-block-companyname-link data-bind="text: Company.Name">ООО СНМТ Технолоджис</span>)
+ </a>
+ </div>
+ </div>
+ <a class=right-sidebar-see-all-link href=https://devsday.ru/reviews title="Отзывы о работе в IT">Просмотреть все отзывы</a>
+ </div>
+</div>
+ <div id=companycomment-last-three-list>
+ <h3 data-bind="if: Comments().length > 0" class=block-header>Обсуждение компаний</h3>
+ <div class=container data-bind="foreach: $root.Comments">
+ <div class="row companycomment-block-row">
+ <div class=companycomment-block-creationdate-container>
+ <span data-bind="text: moment(CreationDate).format('Do MMMM YYYY в HH:MM')" class=companycomment-block-creationdate>4-го февраля 2022 в 13:02</span>
+ </div>
+ <div data-bind="if: UserId"></div>
+ <div data-bind="if: !UserId">
+ <span data-bind="text: UserName" class=companycomment-block-username-link>Александр Михейчик</span> → <a data-bind="attr:{'href': '/Company/Details/' + CompanyId}, text: CompanyName" class=companycomment-block-companyname-link href=https://devsday.ru/Company/Details/18375>StyleSoft</a>
+ </div>
+ <div class=companycomment-block-content>
+ <a data-bind="attr: {'href' : '/companycomment/list/' + CompanyId + '#comment' + CompanyCommentId}, text: $root.GetDescription($data)" class=companycomment-block-content-link href=https://devsday.ru/companycomment/list/18375#comment2874>
+Добрый день, Самир.
+Мы хотим ещё раз выразить сожаление по поводу произошедшей ситуации и принести наши искренние извинения.
+Но при этом мы хотим отм...</a>
+ </div>
+ </div>
+ 
+ <div class="row companycomment-block-row">
+ <div class=companycomment-block-creationdate-container>
+ <span data-bind="text: moment(CreationDate).format('Do MMMM YYYY в HH:MM')" class=companycomment-block-creationdate>9-го января 2022 в 09:01</span>
+ </div>
+ <div data-bind="if: UserId"></div>
+ <div data-bind="if: !UserId">
+ <span data-bind="text: UserName" class=companycomment-block-username-link>plymax</span> → <a data-bind="attr:{'href': '/Company/Details/' + CompanyId}, text: CompanyName" class=companycomment-block-companyname-link href=https://devsday.ru/Company/Details/1983>Системные Технологии</a>
+ </div>
+ <div class=companycomment-block-content>
+ <a data-bind="attr: {'href' : '/companycomment/list/' + CompanyId + '#comment' + CompanyCommentId}, text: $root.GetDescription($data)" class=companycomment-block-content-link href=https://devsday.ru/companycomment/list/1983#comment2873>
+Проработав 7 лет экспертом SAP RCM, и полгода находясь в отсутствии проектов, пошел сюда на интервью в сентябре-2017 на вакансию бизнес/системного ан...</a>
+ </div>
+ </div>
+ 
+ <div class="row companycomment-block-row">
+ <div class=companycomment-block-creationdate-container>
+ <span data-bind="text: moment(CreationDate).format('Do MMMM YYYY в HH:MM')" class=companycomment-block-creationdate>20-го декабря 2021 в 13:12</span>
+ </div>
+ <div data-bind="if: UserId"></div>
+ <div data-bind="if: !UserId">
+ <span data-bind="text: UserName" class=companycomment-block-username-link>scandiweb-bel</span> → <a data-bind="attr:{'href': '/Company/Details/' + CompanyId}, text: CompanyName" class=companycomment-block-companyname-link href=https://devsday.ru/Company/Details/70316>Scandiweb Bel</a>
+ </div>
+ <div class=companycomment-block-content>
+ <a data-bind="attr: {'href' : '/companycomment/list/' + CompanyId + '#comment' + CompanyCommentId}, text: $root.GetDescription($data)" class=companycomment-block-content-link href=https://devsday.ru/companycomment/list/70316#comment2872>
+Hello! Thank you for your review! It helps us to improve our processes!
+We are sorry to hear about your experience with us. Still, it gives a better ...</a>
+ </div>
+ </div>
+ </div>
+</div>
+ <h3 class=block-header>Блоги</h3>
+<div id=trending-blogs class=col-md-12>
+ <div class=row data-bind="foreach: $root.Publications">
+ <div class=trending-publication-item>
+ <a data-bind="attr:{href: '/blog/details/' + PublicationId}, text: Title" href=https://devsday.ru/blog/details/14873>Доступ к расширенной статистике в Яндекс.Вебмастере получили единицы</a>
+ </div>
+ 
+ <div class=trending-publication-item>
+ <a data-bind="attr:{href: '/blog/details/' + PublicationId}, text: Title" href=https://devsday.ru/blog/details/14871>Релиз SDL 2.0.12</a>
+ </div>
+ 
+ <div class=trending-publication-item>
+ <a data-bind="attr:{href: '/blog/details/' + PublicationId}, text: Title" href=https://devsday.ru/blog/details/14861>UI/UX case study: mental health app</a>
+ </div>
+ 
+ <div class=trending-publication-item>
+ <a data-bind="attr:{href: '/blog/details/' + PublicationId}, text: Title" href=https://devsday.ru/blog/details/14863>Способы усилить безопасность вашего хостинга</a>
+ </div>
+ 
+ <div class=trending-publication-item>
+ <a data-bind="attr:{href: '/blog/details/' + PublicationId}, text: Title" href=https://devsday.ru/blog/details/14857>Starting a career as a UX Designer</a>
+ </div>
+ </div>
+</div>
+ <div id=event-last-five-list>
+ <div data-bind="if: Events().length > 0">
+ <h3 class=block-header>Горящие события</h3>
+ <div class="container event-last-five-list-container" data-bind="foreach: $root.Events">
+ <div class="row event-block-row">
+ <div class=lastfive-events-row-title>
+ <span data-bind="text: moment(Start).format('LL')">8 марта 2022 г.</span>
+ <span data-bind="text: City ? '- ' + City : ''">- Онлайн-трансляция</span>
+ </div>
+ <div>
+ <a data-bind="attr: {'href' : '/event/details/' + EventId}, text: Title" class=lastfive-events-block-name-link href=https://devsday.ru/event/details/18507>
+Frontend meetup (Online)
+</a>
+ </div>
+ </div>
+ 
+ <div class="row event-block-row">
+ <div class=lastfive-events-row-title>
+ <span data-bind="text: moment(Start).format('LL')">9 марта 2022 г.</span>
+ <span data-bind="text: City ? '- ' + City : ''">- Москва, Киев, Нур-Султан</span>
+ </div>
+ <div>
+ <a data-bind="attr: {'href' : '/event/details/' + EventId}, text: Title" class=lastfive-events-block-name-link href=https://devsday.ru/event/details/18576>Microsoft Dynamics 365 EAM: максимальная доступность производственных активов</a>
+ </div>
+ </div>
+ 
+ <div class="row event-block-row">
+ <div class=lastfive-events-row-title>
+ <span data-bind="text: moment(Start).format('LL')">9 марта 2022 г.</span>
+ <span data-bind="text: City ? '- ' + City : ''">- Онлайн-трансляция</span>
+ </div>
+ <div>
+ <a data-bind="attr: {'href' : '/event/details/' + EventId}, text: Title" class=lastfive-events-block-name-link href=https://devsday.ru/event/details/18571>
+Quantori QA School
+</a>
+ </div>
+ </div>
+ 
+ <div class="row event-block-row">
+ <div class=lastfive-events-row-title>
+ <span data-bind="text: moment(Start).format('LL')">9 марта 2022 г.</span>
+ <span data-bind="text: City ? '- ' + City : ''"></span>
+ </div>
+ <div>
+ <a data-bind="attr: {'href' : '/event/details/' + EventId}, text: Title" class=lastfive-events-block-name-link href=https://devsday.ru/event/details/18580>SEO Круглый стол</a>
+ </div>
+ </div>
+ 
+ <div class="row event-block-row">
+ <div class=lastfive-events-row-title>
+ <span data-bind="text: moment(Start).format('LL')">10 марта 2022 г.</span>
+ <span data-bind="text: City ? '- ' + City : ''">- Москва, Киев, Нур-Султан</span>
+ </div>
+ <div>
+ <a data-bind="attr: {'href' : '/event/details/' + EventId}, text: Title" class=lastfive-events-block-name-link href=https://devsday.ru/event/details/18578>Клиентоцентричная трансформация с Microsoft Dynamics 365 Commerce</a>
+ </div>
+ </div>
+ 
+ <div class="row event-block-row">
+ <div class=lastfive-events-row-title>
+ <span data-bind="text: moment(Start).format('LL')">10 марта 2022 г.</span>
+ <span data-bind="text: City ? '- ' + City : ''"></span>
+ </div>
+ <div>
+ <a data-bind="attr: {'href' : '/event/details/' + EventId}, text: Title" class=lastfive-events-block-name-link href=https://devsday.ru/event/details/18574>Онлайн-хакатон «ТИМ ФОРС Альянс»</a>
+ </div>
+ </div>
+ 
+ <div class="row event-block-row">
+ <div class=lastfive-events-row-title>
+ <span data-bind="text: moment(Start).format('LL')">11 марта 2022 г.</span>
+ <span data-bind="text: City ? '- ' + City : ''">- Новосибирск</span>
+ </div>
+ <div>
+ <a data-bind="attr: {'href' : '/event/details/' + EventId}, text: Title" class=lastfive-events-block-name-link href=https://devsday.ru/event/details/18496>
+GameDev CityFest 2022
+</a>
+ </div>
+ </div>
+ 
+ <div class="row event-block-row">
+ <div class=lastfive-events-row-title>
+ <span data-bind="text: moment(Start).format('LL')">16 марта 2022 г.</span>
+ <span data-bind="text: City ? '- ' + City : ''">- Онлайн-трансляция</span>
+ </div>
+ <div>
+ <a data-bind="attr: {'href' : '/event/details/' + EventId}, text: Title" class=lastfive-events-block-name-link href=https://devsday.ru/event/details/18508>
+HighLoad++
+</a>
+ </div>
+ </div>
+ </div>
+ <a class=right-sidebar-see-all-link href=https://devsday.ru/event/list/ title=IT-события>Просмотреть все события</a>
+ </div>
+</div>
+ <h3 class=block-header>Новости</h3>
+<div id=trending-publications class=col-md-12>
+ <div class=row data-bind="foreach: $root.Publications">
+ <div class=trending-publication-item>
+ <a data-bind="attr:{href: '/news/details/' + PublicationId}, text: Title" href=https://devsday.ru/news/details/304039>Владельца «Мясной империи» и «Озерецких колбас» убили выстрелом из арбалета во время ограбления</a>
+ </div>
+ 
+ <div class=trending-publication-item>
+ <a data-bind="attr:{href: '/news/details/' + PublicationId}, text: Title" href=https://devsday.ru/news/details/304037>В рамках РЭН пройдет мероприятие в формате цифровой демо-визуализации с эффектом полного погружения</a>
+ </div>
+ 
+ <div class=trending-publication-item>
+ <a data-bind="attr:{href: '/news/details/' + PublicationId}, text: Title" href=https://devsday.ru/news/details/304033>Новые наушники Koss уже в продаже</a>
+ </div>
+ 
+ <div class=trending-publication-item>
+ <a data-bind="attr:{href: '/news/details/' + PublicationId}, text: Title" href=https://devsday.ru/news/details/304028>Moscow Regional Contest пройдет в формате онлайн</a>
+ </div>
+ 
+ <div class=trending-publication-item>
+ <a data-bind="attr:{href: '/news/details/' + PublicationId}, text: Title" href=https://devsday.ru/news/details/304030>Xbox Series X проигрывает PS5 по популярности</a>
+ </div>
+ </div>
+</div>
+ </div>
+</div>
+ 
+ </div>
+ </div>
+ </div><div id=user-id_1.0.5_lr></div>
+ 
+<div class=navbar-default id=footer>
+ <div class=container id=footer-container>
+ <div class=row>
+ <div class="col-md-12 hidden-xs hidden-sm">
+ <div class="col-md-2 hidden-sm hidden-xs">
+ <a href=https://devsday.ru/>
+ <img src="data:image/png;base64,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" class=img-responsive>
+ </a>
+ </div>
+ <ul class="col-md-2 col-xs-3">
+ <li><a href=https://devsday.ru/info/agreement>Пользовательское соглашение</a></li>
+ <li><a href=https://devsday.ru/info/usage>Правила</a></li>
+ <li><a href=https://devsday.ru/info/confidential>Конфиденциальность</a></li>
+ <li><a href=https://devsday.ru/info/Status>О статусе информационного посредника</a></li>
+ </ul>
+ <ul class="col-md-2 col-xs-3">
+ <li><a href=https://devsday.ru/vacancy/list>Поиск вакансий</a></li>
+ <li><a href=https://devsday.ru/event/list>Поиск событий</a></li>
+ <li><a href=https://devsday.ru/company/list>Поиск IT-компаний</a></li>
+ <li><a href=https://devsday.ru/publication/list>Последние новости</a></li>
+ </ul>
+ <ul class="col-md-2 col-xs-3">
+ <li><a href=https://devsday.ru/info/aboutus>О проекте</a></li>
+ <li><a href=https://devsday.ru/info/contact>Контакты</a></li>
+ 
+ <li><a href=https://devsday.ru/products/webstore>Тарифные планы</a></li>
+ 
+ </ul>
+ <ul class="col-md-2 col-xs-3">
+ <li><a target=_blank href=https://vk.com/devsday>ВКонтакте</a></li>
+ <li><a target=_blank href=https://www.facebook.com/devsday.ru>Facebook</a></li>
+ <li><a target=_blank href=https://twitter.com/devsday_ru>Twitter</a></li>
+ <li><a target=_blank href=https://feeds.feedburner.com/devsday/CgED>RSS</a></li>
+ </ul>
+ </div>
+ <div class="col-xs-12 hidden-lg hidden-md no-padding-left sf-hidden">
+ 
+ 
+ 
+ </div>
+ </div>
+ <div class=row>
+ <div class=col-xs-12>© 2017 - 2022 DevsDay.Ru
+ </div>
+ </div>
+ </div>
+</div>
