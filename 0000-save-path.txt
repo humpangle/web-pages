@@ -1,1 +1,2 @@
 \\wsl.localhost\Ubuntu\home\kanmii\projects\web-pages
+\\wsl$\Ubuntu\home\kanmii\projects\web-pages
