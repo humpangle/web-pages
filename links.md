@@ -18,3 +18,9 @@ https://elixirforum.com/t/how-to-make-a-supervisor-never-die/22734
 
 https://www.youtube.com/watch?v=4OBtc_eIKIE
 https://github.com/humpangle/opentelemetry-demo
+
+# OTP
+
+## kv_umbrella
+
+https://github.com/humpangle/kv_umbrella
