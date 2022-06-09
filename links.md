@@ -12,6 +12,10 @@ https://martinfowler.com/bliki/CircuitBreaker.html
 
 https://elixirforum.com/t/how-to-make-a-supervisor-never-die/22734
 
+### Handling TCP connections in Elixir
+
+https://andrealeopardi.com/posts/handling-tcp-connections-in-elixir/
+
 # Monitoring
 
 ## Monitoring Elixir With OpenTelemetry | Kamil Kowalski | ElixirConf EU 2021
