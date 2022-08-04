@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> <html style><!--
+ Page saved with SingleFile 
+ url: https://nginx.org/en/docs/http/request_processing.html 
+ saved date: Thu Aug 04 2022 17:57:28 GMT+0200 (Central European Summer Time)
+--><meta charset=utf-8><title>How nginx processes a request</title><style>body{background:white;color:black;font-family:sans-serif;line-height:1.4em;text-align:center;margin:0;padding:0}#banner{background:black;color:#F2F2F2;line-height:1.2em;padding:.3em 0;box-shadow:0 5px 10px black}#banner a{color:#00B140}#main{text-align:left;margin:0 auto;min-width:32em;max-width:64em}#menu{float:right;width:11em;padding:0 .5em 1em .5em;border-left:2px solid #DDD}#content{margin-right:13.5em;padding:0 .2em 0 1.5em}h1{display:block;font-size:3em;text-align:left;height:.7em;margin:0;margin-bottom:.5em}h1 img{width:100%}h2{text-align:center}p{text-align:justify}ul{margin:.5em 0 1em 1em;padding:0 .5em}li{text-align:justify;padding:.5em 0 0 1px}blockquote{margin:1em 0 1em 1em;padding:.5em}blockquote.note{border:1px dotted #999;line-height:1.2em;text-align:justify}blockquote.example{line-height:1em;border-left:1px solid #BBB}blockquote.example pre{padding:0;margin:0}</style><link type=image/x-icon rel="shortcut icon" href="data:image/x-icon;base64,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P//4+/b//////////////////////2GlL/9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0iXDv9AjwAQAAAAAAAAAABAjwAQSJcO/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/aqo7/////////////////0iXDv9Ilw7/SJcO/0iXDv9boif/7PTm////////////////////////////Y6Yy/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0CPABAAAAAAAAAAAECPABBIlw7/SJcO/0iXDv9Ilw7/SJcO/0iXDv9qqjv/////////////////SJcO/0iXDv9Ilw7/T5sX/9rqz////////////+/26f////////////////9kpjL/SJcO/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/QI8AEAAAAAAAAAAAQI8AEEiXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/2qqO/////////////////9Ilw7/SJcO/0mXD//C3K/////////////3+vT/dLBI/////////////////2SmMv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0iXDv9AjwAQAAAAAAAAAABAjwAQSJcO/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/aqo7/////////////////0iXDv9Ilw7/pcyJ/////////////v79/4G3Wf9SnBv/////////////////ZKYy/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0CPABAAAAAAAAAAAECPABBIlw7/SJcO/0iXDv9Ilw7/SJcO/0iXDv9qqjv/////////////////SJcO/4i7Yv/+/v7///////////+eyH//SJcO/1KcG/////////////////9kpjL/SJcO/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/QI8AEAAAAAAAAAAAQI8AEEiXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/2qqO/////////////////9vrUL/+fv3////////////vNmn/0iXDv9Ilw7/Upwb/////////////////2SmMv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0iXDv9AjwAQAAAAAAAAAABAjwAQSJcO/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/aqo7/////////////////+316P///////////9XnyP9NmhT/SJcO/0iX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//////////////////+92aj/UZwZ/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0KOCRsAAAAAAAAAAAAAAAAAAAAAQo4JG0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/1OeHf/F3rP//////////////////////0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0qYEf+LvWb/9Pnx//////////////////////////////////////++2qr/UZwa/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0KOCRsAAAAAAAAAAAAAAAAAAAAAQo4JG0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/1OeHf/F3rP//////////////////////0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/3KvRv/k79v///////////////////////////////////////////+/2qv/UZwa/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0KOCRsAAAAAAAAAAAAAAAAAAAAAQo4JG0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/1OeHf/F3rP//////////////////////0iXDv9Ilw7/SJcO/0iXDv9Ilw7/W6Io/+Xw3f//////////////////////0uXD//////////////////////+/2qv/UZwa/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0KOCRsAAAAAAAAAAAAAAAAAAAAAQo4JG0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/1OeHf/F3rP//////////////////////0iXDv9Ilw7/SJcO/0iXDv9ZoSX/1ObG//////////////////7+/v/W6Mn/bKs9//////////////////////+/2qv/UZwa/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0KOCRsAAAAAAAAAAAAAAAAAAAAAQo4JG0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/1OeHf/F3rP//////////////////////0iXDv9Ilw7/SJcO/1KcG/+01J3/+/36/////////////////+fx4P91sEn/WaAl//////////////////////+/2qv/UZwa/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0KOCRsAAAAAAAAAAAAAAAAAAAAAQo4JG0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/1OeHf/F3rP//////////////////////0iXDv9Ilw7/SJcO/5zGff/5/Pf//////////////////P36/3y0U/9KmBD/WaAk//////////////////////+/2qv/UZwa/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0KOCRsAAAAAAAAAAAAAAAAAAAAAQo4JG0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/1OeHf/F3rP//////////////////////0iXDv9LmBH/hble//3+/f/////////////////4+/X/ksFv/0iXDv9Ilw7/WaAk//////////////////////+/2qv/UZwa/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0KOCRsAAAAAAAAAAAAAAAAAAAAAQo4JG0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/1OeHf/F3rP//////////////////////0mYEP97tFH/7PTm//////////////////r8+f+t0JP/UJwZ/0iXDv9Ilw7/WaAk//////////////////////+/2qv/UZwa/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0KOCRsAAAAAAAAAAAAAAAAAAAAAQo4JG0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/1OeHf/F3rP//////////////////////16kK//c69L//v/+/////////////////83ivv9WnyH/SJcO/0iXDv9Ilw7/WaAk//////////////////////+/2qv/UZwa/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0KOCRsAAAAAAAAAAAAAAAAAAAAAQo4JG0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/1OeHf/F3rP//////////////////////87jv//////////////////+//7/3+zU/1afIP9Ilw7/SJcO/0iXDv9Ilw7/WaAk//////////////////////+/2qv/UZwa/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0KOCRsAAAAAAAAAAAAAAAAAAAAAQo4JG0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/1OeHf/F3rP////////////////////////////////////////////g7db/bKw+/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/WaAk//////////////////////+/2qv/UZwa/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0KOCRsAAAAAAAAAAAAAAAAAAAAAQo4JG0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/1OeHf/F3rP///////////////////////////////////////L47v+DuVz/SpgQ/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/WaAk//////////////////////+/2qv/UZwa/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0KOCRsAAAAAAAAAAAAAAAAAAAAAQo4JG0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/1OeHf/F3rP/////////////////////////////////+vz4/57Hf/9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/WaAk//////////////////////+/2qv/UZwa/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0KOCRsAAAAAAAAAAAAAAAAAAAAAQo4JG0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/1OeHf/F3rP////////////////////////////6/Pn/qs6P/0uZEv9Ilw7/SJcO/0iXDv9Ilw7/SJcO/0iXDv9Ilw7/WaAk////////////////////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"><link rel=canonical href=https://nginx.org/en/docs/http/request_processing.html><meta http-equiv=content-security-policy content="default-src 'none'; font-src 'self' data:; img-src 'self' data:; style-src 'unsafe-inline'; media-src 'self' data:; script-src 'unsafe-inline' data:;"><style>img[src="data:,"],source[src="data:,"]{display:none!important}</style><body><div id=banner>Join the <a href=https://community.nginx.org/joinslack?w>nginxcommunity Slack</a>
+</div><div id=main><div id=menu><h1><a href=https://nginx.org/><img src=data:image/png;base64,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 alt=nginx></a></h1><div>english<br><a href=https://nginx.org/ru/docs/http/request_processing.html>русский</a><br><br><a href=https://nginx.org/>news</a><br><a href=https://nginx.org/en/>about</a><br><a href=https://nginx.org/en/download.html>download</a><br><a href=https://nginx.org/en/security_advisories.html>security</a><br><a href=https://nginx.org/en/docs/>documentation</a><br><a href=https://nginx.org/en/docs/faq.html>faq</a><br><a href=https://nginx.org/en/books.html>books</a><br><a href=https://nginx.org/en/support.html>support</a><br><br><a href=http://trac.nginx.org/nginx>trac</a><br><a href=http://twitter.com/nginxorg>twitter</a><br><a href=https://www.nginx.com/blog/>blog</a><br><br><a href=https://unit.nginx.org/>unit</a><br><a href=https://nginx.org/en/docs/njs/>njs</a><br></div></div><div id=content><h2>How nginx processes a request</h2><table width=100%><tbody><tr><td align=left><a href=#how_to_prevent_undefined_server_names>How to prevent processing requests with undefined server names</a><br><a href=#mixed_name_ip_based_servers>Mixed name-based and IP-based virtual servers</a><br><a href=#simple_php_site_configuration>A simple PHP site configuration</a><br></table><center><h4>Name-based virtual servers</h4></center><p>
+nginx first decides which <i>server</i> should process the request.
+Let’s start with a simple configuration
+where all three virtual servers listen on port *:80:
+</p> <blockquote class=example><pre>server {
+    listen      80;
+    server_name example.org www.example.org;
+    ...
+}
+
+server {
+    listen      80;
+    server_name example.net www.example.net;
+    ...
+}
+
+server {
+    listen      80;
+    server_name example.com www.example.com;
+    ...
+}
+</pre></blockquote><p> 
+<p>
+In this configuration nginx tests only the request’s header field
+“Host” to determine which server the request should be routed to.
+If its value does not match any server name,
+or the request does not contain this header field at all,
+then nginx will route the request to the default server for this port.
+In the configuration above, the default server is the first
+one&nbsp;— which is nginx’s standard default behaviour.
+It can also be set explicitly which server should be default,
+with the <code>default_server</code> parameter
+in the <a href=https://nginx.org/en/docs/http/ngx_http_core_module.html#listen>listen</a> directive:
+</p> <blockquote class=example><pre>server {
+    listen      80 <b>default_server</b>;
+    server_name example.net www.example.net;
+    ...
+}
+</pre></blockquote><p> 
+</p> <blockquote class=note>
+The <code>default_server</code> parameter has been available since
+version 0.8.21.
+In earlier versions the <code>default</code> parameter should be used
+instead.
+</blockquote><p> 
+Note that the default server is a property of the listen port
+and not of the server name.
+More about this later.
+</p><a name=how_to_prevent_undefined_server_names></a><center><h4>How to prevent processing requests with undefined server names</h4></center><p>
+If requests without the “Host” header field should not be
+allowed, a server that just drops the requests can be defined:
+</p> <blockquote class=example><pre>server {
+    listen      80;
+    server_name "";
+    return      444;
+}
+</pre></blockquote><p> 
+Here, the server name is set to an empty string that will match
+requests without the “Host” header field,
+and a special nginx’s non-standard code 444
+is returned that closes the connection.
+</p> <blockquote class=note>
+Since version 0.8.48, this is the default setting for the
+server name, so the <code>server_name ""</code> can be omitted.
+In earlier versions, the machine’s <i>hostname</i> was used as
+a default server name.
+</blockquote><p> 
+</p><a name=mixed_name_ip_based_servers></a><center><h4>Mixed name-based and IP-based virtual servers</h4></center><p>
+Let’s look at a more complex configuration
+where some virtual servers listen on different addresses:
+</p> <blockquote class=example><pre>server {
+    listen      192.168.1.1:80;
+    server_name example.org www.example.org;
+    ...
+}
+
+server {
+    listen      192.168.1.1:80;
+    server_name example.net www.example.net;
+    ...
+}
+
+server {
+    listen      192.168.1.2:80;
+    server_name example.com www.example.com;
+    ...
+}
+</pre></blockquote><p> 
+In this configuration, nginx first tests the IP address and port
+of the request against the
+<a href=https://nginx.org/en/docs/http/ngx_http_core_module.html#listen>listen</a> directives
+of the
+<a href=https://nginx.org/en/docs/http/ngx_http_core_module.html#server>server</a> blocks.
+It then tests the “Host”
+header field of the request against the
+<a href=https://nginx.org/en/docs/http/ngx_http_core_module.html#server_name>server_name</a>
+entries of the
+<a href=https://nginx.org/en/docs/http/ngx_http_core_module.html#server>server</a>
+blocks that matched
+the IP address and port.
+If the server name is not found, the request will be processed by
+the default server.
+For example, a request for <code>www.example.com</code> received on
+the 192.168.1.1:80 port will be handled by the default server
+of the 192.168.1.1:80 port, i.e., by the first server,
+since there is no <code>www.example.com</code> defined for this port.
+<p>
+As already stated, a default server is a property of the listen port,
+and different default servers may be defined for different ports:
+</p> <blockquote class=example><pre>server {
+    listen      192.168.1.1:80;
+    server_name example.org www.example.org;
+    ...
+}
+
+server {
+    listen      192.168.1.1:80 <b>default_server</b>;
+    server_name example.net www.example.net;
+    ...
+}
+
+server {
+    listen      192.168.1.2:80 <b>default_server</b>;
+    server_name example.com www.example.com;
+    ...
+}
+</pre></blockquote><p> 
+</p><a name=simple_php_site_configuration></a><center><h4>A simple PHP site configuration</h4></center><p>
+Now let’s look at how nginx chooses a <i>location</i> to process a request
+for a typical, simple PHP site:
+</p> <blockquote class=example><pre>server {
+    listen      80;
+    server_name example.org www.example.org;
+    root        /data/www;
+
+    location / {
+        index   index.html index.php;
+    }
+
+    location ~* \.(gif|jpg|png)$ {
+        expires 30d;
+    }
+
+    location ~ \.php$ {
+        fastcgi_pass  localhost:9000;
+        fastcgi_param SCRIPT_FILENAME
+                      $document_root$fastcgi_script_name;
+        include       fastcgi_params;
+    }
+}
+</pre></blockquote><p> 
+<p>
+nginx first searches for the most specific prefix location given by
+literal strings regardless of the listed order.
+In the configuration above
+the only prefix location is “<code>/</code>” and since it matches
+any request it will be used as a last resort.
+Then nginx checks locations given by
+regular expression in the order listed in the configuration file.
+The first matching expression stops the search and nginx will use this
+location.
+If no regular expression matches a request, then nginx uses
+the most specific prefix location found earlier.
+<p>
+Note that locations of all types test only a URI part of request line
+without arguments.
+This is done because arguments in the query string may be given in
+several ways, for example:
+</p> <blockquote class=example><pre>/index.php?user=john&amp;page=1
+/index.php?page=1&amp;user=john
+</pre></blockquote><p> 
+Besides, anyone may request anything in the query string:
+</p> <blockquote class=example><pre>/index.php?page=1&amp;something+else&amp;user=john
+</pre></blockquote><p> 
+<p>
+Now let’s look at how requests would be processed
+in the configuration above:
+</p> <ul>
+<li>
+A request “<code>/logo.gif</code>” is matched by the prefix location
+“<code>/</code>” first and then by the regular expression
+“<code>\.(gif|jpg|png)$</code>”,
+therefore, it is handled by the latter location.
+Using the directive “<code>root&nbsp;/data/www</code>” the request
+is mapped to the file <code>/data/www/logo.gif</code>, and the file
+is sent to the client.
+</li>
+<li>
+A request “<code>/index.php</code>” is also matched by the prefix location
+“<code>/</code>” first and then by the regular expression
+“<code>\.(php)$</code>”.
+Therefore, it is handled by the latter location
+and the request is passed to a FastCGI server listening on localhost:9000.
+The
+<a href=https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_param>fastcgi_param</a>
+directive sets the FastCGI parameter
+<code>SCRIPT_FILENAME</code> to “<code>/data/www/index.php</code>”,
+and the FastCGI server executes the file.
+The variable <code>$document_root</code> is equal to
+the value of the
+<a href=https://nginx.org/en/docs/http/ngx_http_core_module.html#root>root</a>
+directive and the variable <code>$fastcgi_script_name</code> is equal to
+the request URI, i.e. “<code>/index.php</code>”.
+</li>
+<li>
+A request “<code>/about.html</code>” is matched by the prefix location
+“<code>/</code>” only, therefore, it is handled in this location.
+Using the directive “<code>root /data/www</code>” the request is mapped
+to the file <code>/data/www/about.html</code>, and the file is sent
+to the client.
+</li>
+<li>
+Handling a request “<code>/</code>” is more complex.
+It is matched by the prefix location “<code>/</code>” only,
+therefore, it is handled by this location.
+Then the
+<a href=https://nginx.org/en/docs/http/ngx_http_index_module.html#index>index</a>
+directive tests for the existence
+of index files according to its parameters and
+the “<code>root /data/www</code>” directive.
+If the file <code>/data/www/index.html</code> does not exist,
+and the file <code>/data/www/index.php</code> exists,
+then the directive does an internal redirect to “<code>/index.php</code>”,
+and nginx searches the locations again
+as if the request had been sent by a client.
+As we saw before, the redirected request will eventually be handled
+by the FastCGI server.
+</li>
+</ul><p> 
+<table width=100%><tbody><tr><td align=right>written by Igor Sysoev<br>edited by Brian Mercer<br></table></div></div>
