@@ -454,3 +454,6 @@ https://koenvangilst.nl/blog/phoenix-liveview-cursors
 https://www.reddit.com/r/elixir/comments/tezcjr/a_tutorial_for_creating_a_live_cursors_feature_as/
 
 https://blog.miguelcoba.com/deploying-elixir-ebook
+
+Crazy fast Kubernetes Automation with Terraform
+https://www.youtube.com/watch?v=kFt0OGd_LhI
