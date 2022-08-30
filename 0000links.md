@@ -457,3 +457,6 @@ https://blog.miguelcoba.com/deploying-elixir-ebook
 
 Crazy fast Kubernetes Automation with Terraform
 https://www.youtube.com/watch?v=kFt0OGd_LhI
+
+How I Remember Everything I Read
+https://www.youtube.com/watch?v=AjoxkxM_I5g
