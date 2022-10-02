@@ -460,3 +460,5 @@ https://www.youtube.com/watch?v=kFt0OGd_LhI
 
 How I Remember Everything I Read
 https://www.youtube.com/watch?v=AjoxkxM_I5g
+
+[Elixir phoenix form](https://github.com/MamesPalmero/dynamic_inputs_for)
