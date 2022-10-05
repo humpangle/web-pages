@@ -1,2 +1,5 @@
 \\wsl.localhost\Ubuntu\home\kanmii\projects\web-pages
 \\wsl$\Ubuntu\home\kanmii\projects\web-pages
+
+find . -type f -iname "*:zone.identifier" -exec rm -rf {} \;
+find . -type f -iname "*:zone.identifier"
