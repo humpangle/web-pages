@@ -29,15 +29,11 @@ https://www.youtube.com/watch?v=7xngnjfIlK4
 Build a FullStack Ecommerce with Nextjs, Strapi, Magic and Stripe
 https://www.youtube.com/watch?v=385cpCpGRC0
 
-
 Strapi | Advanced Customization and Plugin Development
 https://www.youtube.com/watch?v=kIZHzbmnhnU
 
-
-
 https://www.youtube.com/watch?v=yC6ZfIF-R9k
 How To Make a WordPress Website - 2022
-
 
 aws vpc
 https://www.youtube.com/watch?v=TUTqYEZZUdc
@@ -45,12 +41,8 @@ https://www.youtube.com/watch?v=TUTqYEZZUdc
 AWS VPC | Create New VPC with Subnets, Route Tables, Security Groups, NACL | AWS Beginners Tutorial
 https://www.youtube.com/watch?v=gUesnoDzNr4
 
-
 How to Create a VPC with Public and Private Subnets
 https://www.youtube.com/watch?v=2TiBt-y5pAQ
-
-
-
 
 How to Deploy a Kubernetes Cluster from Scratch
 
@@ -76,16 +68,12 @@ Going low level with TCP sockets and :gen_tcp - Orestis Markou - ElixirConf EU 2
 Amazon S3 Access Control - IAM Policies, Bucket Policies and ACLs
 https://www.youtube.com/watch?v=xFzJw6wJ8eY
 
-
 [Share Environment Vars between WSL and Windows](https://devblogs.microsoft.com/commandline/share-environment-vars-between-wsl-and-windows/)
 
 [Integrate Linux Commands into Windows with PowerShell and the Windows Subsystem for Linux]
 (https://devblogs.microsoft.com/commandline/integrate-linux-commands-into-windows-with-powershell-and-the-windows-subsystem-for-linux/)
 
-
-
 WT_SESSION::WT_PROFILE_ID
-
 
 # Package manager
 
@@ -449,7 +437,6 @@ if (Get-Variable -Name $val -ErrorAction SilentlyContinue) {
 }
 ```
 
-
 https://koenvangilst.nl/blog/phoenix-liveview-cursors
 https://www.reddit.com/r/elixir/comments/tezcjr/a_tutorial_for_creating_a_live_cursors_feature_as/
 
@@ -462,3 +449,9 @@ How I Remember Everything I Read
 https://www.youtube.com/watch?v=AjoxkxM_I5g
 
 [Elixir phoenix form](https://github.com/MamesPalmero/dynamic_inputs_for)
+
+# how-liveview-got-rid-of-dangling-processes-in-tests-–-and-how-we-can-do-the-same-7_10_2023-5_58_48-am-.html
+
+Ecto.Adapters.SQL.Sandbox
+testing
+LiveView
