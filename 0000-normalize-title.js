@@ -7,6 +7,13 @@ let inText = fs.readFileSync(inFile, { encoding: "utf8" });
 
 pattern = /[,\s()-]+|(?:_-)/g;
 
-inText = inText.toLowerCase().trim().replace(pattern, "-");
+replace_with_empty_text_pattern = /[']+/g;
 
-fs.writeFileSync(outFile, inText)
+inText = inText
+  .toLowerCase()
+  .trim()
+  .replace(pattern, "-")
+  .replace(replace_with_empty_text_pattern, "")
+  .replace(/-\.htm/, ".htm");
+
+fs.writeFileSync(outFile, inText);
