@@ -9,11 +9,14 @@ pattern = /[,\s()-]+|(?:_-)/g;
 
 replace_with_empty_text_pattern = /[']+/g;
 
-inText = inText
+const title = inText
   .toLowerCase()
   .trim()
   .replace(pattern, "-")
   .replace(replace_with_empty_text_pattern, "")
   .replace(/-\.htm/, ".htm");
 
-fs.writeFileSync(outFile, inText);
+const outText = `${title}
+C:\\web-pages\\${title}`;
+
+fs.writeFileSync(outFile, outText);
