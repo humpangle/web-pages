@@ -5,18 +5,15 @@ const outFile = ".___scratch.out.txt";
 
 let inText = fs.readFileSync(inFile, { encoding: "utf8" });
 
-pattern = /[,\s()-]+|(?:_-)/g;
+pattern = /[|,\s()-]+/g;
 
-replace_with_empty_text_pattern = /[']+/g;
+replace_with_empty_text_pattern = /[']+|(?:_-)/g;
 
-const title = inText
+let outText = inText
   .toLowerCase()
   .trim()
   .replace(pattern, "-")
   .replace(replace_with_empty_text_pattern, "")
-  .replace(/-\.htm/, ".htm");
-
-const outText = `${title}
-C:\\web-pages\\${title}`;
+  .replace(/-?\.htm/, ".htm");
 
 fs.writeFileSync(outFile, outText);
