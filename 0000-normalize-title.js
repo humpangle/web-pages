@@ -17,13 +17,13 @@ const title = inText
   .replace(/-?\.htm/, ".htm");
 
 const outText = [
-  `C:\\google-drive-maneptha\\web-pages\\${title}`,
+  `C:\\0000-shared\\web-pages\\${title}`,
   "\n",
-  `/c/google-drive-maneptha/web-pages/${title}`,
+  `/c/0000-shared/web-pages/${title}`,
   "\n",
-  "C:\\google-drive-maneptha\\web-pages",
+  "C:\\0000-shared\\web-pages",
   "\n",
-  "/c/google-drive-maneptha/web-pages",
+  "/c/0000-shared/web-pages",
   "\n",
   title,
 ].join("\n");
