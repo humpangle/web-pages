@@ -16,8 +16,12 @@ const title = inText
   .replace(replace_with_empty_text_pattern, "")
   .replace(/-?\.htm/, ".htm");
 
+const windowsOsDestinationPathPrefix = "C:\\0000-shared\\web-pages\\";
+
 const outText = [
-  `C:\\0000-shared\\web-pages\\${title}`,
+  `${windowsOsDestinationPathPrefix}${title}`,
+  "\n",
+  `${windowsOsDestinationPathPrefix}chat-gpt\\${title}`,
   "\n",
   `/c/0000-shared/web-pages/${title}`,
   "\n",
