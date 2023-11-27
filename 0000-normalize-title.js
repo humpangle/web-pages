@@ -1,3 +1,5 @@
+#!/bin/env node
+
 const fs = require("fs");
 
 const inFile = ".___scratch.in.txt";
