@@ -455,3 +455,8 @@ https://www.youtube.com/watch?v=AjoxkxM_I5g
 Ecto.Adapters.SQL.Sandbox
 testing
 LiveView
+
+# Compare performance of django to symfony
+
+https://github.com/humpangle/django_vs_symfony__jmeter
+https://www.youtube.com/watch?v=2-SVojp_BVc
