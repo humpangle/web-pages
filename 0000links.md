@@ -465,3 +465,8 @@ https://www.youtube.com/watch?v=2-SVojp_BVc
 
 https://hanzihero.com/blog/why-phoenix-without-liveview
 https://elixirforum.com/t/htmx-a-js-library-sort-of-like-liveview/31888/10?u=samba6
+
+# Simple, zero-downtime deploys with nginx and docker-compose
+
+https://www.tines.com/blog/simple-zero-downtime-deploys-with-nginx-and-docker-compose
+https://stackoverflow.com/questions/49090395/how-to-achieve-a-rolling-update-with-docker-compose
