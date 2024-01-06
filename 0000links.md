@@ -460,3 +460,8 @@ LiveView
 
 https://github.com/humpangle/django_vs_symfony__jmeter
 https://www.youtube.com/watch?v=2-SVojp_BVc
+
+# Why We Use Phoenix Without LiveView
+
+https://hanzihero.com/blog/why-phoenix-without-liveview
+https://elixirforum.com/t/htmx-a-js-library-sort-of-like-liveview/31888/10?u=samba6
