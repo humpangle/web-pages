@@ -1,11 +1,11 @@
 #!/bin/env node
 
-const fs = require("fs");
+import { readFileSync, writeFileSync } from "fs";
 
 const inFile = ".___scratch.in.txt";
 const outFile = ".___scratch.out.txt";
 
-let inText = fs.readFileSync(inFile, { encoding: "utf8" });
+let inText = readFileSync(inFile, { encoding: "utf8" });
 
 const pattern = /[`⧸\\/\[\]|｜,’\s:()-]+/g;
 
@@ -34,4 +34,4 @@ const outText = [
   title,
 ].join("\n");
 
-fs.writeFileSync(outFile, outText);
+writeFileSync(outFile, outText);
