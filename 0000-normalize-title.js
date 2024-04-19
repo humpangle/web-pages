@@ -7,9 +7,9 @@ const outFile = ".___scratch.out.txt";
 
 let inText = fs.readFileSync(inFile, { encoding: "utf8" });
 
-pattern = /[`⧸\\/\[\]|｜,’\s:()-]+/g;
+const pattern = /[`⧸\\/\[\]|｜,’\s:()-]+/g;
 
-replace_with_empty_text_pattern = /[']+|(?:_-)/g;
+const replace_with_empty_text_pattern = /[']+|(?:_-)/g;
 
 const title = inText
   .toLowerCase()
