@@ -470,3 +470,11 @@ https://elixirforum.com/t/htmx-a-js-library-sort-of-like-liveview/31888/10?u=sam
 
 https://www.tines.com/blog/simple-zero-downtime-deploys-with-nginx-and-docker-compose
 https://stackoverflow.com/questions/49090395/how-to-achieve-a-rolling-update-with-docker-compose
+
+# Telemetry: loki/promtail/prometheus/grafana/docker etc:
+
+[Loki: Effective Logging and Log Aggregation with Grafana | by Grzegorz Piechnik | Medium](https://medium.com/@gpiechnik/loki-effective-logging-and-log-aggregation-with-grafana-c3356e7f13ad)
+
+[Logging With Docker, Promtail and Grafana Loki | by Ruan Bekker | Medium](https://ruanbekker.medium.com/logging-with-docker-promtail-and-grafana-loki-d920fd790ca8)
+
+[Monitoring Docker Containers with Grafana, Loki, and Promtail | by Abhiraj Thakur | Medium](https://abhiraj2001.medium.com/monitoring-docker-containers-with-grafana-loki-and-promtail-4302a9417c0d)
