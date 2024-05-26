@@ -1,0 +1,126 @@
+<!DOCTYPE html> <html lang=en style><!--
+ Page saved with SingleFile 
+ url: https://will-keleher.com/posts/What-can-you-do-with-a-pid.html 
+ saved date: Sun May 26 2024 04:45:00 GMT-0400 (Eastern Daylight Time)
+--><meta charset=utf-8>
+<title>So, what can you do with a process ID?</title>
+<style>.markdown-body{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;line-height:1.5;color:#24292e;font-family:Segoe UI,system-ui;word-wrap:break-word;box-sizing:border-box;min-width:200px;max-width:720px;margin:0 auto;padding:10px 40px;font-size:16px}.navigation-header{text-align:right;padding:0 10px}.navigation-header a.light-link{padding-left:30px;display:inline-block;font-weight:normal;font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,Courier}.navigation-header a.light-link:first-child{padding-left:0}@media screen and (max-width:640px){.navigation-header a.light-link{padding-left:10px;font-size:14px}.navigation-header a.light-link:first-child{padding-left:0}}.markdown-body a{background-color:transparent;color:#0366d6;text-decoration:none}.markdown-body a:active,.markdown-body a:hover{outline-width:0;text-decoration:underline}.markdown-body hr{box-sizing:content-box;border:0;margin:15px 0;overflow:hidden;height:1px;padding:0;background:#444}.markdown-body hr::before{display:table;content:""}.markdown-body hr::after{display:table;clear:both;content:""}.markdown-body h1{margin:0.67em 0}.markdown-body h1,.markdown-body h3{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1{padding-bottom:0.3em;font-size:2em}.markdown-body h3{font-size:1.25em}.markdown-body blockquote{margin:0}.markdown-body::before{display:table;content:""}.markdown-body::after{display:table;clear:both;content:""}.markdown-body>*:first-child{margin-top:0!important}.markdown-body>*:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body blockquote{padding:0 1em;color:#6a737d;border-left:0.25em solid #dfe2e5}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body ul{padding-left:2em}.markdown-body li+li{margin-top:0.25em}.markdown-body pre>code{font-size:100%;word-break:normal;white-space:pre;background:transparent;border-radius:3px}.markdown-body pre{margin-top:0;margin-bottom:16px;word-wrap:normal;padding:16px;overflow:auto;line-height:1.45;background-color:#f6f8fa;border-radius:3px}.markdown-body pre code{display:inline;padding:0;margin:0;overflow:visible;line-height:inherit;word-wrap:normal;background-color:transparent;border:0;color:initial}.markdown-body code,.markdown-body pre{font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,Courier,monospace;font-size:1em}.markdown-body code{color:darkred}@media screen and (max-width:640px){.markdown-body{padding:15px}}@media screen and (max-width:960px){.markdown-body{font-size:2em;padding:20px}}@media screen and (max-width:1200px){.markdown-body{font-size:1.2em}}</style>
+<link rel=alternate type=application/rss+xml title=RSS href=https://will-keleher.com/rss.xml>
+<meta name=description content="If you have a process ID, you can look at what files/ports a process has open, see details about how the process was started, trace it to see what work it's doing, or wait for it to complete its work. Process IDs are pretty cool!">
+<meta name=viewport content="width=device-width, initial-scale=1">
+<meta name=twitter:site content=@WKeleher>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"So, what can you do with a process ID?","image":"https://will-keleher.com/images/previews/PID.png","author":{"@type":"Person","name":"Will Keleher"},"datePublished":"2022-12-10","description":"If you have a process ID, you can look at what files/ports a process has open, see details about how the process was started, trace it to see what work it's doing, or wait for it to complete its work. Process IDs are pretty cool!"}</script>
+<meta name=twitter:image content=https://will-keleher.com/images/previews/PID.png>
+<meta name=twitter:card content=summary_large_image>
+<meta name=twitter:title content="So, what can you do with a process ID?">
+<meta name=twitter:description content="If you have a process ID, you can look at what files/ports a process has open, see details about how the process was started, trace it to see what work it's doing, or wait for it to complete its work. Process IDs are pretty cool!">
+<meta name=referrer content=no-referrer><link rel=icon type=image/png sizes=32x32 href=data:image/png;base64,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><link rel=canonical href=https://will-keleher.com/posts/What-can-you-do-with-a-pid.html><meta http-equiv=content-security-policy content="default-src 'none'; font-src 'self' data:; img-src 'self' data:; style-src 'unsafe-inline'; media-src 'self' data:; script-src 'unsafe-inline' data:; object-src 'self' data:; frame-src 'self' data:;"><style>img[src="data:,"],source[src="data:,"]{display:none!important}</style></head>
+ <body>
+ <article class=markdown-body>
+ 
+ <header class=navigation-header>
+ <a href=https://will-keleher.com/ class=light-link>posts</a>
+ <a href=https://will-keleher.com/about.html class=light-link>about</a>
+ <a href=https://will-keleher.com/mistakes/index.html class=light-link>mistakes</a>
+ </header>
+ <hr>
+ <div id=main>
+ <h1>So, what can you do with a process ID?</h1>
+<p>For the longest time, the only thing I knew how to do with the process ID (PID) for a running process was kill it. It turns out, if you have a PID, you can gather a ton of info about what that process is up to!</p>
+<p>I'm sure these commands will seem blindingly obvious to someone with more of sysadmin background. This is all coming from the perspective of someone who occasionally hops on to a machine and has a lot of trouble navigating around and exploring what the machine is up to and why. If that describes you too, I hope this is useful!</p>
+<p>Let's start a process and grab its PID (the <code>&amp;</code> puts the process into the background):</p>
+<pre><code class="hljs language-shell"><span class="hljs-meta prompt_">&gt; </span><span class=language-bash>python3 -m http.server &amp;</span>
+[1] 41186
+<span class="hljs-meta prompt_">&gt; </span><span class=language-bash>PID=$!</span>
+<span class="hljs-meta prompt_">&gt; </span><span class=language-bash><span class=hljs-built_in>echo</span> <span class=hljs-string>"PID is <span class=hljs-variable>${PID}</span>"</span></span>
+PID is 41186
+</code></pre>
+<h3>ps -f $PID</h3>
+<p><code>ps -f $PID</code> gives an amazing high-level overview of what a process is doing. Being able to see the PID of the parent, uptime, and the actual command that's being run can really help debugging work.</p>
+<pre><code class="hljs language-shell"><span class="hljs-meta prompt_">&gt; </span><span class=language-bash>ps -f 41186</span>
+UID   PID  PPID   C STIME   TTY           TIME CMD
+501 41186 35891   0 12:33PM ttys001    0:00.16 /usr/local/Cellar/python@3.10/3.10.6_1/Frameworks/Python.framework/Versions/3.10/Resources/Python.app/Contents/MacOS/Python -m http.server
+</code></pre>
+<ul>
+<li><code>PPID</code>: the PID of the parent. If you're trying to understand why a process started, running <code>ps -f</code> on the PPID can give you some good clues!</li>
+<li><code>UID</code>: the user who started the process. <code>id -nu 501</code> will give you the username of the user who started the process.</li>
+<li><code>CMD</code>: the full command that's running!</li>
+<li><code>TTY</code>: the location of the TTY. As far as I know, there's no easy way to tail the TTY. Injecting output into it works though! <code>echo "hello tty" &gt; /dev/ttys001</code> will make "hello tty" show up in the terminal that ran the initial command.</li>
+</ul>
+<h3>lsof -p $PID -P</h3>
+<p><a href=https://en.wikipedia.org/wiki/Lsof><code>lsof</code></a> means "list open files." If you provide a PID, you can see all of the files, pipes, network sockets, and devices that the process is using. If you add <code>-P</code>, it will show port numbers rather than port names.</p>
+<pre><code class="hljs language-shell"><span class="hljs-meta prompt_">&gt; </span><span class=language-bash>lsof -p <span class=hljs-variable>$PID</span> -P</span>
+COMMAND   PID USER   FD    TYPE            DEVICE SIZE/OFF                NODE NAME
+Python  41186 will  cwd     DIR               1,4      192            51860960 /Users/will/tmp
+Python  41186 will  txt     REG               1,4    49400            78478046 /usr/local/Cellar/python@3.10/3.10.6_1/Frameworks/Python.framework/Versions/3.10/Resources/Python.app/Contents/MacOS/Python
+<span class="hljs-meta prompt_"># </span><span class=language-bash>...omitting a long list of text files</span>
+Python  41186 will  txt     REG               1,4  2177216 1152921500312782996 /usr/lib/dyld
+Python  41186 will    0u    CHR              16,1  0t12464                1095 /dev/ttys001
+Python  41186 will    1u    CHR              16,1  0t12464                1095 /dev/ttys001
+Python  41186 will    2u    CHR              16,1  0t12464                1095 /dev/ttys001
+Python  41186 will    3u  systm 0x60e5bd939a75061      0t0                     [ctl com.apple.netsrc id 6 unit 50]
+Python  41186 will    4u   IPv6 0x60e5bd936095681      0t0                 TCP *:8000 (LISTEN)
+Python  41186 will    6u   unix 0x60e5bde017a4a71      0t0                     -&gt;0x60e5bde017a1d91
+</code></pre>
+<p><code>lsof</code> supports a ton of amazing options. Do you have a port and want to get the PID of what's using it? Try <code>lsof -i :8000</code>! Or you can use <code>-i</code> to keep an eye on network traffic for a process: <code>lsof -i -r 2 | awk '$2 == 41186'</code></p>
+<blockquote>
+<p>Extra trick: if you're on Linux, <a href=https://linux.die.net/man/1/pwdx><code>pwdx</code></a> can report the current working directory of a process.</p>
+</blockquote>
+<h3>top -pid $PID</h3>
+<p>Want to keep an eye on CPU and memory of a process? <code>top</code> can narrow in on a single process if you provide a PID.</p>
+<pre><code class="hljs language-shell"><span class="hljs-meta prompt_">&gt; </span><span class=language-bash>top -pid 41186</span>
+PID    COMMAND      %CPU TIME     #TH  #WQ  #POR MEM  PURG CMPR
+41186  Python       0.0  00:00.34 2    0    19   10M  0B   0B
+</code></pre>
+<h3>dtruss -p $PID or strace -p $PID</h3>
+<p>I'm a complete novice when it comes to tracing, but it's something I'm trying to learn more about! On macs, you can use <code>dtruss</code> to follow the system calls of a running process. It's cool to see what a process is up to in detail! (<code>strace</code> is the linux equivalent)</p>
+<pre><code class="hljs language-shell"><span class="hljs-meta prompt_">&gt; </span><span class=language-bash>dtruss -p 41186</span>
+...
+stat64("/Users/will/tmp/index.html\0", 0x70000A3F8678, 0x0)        = -1 2
+stat64("/Users/will/tmp/index.htm\0", 0x70000A3F8678, 0x0)         = -1 2
+open_nocancel("/Users/will/tmp/\0", 0x1100004, 0x0)              = 7 0
+fstatfs64(0x7, 0x70000A3F7E80, 0x0)              = 0 0
+getdirentries64(0x7, 0x7F95E7058E00, 0x2000)             = 240 0
+close_nocancel(0x7)              = 0 0
+</code></pre>
+<h3>kill -HUP $PID</h3>
+<p>If you want to communicate with a running process, you can send that process signals! Deciding what to do with non-SIGKILL signals is up to the process, so you can add code to respond to a signal however you'd like and enable some simple inter-process communication.</p>
+<pre><code class="hljs language-js"><span class=hljs-keyword>const</span> interval = <span class=hljs-built_in>setInterval</span>(<span class=hljs-function>() =&gt;</span> <span class=hljs-literal>null</span>, <span class=hljs-number>60_000</span>); <span class=hljs-comment>// keeps process from exiting</span>
+process.<span class="hljs-title function_">on</span>(<span class=hljs-string>"SIGHUP"</span>, <span class=hljs-function>() =&gt;</span> {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class=hljs-string>"received SIGHUP :)"</span>);
+});
+process.<span class="hljs-title function_">on</span>(<span class=hljs-string>"SIGTERM"</span>, <span class=hljs-function>() =&gt;</span> {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class=hljs-string>"received SIGTERM. Stopping work"</span>);
+  <span class=hljs-built_in>clearInterval</span>(interval); <span class=hljs-comment>// clearing interval means we're done with work so Node can exit</span>
+});
+</code></pre>
+<pre><code class="hljs language-shell"><span class="hljs-meta prompt_">&gt; </span><span class=language-bash>node ./listen_to_signals.js &amp;</span>
+[1] 51019
+<span class="hljs-meta prompt_">&gt; </span><span class=language-bash><span class=hljs-built_in>kill</span> -HUP 51019</span>
+received SIGHUP :)
+<span class="hljs-meta prompt_">&gt; </span><span class=language-bash><span class=hljs-built_in>kill</span> -TERM 51019</span>
+received SIGTERM. Shutting down
+[1]  + 51019 done       node ./listen_to_signals.js
+</code></pre>
+<h3>wait $PID</h3>
+<p>If you're writing a script that starts a process, you can wait for that process to complete using <code>wait</code>. If you provide the PID, <code>wait</code> will return with the exit code from that process. This can enable some easy parallelization in shell scripts.</p>
+<pre><code class="hljs language-bash">pids=()
+<span class=hljs-built_in>sleep</span> 1 &amp;
+pids+=($!)
+<span class=hljs-literal>false</span> &amp; <span class=hljs-comment># if we have a failing command like this one, we want this whole script to fail!</span>
+pids+=($!)
+<span class=hljs-literal>true</span> &amp;
+pids+=($!)
+status=0
+<span class=hljs-keyword>for</span> pid <span class=hljs-keyword>in</span> <span class=hljs-string>"<span class=hljs-variable>${pids[@]}</span>"</span>; <span class=hljs-keyword>do</span>
+    <span class=hljs-built_in>wait</span> <span class=hljs-string>"<span class=hljs-variable>$pid</span>"</span> || status=$?
+<span class=hljs-keyword>done</span>
+<span class=hljs-built_in>exit</span> <span class=hljs-string>"<span class=hljs-variable>${status}</span>"</span>
+</code></pre>
+ </div>
+ </article>
+ <style>.hljs{overflow-x:auto}.hljs-comment{color:#5c6370;font-style:italic}.hljs-keyword{color:#c678dd}.hljs-literal{color:#56b6c2}.hljs-string{color:#98c379}.hljs-built_in{color:#e6c07b}.hljs-number,.hljs-variable{color:#d19a66}.hljs-meta,.hljs-title{color:#61aeee}</style>
+ 
+ 
+ 
+<div style=display:block;opacity:1;color-scheme:light><template shadowrootmode=open><iframe allowtransparency=true frameborder=0 scrolling=no class=sk_ui title=Surfingkeys style=position:fixed;left:0px;bottom:0px;width:100%;height:0px;z-index:2147483647></iframe></template></div><script data-template-shadow-root>(()=>{document.currentScript.remove();processNode(document);function processNode(node){node.querySelectorAll("template[shadowrootmode]").forEach(element=>{let shadowRoot = element.parentElement.shadowRoot;if (!shadowRoot) {try {shadowRoot=element.parentElement.attachShadow({mode:element.getAttribute("shadowrootmode")});shadowRoot.innerHTML=element.innerHTML;element.remove()} catch (error) {} if (shadowRoot) {processNode(shadowRoot)}}})}})()</script>
