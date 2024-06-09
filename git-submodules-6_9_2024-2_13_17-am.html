@@ -1,0 +1,1325 @@
+<!DOCTYPE html> <html lang=en class="js fontface webkit chrome no-windows no-ie8" data-hint_scrollable=true style><!--
+ Page saved with SingleFile 
+ url: https://git-scm.com/book/en/v2/Git-Tools-Submodules 
+ saved date: Sun Jun 09 2024 02:13:17 GMT-0400 (Eastern Daylight Time)
+--><meta charset=utf-8>
+<meta content="IE=edge,chrome=1" http-equiv=X-UA-Compatible>
+<meta name=viewport content="width=device-width, initial-scale=1">
+<title>Git - Submodules</title>
+<style>:root{--sf-img-0: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEwAAAAuCAQAAAAoojfxAAACWklEQVR4AeWYeU/jMBBHX9z0vigNPelF25Dj+3+/lRZRWf0R3GG7VbT7/F8Y2xM8Zh7hfyJmyYkdfWpFxJHy9yjoUSNGlJexoUa8eokdqA0RmZfYgtowoPRGn9qw9NLKiHgQESFSL7G1zPwrxKwpyEmopkvpjSEfOF4pyEjun15EQn7ZsEcVMy+tHMcH88uzI937FvSJ0hsJVfhxWz7Z489e4rgDLTaUV2NQGetHPfHJ4mp+yog/wjEjl7TmVJF4UQUNPmmwl1W2NPkhI1JZ7o0u1Ry8yD0+8Ex2tVbOlAgjbXaS1DuTwK31o6f6czb6onQsB7iguFqgYEGD75n4MyoOakiqK+MIwxPv8l572oTxf8dH02unDPmWDgdKmTTmFpy/HS+Bfd5knw0xX9JgKcEFMxy3MfZnBisnYir3PeMZQe9MyY7WDy3szC002cqeB79oWhwl4MzwIRY2Qi/DHAeAnHfOC9HDLMyhJXQiBuRh8+EW1pUzWwGc7bUlvKuFmRhRUF73jZ42C6M5qYVZaEmXufhLjH+n7OY0Vwu7Ecf8yy4TcaEvR6rmZLOwMGNUEw50qrO3mVMbtbAwHfaoJowtTUnNKWhhgnaZovrvl2I3J7WwMJMvu0wbxWhOBgsTumj7PhtE22BOlRYmxKwo0S7jqMZgTgOThfk2kanqBKrXaE4rs4XFqCacGGAnYE5Do4UtLZfJgJhTYrAw/Yd3TYwFgzn1jBY286qwx91xLMhImZgtLGJFzpnnf/xbmNXCaoJaWG1IxMJqwrSu3/NjcvliVhP6nETv7sYv12OITOGQrXYAAAAASUVORK5CYII=")}</style><style media=screen>/*! normalize.css v3.0.2 | MIT License | git.io/normalize */html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}aside,footer,header,nav{display:block}template{display:none}a{background-color:transparent}a:active,a:hover{outline:0}b{font-weight:bold}img{border:0}hr{-moz-box-sizing:content-box;box-sizing:content-box}code{font-size:1em}button,input{color:inherit;font:inherit;margin:0}button{overflow:visible}button{text-transform:none}button{-webkit-appearance:button;cursor:pointer}table{border-collapse:collapse;border-spacing:0}.inner:before{display:table;content:""}.inner:after{display:table;clear:both;content:""}#main{-webkit-border-radius:5px;-moz-border-radius:5px;-ms-border-radius:5px}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}aside nav ul li a.active,aside nav ul li a:hover{color:#f14e32}#book-chapters{-webkit-border-radius:3px;-moz-border-radius:3px;-ms-border-radius:3px}footer:before{display:table;content:""}footer:after{display:table;clear:both;content:""}footer a:hover{color:#0b0b0a}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){footer .site-source{background:transparent var(--sf-img-0)0 2px no-repeat;background-size:38px 23px}}.scrollToTop{-webkit-border-radius:50px;-moz-border-radius:50px;-ms-border-radius:50px}.scrollToTop:hover{background-color:rgba(250,250,250,0.9);-webkit-box-shadow:2px;-moz-box-shadow:2px;box-shadow:2px}.scrollToTop:hover::before{-webkit-transform:translateX(-50%);transform:translateX(-50%);left:50%;width:0;height:0;color:var(--color-neutral-emphasis-plus);content:"";border:6px solid transparent;border-color:#333333 transparent transparent;top:-0.55rem;position:absolute}.scrollToTop:hover::after{-webkit-transform:translateX(-50%);transform:translateX(-50%);left:50%;top:-2rem;border-radius:4px;position:absolute;content:attr(data-label);word-wrap:break-word;white-space:pre;padding:.5em .75em;color:#e9e8e0;background-color:#333333;font:normal normal 11px/1.5 -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji}@media (max-width:940px){header{padding-bottom:2.5rem}header a,header span{padding-left:1rem;margin-bottom:10px}#content{width:100%}.inner{width:100%}#content-wrapper{padding:0.8rem}footer{padding-left:1rem;padding-right:1rem}}@media (max-width:640px){header{padding-bottom:3rem}header #tagline{font-size:0.8rem;top:0;padding-right:1rem}footer{display:flex;justify-content:center;flex-direction:column;align-items:center}footer .site-source{margin-bottom:1rem}.scrollToTop{bottom:6rem}}p{margin:0 0 11px}a{color:#0388a6;text-decoration:none;transition-duration:0.3s;transition-property:color}h1,h2,h3,h4{margin:0;font-weight:normal;color:#4e443c;text-rendering:optimizelegibility}h1{margin-bottom:0.4em;font-size:36px;line-height:44px}h2{margin-top:20px;font-size:18px;font-weight:bold;line-height:44px;color:#f14e32}h3{line-height:33px;font-size:16px;font-weight:bold}h4{line-height:22px}h4{font-size:14px;font-weight:bold}ul,ol{padding:0;margin:0 0 11px 25px}ol{list-style:decimal}li{line-height:22px}hr{margin:22px 0;border-top:1px solid #d8d7cf}strong{font-weight:bold}code{-webkit-border-radius:3px;-moz-border-radius:3px;-ms-border-radius:3px;border-radius:3px;margin-bottom:1em;overflow:auto;line-height:18px;background-color:#fff}.light{color:#9a9994}.highlight{background-color:#eee0b5;padding:2px}.inner:before{display:table;content:""}.inner:after{display:table;clear:both;content:""}#main{-webkit-border-radius:5px;-moz-border-radius:5px;-ms-border-radius:5px}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}aside nav ul li a.active,aside nav ul li a:hover{color:#f14e32}#book-chapters{-webkit-border-radius:3px;-moz-border-radius:3px;-ms-border-radius:3px}footer:before{display:table;content:""}footer:after{display:table;clear:both;content:""}footer a:hover{color:#0b0b0a}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){footer .site-source{background:transparent var(--sf-img-0)0 2px no-repeat;background-size:38px 23px}}.scrollToTop{-webkit-border-radius:50px;-moz-border-radius:50px;-ms-border-radius:50px}.scrollToTop:hover{background-color:rgba(250,250,250,0.9);-webkit-box-shadow:2px;-moz-box-shadow:2px;box-shadow:2px}.scrollToTop:hover::before{-webkit-transform:translateX(-50%);transform:translateX(-50%);left:50%;width:0;height:0;color:var(--color-neutral-emphasis-plus);content:"";border:6px solid transparent;border-color:#333333 transparent transparent;top:-0.55rem;position:absolute}.scrollToTop:hover::after{-webkit-transform:translateX(-50%);transform:translateX(-50%);left:50%;top:-2rem;border-radius:4px;position:absolute;content:attr(data-label);word-wrap:break-word;white-space:pre;padding:.5em .75em;color:#e9e8e0;background-color:#333333;font:normal normal 11px/1.5 -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji}@media (max-width:940px){header{padding-bottom:2.5rem}header a,header span{padding-left:1rem;margin-bottom:10px}#content{width:100%}.inner{width:100%}#content-wrapper{padding:0.8rem}footer{padding-left:1rem;padding-right:1rem}}@media (max-width:640px){header{padding-bottom:3rem}header #tagline{font-size:0.8rem;top:0;padding-right:1rem}footer{display:flex;justify-content:center;flex-direction:column;align-items:center}footer .site-source{margin-bottom:1rem}.scrollToTop{bottom:6rem}}.inner:before{display:table;content:""}.inner:after{display:table;clear:both;content:""}#main{-webkit-border-radius:5px;-moz-border-radius:5px;-ms-border-radius:5px}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}aside nav ul li a.active,aside nav ul li a:hover{color:#f14e32}#book-chapters{-webkit-border-radius:3px;-moz-border-radius:3px;-ms-border-radius:3px}footer:before{display:table;content:""}footer:after{display:table;clear:both;content:""}footer a:hover{color:#0b0b0a}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){footer .site-source{background:transparent var(--sf-img-0)0 2px no-repeat;background-size:38px 23px}}.scrollToTop{-webkit-border-radius:50px;-moz-border-radius:50px;-ms-border-radius:50px}.scrollToTop:hover{background-color:rgba(250,250,250,0.9);-webkit-box-shadow:2px;-moz-box-shadow:2px;box-shadow:2px}.scrollToTop:hover::before{-webkit-transform:translateX(-50%);transform:translateX(-50%);left:50%;width:0;height:0;color:var(--color-neutral-emphasis-plus);content:"";border:6px solid transparent;border-color:#333333 transparent transparent;top:-0.55rem;position:absolute}.scrollToTop:hover::after{-webkit-transform:translateX(-50%);transform:translateX(-50%);left:50%;top:-2rem;border-radius:4px;position:absolute;content:attr(data-label);word-wrap:break-word;white-space:pre;padding:.5em .75em;color:#e9e8e0;background-color:#333333;font:normal normal 11px/1.5 -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji}@media (max-width:940px){header{padding-bottom:2.5rem}header a,header span{padding-left:1rem;margin-bottom:10px}#content{width:100%}.inner{width:100%}#content-wrapper{padding:0.8rem}footer{padding-left:1rem;padding-right:1rem}}@media (max-width:640px){header{padding-bottom:3rem}header #tagline{font-size:0.8rem;top:0;padding-right:1rem}footer{display:flex;justify-content:center;flex-direction:column;align-items:center}footer .site-source{margin-bottom:1rem}.scrollToTop{bottom:6rem}}@media (max-width:940px){}@media (max-width:640px){}.inner:before{display:table;content:""}.inner:after{display:table;clear:both;content:""}#main{-webkit-border-radius:5px;-moz-border-radius:5px;-ms-border-radius:5px}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}aside nav ul li a.active,aside nav ul li a:hover{color:#f14e32}#book-chapters{-webkit-border-radius:3px;-moz-border-radius:3px;-ms-border-radius:3px}footer:before{display:table;content:""}footer:after{display:table;clear:both;content:""}footer a:hover{color:#0b0b0a}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){footer .site-source{background:transparent var(--sf-img-0)0 2px no-repeat;background-size:38px 23px}}.scrollToTop{-webkit-border-radius:50px;-moz-border-radius:50px;-ms-border-radius:50px}.scrollToTop:hover{background-color:rgba(250,250,250,0.9);-webkit-box-shadow:2px;-moz-box-shadow:2px;box-shadow:2px}.scrollToTop:hover::before{-webkit-transform:translateX(-50%);transform:translateX(-50%);left:50%;width:0;height:0;color:var(--color-neutral-emphasis-plus);content:"";border:6px solid transparent;border-color:#333333 transparent transparent;top:-0.55rem;position:absolute}.scrollToTop:hover::after{-webkit-transform:translateX(-50%);transform:translateX(-50%);left:50%;top:-2rem;border-radius:4px;position:absolute;content:attr(data-label);word-wrap:break-word;white-space:pre;padding:.5em .75em;color:#e9e8e0;background-color:#333333;font:normal normal 11px/1.5 -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji}@media (max-width:940px){header{padding-bottom:2.5rem}header a,header span{padding-left:1rem;margin-bottom:10px}#content{width:100%}.inner{width:100%}#content-wrapper{padding:0.8rem}footer{padding-left:1rem;padding-right:1rem}}@media (max-width:640px){header{padding-bottom:3rem}header #tagline{font-size:0.8rem;top:0;padding-right:1rem}footer{display:flex;justify-content:center;flex-direction:column;align-items:center}footer .site-source{margin-bottom:1rem}.scrollToTop{bottom:6rem}}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media (max-width:940px){}@media (max-width:640px){}.inner:before{display:table;content:""}.inner:after{display:table;clear:both;content:""}#main{-webkit-border-radius:5px;-moz-border-radius:5px;-ms-border-radius:5px}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}aside nav ul li a.active,aside nav ul li a:hover{color:#f14e32}#book-chapters{-webkit-border-radius:3px;-moz-border-radius:3px;-ms-border-radius:3px}footer:before{display:table;content:""}footer:after{display:table;clear:both;content:""}footer a:hover{color:#0b0b0a}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){footer .site-source{background:transparent var(--sf-img-0)0 2px no-repeat;background-size:38px 23px}}.scrollToTop{-webkit-border-radius:50px;-moz-border-radius:50px;-ms-border-radius:50px}.scrollToTop:hover{background-color:rgba(250,250,250,0.9);-webkit-box-shadow:2px;-moz-box-shadow:2px;box-shadow:2px}.scrollToTop:hover::before{-webkit-transform:translateX(-50%);transform:translateX(-50%);left:50%;width:0;height:0;color:var(--color-neutral-emphasis-plus);content:"";border:6px solid transparent;border-color:#333333 transparent transparent;top:-0.55rem;position:absolute}.scrollToTop:hover::after{-webkit-transform:translateX(-50%);transform:translateX(-50%);left:50%;top:-2rem;border-radius:4px;position:absolute;content:attr(data-label);word-wrap:break-word;white-space:pre;padding:.5em .75em;color:#e9e8e0;background-color:#333333;font:normal normal 11px/1.5 -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji}@media (max-width:940px){header{padding-bottom:2.5rem}header a,header span{padding-left:1rem;margin-bottom:10px}#content{width:100%}.inner{width:100%}#content-wrapper{padding:0.8rem}footer{padding-left:1rem;padding-right:1rem}}@media (max-width:640px){header{padding-bottom:3rem}header #tagline{font-size:0.8rem;top:0;padding-right:1rem}footer{display:flex;justify-content:center;flex-direction:column;align-items:center}footer .site-source{margin-bottom:1rem}.scrollToTop{bottom:6rem}}hr.sidebar{width:218px;height:12px;margin-bottom:2em;border:0!important;background:transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANoAAAAMCAMAAAAzpFPbAAAACVBMVEUAAADa2dLp6OCo4MoAAAAAAXRSTlMAQObYZgAAADVJREFUSMft1LEJAAAQwsDo/kP/EN8FG/uAHEkA40JblIu3DXFbvG3xfjJWRTohJ+SEnJDPPTGgCca2pM1VAAAAAElFTkSuQmCC)top right no-repeat;background-size:218px 12px}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){hr.sidebar{background:transparent url(data:image/png;base64,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)top right no-repeat;background-size:218px 12px}}aside.sidebar{font-size:13px!important;line-height:16.5px}aside.sidebar p{font-size:13px!important;line-height:16.5px}.sidebar-btn{display:none}@media (max-width:940px){.sidebar-btn{background:transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAARCAYAAADUryzEAAAACXBIWXMAAAWJAAAFiQFtaJ36AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAEGSURBVHgB7ZExakJBEIZn9olNiBjTpbbKBXKLQAjYpBICFkKSG2QvkEQeqYRgkZBUKdLkALlIKsVKnyiiu86M7ioi6nu+VvBnWYb9Zz5mZwD2Xuiu93rtEhCflUCQmK3g5+b2/mH1KTM3RKGAO4n1TIv89Q6cPsIwZ49JJRKgNyqX9SgG8JizlN8BmKsfRNzp4EBrzb6lz7faNbMKMyipAAU55ZMzvpuF3x5gCcYBcns2hFQAAGEU7rvIA/5b0W+xWPizllIBjobZSalaHbh4OYNG4yUfV2BMz1QqerjN84Cv+usVIT1B3B4Romyze1HS2qxb/gsTsQYRCWFzz04iQHAOB8VoCrK3WsMDWMUbAAAAAElFTkSuQmCC)left center no-repeat;background-size:24px 24px;-webkit-border-top-right-radius:5px;-moz-border-top-right-radius:5px;border-top-right-radius:5px;-webkit-border-bottom-right-radius:5px;-moz-border-bottom-right-radius:5px;border-bottom-right-radius:5px;background-color:#333333!important;display:block;position:fixed;padding:2rem 0.4rem;z-index:1;border:none;left:0;width:1.6rem}}@media only screen and (max-width:940px) and (-webkit-min-device-pixel-ratio:2),only screen and (max-width:940px) and (min--moz-device-pixel-ratio:2),only screen and (max-width:940px) and (-o-min-device-pixel-ratio:2/1){.sidebar-btn{background:transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAGnSURBVHgB7ZY9SwNBEIbfSS4mKKhEJIKgIAp2gj/Bwj8gpFG0UUQwIgHBMjba+lEIaiXRJoUW2vgT7GysRFGI8SPKJZp4+bgdt5JbNCGX5CrvKe5uYIZ5udl9dwEXl/8OWYPD/Z0xIjFHTD1oFOJrs2SuzyxEk1XTrEF8b/MJRCE0CRJilwv66tTSWrZSjscaMOEDTUQA6ZyfytVyNGtAzBtMNEHgVjQMpeXjNJWCgVoFtHRm4sVM8KJUFhoaxItSPtB1+RabTwi4VEHZBbFYTBsItQVNaE1YA7/xopy/fc6lZZ+fsSizHuoNzoEx7iEOwAGI/MZgyHsoP0/+FCBlRYl4EA7BzLKjd9QqwKOmOL9gpQTdGqs+AKyR9AGp1KERsGECiYoCbpL68Uh/x5mOFkcEQC8a95lMFi4W1NNwe7td+LjPFPVZcZufH8Kz0Xc7NUojbuUwCQ77NPKhDgoCV/K1bKdG+QNHB1svcqt2o14IRfFVHJ6OrNzVWqLeB4BXKaBeM2BifPoQKNgpUkZQYl7W4FmUhtQO25AhBJ9PRiKPcHFxscE3JqCT9Wu8/o4AAAAASUVORK5CYII=)left center no-repeat;background-size:24px 24px}}@media (max-width:940px){.sidebar-btn:focus+.sidebar{background-color:#efefe7;z-index:305;left:0;box-shadow:6px 2px 8px 0px rgba(28,28,28,0.1);border:thin solid #ddd;border-radius:0 5px 5px 0;-webkit-transform:translateX(0);transform:translateX(0)}aside.sidebar{position:fixed;top:1em;-webkit-transform:translateX(-105.5%);transform:translateX(-105.5%);transition:transform 0.3s,background-color 0.3s;padding:20px;height:90vh;overflow-y:scroll;z-index:1001!important}}.inner:before{display:table;content:""}.inner:after{display:table;clear:both;content:""}#main{-webkit-border-radius:5px;-moz-border-radius:5px;-ms-border-radius:5px}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}aside nav ul li a.active,aside nav ul li a:hover{color:#f14e32}#book-chapters{-webkit-border-radius:3px;-moz-border-radius:3px;-ms-border-radius:3px}footer:before{display:table;content:""}footer:after{display:table;clear:both;content:""}footer a:hover{color:#0b0b0a}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){footer .site-source{background:transparent var(--sf-img-0)0 2px no-repeat;background-size:38px 23px}}.scrollToTop{-webkit-border-radius:50px;-moz-border-radius:50px;-ms-border-radius:50px}.scrollToTop:hover{background-color:rgba(250,250,250,0.9);-webkit-box-shadow:2px;-moz-box-shadow:2px;box-shadow:2px}.scrollToTop:hover::before{-webkit-transform:translateX(-50%);transform:translateX(-50%);left:50%;width:0;height:0;color:var(--color-neutral-emphasis-plus);content:"";border:6px solid transparent;border-color:#333333 transparent transparent;top:-0.55rem;position:absolute}.scrollToTop:hover::after{-webkit-transform:translateX(-50%);transform:translateX(-50%);left:50%;top:-2rem;border-radius:4px;position:absolute;content:attr(data-label);word-wrap:break-word;white-space:pre;padding:.5em .75em;color:#e9e8e0;background-color:#333333;font:normal normal 11px/1.5 -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji}@media (max-width:940px){header{padding-bottom:2.5rem}header a,header span{padding-left:1rem;margin-bottom:10px}#content{width:100%}.inner{width:100%}#content-wrapper{padding:0.8rem}footer{padding-left:1rem;padding-right:1rem}}@media (max-width:640px){header{padding-bottom:3rem}header #tagline{font-size:0.8rem;top:0;padding-right:1rem}footer{display:flex;justify-content:center;flex-direction:column;align-items:center}footer .site-source{margin-bottom:1rem}.scrollToTop{bottom:6rem}}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media (max-width:940px){}@media (max-width:640px){}.inner:before{display:table;content:""}.inner:after{display:table;clear:both;content:""}#main{-webkit-border-radius:5px;-moz-border-radius:5px;-ms-border-radius:5px}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}aside nav ul li a.active,aside nav ul li a:hover{color:#f14e32}#book-chapters{-webkit-border-radius:3px;-moz-border-radius:3px;-ms-border-radius:3px}footer:before{display:table;content:""}footer:after{display:table;clear:both;content:""}footer a:hover{color:#0b0b0a}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){footer .site-source{background:transparent var(--sf-img-0)0 2px no-repeat;background-size:38px 23px}}.scrollToTop{-webkit-border-radius:50px;-moz-border-radius:50px;-ms-border-radius:50px}.scrollToTop:hover{background-color:rgba(250,250,250,0.9);-webkit-box-shadow:2px;-moz-box-shadow:2px;box-shadow:2px}.scrollToTop:hover::before{-webkit-transform:translateX(-50%);transform:translateX(-50%);left:50%;width:0;height:0;color:var(--color-neutral-emphasis-plus);content:"";border:6px solid transparent;border-color:#333333 transparent transparent;top:-0.55rem;position:absolute}.scrollToTop:hover::after{-webkit-transform:translateX(-50%);transform:translateX(-50%);left:50%;top:-2rem;border-radius:4px;position:absolute;content:attr(data-label);word-wrap:break-word;white-space:pre;padding:.5em .75em;color:#e9e8e0;background-color:#333333;font:normal normal 11px/1.5 -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji}@media (max-width:940px){header{padding-bottom:2.5rem}header a,header span{padding-left:1rem;margin-bottom:10px}#content{width:100%}.inner{width:100%}#content-wrapper{padding:0.8rem}footer{padding-left:1rem;padding-right:1rem}}@media (max-width:640px){header{padding-bottom:3rem}header #tagline{font-size:0.8rem;top:0;padding-right:1rem}footer{display:flex;justify-content:center;flex-direction:column;align-items:center}footer .site-source{margin-bottom:1rem}.scrollToTop{bottom:6rem}}input{font-family:Adelle,Roboto Slab,DejaVu Serif,Georgia,Times New Roman,sans-serif;font-size:14px;outline:none}form#search{position:absolute;top:10px;right:0;z-index:1000;width:262px;padding-left:32px;background:transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAARCAYAAAA7bUf6AAAA80lEQVR4AWNABktmT9RdOKNv3cyJ7T+A7P8zJ3Z8WTSzfzlInAEnQGhmA+K6BdP7/gNpDAwVrwZiZnyGTEPXOHtyJzYDJ+AywAZNYS8Qi0LlJIB4Mpq8GYYhED8jDCDkUpB6DAXgQET4mx+HIUJAzWBDZk3qeIlNAVgSZBi+wIeFEYjGkARFI0gSapMQLpcAMdwlhMJkMg5D5iCpWYBNgS5a+pgJxNJQOTko/z+Saw1wRXMdWCEmJimtMINSJNBFlBiE8BooXOZO6b4wb1rP/zmTu66DwgMq3k6cQYTzWBe1DOpFM6iFQoMQiY9cg1qgUT4BAIBVdgeeWtbxAAAAAElFTkSuQmCC)10px 50%no-repeat;background-size:17px 17px;background-color:#fcfcfa!important;border:solid 1px #ceccc5;-webkit-border-radius:20px;-moz-border-radius:20px;-ms-border-radius:20px;border-radius:20px;-webkit-box-shadow:inset 0 1px 4px #ddd;-moz-box-shadow:inset 0 1px 4px #ddd;box-shadow:inset 0 1px 4px #ddd}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){form#search{background:transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAiCAYAAAA6RwvCAAABvklEQVR4Ae3UAwhYXxSA8T9m27btMNvImK0wpJlhtm3btm1bYfZ29uV6dbqat1e/fE7f0/3HdM2dMrI4BmIXHuAD3uMetqE38v8TfqkBVXAQYmk7ynzNgPiYDvHwGSMQOzQiBQ5DAm1HIt+IeMqr8LUNMX1CZkAM7mMfDuIJxGCoa0Qlw3tfgMKRmf9QDmshivfI6RJyQFn0Co0t5lvjnbJjiW1EUe1JoInDzbRX9nxCJpsFA5UFizy+s+3Krq42wzuV4eIeITX112MefgCJeOB5BMTGG0jEaZvh95CI/QGH4lVIxB3joPK1HwwIuQCJuGkzeB8S8Rj/ekTEVV7NMZvhbZAolPUIqa/smmMz3FcZXu0Y8S/2K7va2SwoAFE0cwjpoR3zSKWMWZ8l79DSMuKjsmOBy2Mth88QxUZUwP+RM6M29kEUn5HL9UMbAzF4jpO4hDcQC1Pwr+upuA0SLjwmMXb+LDGxMRyfII4+B8UoQSWxwbgc+IgVyI8JEA0mG2OUoOzojpU4j8e4hzOYj85IFznYgmPCL3PM35iJv1JMT23+e8fc1ae/b8wbffL7xiwNWhwQ0xP38AxLkfwLevaPG4w9Zv0AAAAASUVORK5CYII=)10px 50%no-repeat;background-size:17px 17px}}form#search input{-webkit-border-radius:20px;-moz-border-radius:20px;-ms-border-radius:20px;border-radius:20px;width:100%;height:20px;margin-top:4px;margin-bottom:2px;line-height:1em;color:#4e443c;background-color:transparent;border:0}@media (max-width:940px){form#search{-webkit-transform:translateX(-50%);transform:translateX(-50%);left:50%;margin-top:7px;top:unset;width:92%}}@media (max-width:640px){form#search{width:84%}form#search #search-text{padding:0.3rem 0.1rem}}.inner:before{display:table;content:""}.inner:after{display:table;clear:both;content:""}#main{-webkit-border-radius:5px;-moz-border-radius:5px;-ms-border-radius:5px}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}aside nav ul li a.active,aside nav ul li a:hover{color:#f14e32}#book-chapters{-webkit-border-radius:3px;-moz-border-radius:3px;-ms-border-radius:3px}footer:before{display:table;content:""}footer:after{display:table;clear:both;content:""}footer a:hover{color:#0b0b0a}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){footer .site-source{background:transparent var(--sf-img-0)0 2px no-repeat;background-size:38px 23px}}.scrollToTop{-webkit-border-radius:50px;-moz-border-radius:50px;-ms-border-radius:50px}.scrollToTop:hover{background-color:rgba(250,250,250,0.9);-webkit-box-shadow:2px;-moz-box-shadow:2px;box-shadow:2px}.scrollToTop:hover::before{-webkit-transform:translateX(-50%);transform:translateX(-50%);left:50%;width:0;height:0;color:var(--color-neutral-emphasis-plus);content:"";border:6px solid transparent;border-color:#333333 transparent transparent;top:-0.55rem;position:absolute}.scrollToTop:hover::after{-webkit-transform:translateX(-50%);transform:translateX(-50%);left:50%;top:-2rem;border-radius:4px;position:absolute;content:attr(data-label);word-wrap:break-word;white-space:pre;padding:.5em .75em;color:#e9e8e0;background-color:#333333;font:normal normal 11px/1.5 -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji}@media (max-width:940px){header{padding-bottom:2.5rem}header a,header span{padding-left:1rem;margin-bottom:10px}#content{width:100%}.inner{width:100%}#content-wrapper{padding:0.8rem}footer{padding-left:1rem;padding-right:1rem}}@media (max-width:640px){header{padding-bottom:3rem}header #tagline{font-size:0.8rem;top:0;padding-right:1rem}footer{display:flex;justify-content:center;flex-direction:column;align-items:center}footer .site-source{margin-bottom:1rem}.scrollToTop{bottom:6rem}}#documentation #main .admonitionblock table{margin-bottom:1em}#documentation #main .admonitionblock table td{padding:0 1em}#documentation #main .admonitionblock table td .title{font-weight:bold;color:#f14e32}#documentation #main .admonitionblock table td:first-child{border-right:solid 2px #d8d7cf}.inner:before{display:table;content:""}.inner:after{display:table;clear:both;content:""}#main{-webkit-border-radius:5px;-moz-border-radius:5px;-ms-border-radius:5px}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}aside nav ul li a.active,aside nav ul li a:hover{color:#f14e32}#book-chapters{-webkit-border-radius:3px;-moz-border-radius:3px;-ms-border-radius:3px}footer:before{display:table;content:""}footer:after{display:table;clear:both;content:""}footer a:hover{color:#0b0b0a}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){footer .site-source{background:transparent var(--sf-img-0)0 2px no-repeat;background-size:38px 23px}}.scrollToTop{-webkit-border-radius:50px;-moz-border-radius:50px;-ms-border-radius:50px}.scrollToTop:hover{background-color:rgba(250,250,250,0.9);-webkit-box-shadow:2px;-moz-box-shadow:2px;box-shadow:2px}.scrollToTop:hover::before{-webkit-transform:translateX(-50%);transform:translateX(-50%);left:50%;width:0;height:0;color:var(--color-neutral-emphasis-plus);content:"";border:6px solid transparent;border-color:#333333 transparent transparent;top:-0.55rem;position:absolute}.scrollToTop:hover::after{-webkit-transform:translateX(-50%);transform:translateX(-50%);left:50%;top:-2rem;border-radius:4px;position:absolute;content:attr(data-label);word-wrap:break-word;white-space:pre;padding:.5em .75em;color:#e9e8e0;background-color:#333333;font:normal normal 11px/1.5 -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji}@media (max-width:940px){header{padding-bottom:2.5rem}header a,header span{padding-left:1rem;margin-bottom:10px}#content{width:100%}.inner{width:100%}#content-wrapper{padding:0.8rem}footer{padding-left:1rem;padding-right:1rem}}@media (max-width:640px){header{padding-bottom:3rem}header #tagline{font-size:0.8rem;top:0;padding-right:1rem}footer{display:flex;justify-content:center;flex-direction:column;align-items:center}footer .site-source{margin-bottom:1rem}.scrollToTop{bottom:6rem}}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}.book code{display:inline}.book pre code{overflow:auto}td{padding:5px}.book table.ref th:nth-child(1),td:nth-child(1){width:25%;padding:5px}@media (min-width:640px){}@media (max-width:480px){}.edition2 *{box-sizing:border-box}.edition2 p{font-family:sans-serif;font-size:14px;line-height:22px;text-indent:0}.edition2 p a{display:inline}.edition2 ol{margin:15px 0 15px 40px}.edition2 ol li,.edition2 ol li p{margin-top:5px;font-family:sans-serif;font-size:1em;line-height:120%;text-indent:0}.edition2 table{margin-top:30px;border-collapse:collapse;border-bottom:1px solid #888}.edition2 tr{border-width:0px}.edition2 td,.edition2 table p{font-family:sans-serif;font-size:12px;line-height:120%}.edition2 table p{margin-top:6px;text-indent:0}.edition2 td code{word-wrap:break-word;white-space:pre-wrap}.edition2 pre,.edition2 code{font-family:monospace}.edition2 pre{background:#eee}.edition2 pre code{display:inline;background:#eee;border:0}.edition2 pre{margin:10px 0;overflow-x:auto;font-size:0.9em;line-height:120%;color:#333}.edition2 code{padding:0;color:#333;background:#eee;border:1px solid #f5f5f5}.edition2 table code{font-size:inherit;line-height:inherit}@media screen and (min-width:480px) and (max-width:1024px){}@media screen and (max-width:480px){}body{padding:0;margin:0;font-family:Adelle,Roboto Slab,DejaVu Serif,Georgia,Times New Roman,sans-serif;font-size:14px;line-height:22px;color:#4e443c;background:#f0efe7 url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAICAgICAgICAgIDAgICAwQDAgIDBAUEBAQEBAUGBQUFBQUFBgYHBwgHBwYJCQoKCQkMDAwMDAwMDAwMDAwMDAz/2wBDAQMDAwUEBQkGBgkNCwkLDQ8ODg4ODw8MDAwMDA8PDAwMDAwMDwwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAz/wAARCABSAFIDAREAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAAAQIAAwn/xAAuEAABAwIFBAAFBAMAAAAAAAABABEhAjESQVFhcSIygcFCUpGhsQPR4fAzYqL/xAAXAQEBAQEAAAAAAAAAAAAAAAAAAQIE/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A9u6nNVLP48w65G0jDyKWfSbIKqIpcmWuyDMIZy0IMRcMQdQWZ9EC3c4cxKCcVLgD+UBSxkCM+EFFndnBEeUCA8tfbRBPXrvYdqDSCS8O1vwgKu4btKBfE2bERldBZeGPUJbXVAXFmm+yDG42gBBJcUmoFrtTzdA0EEA5kkSgpy7iQYbdAQweQ/4QZj8hu/hASQzNYgoJqJFmIaUGFLdW6CnAD7dIkygaTzmC90BcE/KHH7ICqQzAvBKCqelqGJCAJu1hkdUGljkRD86oJY/69rXVFsbgRlS6gzwCDL57oJNy3jIboFmpFLM3lBJqYibXKCwQXFgQUGAagNbJt0GDE6AFBjLj77oDEQQwjJAvTtf7IF2IA2xHbZBLd27ElAdWkAv9Sgpy7H6IA4SGIBeG5QAMvMONkF5MLk2AQSCTafYsgbAgw0htUBV3ObsenJA4afmFsSAFJBpl8LMEC0X2O6AEAjS/CBY91nF+EBWMUgR8QQSCR8UCAONUFkW8zyg0AwZMgoMSzVWDdVOZQS3aTLSwhBmOh7Xyt+6DGoBzoJGXAQJlqhJjEcm2CBJhgxIuRZAEZZG+yDAMwd6TCDMQaSRYv4QIOQPPCCSLXbXTlAB5AEF2CBImDc2GaBx06INUMQByhj4QYvhcAaUga6oJYgAAsKWIO26CiQ3Jt90FVGIFpDoCp4FiHxIJcG0NdtkFVGz2p7igzmQSzW/oQTSGfPPEgpx/y3nRBvhFTNkDkgGvoczvdBn6RVM5evKAwl5vqgXiZe1O8IMCSeLZoBjQJEif4QYg6W9j2gzQ5koGkAh4IAkBBT/j+nlAOXoN48Nog0MBickSEGEUyYHdH4QYWvAMOgzYnYQNsroIxRGQt7KDoeqXdrndBJJILBnEDhBptqJQLACQ4zIQGE+kAe4Wt8N7oKH+MdvceL5qh05yt/dUAe0X7clBAvXfxdA6+uEFfp+e3L0go+0EU9wtb2qDKq2VreVBX170H//Z)}.inner{position:relative;width:940px;margin:0 auto;overflow:visible}.inner:before{display:table;content:""}.inner:after{display:table;clear:both;content:""}aside{float:left;width:218px;margin-bottom:35px}#content{float:right;width:702px}#main{padding:22px;margin-bottom:35px;background-color:#fcfcfa;border:solid 1px #e2e0d8;-webkit-border-radius:5px;-moz-border-radius:5px;-ms-border-radius:5px;border-radius:5px}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}header{position:relative;padding-bottom:26px;margin-top:14px}header #tagline{position:absolute;top:11px;left:120px;display:block;margin-top:1px;font-size:24px;line-height:24px;color:#9a9994}aside nav ul{margin-bottom:1.4em;margin-left:0;font-size:16px;font-weight:bold;list-style:none}aside nav ul li{margin-bottom:0.5em}aside nav ul li a{color:#413932}aside nav ul li a.active,aside nav ul li a:hover{color:#f14e32}aside nav ul li ul{margin-top:0.3em;margin-left:20px;font-size:13px;font-weight:normal}aside nav ul li ul li{margin-bottom:0}aside nav ul li ul li a.active{font-weight:bold}aside nav ul li ul.expanded{display:block}#book-chapters{position:relative;background-color:rgba(223,221,213,0.33);-webkit-border-radius:3px;-moz-border-radius:3px;-ms-border-radius:3px;border-radius:3px;padding:8px 12px 6px;margin-bottom:10px;font-size:13px;font-weight:bold}#book-chapters .light{font-weight:normal}#book-chapters a{font-weight:bold;position:relative}a.dropdown-trigger{padding:4px 5px;border:solid 1px transparent}footer{padding:20px 0 40px;margin-top:35px;clear:both;font-size:12px;line-height:15.4px;color:#9a9994;border-top:solid 1px #d8d7cf}footer:before{display:table;content:""}footer:after{display:table;clear:both;content:""}footer a{color:#403f3c}footer a:hover{color:#0b0b0a}footer .site-source{float:left;padding-left:46px;background:transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAAAXCAQAAADNEvUtAAABQElEQVR4Aa2U2W6DMBBFjw0JJJQkkNKszVIixPL//1fJGtmy5FJacR5nuTB3NGYyipyMmagYGFgzC40R2zIDqZHqif7TuicGHAcj9gSgmP5/ESd6Bq6AozZiJfAmsgm/UtAySKNjKbEFkEhFzweaH1lRS9OLDHC8m2gNhgW3YJ0l5iIFLXsUPk+TqXDkNFJ/8Zei2NPaVBz4UG9yKeDQHCXesnPDvUSoZkWI0mSbUWMeLAH5p46CMIhDBxz+VJ0oJPAU7RsLQmi60UNyk21AUSHaAethK76o8bVRIiQ8rG8pPlcTPyME13YmxmMnqZ4j2rVINMcns9Z/hdcW2Z9ubHMuBmhvuKsdrmCEzNpZAXBi8O/UnRMnIsZBUdEz8Bl+xeyhp0xkSUkMrIOv2JacvyOv2J1ZuMtjNAsbOh5oJvINZhIiALK/lTkAAAAASUVORK5CYII=)0 2px no-repeat;background-size:38px 23px}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){footer .site-source{background:transparent var(--sf-img-0)0 2px no-repeat;background-size:38px 23px}}footer .sfc-member{float:right;text-align:right}.scrollToTop{-webkit-border-radius:50px;-moz-border-radius:50px;-ms-border-radius:50px;border-radius:50px;position:fixed;background-color:rgba(223,221,213,0.33);right:20px;bottom:6.25rem;padding:0.8rem;height:20px;transition:background-color 0.2s;width:20px}.scrollToTop:hover{background-color:rgba(250,250,250,0.9);-webkit-box-shadow:2px;-moz-box-shadow:2px;box-shadow:2px}.scrollToTop:hover::before{-webkit-transform:translateX(-50%);transform:translateX(-50%);left:50%;width:0;height:0;color:var(--color-neutral-emphasis-plus);content:"";border:6px solid transparent;border-color:#333333 transparent transparent;top:-0.55rem;position:absolute}.scrollToTop:hover::after{-webkit-transform:translateX(-50%);transform:translateX(-50%);left:50%;top:-2rem;border-radius:4px;position:absolute;content:attr(data-label);word-wrap:break-word;white-space:pre;padding:.5em .75em;color:#e9e8e0;background-color:#333333;font:normal normal 11px/1.5 -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji}@media (max-width:940px){header{padding-bottom:2.5rem}header a,header span{padding-left:1rem;margin-bottom:10px}#content{width:100%}.inner{width:100%}#content-wrapper{padding:0.8rem}footer{padding-left:1rem;padding-right:1rem}}@media (max-width:640px){header{padding-bottom:3rem}header #tagline{font-size:0.8rem;top:0;padding-right:1rem}footer{display:flex;justify-content:center;flex-direction:column;align-items:center}footer .site-source{margin-bottom:1rem}.scrollToTop{bottom:6rem}}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min--moz-device-pixel-ratio:2),only screen and (-o-min-device-pixel-ratio:2/1){}@media (max-width:940px){}@media (max-width:640px){}pre{border:solid 1px #efeee6;border-radius:3px;display:block;margin-bottom:1em;overflow:auto}</style>
+<!--[if (gte IE 6)&(lte IE 8)]>
+  <script src="/javascripts/selectivizr-min.js"></script>
+  <![endif]-->
+<meta name=referrer content=no-referrer><link href="data:image/vnd.microsoft.icon;base64,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AAAAAAAAAAAAAAAAAAAAAAAAAAAAAChP+1MmS/DRJkvx0ShP/FAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=" rel="shortcut icon" type=image/x-icon><style>.sf-hidden{display:none!important}</style><link rel=canonical href=https://git-scm.com/book/en/v2/Git-Tools-Submodules><meta http-equiv=content-security-policy content="default-src 'none'; font-src 'self' data:; img-src 'self' data:; style-src 'unsafe-inline'; media-src 'self' data:; script-src 'unsafe-inline' data:; object-src 'self' data:; frame-src 'self' data:;"><style>img[src="data:,"],source[src="data:,"]{display:none!important}</style></head>
+<body id=documentation>
+ <div class=inner>
+ <header>
+ <a href=https://git-scm.com/><img src=data:image/png;base64,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 width=110 height=46 alt=Git></a>
+ <span id=tagline>--local-branching-on-the-cheap</span>
+ 
+ <form id=search action=/search/results>
+ <input id=search-text name=search placeholder="Search entire site..." autocomplete=off type=text value>
+ </form>
+ <div id=search-results class=sf-hidden></div>
+</header>
+ </div> 
+ <div class=inner>
+ <div id=content-wrapper>
+ <button class=sidebar-btn></button>
+<aside class=sidebar id=sidebar data-hint_scrollable=true>
+ <nav>
+ <ul>
+ <li>
+ <a href=https://git-scm.com/about>About</a>
+ <ul class=sf-hidden>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ </ul>
+ </li>
+ <li>
+ <a class=active href=https://git-scm.com/doc>Documentation</a>
+ <ul class=expanded>
+ <li>
+ <a href=https://git-scm.com/docs>Reference</a>
+ </li>
+ <li>
+ <a class=active href=https://git-scm.com/book>Book</a>
+ </li>
+ <li>
+ <a href=https://git-scm.com/videos>Videos</a>
+ </li>
+ <li>
+ <a href=https://git-scm.com/doc/ext>External Links</a>
+ </li>
+ </ul>
+ </li>
+ <li>
+ <a href=https://git-scm.com/downloads>Downloads</a>
+ <ul class=sf-hidden>
+ 
+ 
+ </ul>
+ </li>
+ <li>
+ <a href=https://git-scm.com/community>Community</a>
+ </li>
+ </ul>
+ <hr class=sidebar>
+ <p>
+This book is available in
+ <a href=https://git-scm.com/book/en>English</a>.
+</p>
+<p>
+ Full translation available in
+ <table>
+ <tbody><tr><td><a href=https://git-scm.com/book/az>azərbaycan dili</a>,</tr>
+ <tr><td><a href=https://git-scm.com/book/bg>български език</a>,</tr>
+ <tr><td><a href=https://git-scm.com/book/de>Deutsch</a>,</tr>
+ <tr><td><a href=https://git-scm.com/book/es>Español</a>,</tr>
+ <tr><td><a href=https://git-scm.com/book/fr>Français</a>,</tr>
+ <tr><td><a href=https://git-scm.com/book/gr>Ελληνικά</a>,</tr>
+ <tr><td><a href=https://git-scm.com/book/ja>日本語</a>,</tr>
+ <tr><td><a href=https://git-scm.com/book/ko>한국어</a>,</tr>
+ <tr><td><a href=https://git-scm.com/book/nl>Nederlands</a>,</tr>
+ <tr><td><a href=https://git-scm.com/book/ru>Русский</a>,</tr>
+ <tr><td><a href=https://git-scm.com/book/sl>Slovenščina</a>,</tr>
+ <tr><td><a href=https://git-scm.com/book/tl>Tagalog</a>,</tr>
+ <tr><td><a href=https://git-scm.com/book/uk>Українська</a></tr>
+ <tr><td><a href=https://git-scm.com/book/zh>简体中文</a>,</tr>
+ </table>
+<p></p>
+<p>
+ Partial translations available in
+ <table>
+ <tbody><tr><td><a href=https://git-scm.com/book/cs>Čeština</a>,</tr>
+ <tr><td><a href=https://git-scm.com/book/mk>Македонски</a>,</tr>
+ <tr><td><a href=https://git-scm.com/book/pl>Polski</a>,</tr>
+ <tr><td><a href=https://git-scm.com/book/sr>Српски</a>,</tr>
+ <tr><td><a href=https://git-scm.com/book/uz>Ўзбекча</a>,</tr>
+ <tr><td><a href=https://git-scm.com/book/zh-tw>繁體中文</a>,</tr>
+ </table>
+<p></p>
+<p>
+ Translations started for
+ <table>
+ <tbody><tr><td><a href=https://git-scm.com/book/be>Беларуская</a>,</tr>
+ <tr><td><a href=https://git-scm.com/book/fa dir=rtl>فارسی</a>,</tr>
+ <tr><td><a href=https://git-scm.com/book/id>Indonesian</a>,</tr>
+ <tr><td><a href=https://git-scm.com/book/it>Italiano</a>,</tr>
+ <tr><td><a href=https://git-scm.com/book/ms>Bahasa Melayu</a>,</tr>
+ <tr><td><a href=https://git-scm.com/book/pt-br>Português (Brasil)</a>,</tr>
+ <tr><td><a href=https://git-scm.com/book/pt-pt>Português (Portugal)</a>,</tr>
+ <tr><td><a href=https://git-scm.com/book/sv>Svenska</a>,</tr>
+ <tr><td><a href=https://git-scm.com/book/tr>Türkçe</a>.</tr>
+ </table>
+<p></p>
+<hr class=sidebar>
+<p>
+The source of this book is <a href=https://github.com/progit/progit2>hosted on GitHub.</a><br>
+Patches, suggestions and comments are welcome.
+</p>
+ </nav>
+</aside>
+ <div id=content>
+ 
+<div id=book-chapters>
+ <a class=dropdown-trigger id=book-chapters-trigger data-panel-id=chapters-dropdown href=#>Chapters ▾</a>
+<div class="dropdown-panel sf-hidden" id=chapters-dropdown>
+ 
+ </div>
+ <span class=light id=edition>
+ 2nd Edition
+ </span>
+</div>
+<div id=main class="book edition2">
+ <h1>7.11 Git Tools - Submodules</h1>
+ <div>
+<h2 id=_git_submodules>Submodules</h2>
+<div class=paragraph>
+<p>It often happens that while working on one project, you need to use another project from within it.
+Perhaps it’s a library that a third party developed or that you’re developing separately and using in multiple parent projects.
+A common issue arises in these scenarios: you want to be able to treat the two projects as separate yet still be able to use one from within the other.</p>
+</div>
+<div class=paragraph>
+<p>Here’s an example.
+Suppose you’re developing a website and creating Atom feeds.
+Instead of writing your own Atom-generating code, you decide to use a library.
+You’re likely to have to either include this code from a shared library like a CPAN install or Ruby gem, or copy the source code into your own project tree.
+The issue with including the library is that it’s difficult to customize the library in any way and often more difficult to deploy it, because you need to make sure every client has that library available.
+The issue with copying the code into your own project is that any custom changes you make are difficult to merge when upstream changes become available.</p>
+</div>
+<div class=paragraph>
+<p>Git addresses this issue using submodules.
+Submodules allow you to keep a Git repository as a subdirectory of another Git repository.
+This lets you clone another repository into your project and keep your commits separate.</p>
+</div>
+<div class=sect3>
+<h3 id=_starting_submodules>Starting with Submodules</h3>
+<div class=paragraph>
+<p>We’ll walk through developing a simple project that has been split up into a main project and a few sub-projects.</p>
+</div>
+<div class=paragraph>
+<p>Let’s start by adding an existing Git repository as a submodule of the repository that we’re working on.
+To add a new submodule you use the <code>git submodule add</code> command with the absolute or relative URL of the project you would like to start tracking.
+In this example, we’ll add a library called “DbConnector”.</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ git submodule add https://github.com/chaconinc/DbConnector
+Cloning into 'DbConnector'...
+remote: Counting objects: 11, done.
+remote: Compressing objects: 100% (10/10), done.
+remote: Total 11 (delta 0), reused 11 (delta 0)
+Unpacking objects: 100% (11/11), done.
+Checking connectivity... done.</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>By default, submodules will add the subproject into a directory named the same as the repository, in this case “DbConnector”.
+You can add a different path at the end of the command if you want it to go elsewhere.</p>
+</div>
+<div class=paragraph>
+<p>If you run <code>git status</code> at this point, you’ll notice a few things.</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+
+Changes to be committed:
+  (use "git reset HEAD &lt;file&gt;..." to unstage)
+
+	new file:   .gitmodules
+	new file:   DbConnector</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>First you should notice the new <code>.gitmodules</code> file.
+This is a configuration file that stores the mapping between the project’s URL and the local subdirectory you’ve pulled it into:</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-ini data-lang=ini>[submodule "DbConnector"]
+	path = DbConnector
+	url = https://github.com/chaconinc/DbConnector</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>If you have multiple submodules, you’ll have multiple entries in this file.
+It’s important to note that this file is version-controlled with your other files, like your <code>.gitignore</code> file.
+It’s pushed and pulled with the rest of your project.
+This is how other people who clone this project know where to get the submodule projects from.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody><tr>
+<td class=icon>
+<div class=title>Note</div>
+</td>
+<td class=content>
+<div class=paragraph>
+<p>Since the URL in the .gitmodules file is what other people will first try to clone/fetch from, make sure to use a URL that they can access if possible.
+For example, if you use a different URL to push to than others would to pull from, use the one that others have access to.
+You can overwrite this value locally with <code>git config submodule.DbConnector.url PRIVATE_URL</code> for your own use.
+When applicable, a relative URL can be helpful.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class=paragraph>
+<p>The other listing in the <code>git status</code> output is the project folder entry.
+If you run <code>git diff</code> on that, you see something interesting:</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ git diff --cached DbConnector
+diff --git a/DbConnector b/DbConnector
+new file mode 160000
+index 0000000..c3f01dc
+--- /dev/null
++++ b/DbConnector
+@@ -0,0 +1 @@
++Subproject commit c3f01dc8862123d317dd46284b05b6892c7b29bc</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>Although <code>DbConnector</code> is a subdirectory in your working directory, Git sees it as a submodule and doesn’t track its contents when you’re not in that directory.
+Instead, Git sees it as a particular commit from that repository.</p>
+</div>
+<div class=paragraph>
+<p>If you want a little nicer diff output, you can pass the <code>--submodule</code> option to <code>git diff</code>.</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ git diff --cached --submodule
+diff --git a/.gitmodules b/.gitmodules
+new file mode 100644
+index 0000000..71fc376
+--- /dev/null
++++ b/.gitmodules
+@@ -0,0 +1,3 @@
++[submodule "DbConnector"]
++       path = DbConnector
++       url = https://github.com/chaconinc/DbConnector
+Submodule DbConnector 0000000...c3f01dc (new submodule)</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>When you commit, you see something like this:</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ git commit -am 'Add DbConnector module'
+[master fb9093c] Add DbConnector module
+ 2 files changed, 4 insertions(+)
+ create mode 100644 .gitmodules
+ create mode 160000 DbConnector</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>Notice the <code>160000</code> mode for the <code>DbConnector</code> entry.
+That is a special mode in Git that basically means you’re recording a commit as a directory entry rather than a subdirectory or a file.</p>
+</div>
+<div class=paragraph>
+<p>Lastly, push these changes:</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ git push origin master</code></pre>
+</div>
+</div>
+</div>
+<div class=sect3>
+<h3 id=_cloning_submodules>Cloning a Project with Submodules</h3>
+<div class=paragraph>
+<p>Here we’ll clone a project with a submodule in it.
+When you clone such a project, by default you get the directories that contain submodules, but none of the files within them yet:</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ git clone https://github.com/chaconinc/MainProject
+Cloning into 'MainProject'...
+remote: Counting objects: 14, done.
+remote: Compressing objects: 100% (13/13), done.
+remote: Total 14 (delta 1), reused 13 (delta 0)
+Unpacking objects: 100% (14/14), done.
+Checking connectivity... done.
+$ cd MainProject
+$ ls -la
+total 16
+drwxr-xr-x   9 schacon  staff  306 Sep 17 15:21 .
+drwxr-xr-x   7 schacon  staff  238 Sep 17 15:21 ..
+drwxr-xr-x  13 schacon  staff  442 Sep 17 15:21 .git
+-rw-r--r--   1 schacon  staff   92 Sep 17 15:21 .gitmodules
+drwxr-xr-x   2 schacon  staff   68 Sep 17 15:21 DbConnector
+-rw-r--r--   1 schacon  staff  756 Sep 17 15:21 Makefile
+drwxr-xr-x   3 schacon  staff  102 Sep 17 15:21 includes
+drwxr-xr-x   4 schacon  staff  136 Sep 17 15:21 scripts
+drwxr-xr-x   4 schacon  staff  136 Sep 17 15:21 src
+$ cd DbConnector/
+$ ls
+$</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>The <code>DbConnector</code> directory is there, but empty.
+You must run two commands: <code>git submodule init</code> to initialize your local configuration file, and <code>git submodule update</code> to fetch all the data from that project and check out the appropriate commit listed in your superproject:</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ git submodule init
+Submodule 'DbConnector' (https://github.com/chaconinc/DbConnector) registered for path 'DbConnector'
+$ git submodule update
+Cloning into 'DbConnector'...
+remote: Counting objects: 11, done.
+remote: Compressing objects: 100% (10/10), done.
+remote: Total 11 (delta 0), reused 11 (delta 0)
+Unpacking objects: 100% (11/11), done.
+Checking connectivity... done.
+Submodule path 'DbConnector': checked out 'c3f01dc8862123d317dd46284b05b6892c7b29bc'</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>Now your <code>DbConnector</code> subdirectory is at the exact state it was in when you committed earlier.</p>
+</div>
+<div class=paragraph>
+<p>There is another way to do this which is a little simpler, however.
+If you pass <code>--recurse-submodules</code> to the <code>git clone</code> command, it will automatically initialize and update each submodule in the repository, including nested submodules if any of the submodules in the repository have submodules themselves.</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ git clone --recurse-submodules https://github.com/chaconinc/MainProject
+Cloning into 'MainProject'...
+remote: Counting objects: 14, done.
+remote: Compressing objects: 100% (13/13), done.
+remote: Total 14 (delta 1), reused 13 (delta 0)
+Unpacking objects: 100% (14/14), done.
+Checking connectivity... done.
+Submodule 'DbConnector' (https://github.com/chaconinc/DbConnector) registered for path 'DbConnector'
+Cloning into 'DbConnector'...
+remote: Counting objects: 11, done.
+remote: Compressing objects: 100% (10/10), done.
+remote: Total 11 (delta 0), reused 11 (delta 0)
+Unpacking objects: 100% (11/11), done.
+Checking connectivity... done.
+Submodule path 'DbConnector': checked out 'c3f01dc8862123d317dd46284b05b6892c7b29bc'</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>If you already cloned the project and forgot <code>--recurse-submodules</code>, you can combine the <code>git submodule init</code> and <code>git submodule update</code> steps by running <code>git submodule update --init</code>.
+To also initialize, fetch and checkout any nested submodules, you can use the foolproof <code>git submodule update --init --recursive</code>.</p>
+</div>
+</div>
+<div class=sect3>
+<h3 id=_working_on_a_project_with_submodules>Working on a Project with Submodules</h3>
+<div class=paragraph>
+<p>Now we have a copy of a project with submodules in it and will collaborate with our teammates on both the main project and the submodule project.</p>
+</div>
+<div class=sect4>
+<h4 id=_pulling_in_upstream_changes_from_the_submodule_remote>Pulling in Upstream Changes from the Submodule Remote</h4>
+<div class=paragraph>
+<p>The simplest model of using submodules in a project would be if you were simply consuming a subproject and wanted to get updates from it from time to time but were not actually modifying anything in your checkout.
+Let’s walk through a simple example there.</p>
+</div>
+<div class=paragraph>
+<p>If you want to check for new work in a submodule, you can go into the directory and run <code>git fetch</code> and <code>git merge</code> the upstream branch to update the local code.</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ git fetch
+From https://github.com/chaconinc/DbConnector
+   c3f01dc..d0354fc  master     -&gt; origin/master
+$ git merge origin/master
+Updating c3f01dc..d0354fc
+Fast-forward
+ scripts/connect.sh | 1 +
+ src/db.c           | 1 +
+ 2 files changed, 2 insertions(+)</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>Now if you go back into the main project and run <code>git diff --submodule</code> you can see that the submodule was updated and get a list of commits that were added to it.
+If you don’t want to type <code>--submodule</code> every time you run <code>git diff</code>, you can set it as the default format by setting the <code>diff.submodule</code> config value to “log”.</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ git config --global diff.submodule log
+$ git diff
+Submodule DbConnector c3f01dc..d0354fc:
+  &gt; more efficient db routine
+  &gt; better connection routine</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>If you commit at this point then you will lock the submodule into having the new code when other people update.</p>
+</div>
+<div class=paragraph>
+<p>There is an easier way to do this as well, if you prefer to not manually fetch and merge in the subdirectory.
+If you run <code>git submodule update --remote</code>, Git will go into your submodules and fetch and update for you.</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ git submodule update --remote DbConnector
+remote: Counting objects: 4, done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 4 (delta 2), reused 4 (delta 2)
+Unpacking objects: 100% (4/4), done.
+From https://github.com/chaconinc/DbConnector
+   3f19983..d0354fc  master     -&gt; origin/master
+Submodule path 'DbConnector': checked out 'd0354fc054692d3906c85c3af05ddce39a1c0644'</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>This command will by default assume that you want to update the checkout to the default branch of the remote submodule repository (the one pointed to by <code>HEAD</code> on the remote).
+You can, however, set this to something different if you want.
+For example, if you want to have the <code>DbConnector</code> submodule track that repository’s “stable” branch, you can set it in either your <code>.gitmodules</code> file (so everyone else also tracks it), or just in your local <code>.git/config</code> file.
+Let’s set it in the <code>.gitmodules</code> file:</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ git config -f .gitmodules submodule.DbConnector.branch stable
+
+$ git submodule update --remote
+remote: Counting objects: 4, done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 4 (delta 2), reused 4 (delta 2)
+Unpacking objects: 100% (4/4), done.
+From https://github.com/chaconinc/DbConnector
+   27cf5d3..c87d55d  stable -&gt; origin/stable
+Submodule path 'DbConnector': checked out 'c87d55d4c6d4b05ee34fbc8cb6f7bf4585ae6687'</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>If you leave off the <code>-f .gitmodules</code> it will only make the change for you, but it probably makes more sense to track that information with the repository so everyone else does as well.</p>
+</div>
+<div class=paragraph>
+<p>When we run <code>git status</code> at this point, Git will show us that we have “new commits” on the submodule.</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add &lt;file&gt;..." to update what will be committed)
+  (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
+
+  modified:   .gitmodules
+  modified:   DbConnector (new commits)
+
+no changes added to commit (use "git add" and/or "git commit -a")</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>If you set the configuration setting <code>status.submodulesummary</code>, Git will also show you a short summary of changes to your submodules:</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ git config status.submodulesummary 1
+
+$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add &lt;file&gt;..." to update what will be committed)
+  (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
+
+	modified:   .gitmodules
+	modified:   DbConnector (new commits)
+
+Submodules changed but not updated:
+
+* DbConnector c3f01dc...c87d55d (4):
+  &gt; catch non-null terminated lines</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>At this point if you run <code>git diff</code> we can see both that we have modified our <code>.gitmodules</code> file and also that there are a number of commits that we’ve pulled down and are ready to commit to our submodule project.</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ git diff
+diff --git a/.gitmodules b/.gitmodules
+index 6fc0b3d..fd1cc29 100644
+--- a/.gitmodules
++++ b/.gitmodules
+@@ -1,3 +1,4 @@
+ [submodule "DbConnector"]
+        path = DbConnector
+        url = https://github.com/chaconinc/DbConnector
++       branch = stable
+ Submodule DbConnector c3f01dc..c87d55d:
+  &gt; catch non-null terminated lines
+  &gt; more robust error handling
+  &gt; more efficient db routine
+  &gt; better connection routine</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>This is pretty cool as we can actually see the log of commits that we’re about to commit to in our submodule.
+Once committed, you can see this information after the fact as well when you run <code>git log -p</code>.</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ git log -p --submodule
+commit 0a24cfc121a8a3c118e0105ae4ae4c00281cf7ae
+Author: Scott Chacon &lt;schacon@gmail.com&gt;
+Date:   Wed Sep 17 16:37:02 2014 +0200
+
+    updating DbConnector for bug fixes
+
+diff --git a/.gitmodules b/.gitmodules
+index 6fc0b3d..fd1cc29 100644
+--- a/.gitmodules
++++ b/.gitmodules
+@@ -1,3 +1,4 @@
+ [submodule "DbConnector"]
+        path = DbConnector
+        url = https://github.com/chaconinc/DbConnector
++       branch = stable
+Submodule DbConnector c3f01dc..c87d55d:
+  &gt; catch non-null terminated lines
+  &gt; more robust error handling
+  &gt; more efficient db routine
+  &gt; better connection routine</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>Git will by default try to update <strong>all</strong> of your submodules when you run <code>git submodule update --remote</code>.
+If you have a lot of them, you may want to pass the name of just the submodule you want to try to update.</p>
+</div>
+</div>
+<div class=sect4>
+<h4 id=_pulling_upstream_changes_from_the_project_remote>Pulling Upstream Changes from the Project Remote</h4>
+<div class=paragraph>
+<p>Let’s now step into the shoes of your collaborator, who has their own local clone of the MainProject repository.
+Simply executing <code>git pull</code> to get your newly committed changes is not enough:</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ git pull
+From https://github.com/chaconinc/MainProject
+   fb9093c..0a24cfc  master     -&gt; origin/master
+Fetching submodule DbConnector
+From https://github.com/chaconinc/DbConnector
+   c3f01dc..c87d55d  stable     -&gt; origin/stable
+Updating fb9093c..0a24cfc
+Fast-forward
+ .gitmodules         | 2 +-
+ DbConnector         | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+$ git status
+ On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes not staged for commit:
+  (use "git add &lt;file&gt;..." to update what will be committed)
+  (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
+
+	modified:   DbConnector (new commits)
+
+Submodules changed but not updated:
+
+* DbConnector c87d55d...c3f01dc (4):
+  &lt; catch non-null terminated lines
+  &lt; more robust error handling
+  &lt; more efficient db routine
+  &lt; better connection routine
+
+no changes added to commit (use "git add" and/or "git commit -a")</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>By default, the <code>git pull</code> command recursively fetches submodules changes, as we can see in the output of the first command above.
+However, it does not <strong>update</strong> the submodules.
+This is shown by the output of the <code>git status</code> command, which shows the submodule is “modified”, and has “new commits”.
+What’s more, the brackets showing the new commits point left (&lt;), indicating that these commits are recorded in MainProject but are not present in the local <code>DbConnector</code> checkout.
+To finalize the update, you need to run <code>git submodule update</code>:</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ git submodule update --init --recursive
+Submodule path 'vendor/plugins/demo': checked out '48679c6302815f6c76f1fe30625d795d9e55fc56'
+
+$ git status
+ On branch master
+Your branch is up-to-date with 'origin/master'.
+nothing to commit, working tree clean</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>Note that to be on the safe side, you should run <code>git submodule update</code> with the <code>--init</code> flag in case the MainProject commits you just pulled added new submodules, and with the <code>--recursive</code> flag if any submodules have nested submodules.</p>
+</div>
+<div class=paragraph>
+<p>If you want to automate this process, you can add the <code>--recurse-submodules</code> flag to the <code>git pull</code> command (since Git 2.14).
+This will make Git run <code>git submodule update</code> right after the pull, putting the submodules in the correct state.
+Moreover, if you want to make Git always pull with <code>--recurse-submodules</code>, you can set the configuration option <code>submodule.recurse</code> to <code>true</code> (this works for <code>git pull</code> since Git 2.15).
+This option will make Git use the <code>--recurse-submodules</code> flag for all commands that support it (except <code>clone</code>).</p>
+</div>
+<div class=paragraph>
+<p>There is a special situation that can happen when pulling superproject updates: it could be that the upstream repository has changed the URL of the submodule in the <code>.gitmodules</code> file in one of the commits you pull.
+This can happen for example if the submodule project changes its hosting platform.
+In that case, it is possible for <code>git pull --recurse-submodules</code>, or <code>git submodule update</code>, to fail if the superproject references a submodule commit that is not found in the submodule remote locally configured in your repository.
+In order to remedy this situation, the <code>git submodule sync</code> command is required:</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console># copy the new URL to your local config
+$ git submodule sync --recursive
+# update the submodule from the new URL
+$ git submodule update --init --recursive</code></pre>
+</div>
+</div>
+</div>
+<div class=sect4>
+<h4 id=_working_on_a_submodule>Working on a Submodule</h4>
+<div class=paragraph>
+<p>It’s quite likely that if you’re using submodules, you’re doing so because you really want to work on the code in the submodule at the same time as you’re working on the code in the main project (or across several submodules).
+Otherwise you would probably instead be using a simpler dependency management system (such as Maven or Rubygems).</p>
+</div>
+<div class=paragraph>
+<p>So now let’s go through an example of making changes to the submodule at the same time as the main project and committing and publishing those changes at the same time.</p>
+</div>
+<div class=paragraph>
+<p>So far, when we’ve run the <code>git submodule update</code> command to fetch changes from the submodule repositories, Git would get the changes and update the files in the subdirectory but will leave the sub-repository in what’s called a “detached HEAD” state.
+This means that there is no local working branch (like <code>master</code>, for example) tracking changes.
+With no working branch tracking changes, that means even if you commit changes to the submodule, those changes will quite possibly be lost the next time you run <code>git submodule update</code>.
+You have to do some extra steps if you want changes in a submodule to be tracked.</p>
+</div>
+<div class=paragraph>
+<p>In order to set up your submodule to be easier to go in and hack on, you need to do two things.
+You need to go into each submodule and check out a branch to work on.
+Then you need to tell Git what to do if you have made changes and later <code>git submodule update --remote</code> pulls in new work from upstream.
+The options are that you can merge them into your local work, or you can try to rebase your local work on top of the new changes.</p>
+</div>
+<div class=paragraph>
+<p>First of all, let’s go into our submodule directory and check out a branch.</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ cd DbConnector/
+$ git checkout stable
+Switched to branch 'stable'</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>Let’s try updating our submodule with the “merge” option.
+To specify it manually, we can just add the <code>--merge</code> option to our <code>update</code> call.
+Here we’ll see that there was a change on the server for this submodule and it gets merged in.</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ cd ..
+$ git submodule update --remote --merge
+remote: Counting objects: 4, done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 4 (delta 2), reused 4 (delta 2)
+Unpacking objects: 100% (4/4), done.
+From https://github.com/chaconinc/DbConnector
+   c87d55d..92c7337  stable     -&gt; origin/stable
+Updating c87d55d..92c7337
+Fast-forward
+ src/main.c | 1 +
+ 1 file changed, 1 insertion(+)
+Submodule path 'DbConnector': merged in '92c7337b30ef9e0893e758dac2459d07362ab5ea'</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>If we go into the <code>DbConnector</code> directory, we have the new changes already merged into our local <code>stable</code> branch.
+Now let’s see what happens when we make our own local change to the library and someone else pushes another change to the upstream at the same time.</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ cd DbConnector/
+$ vim src/db.c
+$ git commit -am 'Unicode support'
+[stable f906e16] Unicode support
+ 1 file changed, 1 insertion(+)</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>Now if we update our submodule we can see what happens when we have made a local change and upstream also has a change we need to incorporate.</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ cd ..
+$ git submodule update --remote --rebase
+First, rewinding head to replay your work on top of it...
+Applying: Unicode support
+Submodule path 'DbConnector': rebased into '5d60ef9bbebf5a0c1c1050f242ceeb54ad58da94'</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>If you forget the <code>--rebase</code> or <code>--merge</code>, Git will just update the submodule to whatever is on the server and reset your project to a detached HEAD state.</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ git submodule update --remote
+Submodule path 'DbConnector': checked out '5d60ef9bbebf5a0c1c1050f242ceeb54ad58da94'</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>If this happens, don’t worry, you can simply go back into the directory and check out your branch again (which will still contain your work) and merge or rebase <code>origin/stable</code> (or whatever remote branch you want) manually.</p>
+</div>
+<div class=paragraph>
+<p>If you haven’t committed your changes in your submodule and you run a <code>submodule update</code> that would cause issues, Git will fetch the changes but not overwrite unsaved work in your submodule directory.</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ git submodule update --remote
+remote: Counting objects: 4, done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 4 (delta 0), reused 4 (delta 0)
+Unpacking objects: 100% (4/4), done.
+From https://github.com/chaconinc/DbConnector
+   5d60ef9..c75e92a  stable     -&gt; origin/stable
+error: Your local changes to the following files would be overwritten by checkout:
+	scripts/setup.sh
+Please, commit your changes or stash them before you can switch branches.
+Aborting
+Unable to checkout 'c75e92a2b3855c9e5b66f915308390d9db204aca' in submodule path 'DbConnector'</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>If you made changes that conflict with something changed upstream, Git will let you know when you run the update.</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ git submodule update --remote --merge
+Auto-merging scripts/setup.sh
+CONFLICT (content): Merge conflict in scripts/setup.sh
+Recorded preimage for 'scripts/setup.sh'
+Automatic merge failed; fix conflicts and then commit the result.
+Unable to merge 'c75e92a2b3855c9e5b66f915308390d9db204aca' in submodule path 'DbConnector'</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>You can go into the submodule directory and fix the conflict just as you normally would.</p>
+</div>
+</div>
+<div class=sect4>
+<h4 id=_publishing_submodules>Publishing Submodule Changes</h4>
+<div class=paragraph>
+<p>Now we have some changes in our submodule directory.
+Some of these were brought in from upstream by our updates and others were made locally and aren’t available to anyone else yet as we haven’t pushed them yet.</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ git diff
+Submodule DbConnector c87d55d..82d2ad3:
+  &gt; Merge from origin/stable
+  &gt; Update setup script
+  &gt; Unicode support
+  &gt; Remove unnecessary method
+  &gt; Add new option for conn pooling</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>If we commit in the main project and push it up without pushing the submodule changes up as well, other people who try to check out our changes are going to be in trouble since they will have no way to get the submodule changes that are depended on.
+Those changes will only exist on our local copy.</p>
+</div>
+<div class=paragraph>
+<p>In order to make sure this doesn’t happen, you can ask Git to check that all your submodules have been pushed properly before pushing the main project.
+The <code>git push</code> command takes the <code>--recurse-submodules</code> argument which can be set to either “check” or “on-demand”.
+The “check” option will make <code>push</code> simply fail if any of the committed submodule changes haven’t been pushed.</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ git push --recurse-submodules=check
+The following submodule paths contain changes that can
+not be found on any remote:
+  DbConnector
+
+Please try
+
+	git push --recurse-submodules=on-demand
+
+or cd to the path and use
+
+	git push
+
+to push them to a remote.</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>As you can see, it also gives us some helpful advice on what we might want to do next.
+The simple option is to go into each submodule and manually push to the remotes to make sure they’re externally available and then try this push again.
+If you want the “check” behavior to happen for all pushes, you can make this behavior the default by doing <code>git config push.recurseSubmodules check</code>.</p>
+</div>
+<div class=paragraph>
+<p>The other option is to use the “on-demand” value, which will try to do this for you.</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ git push --recurse-submodules=on-demand
+Pushing submodule 'DbConnector'
+Counting objects: 9, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (8/8), done.
+Writing objects: 100% (9/9), 917 bytes | 0 bytes/s, done.
+Total 9 (delta 3), reused 0 (delta 0)
+To https://github.com/chaconinc/DbConnector
+   c75e92a..82d2ad3  stable -&gt; stable
+Counting objects: 2, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (2/2), 266 bytes | 0 bytes/s, done.
+Total 2 (delta 1), reused 0 (delta 0)
+To https://github.com/chaconinc/MainProject
+   3d6d338..9a377d1  master -&gt; master</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>As you can see there, Git went into the <code>DbConnector</code> module and pushed it before pushing the main project.
+If that submodule push fails for some reason, the main project push will also fail.
+You can make this behavior the default by doing <code>git config push.recurseSubmodules on-demand</code>.</p>
+</div>
+</div>
+<div class=sect4>
+<h4 id=_merging_submodule_changes>Merging Submodule Changes</h4>
+<div class=paragraph>
+<p>If you change a submodule reference at the same time as someone else, you may run into some problems.
+That is, if the submodule histories have diverged and are committed to diverging branches in a superproject, it may take a bit of work for you to fix.</p>
+</div>
+<div class=paragraph>
+<p>If one of the commits is a direct ancestor of the other (a fast-forward merge), then Git will simply choose the latter for the merge, so that works fine.</p>
+</div>
+<div class=paragraph>
+<p>Git will not attempt even a trivial merge for you, however.
+If the submodule commits diverge and need to be merged, you will get something that looks like this:</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ git pull
+remote: Counting objects: 2, done.
+remote: Compressing objects: 100% (1/1), done.
+remote: Total 2 (delta 1), reused 2 (delta 1)
+Unpacking objects: 100% (2/2), done.
+From https://github.com/chaconinc/MainProject
+   9a377d1..eb974f8  master     -&gt; origin/master
+Fetching submodule DbConnector
+warning: Failed to merge submodule DbConnector (merge following commits not found)
+Auto-merging DbConnector
+CONFLICT (submodule): Merge conflict in DbConnector
+Automatic merge failed; fix conflicts and then commit the result.</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>So basically what has happened here is that Git has figured out that the two branches record points in the submodule’s history that are divergent and need to be merged.
+It explains it as “merge following commits not found”, which is confusing but we’ll explain why that is in a bit.</p>
+</div>
+<div class=paragraph>
+<p>To solve the problem, you need to figure out what state the submodule should be in.
+Strangely, Git doesn’t really give you much information to help out here, not even the SHA-1s of the commits of both sides of the history.
+Fortunately, it’s simple to figure out.
+If you run <code>git diff</code> you can get the SHA-1s of the commits recorded in both branches you were trying to merge.</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ git diff
+diff --cc DbConnector
+index eb41d76,c771610..0000000
+--- a/DbConnector
++++ b/DbConnector</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>So, in this case, <code>eb41d76</code> is the commit in our submodule that <strong>we</strong> had and <code>c771610</code> is the commit that upstream had.
+If we go into our submodule directory, it should already be on <code>eb41d76</code> as the merge would not have touched it.
+If for whatever reason it’s not, you can simply create and checkout a branch pointing to it.</p>
+</div>
+<div class=paragraph>
+<p>What is important is the SHA-1 of the commit from the other side.
+This is what you’ll have to merge in and resolve.
+You can either just try the merge with the SHA-1 directly, or you can create a branch for it and then try to merge that in.
+We would suggest the latter, even if only to make a nicer merge commit message.</p>
+</div>
+<div class=paragraph>
+<p>So, we will go into our submodule directory, create a branch named “try-merge” based on that second SHA-1 from <code>git diff</code>, and manually merge.</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ cd DbConnector
+
+$ git rev-parse HEAD
+eb41d764bccf88be77aced643c13a7fa86714135
+
+$ git branch try-merge c771610
+
+$ git merge try-merge
+Auto-merging src/main.c
+CONFLICT (content): Merge conflict in src/main.c
+Recorded preimage for 'src/main.c'
+Automatic merge failed; fix conflicts and then commit the result.</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>We got an actual merge conflict here, so if we resolve that and commit it, then we can simply update the main project with the result.</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ vim src/main.c <b class=conum>(1)</b>
+$ git add src/main.c
+$ git commit -am 'merged our changes'
+Recorded resolution for 'src/main.c'.
+[master 9fd905e] merged our changes
+
+$ cd .. <b class=conum>(2)</b>
+$ git diff <b class=conum>(3)</b>
+diff --cc DbConnector
+index eb41d76,c771610..0000000
+--- a/DbConnector
++++ b/DbConnector
+@@@ -1,1 -1,1 +1,1 @@@
+- Subproject commit eb41d764bccf88be77aced643c13a7fa86714135
+ -Subproject commit c77161012afbbe1f58b5053316ead08f4b7e6d1d
+++Subproject commit 9fd905e5d7f45a0d4cbc43d1ee550f16a30e825a
+$ git add DbConnector <b class=conum>(4)</b>
+
+$ git commit -m "Merge Tom's Changes" <b class=conum>(5)</b>
+[master 10d2c60] Merge Tom's Changes</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>First we resolve the conflict.</p>
+</li>
+<li>
+<p>Then we go back to the main project directory.</p>
+</li>
+<li>
+<p>We can check the SHA-1s again.</p>
+</li>
+<li>
+<p>Resolve the conflicted submodule entry.</p>
+</li>
+<li>
+<p>Commit our merge.</p>
+</li>
+</ol>
+</div>
+<div class=paragraph>
+<p>It can be a bit confusing, but it’s really not very hard.</p>
+</div>
+<div class=paragraph>
+<p>Interestingly, there is another case that Git handles.
+If a merge commit exists in the submodule directory that contains <strong>both</strong> commits in its history, Git will suggest it to you as a possible solution.
+It sees that at some point in the submodule project, someone merged branches containing these two commits, so maybe you’ll want that one.</p>
+</div>
+<div class=paragraph>
+<p>This is why the error message from before was “merge following commits not found”, because it could not do <strong>this</strong>.
+It’s confusing because who would expect it to <strong>try</strong> to do this?</p>
+</div>
+<div class=paragraph>
+<p>If it does find a single acceptable merge commit, you’ll see something like this:</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ git merge origin/master
+warning: Failed to merge submodule DbConnector (not fast-forward)
+Found a possible merge resolution for the submodule:
+ 9fd905e5d7f45a0d4cbc43d1ee550f16a30e825a: &gt; merged our changes
+If this is correct simply add it to the index for example
+by using:
+
+  git update-index --cacheinfo 160000 9fd905e5d7f45a0d4cbc43d1ee550f16a30e825a "DbConnector"
+
+which will accept this suggestion.
+Auto-merging DbConnector
+CONFLICT (submodule): Merge conflict in DbConnector
+Automatic merge failed; fix conflicts and then commit the result.</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>The suggested command Git is providing will update the index as though you had run <code>git add</code> (which clears the conflict), then commit.
+You probably shouldn’t do this though.
+You can just as easily go into the submodule directory, see what the difference is, fast-forward to this commit, test it properly, and then commit it.</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ cd DbConnector/
+$ git merge 9fd905e
+Updating eb41d76..9fd905e
+Fast-forward
+
+$ cd ..
+$ git add DbConnector
+$ git commit -am 'Fast forward to a common submodule child'</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>This accomplishes the same thing, but at least this way you can verify that it works and you have the code in your submodule directory when you’re done.</p>
+</div>
+</div>
+</div>
+<div class=sect3>
+<h3 id=_submodule_tips>Submodule Tips</h3>
+<div class=paragraph>
+<p>There are a few things you can do to make working with submodules a little easier.</p>
+</div>
+<div class=sect4>
+<h4 id=_submodule_foreach>Submodule Foreach</h4>
+<div class=paragraph>
+<p>There is a <code>foreach</code> submodule command to run some arbitrary command in each submodule.
+This can be really helpful if you have a number of submodules in the same project.</p>
+</div>
+<div class=paragraph>
+<p>For example, let’s say we want to start a new feature or do a bugfix and we have work going on in several submodules.
+We can easily stash all the work in all our submodules.</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ git submodule foreach 'git stash'
+Entering 'CryptoLibrary'
+No local changes to save
+Entering 'DbConnector'
+Saved working directory and index state WIP on stable: 82d2ad3 Merge from origin/stable
+HEAD is now at 82d2ad3 Merge from origin/stable</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>Then we can create a new branch and switch to it in all our submodules.</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ git submodule foreach 'git checkout -b featureA'
+Entering 'CryptoLibrary'
+Switched to a new branch 'featureA'
+Entering 'DbConnector'
+Switched to a new branch 'featureA'</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>You get the idea.
+One really useful thing you can do is produce a nice unified diff of what is changed in your main project and all your subprojects as well.</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ git diff; git submodule foreach 'git diff'
+Submodule DbConnector contains modified content
+diff --git a/src/main.c b/src/main.c
+index 210f1ae..1f0acdc 100644
+--- a/src/main.c
++++ b/src/main.c
+@@ -245,6 +245,8 @@ static int handle_alias(int *argcp, const char ***argv)
+
+      commit_pager_choice();
+
++     url = url_decode(url_orig);
++
+      /* build alias_argv */
+      alias_argv = xmalloc(sizeof(*alias_argv) * (argc + 1));
+      alias_argv[0] = alias_string + 1;
+Entering 'DbConnector'
+diff --git a/src/db.c b/src/db.c
+index 1aaefb6..5297645 100644
+--- a/src/db.c
++++ b/src/db.c
+@@ -93,6 +93,11 @@ char *url_decode_mem(const char *url, int len)
+        return url_decode_internal(&amp;url, len, NULL, &amp;out, 0);
+ }
+
++char *url_decode(const char *url)
++{
++       return url_decode_mem(url, strlen(url));
++}
++
+ char *url_decode_parameter_name(const char **query)
+ {
+        struct strbuf out = STRBUF_INIT;</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>Here we can see that we’re defining a function in a submodule and calling it in the main project.
+This is obviously a simplified example, but hopefully it gives you an idea of how this may be useful.</p>
+</div>
+</div>
+<div class=sect4>
+<h4 id=_useful_aliases>Useful Aliases</h4>
+<div class=paragraph>
+<p>You may want to set up some aliases for some of these commands as they can be quite long and you can’t set configuration options for most of them to make them defaults.
+We covered setting up Git aliases in <a href=https://git-scm.com/book/en/v2/ch00/_git_aliases>Git Aliases</a>, but here is an example of what you may want to set up if you plan on working with submodules in Git a lot.</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ git config alias.sdiff '!'"git diff &amp;&amp; git submodule foreach 'git diff'"
+$ git config alias.spush 'push --recurse-submodules=on-demand'
+$ git config alias.supdate 'submodule update --remote --merge'</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>This way you can simply run <code>git supdate</code> when you want to update your submodules, or <code>git spush</code> to push with submodule dependency checking.</p>
+</div>
+</div>
+</div>
+<div class=sect3>
+<h3 id=_issues_with_submodules>Issues with Submodules</h3>
+<div class=paragraph>
+<p>Using submodules isn’t without hiccups, however.</p>
+</div>
+<div class=sect4>
+<h4 id=_switching_branches_2>Switching branches</h4>
+<div class=paragraph>
+<p>For instance, switching branches with submodules in them can also be tricky with Git versions older than Git 2.13.
+If you create a new branch, add a submodule there, and then switch back to a branch without that submodule, you still have the submodule directory as an untracked directory:</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ git --version
+git version 2.12.2
+
+$ git checkout -b add-crypto
+Switched to a new branch 'add-crypto'
+
+$ git submodule add https://github.com/chaconinc/CryptoLibrary
+Cloning into 'CryptoLibrary'...
+...
+
+$ git commit -am 'Add crypto library'
+[add-crypto 4445836] Add crypto library
+ 2 files changed, 4 insertions(+)
+ create mode 160000 CryptoLibrary
+
+$ git checkout master
+warning: unable to rmdir CryptoLibrary: Directory not empty
+Switched to branch 'master'
+Your branch is up-to-date with 'origin/master'.
+
+$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+
+Untracked files:
+  (use "git add &lt;file&gt;..." to include in what will be committed)
+
+	CryptoLibrary/
+
+nothing added to commit but untracked files present (use "git add" to track)</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>Removing the directory isn’t difficult, but it can be a bit confusing to have that in there.
+If you do remove it and then switch back to the branch that has that submodule, you will need to run <code>submodule update --init</code> to repopulate it.</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ git clean -ffdx
+Removing CryptoLibrary/
+
+$ git checkout add-crypto
+Switched to branch 'add-crypto'
+
+$ ls CryptoLibrary/
+
+$ git submodule update --init
+Submodule path 'CryptoLibrary': checked out 'b8dda6aa182ea4464f3f3264b11e0268545172af'
+
+$ ls CryptoLibrary/
+Makefile	includes	scripts		src</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>Again, not really very difficult, but it can be a little confusing.</p>
+</div>
+<div class=paragraph>
+<p>Newer Git versions (Git &gt;= 2.13) simplify all this by adding the <code>--recurse-submodules</code> flag to the <code>git checkout</code> command, which takes care of placing the submodules in the right state for the branch we are switching to.</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ git --version
+git version 2.13.3
+
+$ git checkout -b add-crypto
+Switched to a new branch 'add-crypto'
+
+$ git submodule add https://github.com/chaconinc/CryptoLibrary
+Cloning into 'CryptoLibrary'...
+...
+
+$ git commit -am 'Add crypto library'
+[add-crypto 4445836] Add crypto library
+ 2 files changed, 4 insertions(+)
+ create mode 160000 CryptoLibrary
+
+$ git checkout --recurse-submodules master
+Switched to branch 'master'
+Your branch is up-to-date with 'origin/master'.
+
+$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+
+nothing to commit, working tree clean</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>Using the <code>--recurse-submodules</code> flag of <code>git checkout</code> can also be useful when you work on several branches in the superproject, each having your submodule pointing at different commits.
+Indeed, if you switch between branches that record the submodule at different commits, upon executing <code>git status</code> the submodule will appear as “modified”, and indicate “new commits”.
+That is because the submodule state is by default not carried over when switching branches.</p>
+</div>
+<div class=paragraph>
+<p>This can be really confusing, so it’s a good idea to always <code>git checkout --recurse-submodules</code> when your project has submodules.
+For older Git versions that do not have the <code>--recurse-submodules</code> flag, after the checkout you can use <code>git submodule update --init --recursive</code> to put the submodules in the right state.</p>
+</div>
+<div class=paragraph>
+<p>Luckily, you can tell Git (&gt;=2.14) to always use the <code>--recurse-submodules</code> flag by setting the configuration option <code>submodule.recurse</code>: <code>git config submodule.recurse true</code>.
+As noted above, this will also make Git recurse into submodules for every command that has a <code>--recurse-submodules</code> option (except <code>git clone</code>).</p>
+</div>
+</div>
+<div class=sect4>
+<h4 id=_switching_from_subdirectories_to_submodules>Switching from subdirectories to submodules</h4>
+<div class=paragraph>
+<p>The other main caveat that many people run into involves switching from subdirectories to submodules.
+If you’ve been tracking files in your project and you want to move them out into a submodule, you must be careful or Git will get angry at you.
+Assume that you have files in a subdirectory of your project, and you want to switch it to a submodule.
+If you delete the subdirectory and then run <code>submodule add</code>, Git yells at you:</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ rm -Rf CryptoLibrary/
+$ git submodule add https://github.com/chaconinc/CryptoLibrary
+'CryptoLibrary' already exists in the index</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>You have to unstage the <code>CryptoLibrary</code> directory first.
+Then you can add the submodule:</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ git rm -r CryptoLibrary
+$ git submodule add https://github.com/chaconinc/CryptoLibrary
+Cloning into 'CryptoLibrary'...
+remote: Counting objects: 11, done.
+remote: Compressing objects: 100% (10/10), done.
+remote: Total 11 (delta 0), reused 11 (delta 0)
+Unpacking objects: 100% (11/11), done.
+Checking connectivity... done.</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>Now suppose you did that in a branch.
+If you try to switch back to a branch where those files are still in the actual tree rather than a submodule — you get this error:</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ git checkout master
+error: The following untracked working tree files would be overwritten by checkout:
+  CryptoLibrary/Makefile
+  CryptoLibrary/includes/crypto.h
+  ...
+Please move or remove them before you can switch branches.
+Aborting</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>You can force it to switch with <code>checkout -f</code>, but be careful that you don’t have unsaved changes in there as they could be overwritten with that command.</p>
+</div>
+<div class=listingblock>
+<div class=content>
+<pre class=highlight><code class=language-console data-lang=console>$ git checkout -f master
+warning: unable to rmdir CryptoLibrary: Directory not empty
+Switched to branch 'master'</code></pre>
+</div>
+</div>
+<div class=paragraph>
+<p>Then, when you switch back, you get an empty <code>CryptoLibrary</code> directory for some reason and <code>git submodule update</code> may not fix it either.
+You may need to go into your submodule directory and run a <code>git checkout .</code> to get all your files back.
+You could run this in a <code>submodule foreach</code> script to run it for multiple submodules.</p>
+</div>
+<div class=paragraph>
+<p>It’s important to note that submodules these days keep all their Git data in the top project’s <code>.git</code> directory, so unlike much older versions of Git, destroying a submodule directory won’t lose any commits or branches that you had.</p>
+</div>
+<div class=paragraph>
+<p>With these tools, submodules can be a fairly simple and effective method for developing on several related but still separate projects simultaneously.</p>
+</div>
+</div>
+</div>
+<div id=nav><a href=https://git-scm.com/book/en/v2/Git-Tools-Debugging-with-Git>prev</a> | <a href=https://git-scm.com/book/en/v2/Git-Tools-Bundling>next</a></div></div>
+</div>
+ </div>
+ </div>
+ <footer>
+ <div class=site-source>
+ <a href=https://git-scm.com/site>About this site</a><br>
+ Patches, suggestions, and comments are welcome.
+ </div>
+ <div class=sfc-member>
+ Git is a member of <a href=https://git-scm.com/sfc>Software Freedom Conservancy</a>
+ </div>
+</footer>
+<a href=#top class=scrollToTop id=scrollToTop data-label="Scroll to top" style=display:inline>
+ <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAADPSURBVHgB7ZW7DcIwEEDvMgEDIggSokXZIExACiqExEcMxghZwD5iwCACGPt8VNxr/JHs9yobQFGUfweByXGzGhOZBhHablkPp/M9MGAFODmQ2fVuKjkRyQFv5RkRSQFBOTMiOiBKzoiICvgkt2Qnbiyw2AIz4mtASD6aVZf9w3pZciMwV+7hRqCEPCcCpeTcCJSUcyJQWp4agb+Qp0QUD5OpJeUOd9a/FU8QNH56DyCEgaQ8GHH9QXsBZKuu7EQArZT8JcLfb+0CFEVRbpwB/eDMyQoLMkIAAAAASUVORK5CYII=" width=20 height=20 alt=scroll-to-top>
+</a>
+ </div>
+<div style=display:block;opacity:1;color-scheme:light><template shadowrootmode=open><iframe allowtransparency=true frameborder=0 scrolling=no class=sk_ui title=Surfingkeys style=position:fixed;left:0px;bottom:0px;width:100%;height:0px;z-index:2147483647;pointer-events:none></iframe></template></div><script data-template-shadow-root>(()=>{document.currentScript.remove();processNode(document);function processNode(node){node.querySelectorAll("template[shadowrootmode]").forEach(element=>{let shadowRoot = element.parentElement.shadowRoot;if (!shadowRoot) {try {shadowRoot=element.parentElement.attachShadow({mode:element.getAttribute("shadowrootmode")});shadowRoot.innerHTML=element.innerHTML;element.remove()} catch (error) {} if (shadowRoot) {processNode(shadowRoot)}}})}})()</script>
