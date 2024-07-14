@@ -9,7 +9,11 @@ if (!destinationPathPrefix) {
   throw new Error(
     `"SINGLE_FILE_WEB_PAGES_DOWNLOAD_DIR" environment variable is required and must exist.
       "UNIX_SINGLE_FILE_WEB_PAGES_DOWNLOAD_DIR" environment variable is optional.
-      "PATH_SEPARATOR_SINGLE_FILE_WEB_PAGES_DOWNLOAD_DIR" environment variable is recommended on Windows OS.`,
+      "PATH_SEPARATOR_SINGLE_FILE_WEB_PAGES_DOWNLOAD_DIR" environment variable is recommended on Windows OS.
+
+      Example for a windows machine:
+      export SINGLE_FILE_WEB_PAGES_DOWNLOAD_DIR='C:\\0000-shared\\web-pages'
+      export PATH_SEPARATOR_SINGLE_FILE_WEB_PAGES_DOWNLOAD_DIR="\\\\" `,
   );
 }
 
