@@ -484,3 +484,5 @@ https://stackoverflow.com/questions/49090395/how-to-achieve-a-rolling-update-wit
 [Portmaster is a free and open-source application firewall that does the heavy lifting for you. Restore privacy and take back control over all your computer's network activity.](https://github.com/safing/portmaster)
 
 [Simple tool to configure Windows Filtering Platform (WFP) which can configure network activity on your computer.](https://github.com/henrypp/simplewall)
+
+[Elixir FIDO and webauthn](https://elixirforum.com/t/webauthn-what-to-do-for-lost-passkeys/64499/4)
