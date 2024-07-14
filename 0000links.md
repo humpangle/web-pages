@@ -478,3 +478,9 @@ https://stackoverflow.com/questions/49090395/how-to-achieve-a-rolling-update-wit
 [Logging With Docker, Promtail and Grafana Loki | by Ruan Bekker | Medium](https://ruanbekker.medium.com/logging-with-docker-promtail-and-grafana-loki-d920fd790ca8)
 
 [Monitoring Docker Containers with Grafana, Loki, and Promtail | by Abhiraj Thakur | Medium](https://abhiraj2001.medium.com/monitoring-docker-containers-with-grafana-loki-and-promtail-4302a9417c0d)
+
+# Control applications accessing the internet on your device
+
+[Portmaster is a free and open-source application firewall that does the heavy lifting for you. Restore privacy and take back control over all your computer's network activity.](https://github.com/safing/portmaster)
+
+[Simple tool to configure Windows Filtering Platform (WFP) which can configure network activity on your computer.](https://github.com/henrypp/simplewall)
