@@ -545,3 +545,16 @@ https://github.com/gen-smtp/gen_smtp/issues/328
 The CheckTLS Website lets you look at your email security from a casual glance to an in-depth scrutiny. It is for people who want to check that their email is safe, secure, and complies with all laws and regulations.
 https://www.checktls.com/
 https://www.checktls.com/TestReceiver
+
+
+
+Example elixir game learning --  harrisi/elixir_breakout: OpenGL-rendered Breakout port in Elixir.
+https://github.com/harrisi/elixir_breakout
+https://ianhedoesit.com/blog/breakout-musings.html
+
+
+
+Example elixir game learning --
+https://github.com/pikdum/thistle_tea
+Building a WoW server in Elixir | pikdum's blog
+https://pikdum.dev/posts/thistle-tea/
