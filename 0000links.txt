@@ -558,3 +558,6 @@ Example elixir game learning --
 https://github.com/pikdum/thistle_tea
 Building a WoW server in Elixir | pikdum's blog
 https://pikdum.dev/posts/thistle-tea/
+
+Peep - Efficient TelemetryMetrics reporter supporting Prometheus and StatsD - Your Libraries & OS Mentoring / Libraries - Elixir Programming Language Forum
+https://elixirforum.com/t/peep-efficient-telemetrymetrics-reporter-supporting-prometheus-and-statsd/55901
