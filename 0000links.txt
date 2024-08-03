@@ -547,6 +547,14 @@ https://www.checktls.com/
 https://www.checktls.com/TestReceiver
 
 
+Implementing HTML Emails in Phoenix with Swoosh and Premailex - Tutorials and screencasts for Elixir, Phoenix and LiveView
+https://fullstackphoenix.com/tutorials/implementing-html-emails-in-phoenix-with-swoosh-and-premailex
+
+
+
+CSV Import file upload with preview in LiveView - Tutorials and screencasts for Elixir, Phoenix and LiveView
+https://fullstackphoenix.com/tutorials/import-csv-with-preview-liveview-file-upload
+
 
 Example elixir game learning --  harrisi/elixir_breakout: OpenGL-rendered Breakout port in Elixir.
 https://github.com/harrisi/elixir_breakout
