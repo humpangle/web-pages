@@ -569,3 +569,14 @@ https://pikdum.dev/posts/thistle-tea/
 
 Peep - Efficient TelemetryMetrics reporter supporting Prometheus and StatsD - Your Libraries & OS Mentoring / Libraries - Elixir Programming Language Forum
 https://elixirforum.com/t/peep-efficient-telemetrymetrics-reporter-supporting-prometheus-and-statsd/55901
+
+
+
+
+
+
+
+How to structure a large live view app? - Phoenix Forum / Questions / Help - Elixir Programming Language Forum
+https://elixirforum.com/t/how-to-structure-a-large-live-view-app/65192/6?u=samba6
+
+Towards Maintainable Elixir: The Development Process | Very Big Things
