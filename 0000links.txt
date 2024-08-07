@@ -580,3 +580,11 @@ How to structure a large live view app? - Phoenix Forum / Questions / Help - Eli
 https://elixirforum.com/t/how-to-structure-a-large-live-view-app/65192/6?u=samba6
 
 Towards Maintainable Elixir: The Development Process | Very Big Things
+
+
+
+
+
+
+https://elixirforum.com/t/blog-post-10-elixir-gotchas/63278/16?u=samba6
+elixir macro contstant
