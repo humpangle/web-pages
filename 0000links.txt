@@ -437,18 +437,30 @@ if (Get-Variable -Name $val -ErrorAction SilentlyContinue) {
 }
 ```
 
+-----------------------------------------------------------------------------------------------------------------------
+
 https://koenvangilst.nl/blog/phoenix-liveview-cursors
 https://www.reddit.com/r/elixir/comments/tezcjr/a_tutorial_for_creating_a_live_cursors_feature_as/
 
+-----------------------------------------------------------------------------------------------------------------------
+
 https://blog.miguelcoba.com/deploying-elixir-ebook
+
+-----------------------------------------------------------------------------------------------------------------------
 
 Crazy fast Kubernetes Automation with Terraform
 https://www.youtube.com/watch?v=kFt0OGd_LhI
 
+-----------------------------------------------------------------------------------------------------------------------
+
 How I Remember Everything I Read
 https://www.youtube.com/watch?v=AjoxkxM_I5g
 
+-----------------------------------------------------------------------------------------------------------------------
+
 [Elixir phoenix form](https://github.com/MamesPalmero/dynamic_inputs_for)
+
+-----------------------------------------------------------------------------------------------------------------------
 
 # how-liveview-got-rid-of-dangling-processes-in-tests-–-and-how-we-can-do-the-same-7_10_2023-5_58_48-am-.html
 
@@ -456,20 +468,28 @@ Ecto.Adapters.SQL.Sandbox
 testing
 LiveView
 
+-----------------------------------------------------------------------------------------------------------------------
+
 # Compare performance of django to symfony
 
 https://github.com/humpangle/django_vs_symfony__jmeter
 https://www.youtube.com/watch?v=2-SVojp_BVc
+
+-----------------------------------------------------------------------------------------------------------------------
 
 # Why We Use Phoenix Without LiveView
 
 https://hanzihero.com/blog/why-phoenix-without-liveview
 https://elixirforum.com/t/htmx-a-js-library-sort-of-like-liveview/31888/10?u=samba6
 
+-----------------------------------------------------------------------------------------------------------------------
+
 # Simple, zero-downtime deploys with nginx and docker-compose
 
 https://www.tines.com/blog/simple-zero-downtime-deploys-with-nginx-and-docker-compose
 https://stackoverflow.com/questions/49090395/how-to-achieve-a-rolling-update-with-docker-compose
+
+-----------------------------------------------------------------------------------------------------------------------
 
 # Telemetry: loki/promtail/prometheus/grafana/docker etc:
 [Loki: Effective Logging and Log Aggregation with Grafana | by Grzegorz Piechnik | Medium](https://medium.com/@gpiechnik/loki-effective-logging-and-log-aggregation-with-grafana-c3356e7f13ad)
@@ -478,19 +498,25 @@ https://stackoverflow.com/questions/49090395/how-to-achieve-a-rolling-update-wit
 
 [Monitoring Docker Containers with Grafana, Loki, and Promtail | by Abhiraj Thakur | Medium](https://abhiraj2001.medium.com/monitoring-docker-containers-with-grafana-loki-and-promtail-4302a9417c0d)
 
+-----------------------------------------------------------------------------------------------------------------------
+
 # Control applications accessing the internet on your device
 
 [Portmaster is a free and open-source application firewall that does the heavy lifting for you. Restore privacy and take back control over all your computer's network activity.](https://github.com/safing/portmaster)
 
 [Simple tool to configure Windows Filtering Platform (WFP) which can configure network activity on your computer.](https://github.com/henrypp/simplewall)
 
+-----------------------------------------------------------------------------------------------------------------------
+
 [Elixir FIDO and webauthn](https://elixirforum.com/t/webauthn-what-to-do-for-lost-passkeys/64499/4)
 
-
+-----------------------------------------------------------------------------------------------------------------------
 
 Local-First LiveView Svelte ToDo App
 https://liveview-svelte-pwa.fly.dev/
 https://github.com/callmiy/liveview-svelte-pwa/tree/main
+
+-----------------------------------------------------------------------------------------------------------------------
 
 The cloud is over-engineered and overpriced - YouTube
 https://www.youtube.com/watch?v=jFrGhodqC08
@@ -498,27 +524,32 @@ https://www.youtube.com/watch?v=jFrGhodqC08
 6:30 Bytemark/smtp
 Plausible = alternative to google analytics
 
+-----------------------------------------------------------------------------------------------------------------------
 
 Jacob Kaplan Moss Let's build a web framework! PyCon 2017 - YouTube
 https://www.youtube.com/watch?v=7kwnjoAJ2HQ
 
+-----------------------------------------------------------------------------------------------------------------------
 
 ALL ROADS LEAD to AI CODING: Cursor, Aider in the browser, Multi file Prompting - YouTube
 https://www.youtube.com/watch?v=YALpX8oOn78
 
+-----------------------------------------------------------------------------------------------------------------------
 
 Figma UI Design Tutorial: Get Started in Just 24 Minutes! - YouTube
 https://www.youtube.com/watch?v=FTFaQWZBqQ8
 
+-----------------------------------------------------------------------------------------------------------------------
 
 terraform-cloudflare-zone/examples/complete/main.tf at main · cloudposse/terraform-cloudflare-zone
 https://github.com/cloudposse/terraform-cloudflare-zone
 
+-----------------------------------------------------------------------------------------------------------------------
 
 callmiy/masters-of-elixir: A comprehensive collection of resources for mastering Elixir.
 https://github.com/callmiy/masters-of-elixir
 
-
+-----------------------------------------------------------------------------------------------------------------------
 
 bash - Linux flock, how to "just" lock a file? - Stack Overflow
 https://stackoverflow.com/questions/24388009/linux-flock-how-to-just-lock-a-file
@@ -528,6 +559,7 @@ https://github.com/discoteq/flock
 file descriptor
 locking file
 
+-----------------------------------------------------------------------------------------------------------------------
 
 What are you using for application monitoring? - Chat / Discussions - Elixir Programming Language Forum
 https://elixirforum.com/t/what-are-you-using-for-application-monitoring/58760/5
@@ -538,6 +570,7 @@ https://abhiraj2001.medium.com/monitoring-docker-containers-with-grafana-loki-an
 Create grafana dashboard manually from the UI
 Uses docker loki plugin - which should not be used in production????
 
+-----------------------------------------------------------------------------------------------------------------------
 
 TLS + SMTP Error when using OTP/26 #785 · Issue #328 · gen-smtp/gen_smtp swoosh ssl
 (MatchError) no match of right hand side value: {:error, {:retries_exceeded, {:temporary_failure, ~c"142.251.167.109", :tls_failed}
@@ -546,21 +579,21 @@ The CheckTLS Website lets you look at your email security from a casual glance t
 https://www.checktls.com/
 https://www.checktls.com/TestReceiver
 
+-----------------------------------------------------------------------------------------------------------------------
 
 Implementing HTML Emails in Phoenix with Swoosh and Premailex - Tutorials and screencasts for Elixir, Phoenix and LiveView
 https://fullstackphoenix.com/tutorials/implementing-html-emails-in-phoenix-with-swoosh-and-premailex
 
-
+-----------------------------------------------------------------------------------------------------------------------
 
 CSV Import file upload with preview in LiveView - Tutorials and screencasts for Elixir, Phoenix and LiveView
 https://fullstackphoenix.com/tutorials/import-csv-with-preview-liveview-file-upload
 
+-----------------------------------------------------------------------------------------------------------------------
 
 Example elixir game learning --  harrisi/elixir_breakout: OpenGL-rendered Breakout port in Elixir.
 https://github.com/harrisi/elixir_breakout
 https://ianhedoesit.com/blog/breakout-musings.html
-
-
 
 Example elixir game learning --
 https://github.com/pikdum/thistle_tea
@@ -570,21 +603,14 @@ https://pikdum.dev/posts/thistle-tea/
 Peep - Efficient TelemetryMetrics reporter supporting Prometheus and StatsD - Your Libraries & OS Mentoring / Libraries - Elixir Programming Language Forum
 https://elixirforum.com/t/peep-efficient-telemetrymetrics-reporter-supporting-prometheus-and-statsd/55901
 
-
-
-
-
-
+-----------------------------------------------------------------------------------------------------------------------
 
 How to structure a large live view app? - Phoenix Forum / Questions / Help - Elixir Programming Language Forum
 https://elixirforum.com/t/how-to-structure-a-large-live-view-app/65192/6?u=samba6
 
 Towards Maintainable Elixir: The Development Process | Very Big Things
 
-
-
-
-
+-----------------------------------------------------------------------------------------------------------------------
 
 https://elixirforum.com/t/blog-post-10-elixir-gotchas/63278/16?u=samba6
 elixir macro contstant
