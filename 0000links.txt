@@ -622,3 +622,11 @@ https://github.com/srcrip/live_toast
 https://elixirforum.com/t/live-toast-new-toast-flash-component-for-phoenix-liveview/63646/7
 
 -----------------------------------------------------------------------------------------------------------------------
+
+How to best upgrade a production Phoenix application
+https://elixirforum.com/t/how-to-best-upgrade-a-production-phoenix-application/65412/4
+
+A docker-powered PaaS that helps you build and manage the lifecycle of applications
+https://github.com/dokku/dokku
+
+-----------------------------------------------------------------------------------------------------------------------
