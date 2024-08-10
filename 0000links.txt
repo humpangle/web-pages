@@ -614,3 +614,11 @@ Towards Maintainable Elixir: The Development Process | Very Big Things
 
 https://elixirforum.com/t/blog-post-10-elixir-gotchas/63278/16?u=samba6
 elixir macro contstant
+
+-----------------------------------------------------------------------------------------------------------------------
+
+live_toast: A beautiful drop-in replacement for the Phoenix Flash system.
+https://github.com/srcrip/live_toast
+https://elixirforum.com/t/live-toast-new-toast-flash-component-for-phoenix-liveview/63646/7
+
+-----------------------------------------------------------------------------------------------------------------------
