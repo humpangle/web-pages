@@ -630,3 +630,11 @@ A docker-powered PaaS that helps you build and manage the lifecycle of applicati
 https://github.com/dokku/dokku
 
 -----------------------------------------------------------------------------------------------------------------------
+
+CSS The “Checkbox Hack” (and things you can do with it)
+https://css-tricks.com/the-checkbox-hack/
+
+What's the best way to manage checked state with custom checkboxes? - Phoenix Forum / Questions / Help - Elixir Programming Language Forum
+https://elixirforum.com/t/whats-the-best-way-to-manage-checked-state-with-custom-checkboxes/65408/4
+
+-----------------------------------------------------------------------------------------------------------------------
