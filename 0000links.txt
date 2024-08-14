@@ -643,3 +643,8 @@ Find the nearest Tailwind Colour
 https://find-nearest-tailwind-colour.netlify.app/
 
 -----------------------------------------------------------------------------------------------------------------------
+
+Soft deletes with Ecto and PostgreSQL - Dashbit Blog
+https://dashbit.co/blog/soft-deletes-with-ecto
+
+-----------------------------------------------------------------------------------------------------------------------
