@@ -648,3 +648,11 @@ Soft deletes with Ecto and PostgreSQL - Dashbit Blog
 https://dashbit.co/blog/soft-deletes-with-ecto
 
 -----------------------------------------------------------------------------------------------------------------------
+
+Running my own mail server
+
+docker-mailserver/docker-mailserver: Production-ready fullstack but simple mail server (SMTP, IMAP, LDAP, Antispam, Antivirus, etc.) running inside a container.
+https://github.com/docker-mailserver/docker-mailserver
+https://docker-mailserver.github.io/docker-mailserver/latest/config/security/ssl/
+
+-----------------------------------------------------------------------------------------------------------------------
