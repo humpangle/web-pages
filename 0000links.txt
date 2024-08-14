@@ -656,3 +656,19 @@ https://github.com/docker-mailserver/docker-mailserver
 https://docker-mailserver.github.io/docker-mailserver/latest/config/security/ssl/
 
 -----------------------------------------------------------------------------------------------------------------------
+
+Obtaining ssl certificate
+
+WP: easier-alternative-to-nginx-lets-encrypt-with-caddy-docker-proxy-7_22_2024-6_44_00-am.html
+WP: lets-encrypt-and-terraform-getting-free-certificates-for-your-infrastructure-opencredo-6_10_2024-6_15_18-am.html
+
+https://github.com/wmnnd/nginx-certbot
+wmnnd/nginx-certbot: Boilerplate configuration for nginx and certbot with docker-compose
+
+Nginx Proxy Manager - How-To Installation and Configuration - YouTube
+https://www.youtube.com/watch?v=P3imFC7GSr0
+
+Installing Nginx Proxy Manager in Docker: Step by Step Guide - YouTube
+https://www.youtube.com/watch?v=GhUolNwF4gI
+
+-----------------------------------------------------------------------------------------------------------------------
