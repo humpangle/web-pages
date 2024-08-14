@@ -672,3 +672,16 @@ Installing Nginx Proxy Manager in Docker: Step by Step Guide - YouTube
 https://www.youtube.com/watch?v=GhUolNwF4gI
 
 -----------------------------------------------------------------------------------------------------------------------
+
+Access home server from outside internet
+home lab
+homelab
+CGNAT - Carrier-Grade NAT
+
+Split DNS Magic with Tailscale - Access remote services from anywhere! - YouTube
+https://www.youtube.com/watch?v=Uzcs97XcxiE
+
+Compare All Tailscale Plans
+https://tailscale.com/pricing
+
+-----------------------------------------------------------------------------------------------------------------------
