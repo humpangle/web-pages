@@ -1,0 +1,56 @@
+== macos caffeinate ==
+{car} hits {vic}. vic fights back with {nails} {{caffeinate}}.
+
+she sends nails flying into {{display}}.
+
+display sends its powerful beams into {eye}. eye directs beams to cut {dough} into a thousand pieces {{idle}}.
+
+pieces of dough get loaded unto {sea horse} {{s}}.
+
+sea horse gallops away but got eaten by {angler fish}. belly full fish entered the {rough sea} only to be fished out
+by {sidney powel} {{ac power}}
+
+powel cuts off her {thigh} and feeds fish to {moth} sucking her as parasite. Moth tries to fly away with angler fish
+but got caught by {arthur} {{timeout}}.
+
+arthur slams moth unto tusk of {walrus} {{w}}. but arthur gets caught in walrus tusk. walrus lays arthur between {peas}
+and fed arthur + peas to {dolphin} {{pid}}.
+// == macos caffeinate ==
+
+=== Livebook ===
+Secret
+Files
+Visualize running processes <<eof
+
+Kino.process.render  <<eof
+      seq trace callback
+      sup Tree pid
+eof
+
+Process atom name
+dbg pipeline
+eof
+// === Livebook ===
+
+=== Elixir Task ===
+Async stream
+Stream run
+Supervisor start link tuple task callback
+// === Elixir Task ===
+
+=== Supervisor ===
+Start link children, strategy
+// === Supervisor ===
+
+=== Application ===
+loaded applications
+// === Application ===
+
+=== String ===
+trim trailing
+Split
+// === String ===
+
+=== System ===
+version
+// === System ===
