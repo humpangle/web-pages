@@ -1,39 +1,91 @@
-== macos caffeinate ==
-{car} hits {vic}. vic fights back with {nails} {{caffeinate}}.
+=== SStart ===
+// === SStart ===
 
-she sends nails flying into {{display}}.
-
-display sends its powerful beams into {eye}. eye directs beams to cut {dough} into a thousand pieces {{idle}}.
-
-pieces of dough get loaded unto {sea horse} {{s}}.
-
-sea horse gallops away but got eaten by {angler fish}. belly full fish entered the {rough sea} only to be fished out
-by {sidney powel} {{ac power}}
-
-powel cuts off her {thigh} and feeds fish to {moth} sucking her as parasite. Moth tries to fly away with angler fish
-but got caught by {arthur} {{timeout}}.
-
-arthur slams moth unto tusk of {walrus} {{w}}. but arthur gets caught in walrus tusk. walrus lays arthur between {peas}
-and fed arthur + peas to {dolphin} {{pid}}.
-// == macos caffeinate ==
 
 === Livebook ===
 Secret
 Files
 Visualize running processes <<eof
 
-Kino.process.render  <<eof
-      seq trace callback
-      sup Tree pid
-eof
-
+Kino.process
 Process atom name
 dbg pipeline
 eof
 // === Livebook ===
 
+=== Kino ===
+render
+process.render  <<eof
+      seq trace callback
+      sup Tree pid
+eof // process.render
+
+Layout <<eof
+tabs
+grid boxed, columns
+eof // Layout
+
+DataTable <<eof
+new
+eof DataTable
+
+Markdown <<eof
+new
+eof // Markdown
+
+Input <<eof
+text
+read
+eof // Input
+
+Frame <<eof
+new
+eof // Frame
+
+JS <<eof
+
+Live <<eof
+new
+module
+state
+init
+state
+context
+assign
+handle_connect ok
+handle_event noreply
+broad cast
+asset filename
+function init context state
+
+context <<eof
+root inner html
+handleEvent
+pushEvent
+eof // context
+eof // Live
+eof // JS
+// === Kino ===
+
+=== Vegalite ===
+new width
+data_from_values list only fields
+mark :points
+encode_field <<eof
+axis
+field
+type
+quantitative
+scale
+type
+log
+nominal
+eof // encode_field
+// === Vegalite ===
+
 === Elixir Task ===
-Async stream
+async stream
+max concurrency
 Stream run
 Supervisor start link tuple task callback
 // === Elixir Task ===
@@ -44,13 +96,400 @@ Start link children, strategy
 
 === Application ===
 loaded applications
+put get all env
 // === Application ===
 
 === String ===
 trim trailing
 Split
+to atom
+at
+first
+upcase
+capitalize
+duplicate
 // === String ===
 
 === System ===
 version
 // === System ===
+
+=== Enum ===
+with_index
+to_list
+map flat
+reduce
+random
+// === Enum ===
+
+=== List ===
+first
+hd
+delete
+flatten
+// === List ===
+
+=== Kernel ===
+spawn link monitor receive after
+update in
+inspect
+exit
+is_pid
+pid
+raise
+// === Kernel ===
+
+=== Process ===
+info <<eof
+:reductions
+:memory
+:status
+:message_queue_len
+eof // info
+
+monitor
+demonitor
+sleep infinity
+send_after
+cancel_timer
+alive?
+exit kill normal
+list
+flag trap_exit
+// === Process ===
+
+
+=== Stream ===
+run
+interval
+// === Stream ===
+
+=== IO ===
+puts
+inspect
+iodata_to_binary
+// === IO ===
+
+=== Phoenix ===
+
+Controller
+Component
+LiveView Test
+Router
+Endpoint
+
+Component <<eof
+sigil_H
+
+live_render <<eof
+conn
+socket
+view
+session
+id
+container tag attributes
+eof // live_render
+eof // Component
+
+HTML <<eof
+Safe to_iodata
+eof // HTML
+
+LiveViewTest <<eof
+
+render <<eof
+component/3
+to_string/1
+eof // render
+
+live  <<eof
+conn
+path
+ok
+error
+redirect
+to
+path
+view pid
+html
+eof // live
+
+element
+
+render <<eof
+click
+focus
+blur
+submit
+change
+keydown
+keyup
+hook
+eof // render
+
+live_isolated
+put_connect_params
+eof // LiveViewTest
+
+LiveView <<eof
+
+Router
+JS
+Component
+Rendered
+ConnTest
+Engine Tag HTML
+
+container
+connected?
+put_flash
+redirect to
+
+get_connect_params <<eof
+disconnected
+after mount RuntimeError
+_csrf_token
+_mounts
+_track_static
+_live_referer
+eof // get_connect_params
+
+render_slot
+
+Router <<eof
+fetch_live_flash/2
+live/4
+live_session/3
+eof
+
+eof // LiveView
+
+ConnTest <<eof
+get/3
+post/3
+build_conn
+html_response/2
+eof // ConnTest
+
+Phoenix.Endpoint <<eof
+
+config <<eof
+compile <<eof
+code_reloader
+debug_errors
+force_ssl
+eof // compile
+
+runtime <<eof
+live_view
+secret_key_base
+server
+adapter
+
+render_errors <<eof
+module
+function render
+template
+assigns
+eof // render_errors
+eof // runtime
+eof // config
+
+otp app
+broadcast pid tag payload
+
+eof // Phoenix.Endpoint
+
+Controller <<eof
+status_message_from_template
+accepts
+eof // Controller
+
+Router <<eof
+pipeline
+plug
+
+scope <<eof
+path
+:dynamic
+module
+host
+eof // scope
+
+get
+post
+put
+head
+delete
+patch
+resources
+eof
+
+// === Phoenix ===
+
+=== Mix ===
+install
+consolidate protocols
+hex <<eof
+search
+eof
+
+local <<eof
+hex
+phx
+force
+eof
+
+archive <<eof
+install hex
+eof
+
+escript <<eof
+install hex
+eof
+
+run <<eof
+no halt
+eof
+// === Mix ===
+
+=== Node ===
+list
+set get cookie
+node
+// === Node ===
+
+=== rpc ===
+:erpc <<eof
+call
+eof
+// === rpc ===
+
+=== erlang ===
+memory
+// === erlang ===
+
+=== ExUnit ===
+start <<eof
+capture_log
+eof // start
+
+moduletag
+
+Case <<eof
+async
+register
+import Assertions Callbacks DocTest Case
+describe
+test
+eof // Case
+
+Assertions <<eof
+assert/2
+  raise exception message callback
+  receive pattern, timeout \\ nil, failure_message \\ nil
+  received
+refute/2
+  receive received
+catch_exit/1
+eof // Assertions
+
+Callbacks <<eof
+setup all context return map keylist
+on_exit/2
+start/link supervised/2
+stop_supervised/2
+eof // Callbacks
+
+DocTest <<eof
+doctest file
+eof //DocTest
+// === ExUnit ===
+
+=== DateTime ===
+from_naive/2 bang
+// === DateTime ===
+
+=== File ===
+dir bang
+// === File ===
+
+=== Elixir errors ===
+RuntimeError
+// === Elixir errors ===
+
+=== CSS ===
+display <<eof
+content
+eof display
+// === CSS ===
+
+=== Plug ===
+function
+module init call
+
+Conn
+Logger
+Router
+Builder
+BasicAuth
+CSRFProtection
+Head
+MethodOverride
+Parsers
+RequestId
+RewriteOn
+Session
+SSL
+Static
+Telemetry
+Debugger
+ErrorHandler
+Cowboy
+Bandit
+
+Conn <<eof
+put_resp_content_type
+send_resp
+
+fetch <<eof
+session
+cookies
+eof // fetch
+
+get <<eof
+session
+eof // get
+
+configure_session
+clear_session
+put_session
+
+eof // Conn
+
+Cowboy <<eof
+
+spec <<eof
+plug module
+scheme
+options http
+eof // spec
+
+eof // Cowboy
+
+Router <<eof
+logger
+match
+dispatch
+get
+post
+forward
+match
+eof // Router
+
+// === Plug ===
+
+=== Logger ===
+require
+8 levels
+// === Logger ===
