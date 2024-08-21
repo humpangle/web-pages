@@ -369,42 +369,6 @@ eof
 memory
 // === erlang ===
 
-=== ExUnit ===
-start <<eof
-capture_log
-eof // start
-
-moduletag
-
-Case <<eof
-async
-register
-import Assertions Callbacks DocTest Case
-describe
-test
-eof // Case
-
-Assertions <<eof
-assert/2
-  raise exception message callback
-  receive pattern, timeout \\ nil, failure_message \\ nil
-  received
-refute/2
-  receive received
-catch_exit/1
-eof // Assertions
-
-Callbacks <<eof
-setup all context return map keylist
-on_exit/2
-start/link supervised/2
-stop_supervised/2
-eof // Callbacks
-
-DocTest <<eof
-doctest file
-eof //DocTest
-// === ExUnit ===
 
 === DateTime ===
 from_naive/2 bang
