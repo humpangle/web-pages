@@ -37,13 +37,6 @@ refute/2
 catch_exit/1
 eof // Assertions
 
-Callbacks <<eof
-setup all context return map keylist
-on_exit/2
-start/link supervised/2
-stop_supervised/2
-eof // Callbacks
-
 DocTest <<eof
 doctest file
 eof //DocTest
