@@ -1,0 +1,50 @@
+Elk chased Eunice.
+
+Eunice consulted with Star to help her flee.
+
+Start recommends Auto, but Auto suggested
+
+Runner is better for the task.
+
+Runner mounted her on Furs but crashed her into Rough Sea.
+
+Sea boiled her & fur into Mud with Dough been washed around.
+
+=== ExUnit ===
+start <<eof
+capture_log
+autorun false
+eof // start
+
+run
+moduletag
+
+Case <<eof
+import Assertions Callbacks DocTest Case
+async
+register
+describe
+test
+eof // Case
+
+Assertions <<eof
+assert/2
+  raise exception message callback
+  receive pattern, timeout \\ nil, failure_message \\ nil
+  received
+refute/2
+  receive received
+catch_exit/1
+eof // Assertions
+
+Callbacks <<eof
+setup all context return map keylist
+on_exit/2
+start/link supervised/2
+stop_supervised/2
+eof // Callbacks
+
+DocTest <<eof
+doctest file
+eof //DocTest
+// === ExUnit ===
