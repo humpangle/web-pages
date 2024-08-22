@@ -1,0 +1,21 @@
+Elk chased Eunice.
+
+Eunice grabbed the
+CALL and slammed it 3ce into
+Tree BARK
+Stars flew from tree bark and rapidly ejects
+Cuff links. - Links were delivered to
+Mr Akanni - Akanni was to be Eunice' assistant on this voyage. Akanni gathered stars/links and put inside
+Bag. He hans bag unto
+Stop sign and pulled sign to paddle
+Mud-dough. Mud-dough stopped moving so he got out his
+Toolbox-poo-poo to fix it. While he bent down fixing,
+Julius Agwu stole his paddle.
+
+
+Callbacks <<eof
+start/link supervised/2
+stop_supervised/2
+setup all context return map keylist
+on_exit/2
+eof // Callbacks
