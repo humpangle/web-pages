@@ -685,3 +685,17 @@ Compare All Tailscale Plans
 https://tailscale.com/pricing
 
 -----------------------------------------------------------------------------------------------------------------------
+
+Make websites faster
+Need for Speed : Improving Front-End Performance
+
+Make image size smaller
+https://imageoptim.com/mac
+
+What Does My Site Cost?
+https://whatdoesmysitecost.com/
+
+WebPageTest - Website Performance and Optimization Test
+https://www.webpagetest.org/
+
+-----------------------------------------------------------------------------------------------------------------------
