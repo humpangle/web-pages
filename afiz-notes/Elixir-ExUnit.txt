@@ -8,16 +8,56 @@ Runner is better for the task.
 
 Runner mounted her on Furs but crashed her into Rough Sea.
 
-Sea boiled her & fur into Mud with Dough been washed around.
+She had to use mud-dough ride to get out. But ride would not move so she needed Tag to pull ride
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 === ExUnit ===
-start <<eof
-capture_log
+start
 autorun false
-eof // start
-
 run
 moduletag
+capture_log
 
 Case <<eof
 import Assertions Callbacks DocTest Case
