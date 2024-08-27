@@ -17,6 +17,9 @@ Tool Kit was lubricated with POO POO to make it magnet and fest to KEY.
 
 Key was not fastened enough so WORD was employed to fuck Key from behind to fest it to poo poo.
 
+Words broke into pieces, loaded unto Loader to spin and glue pieces of words together. After some glueing, spinninng
+loader was hooked unto Swans to draw. Swas were lazy - fed apples. Still lazy so cut off their heads with Plier.
+
 
 
 
@@ -62,6 +65,8 @@ Key was not fastened enough so WORD was employed to fuck Key from behind to fest
 
 
 === Application ===
+put_env
+put_all_env name: list[{ keyword }]
+load
 loaded applications
-put get all env
 // === Application ===
