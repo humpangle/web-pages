@@ -94,11 +94,6 @@ Supervisor start link tuple task callback
 Start link children, strategy
 // === Supervisor ===
 
-=== Application ===
-loaded applications
-put get all env
-// === Application ===
-
 === String ===
 trim trailing
 Split
@@ -457,3 +452,71 @@ eof // Router
 require
 8 levels
 // === Logger ===
+
+=== Python-str ===
+title
+format
+join
+split
+encode
+capitalize
+strip  r l
+just r l
+find r l
+index r l
+split  r l
+partition r l
+swapcase
+translate
+// === Python-str ===
+
+=== Python-mypy ===
+int
+str
+float
+bool
+bytes
+
+generic <<eof
+type parameters = internal types = `str` in list[str]
+tuple[int, int, str]
+set[bytes]
+dict[str, float] == dict[key, val]
+list[str]
+union = int | str
+eof // generic
+
+typing import <<eof
+List[str]
+Set
+Tuple
+Dict
+Literal["a", "b"]
+Optional[int] == Union[int, None]
+Union[int, str]
+Annotated
+eof // from typing
+
+typing_extensions import <<eof
+Annotated
+eof //
+// === Python-mypy ===
+
+=== Python-asyncio ===
+trio
+anyio
+start pause stop
+sleep
+// === Python-asyncio ===
+
+=== Python-os ===
+getenv
+// === Python-os ===
+
+=== Python-pytest ===
+fixtures
+// === Python-pytest ===
+
+=== python-sys ===
+maxsize
+// === python-sys ===
