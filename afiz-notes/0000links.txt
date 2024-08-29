@@ -699,3 +699,8 @@ WebPageTest - Website Performance and Optimization Test
 https://www.webpagetest.org/
 
 -----------------------------------------------------------------------------------------------------------------------
+
+Don't Use JS for That: Moving Features to CSS and HTML by Kilian Valkhof
+https://www.youtube.com/watch?v=IP_rtWEMR0o
+
+-----------------------------------------------------------------------------------------------------------------------
