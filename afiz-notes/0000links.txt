@@ -704,3 +704,15 @@ Don't Use JS for That: Moving Features to CSS and HTML by Kilian Valkhof
 https://www.youtube.com/watch?v=IP_rtWEMR0o
 
 -----------------------------------------------------------------------------------------------------------------------
+
+Vim session vim tabline vim statusline
+
+Simple Vim session management: Part 1 - DockYard
+https://dockyard.com/blog/2018/06/01/simple-vim-session-management-part-1
+
+Simple Vim Session Management: Part 2 - DockYard
+https://dockyard.com/blog/2019/06/25/simple-vim-session-management-part-2
+
+https://github.com/tpope/vim-obsession/blob/fe9d3e1a9a50171e7d316a52e1e56d868e4c1fe5/plugin/obsession.vim#L103
+
+-----------------------------------------------------------------------------------------------------------------------
