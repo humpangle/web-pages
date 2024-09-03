@@ -722,3 +722,8 @@ Python Microservices Full Course - Event-Driven Architecture with RabbitMQ - You
 https://www.youtube.com/watch?v=ddrucr_aAzA&list=PLlameCF3cMEva65psDFX1y_gN2Tmh704t
 
 -----------------------------------------------------------------------------------------------------------------------
+
+3 Types of Algorithms Every Programmer Needs to Know - data structure and Algorithms
+https://www.youtube.com/watch?v=Uym4-KhP3Lc
+
+-----------------------------------------------------------------------------------------------------------------------
