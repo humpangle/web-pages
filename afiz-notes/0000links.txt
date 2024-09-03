@@ -727,3 +727,9 @@ https://www.youtube.com/watch?v=ddrucr_aAzA&list=PLlameCF3cMEva65psDFX1y_gN2Tmh7
 https://www.youtube.com/watch?v=Uym4-KhP3Lc
 
 -----------------------------------------------------------------------------------------------------------------------
+
+Celery | Redis | WebSocket in Django with Docker | by TheHormat | Aug, 2024 | Medium | Django Unleashed
+https://medium.com/django-unleashed/celery-redis-websocket-in-django-with-docker-40d534ba9071
+https://github.com/humpangle/The__Magnificent__Four
+
+-----------------------------------------------------------------------------------------------------------------------
