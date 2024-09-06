@@ -733,3 +733,29 @@ https://medium.com/django-unleashed/celery-redis-websocket-in-django-with-docker
 https://github.com/humpangle/The__Magnificent__Four
 
 -----------------------------------------------------------------------------------------------------------------------
+
+python packages/modules/scripts/import relative absolute
+
+[Relative imports in Python 3 - Stack Overflow](https://stackoverflow.com/a/74051372/1437611)
+
+In VsCode, to make pytest work (remember to use absolute imports):
+
+```
+working-directory/
+|-- .vscode/
+|-- hello.py
+`-- tests/
+    |-- __init__.py
+    `-- test_hello.py
+```
+
+This will also work:
+
+```
+working-directory/
+|-- .vscode/
+|-- hello.py
+`-- test_hello.py
+```
+
+-----------------------------------------------------------------------------------------------------------------------
