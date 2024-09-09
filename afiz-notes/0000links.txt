@@ -764,3 +764,10 @@ Elixir GenServer call time-outs
 https://cultivatehq.com/posts/genserver-call-timeouts/
 
 -----------------------------------------------------------------------------------------------------------------------
+
+A FastAPI fully Async Assistant runner that is ready to run on Beanstalk
+
+https://github.com/humpangle/fastapi-assistant
+https://medium.com/@jlvalorvc/a-scalable-async-openai-assistant-processor-built-with-fastapi-sourcecode-on-github-67fc757e9832
+
+-----------------------------------------------------------------------------------------------------------------------
