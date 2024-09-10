@@ -39,10 +39,13 @@ const title = inText
   .replace(replace_with_empty_text_pattern, "")
   .replace(/-?\.htm/, ".htm");
 
+const now = (new Date().toJSON()).replace(/[:.T]/g, '-') // 2024-09-10-02-07-33-908Z
+const titlePrefixedByDate = `${now}-${title}`
+
 const outText = [
-  `${destinationPathPrefix}${title}`,
+  `${destinationPathPrefix}${titlePrefixedByDate}`,
   "\n",
-  `${destinationPathPrefix}chat-gpt${pathSeparator}${title}`,
+  `${destinationPathPrefix}chat-gpt${pathSeparator}${titlePrefixedByDate}`,
   "\n",
   destinationPathPrefix,
   "\n",
@@ -55,7 +58,7 @@ const unixDestinationPreifx =
 if (unixDestinationPreifx && existsSync(unixDestinationPreifx)) {
   outText.push(
     "\n",
-    `${unixDestinationPreifx}/${title}`,
+    `${unixDestinationPreifx}/${titlePrefixedByDate}`,
     "\n",
     `${unixDestinationPreifx}`,
   );
