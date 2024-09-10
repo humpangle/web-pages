@@ -791,3 +791,9 @@ pip install 'django-stubs[compatible-mypy]'
 Documenting Architecture Decisions
 
 -----------------------------------------------------------------------------------------------------------------------
+
+neovim config inspirations
+
+https://github.com/humpangle/nvim-starter-kit
+
+-----------------------------------------------------------------------------------------------------------------------
