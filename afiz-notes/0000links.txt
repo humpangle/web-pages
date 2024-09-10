@@ -772,7 +772,7 @@ https://medium.com/@jlvalorvc/a-scalable-async-openai-assistant-processor-built-
 
 -----------------------------------------------------------------------------------------------------------------------
 
-Setting up neovm python django development
+Setting up neovim python django development
 
 [When plans go astray: my unsuccessful journey of migrating a large Django project to Mypy](https://blog.derlin.ch/my-unsuccessful-journey-of-migrating-a-large-django-project-to-mypy)
 
