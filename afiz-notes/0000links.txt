@@ -805,3 +805,8 @@ How to set up a perfect Python project
 Flake8 Rules
 
 -----------------------------------------------------------------------------------------------------------------------
+
+Setting up a production ready VPS is a lot easier than I thought. - YouTube
+https://www.youtube.com/watch?v=F-9KWQByeU0
+
+-----------------------------------------------------------------------------------------------------------------------
