@@ -3,18 +3,33 @@
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from "fs";
 import { sep } from "path";
 
+const destinationPathPrefixHelpText = `
+  "SINGLE_FILE_WEB_PAGES_DOWNLOAD_DIR" environment variable is required and must exist.
+  "UNIX_SINGLE_FILE_WEB_PAGES_DOWNLOAD_DIR" environment variable is optional.
+  "PATH_SEPARATOR_SINGLE_FILE_WEB_PAGES_DOWNLOAD_DIR" environment variable is recommended on Windows OS.
+
+  Example for a windows machine:
+  export SINGLE_FILE_WEB_PAGES_DOWNLOAD_DIR='C:\\0000-shared\\web-pages'
+  export PATH_SEPARATOR_SINGLE_FILE_WEB_PAGES_DOWNLOAD_DIR="\\\\" `
+
+if ((process.argv[2] || "").trim() === "-h") {
+  const helpText =
+    `Place in file ".___scratch.in.txt" text of following format:
+    ============================================================================
+        -d sub/directory/path
+        Page Title
+    ============================================================================
+
+    ${destinationPathPrefixHelpText}`
+
+  console.log(helpText)
+  process.exit()
+}
+
 let destinationPathPrefix = process.env["SINGLE_FILE_WEB_PAGES_DOWNLOAD_DIR"];
 
 if (!destinationPathPrefix) {
-  throw new Error(
-    `"SINGLE_FILE_WEB_PAGES_DOWNLOAD_DIR" environment variable is required and must exist.
-      "UNIX_SINGLE_FILE_WEB_PAGES_DOWNLOAD_DIR" environment variable is optional.
-      "PATH_SEPARATOR_SINGLE_FILE_WEB_PAGES_DOWNLOAD_DIR" environment variable is recommended on Windows OS.
-
-      Example for a windows machine:
-      export SINGLE_FILE_WEB_PAGES_DOWNLOAD_DIR='C:\\0000-shared\\web-pages'
-      export PATH_SEPARATOR_SINGLE_FILE_WEB_PAGES_DOWNLOAD_DIR="\\\\" `,
-  );
+  throw new Error(destinationPathPrefixHelpText);
 }
 
 const pathSeparator =
