@@ -1,6 +1,6 @@
 #!/bin/env node
 
-import { readFileSync, writeFileSync, existsSync } from "fs";
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from "fs";
 import { sep } from "path";
 
 let destinationPathPrefix = process.env["SINGLE_FILE_WEB_PAGES_DOWNLOAD_DIR"];
@@ -20,13 +20,25 @@ if (!destinationPathPrefix) {
 const pathSeparator =
   process.env["PATH_SEPARATOR_SINGLE_FILE_WEB_PAGES_DOWNLOAD_DIR"] || sep;
 
+const inFile = ".___scratch.in.txt";
+const outFile = ".___scratch.out.txt";
+const readFileText = readFileSync(inFile, { encoding: "utf8" }).trim();
+
+const parseResult = parseArgs(readFileText)
+const parsedArgs = parseResult[0]
+let inText = parseResult[1]
+
+
+let dirPath = parsedArgs.dirPath
+
 destinationPathPrefix =
   destinationPathPrefix.replace(/[\/]$/, "") + pathSeparator;
 
-const inFile = ".___scratch.in.txt";
-const outFile = ".___scratch.out.txt";
+if (dirPath) {
+  destinationPathPrefix += dirPath + pathSeparator
+}
 
-let inText = readFileSync(inFile, { encoding: "utf8" });
+mkdirSync(destinationPathPrefix, { recursive: true })
 
 const pattern = /[`⧸\\/\[\]|｜,’\s:()-]+/g;
 
@@ -52,16 +64,46 @@ const outText = [
   title,
 ];
 
-const unixDestinationPreifx =
+const unixDestinationPrefix =
   process.env["UNIX_SINGLE_FILE_WEB_PAGES_DOWNLOAD_DIR"];
 
-if (unixDestinationPreifx && existsSync(unixDestinationPreifx)) {
+if (unixDestinationPrefix && existsSync(unixDestinationPrefix)) {
   outText.push(
     "\n",
-    `${unixDestinationPreifx}/${titlePrefixedByDate}`,
+    `${unixDestinationPrefix}/${titlePrefixedByDate}`,
     "\n",
-    `${unixDestinationPreifx}`,
+    `${unixDestinationPrefix}`,
   );
 }
 
 writeFileSync(outFile, outText.join("\n"));
+
+function parseArgs(stringArgs) {
+  const allArgs = stringArgs.split("\n")
+  const result = {}
+  let line
+
+  while (allArgs.length > 1) {
+    line = allArgs[0].trim().split(/[ ]+/)
+
+    switch (line[0].trim()) {
+      case "-d":
+        {
+          const dirPath = (line[1] || "").trim()
+
+          if (dirPath !== "") {
+            result.dirPath = dirPath.replace(new RegExp(`${pathSeparator}\$`), "")
+          }
+
+          allArgs.shift()
+        }
+        break;
+
+      default:
+        allArgs.shift()
+        break;
+    }
+  }
+
+  return [result, allArgs[0]]
+}
