@@ -810,3 +810,11 @@ Setting up a production ready VPS is a lot easier than I thought. - YouTube
 https://www.youtube.com/watch?v=F-9KWQByeU0
 
 -----------------------------------------------------------------------------------------------------------------------
+
+Book Architecture Patterns with Python
+by Harry Percival, Bob Gregory
+https://www.cosmicpython.com/book/preface.html
+
+https://github.com/humpangle/book-architecture-patterns-with-python
+
+-----------------------------------------------------------------------------------------------------------------------
