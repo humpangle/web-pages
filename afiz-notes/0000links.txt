@@ -818,3 +818,8 @@ https://www.cosmicpython.com/book/preface.html
 https://github.com/humpangle/book-architecture-patterns-with-python
 
 -----------------------------------------------------------------------------------------------------------------------
+
+Making Celery work nicely with Django transactions
+| browniebroke.com
+
+-----------------------------------------------------------------------------------------------------------------------
