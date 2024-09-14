@@ -67,7 +67,7 @@ const title = inText
   .replace(/-?\.htm/, ".htm");
 
 const now = (new Date().toJSON()).replace(/[:.T]/g, '-') // 2024-09-10-02-07-33-908Z
-const titlePrefixedByDate = `${now}-${title}`
+const titlePrefixedByDate = `${now}-${title}`.replace(/-$/g, "")
 
 const outText = [
   `${destinationPathPrefix}${titlePrefixedByDate}`,
