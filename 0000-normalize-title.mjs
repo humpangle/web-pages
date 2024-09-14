@@ -55,7 +55,7 @@ if (dirPath) {
 
 mkdirSync(destinationPathPrefix, { recursive: true })
 
-const pattern = /[`⧸\\/\[\]|｜,’\s:()-”“]+/g;
+const pattern = /[”“`⧸\\/\[\]|｜,’\s:()-]+/g;
 
 const replace_with_empty_text_pattern = /[🐾.'…$]+|(?:_-)|-$/g;
 
