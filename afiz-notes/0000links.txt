@@ -786,6 +786,12 @@ I find out setting up `mypy.ini` or `setup.cfg` is not necessary
 pip install 'django-stubs[compatible-mypy]'
 ```
 
+---
+
+Django: Fixing “SSL error: decryption failed or bad record mac”
+| by Philamer Sune | Medium
+python multiprocessing
+
 -----------------------------------------------------------------------------------------------------------------------
 
 Documenting Architecture Decisions
@@ -821,5 +827,10 @@ https://github.com/humpangle/book-architecture-patterns-with-python
 
 Making Celery work nicely with Django transactions
 | browniebroke.com downloaded
+
+-----------------------------------------------------------------------------------------------------------------------
+
+VS Code: You don't need that extension part 2
+downloaded
 
 -----------------------------------------------------------------------------------------------------------------------
