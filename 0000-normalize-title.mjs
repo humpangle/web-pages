@@ -1,35 +1,32 @@
 #!/bin/env node
 
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from "fs";
-import { sep } from "path";
+import { isAbsolute, sep } from "path";
 
 const destinationPathPrefixHelpText = `
-  "SINGLE_FILE_WEB_PAGES_DOWNLOAD_DIR" environment variable is required and must exist.
-  "UNIX_SINGLE_FILE_WEB_PAGES_DOWNLOAD_DIR" environment variable is optional.
-  "PATH_SEPARATOR_SINGLE_FILE_WEB_PAGES_DOWNLOAD_DIR" environment variable is recommended on Windows OS.
+  The following environment variables are not required when using -f option:
+    "SINGLE_FILE_WEB_PAGES_DOWNLOAD_DIR" environment variable is required and must exist.
+    "UNIX_SINGLE_FILE_WEB_PAGES_DOWNLOAD_DIR" environment variable is optional.
+    "PATH_SEPARATOR_SINGLE_FILE_WEB_PAGES_DOWNLOAD_DIR" environment variable is recommended on Windows OS.
 
-  Example for a windows machine:
-  export SINGLE_FILE_WEB_PAGES_DOWNLOAD_DIR='C:\\0000-shared\\web-pages'
-  export PATH_SEPARATOR_SINGLE_FILE_WEB_PAGES_DOWNLOAD_DIR="\\\\" `
+    Example for a windows machine:
+    export SINGLE_FILE_WEB_PAGES_DOWNLOAD_DIR='C:\\0000-shared\\web-pages'
+    export PATH_SEPARATOR_SINGLE_FILE_WEB_PAGES_DOWNLOAD_DIR="\\\\" `
 
 if ((process.argv[2] || "").trim() === "-h") {
   const helpText =
     `Place in file ".___scratch.in.txt" text of following format:
     ============================================================================
         -d sub/directory/path
+        -f /full/directory/path
         Page Title
     ============================================================================
 
+    Note that -f and -d are mutually exclusive. If both are specified, -f will win and -d will be ignored.
     ${destinationPathPrefixHelpText}`
 
   console.log(helpText)
   process.exit()
-}
-
-let destinationPathPrefix = process.env["SINGLE_FILE_WEB_PAGES_DOWNLOAD_DIR"];
-
-if (!destinationPathPrefix) {
-  throw new Error(destinationPathPrefixHelpText);
 }
 
 const pathSeparator =
@@ -43,14 +40,26 @@ const parseResult = parseArgs(readFileText)
 const parsedArgs = parseResult[0]
 let inText = parseResult[1]
 
+const fullDirPath = parsedArgs.fullDirPath
+let destinationPathPrefix
 
-let dirPath = parsedArgs.dirPath
+if (fullDirPath) {
+  destinationPathPrefix = fullDirPath
+} else {
+  let dirPath = parsedArgs.dirPath
 
-destinationPathPrefix =
-  destinationPathPrefix.replace(/[\/]$/, "") + pathSeparator;
+  destinationPathPrefix = process.env["SINGLE_FILE_WEB_PAGES_DOWNLOAD_DIR"];
 
-if (dirPath) {
-  destinationPathPrefix += dirPath + pathSeparator
+  if (!destinationPathPrefix) {
+    throw new Error(destinationPathPrefixHelpText);
+  }
+
+  destinationPathPrefix =
+    destinationPathPrefix.replace(/[\/]$/, "") + pathSeparator;
+
+  if (dirPath) {
+    destinationPathPrefix += dirPath + pathSeparator
+  }
 }
 
 mkdirSync(destinationPathPrefix, { recursive: true })
@@ -108,6 +117,19 @@ function parseArgs(stringArgs) {
 
           if (dirPath !== "") {
             result.dirPath = dirPath.replace(new RegExp(`${pathSeparator}\$`), "")
+          }
+
+          allArgs.shift()
+        }
+        break;
+
+
+      case "-f":
+        {
+          const fullDirPath = (line[1] || "").trim()
+
+          if (fullDirPath !== "" && isAbsolute(fullDirPath)) {
+            result.fullDirPath = fullDirPath.replace(new RegExp(`${pathSeparator}\$`), "")
           }
 
           allArgs.shift()
