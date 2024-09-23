@@ -902,4 +902,9 @@ https://naodeng.medium.com/pytest-tutorial-advance-usage-common-assertions-and-d
 Lua Language Server Annotations
 https://luals.github.io/wiki/annotations/
 
+Record macbook internal/desktop audio audacity blackhole
+
+use-audacity-to-record-computer-audio-on-mac-–-a-quick-guide-9_23_2024-5_48_06-am
+5-ways-how-to-record-internal-audio-on-mac-awesome-screenshot-&-recorder-9_23_2024-5_49_06-am
+
 -----------------------------------------------------------------------------------------------------------------------
