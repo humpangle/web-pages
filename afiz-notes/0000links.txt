@@ -843,12 +843,12 @@ downloaded
 
 -----------------------------------------------------------------------------------------------------------------------
 
-transloadit/uppy: The next open source file uploader for web browsers 🐶
+transloadit/uppy: The next open source file uploader for web browsers 🐶 javascript typecript
 https://github.com/transloadit/uppy
 
 -----------------------------------------------------------------------------------------------------------------------
 
-Effect-TS/effect: An ecosystem of tools for building production-grade applications in TypeScript.
+Effect-TS/effect: An ecosystem of tools for building production-grade applications in TypeScript. javascript
 An ecosystem of tools for building production-grade applications in TypeScript.
 https://github.com/Effect-TS/effect?tab=readme-ov-file
 
