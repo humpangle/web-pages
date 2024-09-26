@@ -842,3 +842,8 @@ Running Docker Containers as Current Host User
 downloaded
 
 -----------------------------------------------------------------------------------------------------------------------
+
+transloadit/uppy: The next open source file uploader for web browsers 🐶
+https://github.com/transloadit/uppy
+
+-----------------------------------------------------------------------------------------------------------------------
