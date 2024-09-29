@@ -868,3 +868,11 @@ install_requires = file: requirements.txt
 ```
 
 -----------------------------------------------------------------------------------------------------------------------
+
+elixir ls vscode debugger config
+https://github.com/elixir-lsp/vscode-elixir-ls/blob/master/package.json
+Look for it under "debuggers" key
+
+[DOWNLOADED]
+
+-----------------------------------------------------------------------------------------------------------------------

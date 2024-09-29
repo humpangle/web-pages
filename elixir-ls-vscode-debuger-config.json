@@ -1,0 +1,191 @@
+{
+  "type": "mix_task",
+  "label": "Mix Task",
+  "windows": {
+    "program": "debug_adapter.bat"
+  },
+  "linux": {
+    "program": "debug_adapter.sh"
+  },
+  "osx": {
+    "program": "debug_adapter.sh"
+  },
+  "languages": [
+    "elixir"
+  ],
+  "configurationAttributes": {
+    "launch": {
+      "required": [
+        "projectDir"
+      ],
+      "properties": {
+        "task": {
+          "type": "string",
+          "description": "Mix task name (without arguments)",
+          "default": "run"
+        },
+        "taskArgs": {
+          "type": "array",
+          "description": "List of arguments for task",
+          "default": [],
+          "items": {
+            "type": "string"
+          }
+        },
+        "env": {
+          "type": "object",
+          "description": "Environment variables to set before debugging - You may want to set MIX_ENV in here."
+        },
+        "debugAutoInterpretAllModules": {
+          "type": "boolean",
+          "description": "When debugging, interpret all files. Note: Only interpreted files will be part of the debugging stack traces. However this has a performance impact on large repositories, so if debugging is too slow, disable debugAutoInterpretFiles and use debugInterpretModulesPatterns to specify which files to interpret.",
+          "default": true
+        },
+        "debugInterpretModulesPatterns": {
+          "type": "array",
+          "description": "The modules to interpret when debugging - For details of interpreting, see the :int module in Erlang. Only modules that are interpreted will show up in the debugger stacktrace. An example of a pattern is: \"MyApp.*\", which will interpret all modules that begin with \"MyApp.\"",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "projectDir": {
+          "type": "string",
+          "description": "Project root directory (usually the workspace root)",
+          "default": "${workspaceRoot}"
+        },
+        "startApps": {
+          "type": "boolean",
+          "description": "Run apps.start before requiring files. This should be set to true for Phoenix tests, but false in most other cases.",
+          "default": false
+        },
+        "excludeModules": {
+          "type": "array",
+          "description": "Names of modules not to interpret - If a module contains NIFs, you should exclude it. Examples: Some.Module, :erlang_module",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "requireFiles": {
+          "type": "array",
+          "description": "Paths for any .exs files to interpret before debugging in the order they should be loaded. Accepts path wildcards.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "stackTraceMode": {
+          "type": "string",
+          "description": "Option passed to :int.stack_trace/1. See https://www.erlang.org/doc/man/int#stack_trace-1 for details",
+          "enum": [
+            "all",
+            "no_tail",
+            "false"
+          ],
+          "default": "no_tail"
+        },
+        "exitAfterTaskReturns": {
+          "type": "boolean",
+          "description": "Should the debug session stop when mix task returns. Tasks that return early while the code continues running asynchronously require `false` setting.",
+          "default": true
+        },
+        "breakOnDbg": {
+          "type": "boolean",
+          "description": "Should the debugger break on Kernel.dbg/2 macro.",
+          "default": true
+        }
+      }
+    },
+    "attach": {
+      "required": [
+        "projectDir",
+        "remoteNode"
+      ],
+      "properties": {
+        "remoteNode": {
+          "type": "string",
+          "description": "Remote OTP node to connect to"
+        },
+        "env": {
+          "type": "object",
+          "description": "Environment variables to set before debugging - You may want to set MIX_ENV in here."
+        },
+        "debugAutoInterpretAllModules": {
+          "type": "boolean",
+          "description": "When debugging, interpret all files. Note: Only interpreted files will be part of the debugging stack traces. However this has a performance impact on large repositories, so if debugging is too slow, disable debugAutoInterpretFiles and use debugInterpretModulesPatterns to specify which files to interpret.",
+          "default": true
+        },
+        "debugInterpretModulesPatterns": {
+          "type": "array",
+          "description": "The modules to interpret when debugging - For details of interpreting, see the :int module in Erlang. Only modules that are interpreted will show up in the debugger stacktrace. An example of a pattern is: \"MyApp.*\", which will interpret all modules that begin with \"MyApp.\"",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "projectDir": {
+          "type": "string",
+          "description": "Project root directory (usually the workspace root)",
+          "default": "${workspaceRoot}"
+        },
+        "excludeModules": {
+          "type": "array",
+          "description": "Names of modules not to interpret - If a module contains NIFs, you should exclude it. Examples: Some.Module, :erlang_module",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "stackTraceMode": {
+          "type": "string",
+          "description": "Option passed to :int.stack_trace/1. See https://www.erlang.org/doc/man/int#stack_trace-1 for details",
+          "enum": [
+            "all",
+            "no_tail",
+            "false"
+          ],
+          "default": "no_tail"
+        }
+      }
+    }
+  },
+  "initialConfigurations": [
+    {
+      "type": "mix_task",
+      "name": "mix (Default task)",
+      "request": "launch",
+      "projectDir": "${workspaceRoot}"
+    },
+    {
+      "type": "mix_task",
+      "name": "mix test",
+      "request": "launch",
+      "task": "test",
+      "taskArgs": [
+        "--trace"
+      ],
+      "startApps": true,
+      "projectDir": "${workspaceRoot}",
+      "requireFiles": [
+        "test/**/test_helper.exs",
+        "test/**/*_test.exs"
+      ]
+    }
+  ],
+  "configurationSnippets": [
+    {
+      "label": "Elixir Mix",
+      "description": "Launch a Mix task",
+      "body": {
+        "type": "mix_task",
+        "request": "launch",
+        "name": "mix ${1:task}",
+        "task": "${1:task}",
+        "taskArgs": [],
+        "projectDir": "^\"\\${workspaceRoot}\""
+      }
+    }
+  ]
+}
