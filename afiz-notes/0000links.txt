@@ -853,3 +853,18 @@ An ecosystem of tools for building production-grade applications in TypeScript.
 https://github.com/Effect-TS/effect?tab=readme-ov-file
 
 -----------------------------------------------------------------------------------------------------------------------
+
+Understanding setup.py, setup.cfg and pyproject.toml in Python
+
+https://setuptools.readthedocs.io/en/latest/userguide/declarative_config.html
+
+undocumented Gem:
+
+cat `setup.cfg`
+
+```
+[options]
+install_requires = file: requirements.txt
+```
+
+-----------------------------------------------------------------------------------------------------------------------
