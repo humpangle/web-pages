@@ -880,3 +880,14 @@ Look for it under "debuggers" key
 Harness the Power of Elixir and Phoenix LiveView to Send Free Emails with the Gmail API | by Punniyakodi | Medium
 
 -----------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
+
+# READING LIST
+
+
+https://naodeng.medium.com/pytest-tutorial-advance-usage-common-assertions-and-data-driven-e72122b9ec48
+
+Lua Language Server Annotations
+https://luals.github.io/wiki/annotations/
+
+-----------------------------------------------------------------------------------------------------------------------
