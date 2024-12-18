@@ -892,6 +892,12 @@ afiz-notes/adopt-liveview-notes.md
 https://github.com/XAMPPRocky/tokei
 
 -----------------------------------------------------------------------------------------------------------------------
+
+Caching Liveviews - Part 1: The road to HTTP-caching Liveviews - Tangui's blog
+Caching Liveviews - Part 2: Publicly caching private Liveviews - Tangui's blog
+https://github.com/humpangle/cacheable_liveviews
+
+-----------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------
 
 # READING LIST
