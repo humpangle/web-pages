@@ -898,6 +898,14 @@ Caching Liveviews - Part 2: Publicly caching private Liveviews - Tangui's blog
 https://github.com/humpangle/cacheable_liveviews
 
 -----------------------------------------------------------------------------------------------------------------------
+
+Ubuntu: show what keys are pressed in real-time [duplicate]
+Show Keyboard Presses on Screen in Ubuntu
+
+https://www.omgubuntu.co.uk/screenkey-show-key-presses-screen-ubuntu
+https://askubuntu.com/questions/1197651/ubuntu-show-what-keys-are-pressed-in-real-time
+
+-----------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------
 
 # READING LIST
