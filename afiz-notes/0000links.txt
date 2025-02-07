@@ -914,6 +914,10 @@ Implementing Custom Instrumentation for Application Performance Monitoring (APM)
 Create an address autocomplete using Google API, Elixir and Phoenix Liveview Part 2
 
 -----------------------------------------------------------------------------------------------------------------------
+
+tmux resize pane
+
+-----------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------
 
 # READING LIST
