@@ -579,6 +579,9 @@ The CheckTLS Website lets you look at your email security from a casual glance t
 https://www.checktls.com/
 https://www.checktls.com/TestReceiver
 
+Unable to send an email via my SMTP server via SSL/TLS. But my local email client works well
+https://elixirforum.com/t/unable-to-send-an-email-via-my-smtp-server-via-ssl-tls-but-my-local-email-client-works-well/58308
+
 -----------------------------------------------------------------------------------------------------------------------
 
 Implementing HTML Emails in Phoenix with Swoosh and Premailex - Tutorials and screencasts for Elixir, Phoenix and LiveView
