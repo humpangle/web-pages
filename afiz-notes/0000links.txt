@@ -818,6 +818,9 @@ https://www.youtube.com/watch?v=F-9KWQByeU0
 youtube docker stack is my new favorite way to deploy to a VPS
 https://www.youtube.com/watch?v=fuZoxuBiL9o
 
+youtube I tried deploying to a VPS without Docker... just to see how hard it is
+https://www.youtube.com/watch?v=DmbBgXK8M5M
+
 -----------------------------------------------------------------------------------------------------------------------
 
 Book Architecture Patterns with Python
