@@ -928,6 +928,12 @@ youtube Scrum with GitHub No Jira Required!
 https://www.youtube.com/watch?v=Is9KZFkHmpk
 
 -----------------------------------------------------------------------------------------------------------------------
+
+youtube Painlessly self-host all your projects on a single VPS with Traefik - Traefik Tutorial
+https://www.youtube.com/watch?v=GBFbxtBZ51w
+
+
+-----------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------
 
 # READING LIST
