@@ -815,6 +815,9 @@ Flake8 Rules
 Setting up a production ready VPS is a lot easier than I thought. - YouTube
 https://www.youtube.com/watch?v=F-9KWQByeU0
 
+youtube docker stack is my new favorite way to deploy to a VPS
+https://www.youtube.com/watch?v=fuZoxuBiL9o
+
 -----------------------------------------------------------------------------------------------------------------------
 
 Book Architecture Patterns with Python
