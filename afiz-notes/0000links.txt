@@ -953,6 +953,11 @@ Getting to 300 million requests a month with a one man AI/Dev-Ops team - Rob Fre
 https://www.youtube.com/watch?v=ZFQq5Djd5JY
 
 -----------------------------------------------------------------------------------------------------------------------
+
+Self hosting elixir apps
+https://elixirforum.com/t/where-do-you-host-small-or-even-tiny-elixir-projects/67107
+
+-----------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------
 
 # READING LIST
