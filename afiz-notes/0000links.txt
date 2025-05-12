@@ -941,11 +941,9 @@ https://www.youtube.com/watch?v=Is9KZFkHmpk
 youtube Painlessly self-host all your projects on a single VPS with Traefik - Traefik Tutorial
 https://www.youtube.com/watch?v=GBFbxtBZ51w
 
-
 -----------------------------------------------------------------------------------------------------------------------
 
 [elixir tips](https://elixirstream.dev/tips)
-
 
 -----------------------------------------------------------------------------------------------------------------------
 
@@ -956,6 +954,10 @@ https://www.youtube.com/watch?v=ZFQq5Djd5JY
 
 Self hosting elixir apps
 https://elixirforum.com/t/where-do-you-host-small-or-even-tiny-elixir-projects/67107
+
+-----------------------------------------------------------------------------------------------------------------------
+
+[all http codes](2025-05-12-11-17-59-500Z-http-status-codes-all-63-explained-including-faq-video-12_05_2025-07-14-06.html)
 
 -----------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------
