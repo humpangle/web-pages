@@ -960,6 +960,10 @@ https://elixirforum.com/t/where-do-you-host-small-or-even-tiny-elixir-projects/6
 [all http codes](2025-05-12-11-17-59-500Z-http-status-codes-all-63-explained-including-faq-video-12_05_2025-07-14-06.html)
 
 -----------------------------------------------------------------------------------------------------------------------
+[sqlalchemy Efficient counting](sqlalchemy-efficient-counting-25_05_2025-05-25-40)
+[sqlalchemy fast counting](fast-sqlalchemy-counting-avoid-querycount-subquery-·-github-25_05_2025-05-27-39)
+
+-----------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------
 
 # READING LIST
