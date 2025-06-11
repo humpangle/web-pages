@@ -964,6 +964,10 @@ https://elixirforum.com/t/where-do-you-host-small-or-even-tiny-elixir-projects/6
 [sqlalchemy fast counting](fast-sqlalchemy-counting-avoid-querycount-subquery-·-github-25_05_2025-05-27-39)
 
 -----------------------------------------------------------------------------------------------------------------------
+
+[Using LibUV in Neovim](/Users/kanmii/shar/web-pages/2025-06-11-09-06-19-740Z-using-libuv-in-neovim-6_11_2025-5-05-33-am)
+
+-----------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------
 
 # READING LIST

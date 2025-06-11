@@ -1,0 +1,311 @@
+<!DOCTYPE html> <html xmlns=http://www.w3.org/1999/xhtml lang=en-US xml:lang style><!--
+ Page saved with SingleFile 
+ url: https://teukka.tech/vimloop.html 
+ saved date: Wed Jun 11 2025 05:07:56 GMT-0400 (Eastern Daylight Time)
+--><meta charset=utf-8>
+<meta name=viewport content="width=device-width, initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0,viewport-fit=cover">
+<meta name=author content="Taylor Thompson">
+<meta property=og:title content="using libuv inside neovim">
+<meta property=og:type content=article>
+<meta property=og:url content=https://teukka.tech/vimloop.html>
+<link rel=cannonical href=https://teukka.tech/vimloop.html>
+<meta property=og:description content="working with libuv inside neovim">
+<meta name=description content="working with libuv inside neovim">
+<meta property=og:image content="https://images.unsplash.com/photo-1567429159658-8c4f96a3d756?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=634&amp;q=80">
+<meta name=robots content="index, follow">
+<title>🔁 Using LibUV in Neovim</title>
+<link rel=webmention href=https://webmention.io/teukka.tech/webmention>
+<link rel=pingback href=https://webmention.io/teukka.tech/xmlrpc>
+<style>code{white-space:pre-wrap}p code{font-family:monospace;color:#f5ac46;background:#000;padding:3px;border-radius:3px}pre>code.sourceCode{white-space:pre;position:relative;display:flex;flex-direction:column}pre>code.sourceCode>span{line-height:1.25;padding:2px 0px}pre>code.sourceCode>span:empty{height:1.2em}code.sourceCode>span{color:inherit;text-decoration:inherit}div.sourceCode{margin:1em 0;filter:invert(100%) hue-rotate(180deg)}pre.sourceCode{margin:auto;padding:0px 5px}pre.vim{font-family:monospace;color:#f5ac46;padding:5px;margin:1rem auto}@media screen{div.sourceCode{overflow:auto}}@media screen{pre>code.sourceCode>span>a:first-child::before{text-decoration:underline}}code span.al{color:#ef2929}code span.cf{color:#204a87;font-weight:bold}code span.cn{color:#000000}code span.co{color:#8f5902;font-style:italic}code span.dv{color:#0000cf}code span.fu{color:#000000}code span.kw{color:#204a87;font-weight:bold}code span.op{color:#ce5c00;font-weight:bold}code span.sc{color:#000000}code span.st{color:#4e9a06}code span.vs{color:#4e9a06}h1{color:white;font-size:2.25rem;text-align:center}h1,h2,h3{font-family:"B612 Mono",monospace}body{padding:0rem 2.5rem;background:#151618;height:auto;overflow-x:hidden;max-width:100vw;width:70%;margin:auto}header{margin:1rem 0rem 2rem 0rem}p{color:rgb(209,206,199);font-size:1.15rem;font-family:Arial;line-height:2rem;margin:1rem;text-align:justify}h2{font-size:1.5rem;color:#fff;font-weight:bold;margin:1rem 0rem;padding:0px 10px}h3{color:#fff;font-weight:bold;margin:1rem 0rem;text-align:center}h4{color:#fff;margin:1rem 0rem;font-weight:bold;text-align:left;width:auto}pre{border:1px solid #7b7b7b;border-radius:5px;overflow:auto}a{color:skyblue}.footer{width:30%;color:#fff;border:1px solid #dbdbdb;border-radius:5px;margin:3rem auto;text-align:center;cursor:pointer}.related-container{background-color:#151618;position:-webkit-sticky;position:sticky;top:0;display:flex;flex-wrap:wrap;width:100%;z-index:200}.related{border-top:double;border-bottom:double;padding:8px 0px}.rel-article{border:1px solid;border-radius:5px;padding:8px}@media (max-width:485px){body{padding:0rem;width:100%}pre,.footer{width:auto}p{line-height:1.5rem}}</style>
+<style>@font-face{font-family:"B612 Mono";font-style:normal;font-weight:400;src:url(data:font/woff2;base64,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)format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}</style>
+<!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+    <![endif]-->
+<meta name=referrer content=no-referrer><link rel=canonical href=https://teukka.tech/vimloop.html><meta http-equiv=content-security-policy content="default-src 'none'; font-src 'self' data:; img-src 'self' data:; style-src 'unsafe-inline'; media-src 'self' data:; script-src 'unsafe-inline' data:; object-src 'self' data:; frame-src 'self' data:;"></head>
+ <body><div aria-label=back role=button style=height:40px;z-index:9999;font-family:monospace><h4 style="padding:0px 8px;font-size:1rem"><a href=https://teukka.tech/>← Back to Home</a></h4></div>
+ <header id=title-block-header>
+ <h1 class=title>Using LibUV in Neovim</h1>
+ </header>
+ <h2 id=off-the-main-loop-async-actions-within-neovim>
+ Off The Main Loop: Async Actions within Neovim
+ </h2>
+ <p>
+ Neovim embeds the libuv library in the editor and exposes lua (and to some
+ extent vimscript through the <code>jobstart</code> function) bindings for
+ interacting with the library’s API. This allows actions in the editor to
+ happen asynchronously, keeping the main editor loop clear for user input.
+ What this means practically for users is that actions which take a long
+ time such as grepping through large projects, generating ctags, or linting
+ can now be done in the background without blocking the user’s ability to
+ keep editing text.
+ </p>
+ <p>
+ Let’s explore how to use the libuv lua bindings in Neovim to create useful
+ asynchronous actions. I will cover two examples: using the
+ <a href=https://pandoc.org/>pandoc</a> program to convert a markdown file
+ to html, and using
+ <a href=https://github.com/BurntSushi/ripgrep>ripgrep</a> to search
+ within a project. Both of these examples use the libuv bindings
+ differently, but still illustrate well the capabilities of libuv inside
+ Neovim.
+ </p>
+ <h2 id=first-example-convert-markdown-files-with-pandoc>
+ First Example: Convert Markdown Files with Pandoc
+ </h2>
+ <p>
+ Pandoc is a powerful tool for converting files into and different formats.
+ I write many Markdown documents and it is useful to convert them into HTML
+ for my blog. In order to do this in an asynchronous way, we will use
+ <code>vim.loop</code> from Neovim’s lua library. I would recommend going
+ through the documentation on <code>vim.loop</code> as you code along with
+ this post. Let’s start by creating a basic lua function outline in our
+ <code>packagepath</code>:
+ </p>
+ <div class=sourceCode id=cb1>
+ <pre class="sourceCode lua"><code class="sourceCode lua"><span id=cb1-1><a href=#cb1-1></a><span class=co>-- in ~/.config/nvim/lua/markdown.lua</span></span>
+<span id=cb1-2><a href=#cb1-2></a><span class=kw>local</span> <span class=cn>M</span> <span class=op>=</span> <span class=op>{}</span></span>
+<span id=cb1-3><a href=#cb1-3></a><span class=kw>local</span> loop <span class=op>=</span> vim<span class=op>.</span>loop</span>
+<span id=cb1-4><a href=#cb1-4></a><span class=kw>local</span> api <span class=op>=</span> vim<span class=op>.</span>api</span>
+<span id=cb1-5><a href=#cb1-5></a></span>
+<span id=cb1-6><a href=#cb1-6></a><span class=kw>function</span> <span class=cn>M</span><span class=op>.</span>convertFile<span class=op>()</span></span>
+<span id=cb1-7><a href=#cb1-7></a>  <span class=kw>local</span> shortname <span class=op>=</span> vim<span class=op>.</span>fn<span class=op>.</span>expand<span class=op>(</span><span class=st>'%:t:r'</span><span class=op>)</span></span>
+<span id=cb1-8><a href=#cb1-8></a>  <span class=kw>local</span> fullname <span class=op>=</span> api<span class=op>.</span>nvim_buf_get_name<span class=op>(</span><span class=dv>0</span><span class=op>)</span></span>
+<span id=cb1-9><a href=#cb1-9></a> <span class=co>-- loop logic goes here</span></span>
+<span id=cb1-10><a href=#cb1-10></a><span class=cf>end</span></span>
+<span id=cb1-11><a href=#cb1-11></a></span>
+<span id=cb1-12><a href=#cb1-12></a><span class=cf>return</span> <span class=cn>M</span></span></code></pre>
+ </div>
+ <p>
+ In this snippet, we first get the shortened name of the file (i.e.&nbsp;<code>vimlooppost</code>
+ in <code>vimlooppost.md</code>), and the full name of the file
+ (i.e.&nbsp;<code>~/blog/posts/vimlooppost.md</code>). We will use both of these
+ variables later when we spawn the pandoc process. In order to get a better
+ understanding of what <code>vim.loop.spawn</code> does, let’s head over to
+ the
+ <a href=https://github.com/luvit/luv/blob/master/docs.md#uvspawnfile-options-onexit>libuv documentation</a>. Here we can see that it takes an options table, an
+ <code>onexit</code> callback, and returns the processId and the handle of
+ the spawned process. Using this information, let’s build out the rest of
+ the <code>convertFile</code> function:
+ </p>
+ <div class=sourceCode id=cb2>
+ <pre class="sourceCode lua"><code class="sourceCode lua"><span id=cb2-1><a href=#cb2-1></a></span>
+<span id=cb2-2><a href=#cb2-2></a><span class=co>-- in ~/.config/nvim/lua/markdown.lua</span></span>
+<span id=cb2-3><a href=#cb2-3></a><span class=kw>local</span> <span class=cn>M</span> <span class=op>=</span> <span class=op>{}</span></span>
+<span id=cb2-4><a href=#cb2-4></a><span class=kw>local</span> loop <span class=op>=</span> vim<span class=op>.</span>loop</span>
+<span id=cb2-5><a href=#cb2-5></a><span class=kw>local</span> api <span class=op>=</span> vim<span class=op>.</span>api</span>
+<span id=cb2-6><a href=#cb2-6></a></span>
+<span id=cb2-7><a href=#cb2-7></a><span class=kw>function</span> <span class=cn>M</span><span class=op>.</span>convertFile<span class=op>()</span></span>
+<span id=cb2-8><a href=#cb2-8></a>  <span class=kw>local</span> shortname <span class=op>=</span> vim<span class=op>.</span>fn<span class=op>.</span>expand<span class=op>(</span><span class=st>'%:t:r'</span><span class=op>)</span></span>
+<span id=cb2-9><a href=#cb2-9></a>  <span class=kw>local</span> fullname <span class=op>=</span> api<span class=op>.</span>nvim_buf_get_name<span class=op>(</span><span class=dv>0</span><span class=op>)</span></span>
+<span id=cb2-10><a href=#cb2-10></a>  handle <span class=op>=</span> vim<span class=op>.</span>loop<span class=op>.</span>spawn<span class=op>(</span><span class=st>'pandoc'</span><span class=op>,</span> <span class=op>{</span></span>
+<span id=cb2-11><a href=#cb2-11></a>    args <span class=op>=</span> <span class=op>{</span>fullname<span class=op>,</span> <span class=st>'--to=html5'</span><span class=op>,</span> <span class=st>'-o'</span><span class=op>,</span> <span class=fu>string.format</span><span class=op>(</span><span class=st>'%s.html'</span><span class=op>,</span> shortname<span class=op>),</span> <span class=st>'-s'</span><span class=op>,</span> <span class=st>'--highlight-style'</span><span class=op>,</span> <span class=st>'tango'</span><span class=op>,</span> <span class=st>'-c'</span><span class=op>,</span> <span class=st>'--css=pandoc.css'</span><span class=op>}</span></span>
+<span id=cb2-12><a href=#cb2-12></a>  <span class=op>},</span></span>
+<span id=cb2-13><a href=#cb2-13></a>  <span class=kw>function</span><span class=op>()</span></span>
+<span id=cb2-14><a href=#cb2-14></a>    <span class=fu>print</span><span class=op>(</span><span class=st>'DOCUMENT CONVERSION COMPLETE'</span><span class=op>)</span></span>
+<span id=cb2-15><a href=#cb2-15></a>    handle<span class=op>:</span><span class=fu>close</span><span class=op>()</span></span>
+<span id=cb2-16><a href=#cb2-16></a>  <span class=cf>end</span></span>
+<span id=cb2-17><a href=#cb2-17></a>  <span class=op>)</span></span>
+<span id=cb2-18><a href=#cb2-18></a><span class=cf>end</span></span>
+<span id=cb2-19><a href=#cb2-19></a></span>
+<span id=cb2-20><a href=#cb2-20></a><span class=cf>return</span> <span class=cn>M</span></span></code></pre>
+ </div>
+ <p>
+ Pandoc receives as arguments the strings listed in the
+ <code>args</code> table, and when the process finishes, we echo a success
+ message and close the handle. Using this in our vimrc is as simple as:
+ </p>
+ <pre class=vim><code><span class=vs>" in ftplug/markdown.vim</span>
+
+nnoremap &lt;leader&gt;c :lua require'markdown'.convertFile()&lt;CR&gt;</code></pre>
+ <h2 id=second-example-async-grep>Second Example: Async Grep</h2>
+ <p>
+ Much like in the first example, we will be relying on an external program
+ to do the heavy lifting, ripgrep. Unlike in the first example, we don’t
+ only want to kick off a background process, but also use the values
+ generated in this process inside of Neovim. For that, we will need to pass
+ a set of file descriptors to <code>vim.loop.spawn</code>:
+ </p>
+ <div class=sourceCode id=cb4>
+ <pre class="sourceCode lua"><code class="sourceCode lua"><span id=cb4-1><a href=#cb4-1></a><span class=co>-- in ~/.config/nvim/lua/tools.lua</span></span>
+<span id=cb4-2><a href=#cb4-2></a><span class=kw>local</span> <span class=cn>M</span> <span class=op>=</span> <span class=op>{}</span></span>
+<span id=cb4-3><a href=#cb4-3></a><span class=kw>local</span> loop <span class=op>=</span> vim<span class=op>.</span>loop</span>
+<span id=cb4-4><a href=#cb4-4></a><span class=kw>local</span> api <span class=op>=</span> vim<span class=op>.</span>api</span>
+<span id=cb4-5><a href=#cb4-5></a></span>
+<span id=cb4-6><a href=#cb4-6></a></span>
+<span id=cb4-7><a href=#cb4-7></a><span class=kw>function</span> <span class=cn>M</span><span class=op>.</span>asyncGrep<span class=op>(</span>term<span class=op>)</span></span>
+<span id=cb4-8><a href=#cb4-8></a>  <span class=kw>local</span> stdout <span class=op>=</span> loop<span class=op>.</span>new_pipe<span class=op>(</span><span class=kw>false</span><span class=op>)</span> <span class=co>-- create file descriptor for stdout</span></span>
+<span id=cb4-9><a href=#cb4-9></a>  <span class=kw>local</span> stderr <span class=op>=</span> loop<span class=op>.</span>new_pipe<span class=op>(</span><span class=kw>false</span><span class=op>)</span> <span class=co>-- create file descriptor for stdout</span></span>
+<span id=cb4-10><a href=#cb4-10></a>  handle <span class=op>=</span> loop<span class=op>.</span>spawn<span class=op>(</span><span class=st>'rg'</span><span class=op>,</span> <span class=op>{</span></span>
+<span id=cb4-11><a href=#cb4-11></a>    args <span class=op>=</span> <span class=op>{</span>term<span class=op>,</span> <span class=st>'--vimgrep'</span><span class=op>,</span> <span class=st>'--smart-case'</span><span class=op>,</span> <span class=st>'--block-buffered'</span><span class=op>},</span></span>
+<span id=cb4-12><a href=#cb4-12></a>    stdio <span class=op>=</span> <span class=op>{</span>nil<span class=op>,</span>stdout<span class=op>,</span>stderr<span class=op>}</span></span>
+<span id=cb4-13><a href=#cb4-13></a>  <span class=op>},</span></span>
+<span id=cb4-14><a href=#cb4-14></a>  <span class=kw>function</span><span class=op>()</span></span>
+<span id=cb4-15><a href=#cb4-15></a>    stdout<span class=op>:</span>read_stop<span class=op>()</span></span>
+<span id=cb4-16><a href=#cb4-16></a>    stderr<span class=op>:</span>read_stop<span class=op>()</span></span>
+<span id=cb4-17><a href=#cb4-17></a>    stdout<span class=op>:</span><span class=fu>close</span><span class=op>()</span></span>
+<span id=cb4-18><a href=#cb4-18></a>    stderr<span class=op>:</span><span class=fu>close</span><span class=op>()</span></span>
+<span id=cb4-19><a href=#cb4-19></a>    handle<span class=op>:</span><span class=fu>close</span><span class=op>()</span></span>
+<span id=cb4-20><a href=#cb4-20></a>  <span class=cf>end</span></span>
+<span id=cb4-21><a href=#cb4-21></a>  <span class=op>)</span></span>
+<span id=cb4-22><a href=#cb4-22></a>  loop<span class=op>.</span>read_start<span class=op>(</span>stdout<span class=op>,</span> onread<span class=op>)</span> <span class=co>-- </span><span class=al>TODO</span><span class=co> implement onread handler</span></span>
+<span id=cb4-23><a href=#cb4-23></a>  loop<span class=op>.</span>read_start<span class=op>(</span>stderr<span class=op>,</span> onread<span class=op>)</span></span>
+<span id=cb4-24><a href=#cb4-24></a><span class=cf>end</span></span>
+<span id=cb4-25><a href=#cb4-25></a><span class=cf>return</span> <span class=cn>M</span></span></code></pre>
+ </div>
+ <p>
+ Our function, <code>asyncGrep</code> will take a search term as an
+ argument which it then passes to <code>ripgrep</code> in the
+ <code>loop.spawn</code> call. After the process is spawned, we need to
+ start reading the output into our file descriptors, which will then call
+ the <code>onread</code> callback which we have yet to implement. Let’s
+ implement the <code>onread</code> callback now:
+ </p>
+ <div class=sourceCode id=cb5>
+ <pre class="sourceCode lua"><code class="sourceCode lua"><span id=cb5-1><a href=#cb5-1></a><span class=co>-- in tools.lua</span></span>
+<span id=cb5-2><a href=#cb5-2></a><span class=kw>local</span> results <span class=op>=</span> <span class=op>{}</span></span>
+<span id=cb5-3><a href=#cb5-3></a><span class=kw>local</span> <span class=kw>function</span> onread<span class=op>(</span>err<span class=op>,</span> data<span class=op>)</span></span>
+<span id=cb5-4><a href=#cb5-4></a>  <span class=cf>if</span> err <span class=cf>then</span></span>
+<span id=cb5-5><a href=#cb5-5></a>    <span class=co>-- print('ERROR: ', err)</span></span>
+<span id=cb5-6><a href=#cb5-6></a>    <span class=co>-- </span><span class=al>TODO</span><span class=co> handle err</span></span>
+<span id=cb5-7><a href=#cb5-7></a>  <span class=cf>end</span></span>
+<span id=cb5-8><a href=#cb5-8></a>  <span class=cf>if</span> data <span class=cf>then</span></span>
+<span id=cb5-9><a href=#cb5-9></a>    <span class=kw>local</span> vals <span class=op>=</span> vim<span class=op>.</span>split<span class=op>(</span>data<span class=op>,</span> <span class=st>"</span><span class=sc>\n</span><span class=st>"</span><span class=op>)</span></span>
+<span id=cb5-10><a href=#cb5-10></a>    <span class=cf>for</span> <span class=cn>_</span><span class=op>,</span> d <span class=kw>in</span> <span class=fu>pairs</span><span class=op>(</span>vals<span class=op>)</span> <span class=cf>do</span></span>
+<span id=cb5-11><a href=#cb5-11></a>      <span class=cf>if</span> d <span class=op>==</span> <span class=st>""</span> <span class=cf>then</span> <span class=cf>goto</span> continue <span class=cf>end</span></span>
+<span id=cb5-12><a href=#cb5-12></a>      <span class=fu>table.insert</span><span class=op>(</span>results<span class=op>,</span> d<span class=op>)</span></span>
+<span id=cb5-13><a href=#cb5-13></a>      <span class=op>::</span>continue<span class=op>::</span></span>
+<span id=cb5-14><a href=#cb5-14></a>    <span class=cf>end</span></span>
+<span id=cb5-15><a href=#cb5-15></a>  <span class=cf>end</span></span>
+<span id=cb5-16><a href=#cb5-16></a><span class=cf>end</span></span></code></pre>
+ </div>
+ <p>
+ The <code>onread</code> callback takes data written to our file descriptor
+ by the <code>ripgrep</code> process and appends a table called
+ <code>results</code>. We now want to add functionality to our
+ <code>asyncGrep</code> function that will allow us to use these results to
+ set the quickfix list:
+ </p>
+ <div class=sourceCode id=cb6>
+ <pre class="sourceCode lua"><code class="sourceCode lua"><span id=cb6-1><a href=#cb6-1></a><span class=kw>function</span> <span class=cn>M</span><span class=op>.</span>asyncGrep<span class=op>(</span>term<span class=op>)</span></span>
+<span id=cb6-2><a href=#cb6-2></a>  <span class=kw>local</span> stdout <span class=op>=</span> loop<span class=op>.</span>new_pipe<span class=op>(</span><span class=kw>false</span><span class=op>)</span> <span class=co>-- create file descriptor for stdout</span></span>
+<span id=cb6-3><a href=#cb6-3></a>  <span class=kw>local</span> stderr <span class=op>=</span> loop<span class=op>.</span>new_pipe<span class=op>(</span><span class=kw>false</span><span class=op>)</span> <span class=co>-- create file descriptor for stdout</span></span>
+<span id=cb6-4><a href=#cb6-4></a>  <span class=kw>local</span> <span class=kw>function</span> setQF<span class=op>()</span></span>
+<span id=cb6-5><a href=#cb6-5></a>    vim<span class=op>.</span>fn<span class=op>.</span>setqflist<span class=op>({},</span> <span class=st>'r'</span><span class=op>,</span> <span class=op>{</span>title <span class=op>=</span> <span class=st>'Search Results'</span><span class=op>,</span> <span class=fu>lines</span> <span class=op>=</span> results<span class=op>})</span></span>
+<span id=cb6-6><a href=#cb6-6></a>    api<span class=op>.</span>nvim_command<span class=op>(</span><span class=st>'cwindow'</span><span class=op>)</span></span>
+<span id=cb6-7><a href=#cb6-7></a>    <span class=kw>local</span> count <span class=op>=</span> <span class=op>#</span>results</span>
+<span id=cb6-8><a href=#cb6-8></a>    <span class=cf>for</span> i<span class=op>=</span><span class=dv>0</span><span class=op>,</span> count <span class=cf>do</span> results<span class=op>[</span>i<span class=op>]=</span><span class=kw>nil</span> <span class=cf>end</span> <span class=co>-- clear the table for next search</span></span>
+<span id=cb6-9><a href=#cb6-9></a>  <span class=cf>end</span></span>
+<span id=cb6-10><a href=#cb6-10></a>  handle <span class=op>=</span> loop<span class=op>.</span>spawn<span class=op>(</span><span class=st>'rg'</span><span class=op>,</span> <span class=op>{</span></span>
+<span id=cb6-11><a href=#cb6-11></a>    args <span class=op>=</span> <span class=op>{</span>term<span class=op>,</span> <span class=st>'--vimgrep'</span><span class=op>,</span> <span class=st>'--smart-case'</span><span class=op>},</span></span>
+<span id=cb6-12><a href=#cb6-12></a>    stdio <span class=op>=</span> <span class=op>{</span>nil<span class=op>,</span>stdout<span class=op>,</span>stdout<span class=op>,</span>stderr<span class=op>}</span></span>
+<span id=cb6-13><a href=#cb6-13></a>  <span class=op>},</span></span>
+<span id=cb6-14><a href=#cb6-14></a>  <span class=kw>function</span><span class=op>()</span></span>
+<span id=cb6-15><a href=#cb6-15></a>    stdout<span class=op>:</span>read_stop<span class=op>()</span></span>
+<span id=cb6-16><a href=#cb6-16></a>    stderr<span class=op>:</span>read_stop<span class=op>()</span></span>
+<span id=cb6-17><a href=#cb6-17></a>    stdout<span class=op>:</span><span class=fu>close</span><span class=op>()</span></span>
+<span id=cb6-18><a href=#cb6-18></a>    stderr<span class=op>:</span><span class=fu>close</span><span class=op>()</span></span>
+<span id=cb6-19><a href=#cb6-19></a>    handle<span class=op>:</span><span class=fu>close</span><span class=op>()</span></span>
+<span id=cb6-20><a href=#cb6-20></a>    setQF<span class=op>()</span></span>
+<span id=cb6-21><a href=#cb6-21></a>  <span class=cf>end</span></span>
+<span id=cb6-22><a href=#cb6-22></a>  <span class=op>)</span></span>
+<span id=cb6-23><a href=#cb6-23></a>  loop<span class=op>.</span>read_start<span class=op>(</span>stdout<span class=op>,</span> onread<span class=op>)</span> <span class=co>-- </span><span class=al>TODO</span><span class=co> implement onread handler</span></span>
+<span id=cb6-24><a href=#cb6-24></a>  loop<span class=op>.</span>read_start<span class=op>(</span>stderr<span class=op>,</span> onread<span class=op>)</span></span>
+<span id=cb6-25><a href=#cb6-25></a><span class=cf>end</span></span></code></pre>
+ </div>
+ <p>
+ If you run this function, you will encounter this error message:
+ <code>lua/tools.lua:122: E5560: vimL function must not be called in a lua
+        loop callback</code>. In order for any vim functions to be called within a lua loop callback,
+ they need to be wrapped in <code>vim.schedule_wrap</code>. Wrapping vim
+ functions in <code>vim.schedule_wrap</code> is necessary since it
+ schedules the callbacks to be invoked when it is safe, bridging the gap
+ between the libuv event loop and the internal Neovim main loop. To learn
+ more about <code>vim.schedule_wrap</code>, check out
+ <code>:h schedule_wrap</code>. Let’s fix this error and see what our
+ function looks like when it’s all put together:
+ </p>
+ <div class=sourceCode id=cb7>
+ <pre class="sourceCode lua"><code class="sourceCode lua"><span id=cb7-1><a href=#cb7-1></a><span class=co>-- in ~/.config/nvim/lua/tools.lua</span></span>
+<span id=cb7-2><a href=#cb7-2></a><span class=kw>local</span> <span class=cn>M</span> <span class=op>=</span> <span class=op>{}</span></span>
+<span id=cb7-3><a href=#cb7-3></a><span class=kw>local</span> loop <span class=op>=</span> vim<span class=op>.</span>loop</span>
+<span id=cb7-4><a href=#cb7-4></a><span class=kw>local</span> api <span class=op>=</span> vim<span class=op>.</span>api</span>
+<span id=cb7-5><a href=#cb7-5></a><span class=kw>local</span> results <span class=op>=</span> <span class=op>{}</span></span>
+<span id=cb7-6><a href=#cb7-6></a></span>
+<span id=cb7-6><a href=#cb7-6></a></span>
+<span id=cb7-7><a href=#cb7-7></a><span class=kw>local</span> <span class=kw>function</span> onread<span class=op>(</span>err<span class=op>,</span> data<span class=op>)</span></span>
+<span id=cb7-8><a href=#cb7-8></a>  <span class=cf>if</span> err <span class=cf>then</span></span>
+<span id=cb7-9><a href=#cb7-9></a>    <span class=co>-- print('ERROR: ', err)</span></span>
+<span id=cb7-10><a href=#cb7-10></a>    <span class=co>-- </span><span class=al>TODO</span><span class=co> handle err</span></span>
+<span id=cb7-11><a href=#cb7-11></a>  <span class=cf>end</span></span>
+<span id=cb7-12><a href=#cb7-12></a>  <span class=cf>if</span> data <span class=cf>then</span></span>
+<span id=cb7-13><a href=#cb7-13></a>    <span class=kw>local</span> vals <span class=op>=</span> vim<span class=op>.</span>split<span class=op>(</span>data<span class=op>,</span> <span class=st>"</span><span class=sc>\n</span><span class=st>"</span><span class=op>)</span></span>
+<span id=cb7-14><a href=#cb7-14></a>    <span class=cf>for</span> <span class=cn>_</span><span class=op>,</span> d <span class=kw>in</span> <span class=fu>pairs</span><span class=op>(</span>vals<span class=op>)</span> <span class=cf>do</span></span>
+<span id=cb7-15><a href=#cb7-15></a>      <span class=cf>if</span> d <span class=op>==</span> <span class=st>""</span> <span class=cf>then</span> <span class=cf>goto</span> continue <span class=cf>end</span></span>
+<span id=cb7-16><a href=#cb7-16></a>      <span class=fu>table.insert</span><span class=op>(</span>results<span class=op>,</span> d<span class=op>)</span></span>
+<span id=cb7-17><a href=#cb7-17></a>      <span class=op>::</span>continue<span class=op>::</span></span>
+<span id=cb7-18><a href=#cb7-18></a>    <span class=cf>end</span></span>
+<span id=cb7-19><a href=#cb7-19></a>  <span class=cf>end</span></span>
+<span id=cb7-20><a href=#cb7-20></a><span class=cf>end</span></span>
+<span id=cb7-21><a href=#cb7-21></a></span>
+<span id=cb7-16><a href=#cb7-16></a></span>
+<span id=cb7-17><a href=#cb7-17></a><span class=kw>function</span> <span class=cn>M</span><span class=op>.</span>asyncGrep<span class=op>(</span>term<span class=op>)</span></span>
+<span id=cb7-18><a href=#cb7-18></a>  <span class=kw>local</span> stdout <span class=op>=</span> vim<span class=op>.</span>loop<span class=op>.</span>new_pipe<span class=op>(</span><span class=kw>false</span><span class=op>)</span></span>
+<span id=cb7-19><a href=#cb7-19></a>  <span class=kw>local</span> stderr <span class=op>=</span> vim<span class=op>.</span>loop<span class=op>.</span>new_pipe<span class=op>(</span><span class=kw>false</span><span class=op>)</span></span>
+<span id=cb7-20><a href=#cb7-20></a>  <span class=kw>local</span> <span class=kw>function</span> setQF<span class=op>()</span></span>
+<span id=cb7-21><a href=#cb7-21></a>    vim<span class=op>.</span>fn<span class=op>.</span>setqflist<span class=op>({},</span> <span class=st>'r'</span><span class=op>,</span> <span class=op>{</span>title <span class=op>=</span> <span class=st>'Search Results'</span><span class=op>,</span> <span class=fu>lines</span> <span class=op>=</span> results<span class=op>})</span></span>
+<span id=cb7-22><a href=#cb7-22></a>    api<span class=op>.</span>nvim_command<span class=op>(</span><span class=st>'cwindow'</span><span class=op>)</span></span>
+<span id=cb7-23><a href=#cb7-23></a>    <span class=kw>local</span> count <span class=op>=</span> <span class=op>#</span>results</span>
+<span id=cb7-24><a href=#cb7-24></a>    <span class=cf>for</span> i<span class=op>=</span><span class=dv>0</span><span class=op>,</span> count <span class=cf>do</span> results<span class=op>[</span>i<span class=op>]=</span><span class=kw>nil</span> <span class=cf>end</span> <span class=co>-- clear the table for the next search</span></span>
+<span id=cb7-25><a href=#cb7-25></a>  <span class=cf>end</span></span>
+<span id=cb7-26><a href=#cb7-26></a>  handle <span class=op>=</span> vim<span class=op>.</span>loop<span class=op>.</span>spawn<span class=op>(</span><span class=st>'rg'</span><span class=op>,</span> <span class=op>{</span></span>
+<span id=cb7-27><a href=#cb7-27></a>    args <span class=op>=</span> <span class=op>{</span>term<span class=op>,</span> <span class=st>'--vimgrep'</span><span class=op>,</span> <span class=st>'--smart-case'</span><span class=op>},</span></span>
+<span id=cb7-28><a href=#cb7-28></a>    stdio <span class=op>=</span> <span class=op>{</span>nil<span class=op>,</span>stdout<span class=op>,</span>stderr<span class=op>}</span></span>
+<span id=cb7-29><a href=#cb7-29></a>  <span class=op>},</span></span>
+<span id=cb7-30><a href=#cb7-30></a>  vim<span class=op>.</span>schedule_wrap<span class=op>(</span><span class=kw>function</span><span class=op>()</span></span>
+<span id=cb7-31><a href=#cb7-31></a>    stdout<span class=op>:</span>read_stop<span class=op>()</span></span>
+<span id=cb7-32><a href=#cb7-32></a>    stderr<span class=op>:</span>read_stop<span class=op>()</span></span>
+<span id=cb7-33><a href=#cb7-33></a>    stdout<span class=op>:</span><span class=fu>close</span><span class=op>()</span></span>
+<span id=cb7-34><a href=#cb7-34></a>    stderr<span class=op>:</span><span class=fu>close</span><span class=op>()</span></span>
+<span id=cb7-35><a href=#cb7-35></a>    handle<span class=op>:</span><span class=fu>close</span><span class=op>()</span></span>
+<span id=cb7-36><a href=#cb7-36></a>    setQF<span class=op>()</span></span>
+<span id=cb7-37><a href=#cb7-37></a>  <span class=cf>end</span></span>
+<span id=cb7-38><a href=#cb7-38></a>  <span class=op>)</span></span>
+<span id=cb7-39><a href=#cb7-39></a>  <span class=op>)</span></span>
+<span id=cb7-40><a href=#cb7-40></a>  vim<span class=op>.</span>loop<span class=op>.</span>read_start<span class=op>(</span>stdout<span class=op>,</span> onread<span class=op>)</span></span>
+<span id=cb7-41><a href=#cb7-41></a>  vim<span class=op>.</span>loop<span class=op>.</span>read_start<span class=op>(</span>stderr<span class=op>,</span> onread<span class=op>)</span></span>
+<span id=cb7-42><a href=#cb7-42></a><span class=cf>end</span></span>
+<span id=cb7-43><a href=#cb7-43></a></span>
+<span id=cb7-44><a href=#cb7-44></a><span class=cf>return</span> <span class=cn>M</span></span></code></pre>
+ </div>
+ <p>Let’s use this newly created async function in our vimrc:</p>
+ <pre class=vim><code><span class=vs>" in init.vim</span>
+command! -nargs=+ -complete=dir -bar Grep lua require'tools'.asyncGrep(&lt;q-args&gt;)</code></pre>
+ <p>
+ Now we can call <code>:Grep searchTerm</code> and get results without
+ blocking the main editor loop!
+ </p>
+ <h2 id=whats-next>What’s Next?</h2>
+ <p>
+ Having libuv bindings in Neovim unlocks a lot of potential for extending
+ the functionality of your editor. The ability to asynchronously spawn
+ other process can be used for linting, file watching, formatting, and much
+ more. Free yourself from main loop blockage and try experimenting with
+ <code>vim.loop</code>.
+ </p>
+ <br>
+ <div>
+ <h3 class=related id=related>Related Posts</h3>
+ <div class=related-container>
+ <p data-href=/luanvim.html#preview class=rel-article>
+ Lua and Neovim
+ </p>
+ <p data-href=/vimtip-gitlens.html#preview class=rel-article>
+ 5 Minute Neovim Tip: GitLens
+ </p>
+ </div>
+ <div id=preview></div>
+ </div>
+ <span><p tabindex=1 data-tip="link copied!" class=footer id=feed>📃 Follow the RSS feed</p></span>
+ 
+ 
+<div style=display:block;opacity:1;color-scheme:light><template shadowrootmode=open><iframe allowtransparency=true frameborder=0 scrolling=no class=sk_ui title=Surfingkeys style=position:fixed;left:0px;bottom:0px;width:100%;height:0px;z-index:2147483647></iframe></template></div><script data-template-shadow-root>(()=>{document.currentScript.remove();processNode(document);function processNode(node){node.querySelectorAll("template[shadowrootmode]").forEach(element=>{let shadowRoot = element.parentElement.shadowRoot;if (!shadowRoot) {try {shadowRoot=element.parentElement.attachShadow({mode:element.getAttribute("shadowrootmode"),delegatesFocus:element.getAttribute("shadowrootdelegatesfocus")!=null,clonable:element.getAttribute("shadowrootclonable")!=null,serializable:element.getAttribute("shadowrootserializable")!=null});shadowRoot.innerHTML=element.innerHTML;element.remove()} catch (error) {} if (shadowRoot) {processNode(shadowRoot)}}})}})()</script>
