@@ -1000,6 +1000,12 @@ https://github.com/szeider/consult7
 
 
 -----------------------------------------------------------------------------------------------------------------------
+
+How to write clear/readable codes
+[Clarity | Saša Jurić | ElixirConf EU 2021](https://www.youtube.com/watch?v=6sNmJtoKDCo)
+[2014-02-07 Why programming is difficult Joe Armstrong - Erlang and other stuff](2025-06-23-10-49-15-129Z-joes-blog-—-a-non-linear-personal-web-notebook-23_06_2025-06-48-51.html)
+
+-----------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------
 
 # READING LIST
