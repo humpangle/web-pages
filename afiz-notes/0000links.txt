@@ -971,8 +971,33 @@ https://elixirforum.com/t/where-do-you-host-small-or-even-tiny-elixir-projects/6
 
 MCP servers
 
-MCP server to consult a language model with large context size
+# MCP server to consult a language model with large context size
 https://github.com/szeider/consult7
+
+## Example Use Cases
+
+### Summarize an entire codebase
+* **Query:** "Summarize the architecture and main components of this Python project"
+* **Pattern:** `".*\.py$"` (all Python files)
+* **Path:** `/Users/john/my-python-project`
+
+### Find specific method definitions
+
+* **Query:** "Find the implementation of the authenticate_user method and explain how it handles password verification"
+* **Pattern:** `".*\.(py|js|ts)$"` (Python, JavaScript, TypeScript files)
+* **Path:** `/Users/john/backend`
+
+### Analyze test coverage
+* **Query:** "List all the test files and identify which components lack test coverage"
+* **Pattern:** `".*test.*\.py$|.*_test\.py$"` (test files)
+* **Path:** `/Users/john/project`
+
+### Complex analysis with thinking mode
+* **Query:** "Analyze the authentication flow across this codebase. Think step by step about security vulnerabilities and suggest improvements"
+* **Pattern:** `".*\.(py|js|ts)$"`
+* **Model:** `"google/gemini-2.5-flash|thinking"` (with OpenRouter) or `"gemini-2.5-flash|thinking"` (with Google)
+* **Path:** `/Users/john/webapp`
+
 
 -----------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------
