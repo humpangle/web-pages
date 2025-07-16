@@ -1006,6 +1006,27 @@ How to write clear/readable codes
 [2014-02-07 Why programming is difficult Joe Armstrong - Erlang and other stuff](2025-06-23-10-49-15-129Z-joes-blog-—-a-non-linear-personal-web-notebook-23_06_2025-06-48-51.html)
 
 -----------------------------------------------------------------------------------------------------------------------
+
+Elixir ash Kamaro Lambert medium blog
+https://medium.com/@lambert.kamaro/ash-framework-for-phoenix-developpers-c29b0a147552
+https://medium.com/@lambert.kamaro/2-ash-framework-for-phoenix-developers-domain-resource-0bf7eacb063a
+https://medium.com/@lambert.kamaro/part-3-ash-framework-for-phoenix-developpers-relationships-part-1-28f296ef040b
+https://medium.com/@lambert.kamaro/part-4-ash-framework-for-phoenix-developers-relationshps-2-2-e87ad246a723
+https://medium.com/@lambert.kamaro/part-5-ash-framework-for-phoenix-developers-home-page-calculations-82a0ec6532df
+https://medium.com/@lambert.kamaro/part-6-ash-framework-for-phoenix-developers-ashphoenix-liveview-a8e7fdefc768
+https://medium.com/@lambert.kamaro/part-7-ash-framework-for-phoenix-developers-go-real-time-with-ash-notifications-and-pubsub-c89aa9104370
+https://medium.com/@lambert.kamaro/part-8-ash-framework-for-phoenix-developers-how-not-to-repeat-yourself-dry-forms-1e602164dceb
+
+2025-07-16-11-51-44-443Z-part-1-—-ash-framework-for-phoenix-developers-intro-by-kamaro-lambert-medium-7_16_2025-7-51-22-am .html
+2025-07-16-11-53-07-322Z-part-2-ash-framework-for-phoenix-developers-—-domain-resource-by-kamaro-lambert-medium-7_16_2025-7-52-56-am .html
+2025-07-16-11-54-02-724Z-part-3-—-ash-framework-for-phoenix-developers-—-relationships-part-1-by-kamaro-lambert-medium-medium-7_16_2025-7-53-52-am .html
+2025-07-16-11-54-55-785Z-part-4-—-ash-framework-for-phoenix-developers-—-relationshps-2_2-by-kamaro-lambert-medium-7_16_2025-7-54-38-am .html
+2025-07-16-11-55-48-336Z-part-5-—-ash-framework-for-phoenix-developers-—-show-data-on-pages-ash-aggregations-by-kamaro-lambert-medium-7_16_2025-7-55-39-am .html
+2025-07-16-11-56-34-181Z-part-6-—-ash-framework-for-phoenix-developers-—ashphoenix-liveview-by-kamaro-lambert-medium-7_16_2025-7-56-21-am .html
+2025-07-16-11-57-27-262Z-part-7-—-ash-framework-for-phoenix-developers-go-real-time-with-ashnotifications-and-pubsub-by-kamaro-lambert-medium-7_16_2025-7-57-17-am .html
+2025-07-16-11-58-03-588Z-part-8-—-ash-framework-for-phoenix-developers-how-not-to-repeat-yourself-dry-in-forms-by-kamaro-lambert-medium-7_16_2025-7-57-49-am .html
+
+-----------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------
 
 # READING LIST
