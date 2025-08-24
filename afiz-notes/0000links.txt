@@ -1027,6 +1027,11 @@ https://medium.com/@lambert.kamaro/part-8-ash-framework-for-phoenix-developers-h
 2025-07-16-11-58-03-588Z-part-8-—-ash-framework-for-phoenix-developers-how-not-to-repeat-yourself-dry-in-forms-by-kamaro-lambert-medium-7_16_2025-7-57-49-am .html
 
 -----------------------------------------------------------------------------------------------------------------------
+
+Graphical log with vim-fugitive
+https://dpwright.com/posts/2018/04/06/graphical-log-with-vimfugitive/
+
+-----------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------
 
 # READING LIST
