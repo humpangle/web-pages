@@ -658,6 +658,14 @@ docker-mailserver/docker-mailserver: Production-ready fullstack but simple mail 
 https://github.com/docker-mailserver/docker-mailserver
 https://docker-mailserver.github.io/docker-mailserver/latest/config/security/ssl/
 
+mailpit
+https://mailpit.axllent.org/
+https://github.com/axllent/mailpit
+
+An ode to Mailpit, Elixir edition | Ievgen Pyrogov
+https://ievgenpyrogov.com/an-ode-to-mailpit-elixir-edition/
+2025-10-06-11-29-57-692Z-an-ode-to-mailpit-elixir-edition-ievgen-pyrogov-10_6_2025-7-29-40-am .html
+
 -----------------------------------------------------------------------------------------------------------------------
 
 Obtaining ssl certificate
