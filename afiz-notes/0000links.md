@@ -437,30 +437,30 @@ if (Get-Variable -Name $val -ErrorAction SilentlyContinue) {
 }
 ```
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 https://koenvangilst.nl/blog/phoenix-liveview-cursors
 https://www.reddit.com/r/elixir/comments/tezcjr/a_tutorial_for_creating_a_live_cursors_feature_as/
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 https://blog.miguelcoba.com/deploying-elixir-ebook
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 Crazy fast Kubernetes Automation with Terraform
 https://www.youtube.com/watch?v=kFt0OGd_LhI
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 How I Remember Everything I Read
 https://www.youtube.com/watch?v=AjoxkxM_I5g
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 [Elixir phoenix form](https://github.com/MamesPalmero/dynamic_inputs_for)
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 # how-liveview-got-rid-of-dangling-processes-in-tests-–-and-how-we-can-do-the-same-7_10_2023-5_58_48-am-.html
 
@@ -468,28 +468,28 @@ Ecto.Adapters.SQL.Sandbox
 testing
 LiveView
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 # Compare performance of django to symfony
 
 https://github.com/humpangle/django_vs_symfony__jmeter
 https://www.youtube.com/watch?v=2-SVojp_BVc
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 # Why We Use Phoenix Without LiveView
 
 https://hanzihero.com/blog/why-phoenix-without-liveview
 https://elixirforum.com/t/htmx-a-js-library-sort-of-like-liveview/31888/10?u=samba6
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 # Simple, zero-downtime deploys with nginx and docker-compose
 
 https://www.tines.com/blog/simple-zero-downtime-deploys-with-nginx-and-docker-compose
 https://stackoverflow.com/questions/49090395/how-to-achieve-a-rolling-update-with-docker-compose
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 # Telemetry: loki/promtail/prometheus/grafana/docker etc:
 [Loki: Effective Logging and Log Aggregation with Grafana | by Grzegorz Piechnik | Medium](https://medium.com/@gpiechnik/loki-effective-logging-and-log-aggregation-with-grafana-c3356e7f13ad)
@@ -497,26 +497,24 @@ https://stackoverflow.com/questions/49090395/how-to-achieve-a-rolling-update-wit
 [Logging With Docker, Promtail and Grafana Loki | by Ruan Bekker | Medium](https://ruanbekker.medium.com/logging-with-docker-promtail-and-grafana-loki-d920fd790ca8)
 
 [Monitoring Docker Containers with Grafana, Loki, and Promtail | by Abhiraj Thakur | Medium](https://abhiraj2001.medium.com/monitoring-docker-containers-with-grafana-loki-and-promtail-4302a9417c0d)
-
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 # Control applications accessing the internet on your device
 
 [Portmaster is a free and open-source application firewall that does the heavy lifting for you. Restore privacy and take back control over all your computer's network activity.](https://github.com/safing/portmaster)
 
 [Simple tool to configure Windows Filtering Platform (WFP) which can configure network activity on your computer.](https://github.com/henrypp/simplewall)
-
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 [Elixir FIDO and webauthn](https://elixirforum.com/t/webauthn-what-to-do-for-lost-passkeys/64499/4)
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 Local-First LiveView Svelte ToDo App
 https://liveview-svelte-pwa.fly.dev/
 https://github.com/callmiy/liveview-svelte-pwa/tree/main
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 The cloud is over-engineered and overpriced - YouTube
 https://www.youtube.com/watch?v=jFrGhodqC08
@@ -524,32 +522,32 @@ https://www.youtube.com/watch?v=jFrGhodqC08
 6:30 Bytemark/smtp
 Plausible = alternative to google analytics
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 Jacob Kaplan Moss Let's build a web framework! PyCon 2017 - YouTube
 https://www.youtube.com/watch?v=7kwnjoAJ2HQ
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 ALL ROADS LEAD to AI CODING: Cursor, Aider in the browser, Multi file Prompting - YouTube
 https://www.youtube.com/watch?v=YALpX8oOn78
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 Figma UI Design Tutorial: Get Started in Just 24 Minutes! - YouTube
 https://www.youtube.com/watch?v=FTFaQWZBqQ8
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 terraform-cloudflare-zone/examples/complete/main.tf at main · cloudposse/terraform-cloudflare-zone
 https://github.com/cloudposse/terraform-cloudflare-zone
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 callmiy/masters-of-elixir: A comprehensive collection of resources for mastering Elixir.
 https://github.com/callmiy/masters-of-elixir
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 bash - Linux flock, how to "just" lock a file? - Stack Overflow
 https://stackoverflow.com/questions/24388009/linux-flock-how-to-just-lock-a-file
@@ -559,18 +557,17 @@ https://github.com/discoteq/flock
 file descriptor
 locking file
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 What are you using for application monitoring? - Chat / Discussions - Elixir Programming Language Forum
 https://elixirforum.com/t/what-are-you-using-for-application-monitoring/58760/5
-
 
 Monitoring Docker Containers with Grafana, Loki, and Promtail | by Abhiraj Thakur | Medium
 https://abhiraj2001.medium.com/monitoring-docker-containers-with-grafana-loki-and-promtail-4302a9417c0d
 Create grafana dashboard manually from the UI
 Uses docker loki plugin - which should not be used in production????
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 TLS + SMTP Error when using OTP/26 #785 · Issue #328 · gen-smtp/gen_smtp swoosh ssl
 (MatchError) no match of right hand side value: {:error, {:retries_exceeded, {:temporary_failure, ~c"142.251.167.109", :tls_failed}
@@ -582,17 +579,17 @@ https://www.checktls.com/TestReceiver
 Unable to send an email via my SMTP server via SSL/TLS. But my local email client works well
 https://elixirforum.com/t/unable-to-send-an-email-via-my-smtp-server-via-ssl-tls-but-my-local-email-client-works-well/58308
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 Implementing HTML Emails in Phoenix with Swoosh and Premailex - Tutorials and screencasts for Elixir, Phoenix and LiveView
 https://fullstackphoenix.com/tutorials/implementing-html-emails-in-phoenix-with-swoosh-and-premailex
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 CSV Import file upload with preview in LiveView - Tutorials and screencasts for Elixir, Phoenix and LiveView
 https://fullstackphoenix.com/tutorials/import-csv-with-preview-liveview-file-upload
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 Example elixir game learning --  harrisi/elixir_breakout: OpenGL-rendered Breakout port in Elixir.
 https://github.com/harrisi/elixir_breakout
@@ -606,25 +603,25 @@ https://pikdum.dev/posts/thistle-tea/
 Peep - Efficient TelemetryMetrics reporter supporting Prometheus and StatsD - Your Libraries & OS Mentoring / Libraries - Elixir Programming Language Forum
 https://elixirforum.com/t/peep-efficient-telemetrymetrics-reporter-supporting-prometheus-and-statsd/55901
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 How to structure a large live view app? - Phoenix Forum / Questions / Help - Elixir Programming Language Forum
 https://elixirforum.com/t/how-to-structure-a-large-live-view-app/65192/6?u=samba6
 
 Towards Maintainable Elixir: The Development Process | Very Big Things
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 https://elixirforum.com/t/blog-post-10-elixir-gotchas/63278/16?u=samba6
 elixir macro contstant
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 live_toast: A beautiful drop-in replacement for the Phoenix Flash system.
 https://github.com/srcrip/live_toast
 https://elixirforum.com/t/live-toast-new-toast-flash-component-for-phoenix-liveview/63646/7
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 How to best upgrade a production Phoenix application
 https://elixirforum.com/t/how-to-best-upgrade-a-production-phoenix-application/65412/4
@@ -632,7 +629,7 @@ https://elixirforum.com/t/how-to-best-upgrade-a-production-phoenix-application/6
 A docker-powered PaaS that helps you build and manage the lifecycle of applications
 https://github.com/dokku/dokku
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 CSS The “Checkbox Hack” (and things you can do with it)
 https://css-tricks.com/the-checkbox-hack/
@@ -640,17 +637,17 @@ https://css-tricks.com/the-checkbox-hack/
 What's the best way to manage checked state with custom checkboxes? - Phoenix Forum / Questions / Help - Elixir Programming Language Forum
 https://elixirforum.com/t/whats-the-best-way-to-manage-checked-state-with-custom-checkboxes/65408/4
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 Find the nearest Tailwind Colour
 https://find-nearest-tailwind-colour.netlify.app/
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 Soft deletes with Ecto and PostgreSQL - Dashbit Blog
 https://dashbit.co/blog/soft-deletes-with-ecto
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 Running my own mail server
 
@@ -666,7 +663,7 @@ An ode to Mailpit, Elixir edition | Ievgen Pyrogov
 https://ievgenpyrogov.com/an-ode-to-mailpit-elixir-edition/
 2025-10-06-11-29-57-692Z-an-ode-to-mailpit-elixir-edition-ievgen-pyrogov-10_6_2025-7-29-40-am .html
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 Obtaining ssl certificate
 
@@ -682,7 +679,7 @@ https://www.youtube.com/watch?v=P3imFC7GSr0
 Installing Nginx Proxy Manager in Docker: Step by Step Guide - YouTube
 https://www.youtube.com/watch?v=GhUolNwF4gI
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 Access home server from outside internet
 home lab
@@ -695,7 +692,7 @@ https://www.youtube.com/watch?v=Uzcs97XcxiE
 Compare All Tailscale Plans
 https://tailscale.com/pricing
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 Make websites faster
 Need for Speed : Improving Front-End Performance
@@ -709,12 +706,12 @@ https://whatdoesmysitecost.com/
 WebPageTest - Website Performance and Optimization Test
 https://www.webpagetest.org/
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 Don't Use JS for That: Moving Features to CSS and HTML by Kilian Valkhof
 https://www.youtube.com/watch?v=IP_rtWEMR0o
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 Vim session vim tabline vim statusline
 
@@ -726,24 +723,24 @@ https://dockyard.com/blog/2019/06/25/simple-vim-session-management-part-2
 
 https://github.com/tpope/vim-obsession/blob/fe9d3e1a9a50171e7d316a52e1e56d868e4c1fe5/plugin/obsession.vim#L103
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 Python Microservices Full Course - Event-Driven Architecture with RabbitMQ - YouTube
 
 https://www.youtube.com/watch?v=ddrucr_aAzA&list=PLlameCF3cMEva65psDFX1y_gN2Tmh704t
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 3 Types of Algorithms Every Programmer Needs to Know - data structure and Algorithms
 https://www.youtube.com/watch?v=Uym4-KhP3Lc
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 Celery | Redis | WebSocket in Django with Docker | by TheHormat | Aug, 2024 | Medium | Django Unleashed
 https://medium.com/django-unleashed/celery-redis-websocket-in-django-with-docker-40d534ba9071
 https://github.com/humpangle/The__Magnificent__Four
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 python packages/modules/scripts/import relative absolute
 
@@ -769,19 +766,19 @@ working-directory/
 `-- test_hello.py
 ```
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 Elixir GenServer call time-outs
 https://cultivatehq.com/posts/genserver-call-timeouts/
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 A FastAPI fully Async Assistant runner that is ready to run on Beanstalk
 
 https://github.com/humpangle/fastapi-assistant
 https://medium.com/@jlvalorvc/a-scalable-async-openai-assistant-processor-built-with-fastapi-sourcecode-on-github-67fc757e9832
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 Setting up neovim python django development
 
@@ -797,31 +794,29 @@ I find out setting up `mypy.ini` or `setup.cfg` is not necessary
 pip install 'django-stubs[compatible-mypy]'
 ```
 
----
-
 Django: Fixing “SSL error: decryption failed or bad record mac”
 | by Philamer Sune | Medium
 python multiprocessing
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 Documenting Architecture Decisions
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 neovim config inspirations
 
 https://github.com/humpangle/nvim-starter-kit
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 How to set up a perfect Python project
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 Flake8 Rules
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 Setting up a production ready VPS is a lot easier than I thought. - YouTube
 https://www.youtube.com/watch?v=F-9KWQByeU0
@@ -832,7 +827,7 @@ https://www.youtube.com/watch?v=fuZoxuBiL9o
 youtube I tried deploying to a VPS without Docker... just to see how hard it is
 https://www.youtube.com/watch?v=DmbBgXK8M5M
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 Book Architecture Patterns with Python
 by Harry Percival, Bob Gregory
@@ -840,17 +835,17 @@ https://www.cosmicpython.com/book/preface.html
 
 https://github.com/humpangle/book-architecture-patterns-with-python
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 Making Celery work nicely with Django transactions
 | browniebroke.com downloaded
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 VS Code: You don't need that extension part 2
 downloaded
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 Use Docker Compose Named Volumes as Non Root within your containers
 downloaded
@@ -858,18 +853,18 @@ downloaded
 Running Docker Containers as Current Host User
 downloaded
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 transloadit/uppy: The next open source file uploader for web browsers 🐶 javascript typecript
 https://github.com/transloadit/uppy
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 Effect-TS/effect: An ecosystem of tools for building production-grade applications in TypeScript. javascript
 An ecosystem of tools for building production-grade applications in TypeScript.
 https://github.com/Effect-TS/effect?tab=readme-ov-file
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 Understanding setup.py, setup.cfg and pyproject.toml in Python
 
@@ -884,7 +879,7 @@ cat `setup.cfg`
 install_requires = file: requirements.txt
 ```
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 elixir ls vscode debugger config
 https://github.com/elixir-lsp/vscode-elixir-ls/blob/master/package.json
@@ -892,29 +887,29 @@ Look for it under "debuggers" key
 
 [DOWNLOADED]
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 Harness the Power of Elixir and Phoenix LiveView to Send Free Emails with the Gmail API | by Punniyakodi | Medium
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 Creating a simple Elixir Phoenix application to deploy in Kubernetes | by Sergio Ocón-Cárdenas | Medium
 https://github.com/humpangle/phoenix-liveview-counter-tutorial
 afiz-notes/adopt-liveview-notes.md
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 #  tool to count lines of code
 
 https://github.com/XAMPPRocky/tokei
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 Caching Liveviews - Part 1: The road to HTTP-caching Liveviews - Tangui's blog
 Caching Liveviews - Part 2: Publicly caching private Liveviews - Tangui's blog
 https://github.com/humpangle/cacheable_liveviews
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 Ubuntu: show what keys are pressed in real-time [duplicate]
 Show Keyboard Presses on Screen in Ubuntu
@@ -922,60 +917,60 @@ Show Keyboard Presses on Screen in Ubuntu
 https://www.omgubuntu.co.uk/screenkey-show-key-presses-screen-ubuntu
 https://askubuntu.com/questions/1197651/ubuntu-show-what-keys-are-pressed-in-real-time
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 Implementing Custom Instrumentation for Application Performance Monitoring (APM) Using OpenTelemetry
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 Create an address autocomplete using Google API, Elixir and Phoenix Liveview Part 2
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 tmux resize pane
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 youtube All 29 Next.js Mistakes Beginners Make
 https://www.youtube.com/watch?v=5QP0mvrJkiY
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 youtube Scrum with GitHub No Jira Required!
 https://www.youtube.com/watch?v=Is9KZFkHmpk
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 youtube Painlessly self-host all your projects on a single VPS with Traefik - Traefik Tutorial
 https://www.youtube.com/watch?v=GBFbxtBZ51w
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 [elixir tips](https://elixirstream.dev/tips)
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 Getting to 300 million requests a month with a one man AI/Dev-Ops team - Rob Frelow
 https://www.youtube.com/watch?v=ZFQq5Djd5JY
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 Self hosting elixir apps
 https://elixirforum.com/t/where-do-you-host-small-or-even-tiny-elixir-projects/67107
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 [all http codes](2025-05-12-11-17-59-500Z-http-status-codes-all-63-explained-including-faq-video-12_05_2025-07-14-06.html)
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 [sqlalchemy Efficient counting](sqlalchemy-efficient-counting-25_05_2025-05-25-40)
 [sqlalchemy fast counting](fast-sqlalchemy-counting-avoid-querycount-subquery-·-github-25_05_2025-05-27-39)
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 [Using LibUV in Neovim](/Users/kanmii/shar/web-pages/2025-06-11-09-06-19-740Z-using-libuv-in-neovim-6_11_2025-5-05-33-am)
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 MCP servers
 
@@ -1007,13 +1002,13 @@ https://github.com/szeider/consult7
 * **Path:** `/Users/john/webapp`
 
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 How to write clear/readable codes
 [Clarity | Saša Jurić | ElixirConf EU 2021](https://www.youtube.com/watch?v=6sNmJtoKDCo)
 [2014-02-07 Why programming is difficult Joe Armstrong - Erlang and other stuff](2025-06-23-10-49-15-129Z-joes-blog-—-a-non-linear-personal-web-notebook-23_06_2025-06-48-51.html)
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
 
 Elixir ash Kamaro Lambert medium blog
 https://medium.com/@lambert.kamaro/ash-framework-for-phoenix-developpers-c29b0a147552
@@ -1034,13 +1029,14 @@ https://medium.com/@lambert.kamaro/part-8-ash-framework-for-phoenix-developers-h
 2025-07-16-11-57-27-262Z-part-7-—-ash-framework-for-phoenix-developers-go-real-time-with-ashnotifications-and-pubsub-by-kamaro-lambert-medium-7_16_2025-7-57-17-am .html
 2025-07-16-11-58-03-588Z-part-8-—-ash-framework-for-phoenix-developers-how-not-to-repeat-yourself-dry-in-forms-by-kamaro-lambert-medium-7_16_2025-7-57-49-am .html
 
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
+
 
 Graphical log with vim-fugitive
 https://dpwright.com/posts/2018/04/06/graphical-log-with-vimfugitive/
 
------------------------------------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------------------------------------
+#=======================================================================================================================
+#=======================================================================================================================
 
 # READING LIST
 
@@ -1054,5 +1050,3 @@ Record macbook internal/desktop audio audacity blackhole
 
 use-audacity-to-record-computer-audio-on-mac-–-a-quick-guide-9_23_2024-5_48_06-am
 5-ways-how-to-record-internal-audio-on-mac-awesome-screenshot-&-recorder-9_23_2024-5_49_06-am
-
------------------------------------------------------------------------------------------------------------------------
