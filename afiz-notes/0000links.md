@@ -1019,6 +1019,7 @@ https://medium.com/@lambert.kamaro/part-5-ash-framework-for-phoenix-developers-h
 https://medium.com/@lambert.kamaro/part-6-ash-framework-for-phoenix-developers-ashphoenix-liveview-a8e7fdefc768
 https://medium.com/@lambert.kamaro/part-7-ash-framework-for-phoenix-developers-go-real-time-with-ash-notifications-and-pubsub-c89aa9104370
 https://medium.com/@lambert.kamaro/part-8-ash-framework-for-phoenix-developers-how-not-to-repeat-yourself-dry-forms-1e602164dceb
+https://medium.com/@lambert.kamaro/part-32-how-to-split-your-big-ash-resources-for-cleaner-code-and-faster-compilation-85580e86a702
 
 2025-07-16-11-51-44-443Z-part-1-—-ash-framework-for-phoenix-developers-intro-by-kamaro-lambert-medium-7_16_2025-7-51-22-am .html
 2025-07-16-11-53-07-322Z-part-2-ash-framework-for-phoenix-developers-—-domain-resource-by-kamaro-lambert-medium-7_16_2025-7-52-56-am .html
@@ -1028,7 +1029,7 @@ https://medium.com/@lambert.kamaro/part-8-ash-framework-for-phoenix-developers-h
 2025-07-16-11-56-34-181Z-part-6-—-ash-framework-for-phoenix-developers-—ashphoenix-liveview-by-kamaro-lambert-medium-7_16_2025-7-56-21-am .html
 2025-07-16-11-57-27-262Z-part-7-—-ash-framework-for-phoenix-developers-go-real-time-with-ashnotifications-and-pubsub-by-kamaro-lambert-medium-7_16_2025-7-57-17-am .html
 2025-07-16-11-58-03-588Z-part-8-—-ash-framework-for-phoenix-developers-how-not-to-repeat-yourself-dry-in-forms-by-kamaro-lambert-medium-7_16_2025-7-57-49-am .html
-
+2025-11-11-23-57-07-117Z-part-32-how-to-split-your-big-ash-resources-for-cleaner-code-and-faster-compilation-by-kamaro-lambert-nov-2025-medium-11_11_2025-6-56-46-pm .html
 #=======================================================================================================================
 
 
