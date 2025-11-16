@@ -1045,7 +1045,9 @@ https://github.com/rahultumpala/iris
 
 Yazi Keyboard Shortcuts Quick Reference - Adamsdesk KB
 2025-10-13-16-48-54-416Z-yazi-keyboard-shortcuts-quick-reference-adamsdesk-kb-10_13_2025-12-48-41-pm.html
-
+#=======================================================================================================================
+python how to write tests for celery background jobs
+2025-11-16-10-50-46-156Z-python-how-to-write-tests-for-celery-background-jobs-google-search-11_16_2025-5-50-24-am .html
 #=======================================================================================================================
 #=======================================================================================================================
 
