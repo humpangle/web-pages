@@ -1049,6 +1049,12 @@ Yazi Keyboard Shortcuts Quick Reference - Adamsdesk KB
 python how to write tests for celery background jobs
 2025-11-16-10-50-46-156Z-python-how-to-write-tests-for-celery-background-jobs-google-search-11_16_2025-5-50-24-am .html
 #=======================================================================================================================
+
+Phoenix liveview small javascript bundle sizes
+esbuild code splitting
+https://elixirforum.com/t/is-it-possible-to-have-page-specific-javascript-with-liveview/32614/7
+
+#=======================================================================================================================
 #=======================================================================================================================
 
 # READING LIST
