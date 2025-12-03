@@ -1053,7 +1053,13 @@ python how to write tests for celery background jobs
 Phoenix liveview small javascript bundle sizes
 esbuild code splitting
 https://elixirforum.com/t/is-it-possible-to-have-page-specific-javascript-with-liveview/32614/7
-
+#=======================================================================================================================
+Open source alternative to launchdarkly
+https://github.com/Unleash/unleash
+https://github.com/growthbook/growthbook/
+https://github.com/openflagr/flagr
+https://github.com/Flagsmith/flagsmith
+https://www.reddit.com/r/selfhosted/comments/uxmspz/growthbook_open_source_launchdarkly_alternative/
 #=======================================================================================================================
 #=======================================================================================================================
 
