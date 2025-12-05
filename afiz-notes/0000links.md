@@ -1061,6 +1061,10 @@ https://github.com/openflagr/flagr
 https://github.com/Flagsmith/flagsmith
 https://www.reddit.com/r/selfhosted/comments/uxmspz/growthbook_open_source_launchdarkly_alternative/
 #=======================================================================================================================
+alternative to my `copy` executable - copyq
+
+https://github.com/hluk/CopyQ
+#=======================================================================================================================
 #=======================================================================================================================
 
 # READING LIST
