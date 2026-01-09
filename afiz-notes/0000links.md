@@ -1068,6 +1068,16 @@ https://github.com/hluk/CopyQ
 A Common Phoenix.Socket Check_origin Error And Its Easy Fix
 2025-12-06-16-49-21-130Z-a-common-phoenixsocket-check_origin-error-and-its-easy-fix-12_6_2025-11-49-03-am .html
 #=======================================================================================================================
+
+# AI Tools
+
+## TabzChrome
+https://github.com/GGPrompts/TabzChrome
+Chrome extension for managing tmux sessions in a persistent sidebar
+
+## agent-deck
+https://github.com/asheshgoplani/agent-deck
+Terminal session manager for AI coding agents. Built with Go + Bubble Tea.
 #=======================================================================================================================
 
 # READING LIST
