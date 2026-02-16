@@ -1079,6 +1079,13 @@ Chrome extension for managing tmux sessions in a persistent sidebar
 https://github.com/asheshgoplani/agent-deck
 Terminal session manager for AI coding agents. Built with Go + Bubble Tea.
 #=======================================================================================================================
+semantic search
+
+https://github.com/humpangle/txtai
+
+https://dev.to/neuml/tutorial-series-on-txtai-ibg
+#=======================================================================================================================
+#=======================================================================================================================
 
 # READING LIST
 
