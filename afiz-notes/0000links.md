@@ -1085,6 +1085,11 @@ https://github.com/humpangle/txtai
 
 https://dev.to/neuml/tutorial-series-on-txtai-ibg
 #=======================================================================================================================
+I Built Raft Consensus From Scratch in Elixir. Here's What the Paper Doesn't Tell You.
+2026-03-08-15-23-16-556Z-i-built-raft-consensus-from-scratch-in-elixir-heres-what-the-paper-doesnt-tell-you-3_8_2026-11-22-52-am .html
+https://github.com/humpangle/raft-elixir
+
+#=======================================================================================================================
 #=======================================================================================================================
 
 # READING LIST
