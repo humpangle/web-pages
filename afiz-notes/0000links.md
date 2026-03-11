@@ -1095,6 +1095,11 @@ elixir agent composing library like python's pocket flow
 https://elixirforum.com/t/tubie-a-simple-zero-dependencies-200-lines-minimal-agent-composing-library/74597
 
 #=======================================================================================================================
+
+elixir nx demo bumblebee
+https://github.com/humpangle/nx-demobumblebee
+
+#=======================================================================================================================
 #=======================================================================================================================
 
 # READING LIST
