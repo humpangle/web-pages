@@ -1090,6 +1090,11 @@ I Built Raft Consensus From Scratch in Elixir. Here's What the Paper Doesn't Tel
 https://github.com/humpangle/raft-elixir
 
 #=======================================================================================================================
+
+elixir agent composing library like python's pocket flow
+https://elixirforum.com/t/tubie-a-simple-zero-dependencies-200-lines-minimal-agent-composing-library/74597
+
+#=======================================================================================================================
 #=======================================================================================================================
 
 # READING LIST
