@@ -1100,6 +1100,11 @@ elixir nx demo bumblebee
 https://github.com/humpangle/nx-demobumblebee
 
 #=======================================================================================================================
+
+I self-host everything now on 4 tiny PCs in a 3D printed rack
+https://www.reddit.com/r/selfhosted/comments/1rmfwoa/goodbye_google_i_selfhost_everything_now_on_4/
+
+#=======================================================================================================================
 #=======================================================================================================================
 
 # READING LIST
